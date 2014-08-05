@@ -22,7 +22,6 @@ local defaults = {
     show_fldate = false,
     show_date = false,
     show_rt = false,
-    language = "en",
     time = {
         start = 1398044126, -- exact unix time at the calculated game time start in s
         daytime = 20955, -- length of one day in s (default 5.75h right now)
@@ -164,14 +163,6 @@ function st.SetFormat(name, value)
 end
 
 ------------------
--- language
-------------------
-function st.SetLanguage(ln)
-    -- de, en
-    cl.settings.language = ln
-end
-
-------------------
 -- GET
 ------------------
 -----------
@@ -234,10 +225,6 @@ end
 
 function st.ShowRT()
     return cl.settings.show_rt
-end
-
-function st.GetLanguage()
-    return cl.settings.language
 end
 
 -----------
@@ -351,7 +338,7 @@ end
 SLASH_COMMANDS["/cl"] = function(com)
     com = com:lower()
     local lang = st.GetLanguage()
-    local loc = cl.ln[lang].com
+    local loc = cl.ln.com
     if com == "show" then
         d(cl.vi.DBToString())
     elseif com == loc.midnight or com == loc.sunrise or com == loc.noon or com == loc.sunset then

@@ -149,7 +149,7 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
     end
 
     -- day
-    if cl.st.GetLanguage == "en" then
+    if GetCVar("Language.2") == "en" then
         if day == 1 then
             day = day .. loc.date.first
         elseif day == 2 then
@@ -407,8 +407,7 @@ function vi.HideClock(value)
 end
 
 function vi.InitClock()
-    local lang = cl.st.GetLanguage()
-    loc = cl.ln[lang].vi
+    loc = cl.ln.vi
 
     ClockUI:ClearAnchors()
     ClockUI:SetAnchor(CENTER, GuiRoot, TOPLEFT, cl.st.GetPosition())

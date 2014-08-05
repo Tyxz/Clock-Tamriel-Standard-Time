@@ -13,7 +13,7 @@
 ###################################
 
 ## Title: Clock - By |c5175ea@Tyx|r
-## Version 0.5.7
+## Version 0.5.8
 ## Author: @Tyx
 ## APIVersion: 100008
 ## SavedVariables: Clock_Settings
@@ -50,9 +50,7 @@ libs\LibMediaProvider-1.0\LibMediaProvider-1.0.lua
 Clock.lua
 Clock.xml
 
-lang\language.lua
-lang\en.lua
-lang\de.lua
+local\$(language).lua
 
 data\settings.lua   
 data\time.lua

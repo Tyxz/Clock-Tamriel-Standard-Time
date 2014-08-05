@@ -176,7 +176,7 @@ function tm.GetFakeLoreDate()
 
     local yearStart = 582
     year = tonumber(year) - 2014 + yearStart
-    local day, _, _ = tm.GetLoreDate()
+    local _, _, day = tm.GetLoreDate()
 
     return year, tonumber(month), day
 end

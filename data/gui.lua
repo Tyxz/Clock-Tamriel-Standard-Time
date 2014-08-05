@@ -36,39 +36,6 @@ local function ReloadGUI()
 end
 
 ------------------
--- Language
-------------------
-local function AddLocal()
-    local choice
-    local loc = {
-        type = "dropdown",
-        name = loc.lang,
-        tooltip = loc.langTxt,
-        choices = cl.ln.loc,
-        getFunc = function()
-            for v, k in pairs(cl.ln.locTable) do
-                if k == cl.st.GetLanguage() then
-                    return cl.ln.loc[v]
-                end
-            end
-        end,
-        setFunc = function(value)
-        -- Look for the number in the loc table of the string
-            for v, k in pairs(cl.ln.loc) do
-                if k == value then
-                    -- Save the language
-                    loc = cl.ln[cl.ln.locTable[v]].gui
-                    cl.st.SetLanguage(cl.ln.locTable[v])
-                    ReloadGUI()
-                    break
-                end
-            end
-        end,
-    }
-    return loc
-end
-
-------------------
 -- Toggle
 ------------------
 local function AddToggle()
@@ -281,42 +248,47 @@ local function AddDay()
         name = loc.day,
         tooltip = loc.dayTxt,
         controls = {
-            -- Texture should be here to show how to sync at noon, but dds will not load
             [1] = {
+                type = "texture",
+				image = [[Clock\img\sync.dds]],
+				imageWidth = 510,
+				imageHeight = 100,
+            },
+            [2] = {
                 type = "description",
                 title = loc.descDB,
                 text = loc.descDBTxt,
             },
-            [2] = {
+            [3] = {
                 type = "button",
                 name = loc.nMid,
                 tooltip = loc.tMid,
                 func = function() cl.tm.CreateNewStart("midnight", GetTimeStamp()) end,
             },
-            [3] = {
+            [4] = {
                 type = "button",
                 name = loc.nRise,
                 tooltip = loc.tRise,
                 func = function() cl.tm.CreateNewStart("sunrise", GetTimeStamp()) end,
             },
-            [4] = {
+            [5] = {
                 type = "button",
                 name = loc.nNoon,
                 tooltip = loc.tNoon,
                 func = function() cl.tm.CreateNewStart("noon", GetTimeStamp()) end,
             },
-            [5] = {
+            [6] = {
                 type = "button",
                 name = loc.nSet,
                 tooltip = loc.tSet,
                 func = function() cl.tm.CreateNewStart("sunset", GetTimeStamp()) end,
             },
-            [6] = {
+            [7] = {
                 type = "description",
                 title = loc.descDS,
                 text = loc.descDSTxt,
             },
-            [7] = {
+            [8] = {
                 type = "slider",
                 name = loc.nDayH,
                 tooltip = loc.tDayH,
@@ -326,7 +298,7 @@ local function AddDay()
                 getFunc = function() return day[1] end,
                 setFunc = function(value) day[1] = value end
             },
-            [8] = {
+            [9] = {
                 type = "slider",
                 name = loc.nDayM,
                 tooltip = loc.tDayM,
@@ -336,7 +308,7 @@ local function AddDay()
                 getFunc = function() return day[2] end,
                 setFunc = function(value) day[2] = value end
             },
-            [9] = {
+            [10] = {
                 type = "slider",
                 name = loc.nDayS,
                 tooltip = loc.tDayS,
@@ -346,7 +318,7 @@ local function AddDay()
                 getFunc = function() return day[3] end,
                 setFunc = function(value) day[3] = value end
             },
-            [10] = {
+            [11] = {
                 type = "button",
                 name = loc.nAplyData,
                 tooltip = loc.tAplyData,
@@ -511,16 +483,14 @@ end
 function ui.InitSettings()
     LAM:RegisterAddonPanel("ClockSettings", panel)
 
-    local lang = cl.st.GetLanguage()
-    loc = cl.ln[lang].gui -- Localization table with the current selected language
+    loc = cl.ln.gui -- Localization table with the current selected language
 
     local data = {
-        [1] = AddLocal(),
-        [2] = AddToggle(),
-        [3] = AddLook(),
-        [4] = AddDay(),
-        [5] = AddMoon(),
-        [6] = AddReset(),
+        [1] = AddToggle(),
+        [2] = AddLook(),
+        [3] = AddDay(),
+        [4] = AddMoon(),
+        [5] = AddReset(),
     }
     LAM:RegisterOptionControls("ClockSettings", data)
 end
