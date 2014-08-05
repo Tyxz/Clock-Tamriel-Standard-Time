@@ -25,7 +25,7 @@ local defaults = {
     language = "en",
     time = {
         start = 1398044126, -- exact unix time at the calculated game time start in s
-        daytime = 20956, -- length of one day in s (default 5.75h right now)
+        daytime = 20955, -- length of one day in s (default 5.75h right now)
         night = 7200, -- time of only the night ins (2h)
         name = "noon",
     },

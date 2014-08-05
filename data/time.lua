@@ -82,6 +82,16 @@ function tm.GetTST(osT)
 end
 
 ------------------
+-- returns table {h,m,s} in 24h format
+-- IMPORTANT: Will work as a cross Addon function
+------------------
+local function GetTST()
+    local osT = GetTimeStamp()
+    local tst = tm.GetTST(osT)
+    return tm.ChangeDoubletoHMS(tst)
+end
+
+------------------
 -- time calculator
 -- returns false if wrong name
 ------------------
@@ -111,9 +121,6 @@ local function CalcStartTime(gameStart)
 end
 
 function tm.GetLoreDate()
-    local lang = cl.st.GetLanguage()
-    local loc = cl.ln[lang].vi.date.lore
-
     -- Eso Release  04.04.2014  UNIX: 1396569600
     -- Lore Year 2E 582
     -- Lore Month 4 Rain's Hand
@@ -157,7 +164,7 @@ function tm.GetLoreDate()
         end
     end
     -- WEEK DAY
-    local day = math.floor(tSinceStart / length.day)
+    local day = math.ceil(tSinceStart / length.day)
 
     return year, month, day
 end
