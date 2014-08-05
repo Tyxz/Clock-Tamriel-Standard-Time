@@ -85,7 +85,7 @@ end
 -- returns table {h,m,s} in 24h format
 -- IMPORTANT: Will work as a cross Addon function
 ------------------
-local function GetTST()
+function GetTST()
     local osT = GetTimeStamp()
     local tst = tm.GetTST(osT)
     return tm.ChangeDoubletoHMS(tst)
