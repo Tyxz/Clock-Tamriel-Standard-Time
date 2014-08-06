@@ -94,8 +94,8 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
 
     local yearShort = year
     local monthZero
-    local monthName
-    local dayName
+    local monthName = ""
+    local dayName = ""
     local dayZero
     local hZero
     local mZero
@@ -149,7 +149,7 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
     end
 
     -- day
-    if GetCVar("Language.2") == "en" then
+    if GetCVar("Language.2") == "en" and day ~= 0 then
         if day == 1 then
             day = day .. loc.date.first
         elseif day == 2 then
@@ -419,7 +419,9 @@ function vi.InitClock()
     CALLBACK_MANAGER:RegisterCallback("LAM-PanelControlsCreated",
         function(panel)
             if panel == ClockSettings then
-                GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT)
+				if cl.st.AutoHide() then
+					GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT)
+				end
                 ZO_PreHookHandler(ClockSettings, "OnShow", function() GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT) end)
                 ZO_PreHookHandler(ClockSettings, "OnHide", function() GAME_MENU_SCENE:RemoveFragment(CLOCKUI_SCENE_FRAGMENT) end)
             end
