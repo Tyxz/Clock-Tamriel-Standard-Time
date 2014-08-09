@@ -118,7 +118,7 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
         if cl.st.ShowDate() then
             yearShort = year - 2000
             monthName = locR.months[month]
-            dayName = locR.week[(day % 7) + 1]
+            dayName = locR.week[cl.tm.GetRealWeekDay(day, month, yearShort)]
         end
     end
 
