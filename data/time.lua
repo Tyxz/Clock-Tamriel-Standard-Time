@@ -109,7 +109,7 @@ end
 -- Date calculator
 ------------------
 local function CalcStartTime(gameStart)
-    local start = cl.st.GetTime("start")
+    local start = tm.CreateMidnight()
     local t = start - gameStart
     local day = cl.st.GetTime("daytime")
 
@@ -117,7 +117,7 @@ local function CalcStartTime(gameStart)
         t = t - day
     end
 
-    return gameStart - t
+    return gameStart + t
 end
 
 function tm.GetLoreDate()
@@ -145,8 +145,10 @@ function tm.GetLoreDate()
         },
     }
     local gameStart = CalcStartTime(1396569600)
+    d("GameStart: " .. tm.GetTST(gameStart)[1] .. tm.GetTST(gameStart)[2] .. tm.GetTST(gameStart)[3])
     gameStart = gameStart - 4 * length.day -- 4 days before was a monday
-    gameStart = gameStart - (30 - 28 - 31) * length.day -- 3 lore month before was the beginnung of the year when we think that 4.4 in RT is the same in Tamriel
+    gameStart = gameStart - (30 + 28 + 31) * length.day -- 3 lore month before was the beginnung of the year when we think that 4.4 in RT is the same in Tamriel
+    d("GameStart2: " .. tm.GetTST(gameStart)[1] .. tm.GetTST(gameStart)[2] .. tm.GetTST(gameStart)[3])
     local tSinceStart = GetTimeStamp() - gameStart
     length.year = length.day * 365
     -- YEAR
@@ -179,4 +181,66 @@ function tm.GetFakeLoreDate()
     local _, _, day = tm.GetLoreDate()
 
     return year, tonumber(month), day
+end
+
+local tmpWD = {
+    day = 0,
+    month = 0,
+    yearShort = 0,
+    weekDay = 0,
+}
+
+function tm.GetRealWeekDay(day, month, yearShort)
+    -- Algorithm will only run if not run already at the current day
+    if tmpWD.day ~= day or tmpWD.month ~= month or tmpWD.yearShort ~= yearShort then
+        local m = {
+            [1] = 31,
+            [2] = 28,
+            [3] = 31,
+            [4] = 30,
+            [5] = 31,
+            [6] = 30,
+            [7] = 31,
+            [8] = 31,
+            [9] = 30,
+            [10] = 31,
+            [11] = 30,
+            [12] = 31,
+        }
+
+        local dd = 31
+        local mm = 3
+        local yy = 14
+
+        local x = 0
+
+        while dd < day or mm < month or yy < yearShort do
+            if (yy % 4) == 0 then
+                m[2] = 29
+            else
+                m[2] = 28
+            end
+
+            if dd + 1 > m[mm] then
+                if mm + 1 > 12 then
+                    mm = 1
+                    yy = yy + 1
+                else
+                    mm = mm + 1
+                    dd = 1
+                end
+            else
+                dd = dd + 1
+            end
+
+            x = x + 1
+        end
+
+        tmpWD.weekDay = (x % 7) + 1
+        tmpWD.day = day
+        tmpWD.month = month
+        tmpWD.yearShort = yearShort
+    end
+
+    return tmpWD.weekDay
 end
