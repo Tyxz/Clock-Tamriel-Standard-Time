@@ -5,14 +5,15 @@ cl.mn = {}
 
 local mn = cl.mn
 
+local phaseLength = 30
 ------------------
 -- Phase
 ------------------
 function mn.GetMoonPhase(osT)
-    local day = cl.st.GetTime("daytime")
-    local fullT = cl.st.GetMoon("full") * day
-    local wayT = cl.st.GetMoon("way") * day
-    local newT = cl.st.GetMoon("new") * day
+    local month = cl.st.GetTime("daytime") * phaseLength
+    local fullT = cl.st.GetMoon("full") * month / 100
+    local wayT = cl.st.GetMoon("way") / 2 * month / 100
+    local newT = cl.st.GetMoon("new") * month / 100
     local phase = fullT + newT + wayT * 2
     local start = mn.CreateFullmoon(cl.st.GetMoon("name"), cl.st.GetMoon("start"))
     local moon
@@ -21,28 +22,28 @@ function mn.GetMoonPhase(osT)
         start = start + phase
     end
 
-    local t = osT - start
+    local delta = osT - start
 
     local full = fullT
     local waning = full + wayT
     local new = waning + newT
     local waxing = new + wayT
 
-    if full >= t then
+    if full >= delta then
         moon = "full"
-        t = full - t
-    elseif waning >= t then
+        delta = full - delta
+    elseif waning >= delta then
         moon = "waning"
-        t = waning - t
-    elseif new >= t then
+        delta = waning - delta
+    elseif new >= delta then
         moon = "new"
-        t = new - t
+        delta = new - delta
     else
         moon = "waxing"
-        t = waxing - t
+        delta = waxing - delta
     end
 
-    return moon, t
+    return moon, delta
 end
 
 ------------------
@@ -50,9 +51,9 @@ end
 ------------------
 function mn.CreateFullmoon(name, t)
     local tSinceStart = t
-    local day = cl.st.GetTime("daytime")
-    local way = cl.st.GetMoon("way") * day
-    local full = cl.st.GetMoon("full") * day
+    local month = cl.st.GetTime("daytime") * phaseLength
+    local way = cl.st.GetMoon("way") / 2 * month / 100
+    local full = cl.st.GetMoon("full") * month / 100
 
     if name == "new" then
         tSinceStart = tSinceStart - way - full

@@ -394,30 +394,81 @@ local function AddMoon()
                 name = loc.nNightF,
                 tooltip = loc.tNightF,
                 min = 1,
-                max = 25,
+                max = 98,
                 step = 1,
                 getFunc = function() return night[1] end,
-                setFunc = function(value) night[1] = value end
+                setFunc = function(value)
+                    night[1] = value
+                    local tmp = 100 - value
+                    local n2 = tmp / night[2]
+                    local n3 = tmp / night[3]
+
+                    night[2] = math.ceil(tmp / (1 + n2 / n3))
+                    night[3] = math.floor(tmp / (1 + n3 / n2))
+
+                    if night[2] == 0 and night[3] == 0 then
+                        night[2] = math.ceil(tmp / 2)
+                        night[3] = math.floor(tmp / 2)
+                    elseif night[2] == 0 then
+                        night[2] = tmp - night[3]
+                    elseif night[3] == 0 then
+                        night[3] = tmp - night[2]
+                    end
+                end
             },
             [8] = {
                 type = "slider",
                 name = loc.nNightW,
                 tooltip = loc.tNightW,
                 min = 1,
-                max = 25,
+                max = 98,
                 step = 1,
                 getFunc = function() return night[2] end,
-                setFunc = function(value) night[2] = value end
+                setFunc = function(value)
+                    night[2] = value
+                    local tmp = 100 - value
+                    local n1 = tmp / night[1]
+                    local n3 = tmp / night[3]
+
+                    night[1] = math.ceil(tmp / (1 + n1 / n3))
+                    night[3] = math.floor(tmp / (1 + n3 / n1))
+
+                    if night[1] == 0 and night[3] == 0 then
+                        night[1] = math.ceil(tmp / 2)
+                        night[3] = math.floor(tmp / 2)
+                    elseif night[1] == 0 then
+                        night[1] = tmp - night[3]
+                    elseif night[3] == 0 then
+                        night[3] = tmp - night[1]
+                    end
+                end
             },
             [9] = {
                 type = "slider",
                 name = loc.nNightN,
                 tooltip = loc.tNightN,
                 min = 1,
-                max = 25,
+                max = 98,
                 step = 1,
                 getFunc = function() return night[3] end,
-                setFunc = function(value) night[3] = value end
+                setFunc = function(value)
+                    night[3] = value
+                    local tmp = 100 - value
+                    local n2 = tmp / night[2]
+                    local n1 = tmp / night[1]
+
+                    night[2] = math.ceil(tmp / (1 + n2 / n1))
+                    night[1] = math.floor(tmp / (1 + n1 / n2))
+
+                    if night[2] == 0 and night[1] == 0 then
+                        night[2] = math.ceil(tmp / 2)
+                        night[1] = math.floor(tmp / 2)
+                    elseif night[2] == 0 then
+                        night[2] = tmp - night[1]
+                    elseif night[1] == 0 then
+                        night[1] = tmp - night[2]
+                    end
+                end
             },
             [10] = {
                 type = "button",

@@ -145,10 +145,8 @@ function tm.GetLoreDate()
         },
     }
     local gameStart = CalcStartTime(1396569600)
-    d("GameStart: " .. tm.GetTST(gameStart)[1] .. tm.GetTST(gameStart)[2] .. tm.GetTST(gameStart)[3])
     gameStart = gameStart - 4 * length.day -- 4 days before was a monday
     gameStart = gameStart - (30 + 28 + 31) * length.day -- 3 lore month before was the beginnung of the year when we think that 4.4 in RT is the same in Tamriel
-    d("GameStart2: " .. tm.GetTST(gameStart)[1] .. tm.GetTST(gameStart)[2] .. tm.GetTST(gameStart)[3])
     local tSinceStart = GetTimeStamp() - gameStart
     length.year = length.day * 365
     -- YEAR
