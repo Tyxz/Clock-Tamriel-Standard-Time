@@ -80,7 +80,10 @@ local function AddToggle()
                 type = "checkbox",
                 name = loc.sFormat,
                 getFunc = function() return cl.st.IsUSTime() end,
-                setFunc = function(value) return cl.st.SetUSTime(value) end,
+                setFunc = function(value)
+                    cl.st.SetShowUS(value)
+                    return cl.st.SetUSTime(value)
+                end,
                 disabled = function() return not cl.st.IsActive() end,
             },
             [6] = {

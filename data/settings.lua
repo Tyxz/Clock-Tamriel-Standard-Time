@@ -29,10 +29,10 @@ local defaults = {
         name = "noon",
     },
     moon = {
-        start = 1400340861, -- Unix time of the start of the full moon phase in s
+        start = 1407553200, -- Unix time of the start of the full moon phase in s
         full = 10, -- length of a full moon phase in real time in s -> TRY IN NIGHTS FOR DAYLENGTH OFFSET
-        new = 10, -- length of a new moon phase in real time in s
-        way = 80, -- length of the way between full moon and new moon in s
+        new = 5, -- length of a new moon phase in real time in s
+        way = 85, -- length of the way between full moon and new moon in s
         name = "full",
     },
     offset = {

@@ -160,13 +160,13 @@ cl.ln = {
         descMSTxt = "Synchronize the moon phase of the Clock.\nDo that the very start of one phase.",
         descMoon = "Sync [Phase length]",
         descMoonTxt = "You only need to sync the Clock for either the full- or new moon start and only once.\n"
-                .. "The follwing Sliders are here to select how many days one phase last.",
-        nNightF = "Full moon phase in days",
-        tNightF = "Select how many does the Full moon phase last.",
+                .. "A full moon phase is 30 ingame days. The follwing Sliders are here to select the percentage of one phase.",
+        nNightF = "Full moon phase percentage",
+        tNightF = "Select how long the Full moon phase last.",
         nNightW = "Waning/Waxing moon phase in days",
-        tNightW = "Select how many does the Waning/Waxing moon phase last.",
+        tNightW = "Select how long the Waning/Waxing moon phase last.",
         nNightN = "New moon phase in days",
-        tNightN = "Select how many does the New moon phase last.",
+        tNightN = "Select how long the New moon phase last.",
         nAplyMoon = "Calculate",
         tAplyMoon = "Calculates the current moon phase based on the selected lengths and your synced (or default) start time.",
         -- Reset
