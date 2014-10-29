@@ -13,9 +13,9 @@
 ###################################
 
 ## Title: Clock - By |c5175ea@Tyx|r
-## Version 0.6.0
+## Version 0.6.1
 ## Author: @Tyx
-## APIVersion: 100008
+## APIVersion: 100009
 ## SavedVariables: Clock_Settings
 
 ###############
