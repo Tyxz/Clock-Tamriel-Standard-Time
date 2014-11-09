@@ -13,10 +13,11 @@
 ###################################
 
 ## Title: Clock - By |c5175ea@Tyx|r
-## Version 0.6.1
+## Version 0.6.2
 ## Author: @Tyx
-## APIVersion: 100009
+## APIVersion: 100010
 ## SavedVariables: Clock_Settings
+## OptionalDependsOn: LibAddonMenu-2.0
 
 ###############
 ## Libraries ##
