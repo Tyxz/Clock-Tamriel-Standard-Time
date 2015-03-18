@@ -101,6 +101,10 @@ cl.ln = {
         tRT = "Fügt eine Zeile unter der Clock ein mit der Zeit deines Betriebssystems.",
         sDate = "Zeige reales Datum",
         tDate = "Fügt eine Zeile unter der Clock ein mit dem Tag, Monat und Jahr deines Betriebssystems.",
+        nsBg = "Zeige Hintergrund",
+        tsBg = "Fügt einen Hintergrund hinter die Clock hinzu.",
+        sHor = "Horizontal",
+        tHor = "Zeige die lore- und reale Zeit nebeneinander an.",
         -- Look
         look = "Aussehen Einstellungen",
         lookTxt = "Verschiedene Einstellungen um das Aussehen der Clock zu verändern.",
@@ -112,6 +116,8 @@ cl.ln = {
         tStyle = "Verändere die Design der Clock.",
         nSize = "Größe",
         tSize = "Verändere die Größe der Clock.",
+        nBg = "Hintergrund",
+        tBg = "Wählen Sie den Hintergrund aus.",
         descEditLookY = "Verändere das Format der Clock: Benutze '_' bevor einer Variablen!\n"
                 .. "Jahr/Monat/Tag",
         descEditLookYTxt = "Jahr: Y = 582 (14)\tYY = 2Ä 582 (2014)\n"

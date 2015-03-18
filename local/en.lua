@@ -98,6 +98,8 @@ cl.ln = {
         tRT = "Adds a line under the Clock with the Time of your Operating System.",
         sDate = "Show real Date",
         tDate = "Adds a line under the Clock with the day, month and year of your Operating System.",
+        nsBg = "Show Background",
+        tsBg = "Adds a background behind the Clock.",
         -- Look
         look = "Look Options",
         lookTxt = "Various options to change how the Clock looks.",
@@ -109,6 +111,10 @@ cl.ln = {
         tStyle = "Change the style of the Clock.",
         nSize = "Size",
         tSize = "Change the size of the Clock.",
+        nBg = "Background",
+        tBg = "Choose a background for the Clock.",
+        sHor = "Horizontal",
+        tHor = "Show the lore- and real time next to each other.",
         descEditLookY = "Change the format of the Clock: Use '_' before a variable!\n"
                 .. "Year/Month/Day",
         descEditLookYTxt = "Year: Y = 582 (14)\tYY = 2E 582 (2014)\n"

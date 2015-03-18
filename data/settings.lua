@@ -22,6 +22,8 @@ local defaults = {
     show_fldate = false,
     show_date = false,
     show_rt = false,
+    show_bg = true,
+    show_hz = false,
     time = {
         start = 1398044126, -- exact unix time at the calculated game time start in s
         daytime = 20955, -- length of one day in s (default 5.75h right now)
@@ -44,11 +46,12 @@ local defaults = {
             r = 1,
             g = 1,
             b = 1,
-            a = 0.5,
+            a = 0.75,
         },
-        font = "ESO Cartographer",
+        font = "ESO Book Font",
         style = "thin_shadow",
         size = 24,
+        bg = "Solid",
         format = {
             lore = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
             real = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
@@ -123,6 +126,16 @@ function st.SetShowRT(rt)
     cl.vi.UpdateClock()
 end
 
+function st.SetShowBg(bg)
+    cl.settings.show_bg = bg
+    cl.vi.UpdateClock()
+end
+
+function st.SetShowHz(hz)
+    cl.settings.show_hz = hz
+    cl.vi.UpdateClock()
+end
+
 ----------------------------------
 
 -----------
@@ -159,6 +172,11 @@ end
 
 function st.SetFormat(name, value)
     cl.settings.look.format[name] = value
+    cl.vi.UpdateClock()
+end
+
+function st.SetBg(bg)
+    cl.settings.look.bg = bg
     cl.vi.UpdateClock()
 end
 
@@ -227,6 +245,14 @@ function st.ShowRT()
     return cl.settings.show_rt
 end
 
+function st.ShowBg()
+    return cl.settings.show_bg
+end
+
+function st.ShowHz()
+    return cl.settings.show_hz
+end
+
 -----------
 -- moon
 -----------
@@ -267,6 +293,10 @@ end
 
 function st.GetFormat(name)
     return cl.settings.look.format[name]
+end
+
+function st.GetBg()
+    return cl.settings.look.bg
 end
 
 ------------------

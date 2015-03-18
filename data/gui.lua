@@ -4,8 +4,9 @@
 cl.ui = {}
 
 local ui = cl.ui
-local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
-local LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
+local LAM = cl.LAM
+local LMP = cl.LMP
+
 local loc = {}
 local panel = {
     type = "panel",
@@ -67,6 +68,14 @@ local function AddToggle()
             },
             [4] = {
                 type = "checkbox",
+                name = loc.nsBg,
+                tooltip = loc.tsBg,
+                getFunc = function() return cl.st.ShowBg() end,
+                setFunc = function(value) cl.st.SetShowBg(value) end,
+                disabled = function() return not cl.st.IsActive() end,
+            },
+            [5] = {
+                type = "checkbox",
                 name = loc.sAHide,
                 tooltip = loc.tAHide,
                 getFunc = function() return cl.st.AutoHide() end,
@@ -76,7 +85,7 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [5] = {
+            [6] = {
                 type = "checkbox",
                 name = loc.sFormat,
                 getFunc = function() return cl.st.IsUSTime() end,
@@ -86,14 +95,14 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [6] = {
+            [7] = {
                 type = "checkbox",
                 name = loc.sAMPM,
                 getFunc = function() return cl.st.ShowUS() end,
                 setFunc = function(value) cl.st.SetShowUS(value) end,
                 disabled = function() return not cl.st.IsUSTime() or not cl.st.IsActive() end,
             },
-            [7] = {
+            [8] = {
                 type = "checkbox",
                 name = loc.sNum,
                 tooltip = loc.tNum,
@@ -101,14 +110,14 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowNum(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [8] = {
+            [9] = {
                 type = "checkbox",
                 name = loc.sSec,
                 getFunc = function() return cl.st.ShowSec() end,
                 setFunc = function(value) cl.st.SetShowSec(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [9] = {
+            [10] = {
                 type = "checkbox",
                 name = loc.sMoon,
                 tooltip = loc.tMoon,
@@ -116,7 +125,7 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowMoon(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [10] = {
+            [11] = {
                 type = "checkbox",
                 name = loc.sLDate,
                 tooltip = loc.tLDate,
@@ -129,7 +138,7 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [11] = {
+            [12] = {
                 type = "checkbox",
                 name = loc.sFLDate,
                 tooltip = loc.tFLDate,
@@ -142,7 +151,7 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [12] = {
+            [13] = {
                 type = "checkbox",
                 name = loc.sRT,
                 tooltip = loc.tRT,
@@ -150,12 +159,20 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowRT(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [13] = {
+            [14] = {
                 type = "checkbox",
                 name = loc.sDate,
                 tooltip = loc.tDate,
                 getFunc = function() return cl.st.ShowDate() end,
                 setFunc = function(value) cl.st.SetShowDate(value) end,
+                disabled = function() return not cl.st.IsActive() end,
+            },
+            [15] = {
+                type = "checkbox",
+                name = loc.sHor,
+                tooltip = loc.tHor,
+                getFunc = function() return cl.st.ShowHz() end,
+                setFunc = function(value) cl.st.SetShowHz(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
         }
@@ -195,6 +212,16 @@ local function AddLook()
                 getFunc = function() return cl.st.GetLook("style") end,
                 setFunc = function(value) cl.st.SetLook("style", value) end
             },
+            --[[ [4] = {
+                type = "dropdown",
+                name = loc.nBg,
+                tooltip = loc.tBg,
+                choices = LMP:List('background'),
+                getFunc = function() return cl.st.GetBg() end,
+                setFunc = function(value) cl.st.SetBg(value) end,
+                disabled = function() return not cl.st.ShowBg() end
+             },
+            --]]
             [4] = {
                 type = "slider",
                 name = loc.nSize,
@@ -220,7 +247,7 @@ local function AddLook()
                 title = loc.descEditLookE,
                 text = loc.descEditLookETxt,
             },
-            [8] = {
+            [9] = {
                 type = "editbox",
                 name = loc.nELore,
                 tooltip = loc.tELore,
@@ -228,7 +255,7 @@ local function AddLook()
                 setFunc = function(value) cl.st.SetFormat("lore", value) end,
                 isMultiline = true,
             },
-            [9] = {
+            [8] = {
                 type = "editbox",
                 name = loc.nEReal,
                 tooltip = loc.tEReal,
@@ -535,9 +562,9 @@ end
 -- Init
 ------------------
 function ui.InitSettings()
-    LAM:RegisterAddonPanel("ClockSettings", panel)
-
     loc = cl.ln.gui -- Localization table with the current selected language
+    
+    LAM:RegisterAddonPanel("ClockSettings", panel)
 
     local data = {
         [1] = AddToggle(),

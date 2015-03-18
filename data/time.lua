@@ -221,11 +221,12 @@ function tm.GetRealWeekDay(day, month, yearShort)
 
             if dd + 1 > m[mm] then
                 if mm + 1 > 12 then
+                    dd = 1
                     mm = 1
                     yy = yy + 1
                 else
-                    mm = mm + 1
                     dd = 1
+                    mm = mm + 1
                 end
             else
                 dd = dd + 1

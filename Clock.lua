@@ -3,8 +3,11 @@
 -------------------------------------------
 cl = {}
 
-cl.VERSION = "0.6.2"
-cl.SAV_VERSION = 0.6
+cl.VERSION = "0.7.0"
+cl.SAV_VERSION = 0.7
+
+cl.LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
+cl.LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
 -------------------------------------------
 -- main

@@ -12,10 +12,10 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock - By |c5175ea@Tyx|r
-## Version 0.6.2
-## Author: @Tyx
-## APIVersion: 100010
+## Title: Clock |cFFA5000.6.2|r
+## Version 0.7.0
+## Author: |c5175eaTyx|r
+## APIVersion: 100011
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
 
@@ -23,8 +23,8 @@
 ## Libraries ##
 ###############
 
-## Author: Seerah
 ## Source: http://www.esoui.com/downloads/info7-LibAddonMenu.html
+## Source_Author: Seerah
 libs\LibStub\LibStub.lua
 libs\LibAddonMenu-2.0\LibAddonMenu-2.0.lua
 libs\LibAddonMenu-2.0\controls\panel.lua
@@ -40,8 +40,8 @@ libs\LibAddonMenu-2.0\controls\header.lua
 libs\LibAddonMenu-2.0\controls\slider.lua
 libs\LibAddonMenu-2.0\controls\texture.lua
 
-## Author: Seerah
 ## Source: http://www.esoui.com/downloads/info56-LibMediaProvider.html
+## Source_Author: Seerah
 libs\LibMediaProvider-1.0\LibMediaProvider-1.0.lua
 
 #################
