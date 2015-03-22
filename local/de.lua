@@ -116,6 +116,17 @@ cl.ln = {
         tStyle = "Verändere die Design der Clock.",
         nSize = "Größe",
         tSize = "Verändere die Größe der Clock.",
+        --real
+        nSepLR = "Different Looks",
+        tSepLR = "Choose if you want your real date have an other look than your lore date.",
+        nRColPick = "Color",
+        tRColPick = "Change the color of the Clock.",
+        nRFont = "Font",
+        tRFont = "Change the font of the Clock.",
+        nRStyle = "Style",
+        tRStyle = "Change the style of the Clock.",
+        nRSize = "Size",
+        tRSize = "Change the size of the Clock.",
         nBg = "Hintergrund",
         tBg = "Wählen Sie den Hintergrund aus.",
         descEditLookY = "Verändere das Format der Clock: Benutze '_' bevor einer Variablen!\n"

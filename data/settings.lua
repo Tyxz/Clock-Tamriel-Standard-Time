@@ -24,6 +24,7 @@ local defaults = {
     show_rt = false,
     show_bg = true,
     show_hz = false,
+    sep_lr = true,
     time = {
         start = 1398044126, -- exact unix time at the calculated game time start in s
         daytime = 20955, -- length of one day in s (default 5.75h right now)
@@ -31,7 +32,7 @@ local defaults = {
         name = "noon",
     },
     moon = {
-        start = 1407553200, -- Unix time of the start of the full moon phase in s
+        start = 1425169441, --Phinix sync ... Unix time of the start of the full moon phase in s - old 1407553200
         full = 10, -- length of a full moon phase in real time in s -> TRY IN NIGHTS FOR DAYLENGTH OFFSET
         new = 5, -- length of a new moon phase in real time in s
         way = 85, -- length of the way between full moon and new moon in s
@@ -42,20 +43,33 @@ local defaults = {
         y = 70,
     },
     look = {
-        color = {
-            r = 1,
-            g = 1,
-            b = 1,
-            a = 0.75,
+        lore = {
+            color = {
+                r = 1,
+                g = 1,
+                b = 1,
+                a = 0.75,
+            },
+            font = "ESO Book Font",
+            style = "thin_shadow",
+            size = 24,
         },
-        font = "ESO Book Font",
-        style = "thin_shadow",
-        size = 24,
-        bg = "Solid",
+        real = {
+            color = {
+                r = 1,
+                g = 1,
+                b = 1,
+                a = 0.75,
+            },
+            font = "ESO Book Font",
+            style = "thin_shadow",
+            size = 24,
+        },
         format = {
             lore = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
             real = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
         },
+        bg = "Solid",
     }
 }
 
@@ -136,6 +150,11 @@ function st.SetShowHz(hz)
     cl.vi.UpdateClock()
 end
 
+function st.SetSepLR(lr)
+    cl.settings.sep_lr = lr
+    cl.vi.UpdateClock()
+end
+
 ----------------------------------
 
 -----------
@@ -156,8 +175,11 @@ end
 -----------
 -- view
 -----------
+
+-- lore date
+
 function st.SetColor(r, g, b, a)
-    local c = cl.settings.look.color
+    local c = cl.settings.look.lore.color
     c.r = r
     c.g = g
     c.b = b
@@ -166,7 +188,23 @@ function st.SetColor(r, g, b, a)
 end
 
 function st.SetLook(name, value)
-    cl.settings.look[name] = value
+    cl.settings.look.lore[name] = value
+    cl.vi.UpdateClock()
+end
+
+-- Real date
+
+function st.SetRColor(r, g, b, a)
+    local c = cl.settings.look.real.color
+    c.r = r
+    c.g = g
+    c.b = b
+    c.a = a
+    cl.vi.UpdateClock()
+end
+
+function st.SetRLook(name, value)
+    cl.settings.look.real[name] = value
     cl.vi.UpdateClock()
 end
 
@@ -253,6 +291,10 @@ function st.ShowHz()
     return cl.settings.show_hz
 end
 
+function st.SepLR()
+    return cl.settings.sep_lr
+end
+
 -----------
 -- moon
 -----------
@@ -282,13 +324,26 @@ function st.GetColorHex()
     return RGBToHex(st.GetColor())
 end
 
+-- lore
+
 function st.GetColor()
-    local c = cl.settings.look.color
+    local c = cl.settings.look.lore.color
     return c.r, c.g, c.b, c.a
 end
 
 function st.GetLook(name)
-    return cl.settings.look[name]
+    return cl.settings.look.lore[name]
+end
+
+-- real
+
+function st.GetRColor()
+    local c = cl.settings.look.real.color
+    return c.r, c.g, c.b, c.a
+end
+
+function st.GetRLook(name)
+    return cl.settings.look.real[name]
 end
 
 function st.GetFormat(name)
@@ -367,7 +422,7 @@ end
 ------------------
 SLASH_COMMANDS["/cl"] = function(com)
     com = com:lower()
-    local lang = st.GetLanguage()
+    -- local lang = st.GetLanguage()
     local loc = cl.ln.com
     if com == "show" then
         d(cl.vi.DBToString())

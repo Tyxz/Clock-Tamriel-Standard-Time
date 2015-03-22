@@ -212,7 +212,8 @@ local function AddLook()
                 getFunc = function() return cl.st.GetLook("style") end,
                 setFunc = function(value) cl.st.SetLook("style", value) end
             },
-            --[[ [4] = {
+            --[[
+            [4] = {
                 type = "dropdown",
                 name = loc.nBg,
                 tooltip = loc.tBg,
@@ -232,6 +233,53 @@ local function AddLook()
                 getFunc = function() return cl.st.GetLook("size") end,
                 setFunc = function(value) cl.st.SetLook("size", value) end
             },
+            --[[
+            [5] = {
+                type = "checkbox",
+                name = loc.nSepLR,
+                tooltip = loc.tSepLR,
+                getFunc = function() return cl.st.SepLR() end,
+                setFunc = function(value) cl.st.SetSepLR(value) end,
+                disabled = function() return not cl.st.IsActive() end,
+            },
+            [6] = {
+                type = "colorpicker",
+                name = loc.nRColPick,
+                tooltip = loc.tRColPick,
+                getFunc = function() return cl.st.GetRColor() end,
+                setFunc = function(r, g, b, a) cl.st.SetRColor(r, g, b, a) end,
+                disabled = function() return not cl.st.SepLR() end,
+            },
+            [7] = {
+                type = "dropdown",
+                name = loc.nRFont,
+                tooltip = loc.tRFont,
+                choices = LMP:List('font'),
+                getFunc = function() return cl.st.GetRLook("font") end,
+                setFunc = function(value) cl.st.SetRLook("font", value) end,
+                disabled = function() return not cl.st.SepLR() end,
+            },
+            [8] = {
+                type = "dropdown",
+                name = loc.nRStyle,
+                tooltip = loc.tRStyle,
+                choices = ui.styles,
+                getFunc = function() return cl.st.GetRLook("style") end,
+                setFunc = function(value) cl.st.SetRLook("style", value) end,
+                disabled = function() return not cl.st.SepLR() end,
+            },
+            [9] = {
+                type = "slider",
+                name = loc.nRSize,
+                tooltip = loc.tRSize,
+                min = 10,
+                max = 70,
+                step = 2,
+                getFunc = function() return cl.st.GetRLook("size") end,
+                setFunc = function(value) cl.st.SetRLook("size", value) end,
+                disabled = function() return not cl.st.SepLR() end,
+            },
+            --]]
             [5] = {
                 type = "description",
                 title = loc.descEditLookY,
@@ -247,7 +295,7 @@ local function AddLook()
                 title = loc.descEditLookE,
                 text = loc.descEditLookETxt,
             },
-            [9] = {
+            [8] = {
                 type = "editbox",
                 name = loc.nELore,
                 tooltip = loc.tELore,
@@ -255,7 +303,7 @@ local function AddLook()
                 setFunc = function(value) cl.st.SetFormat("lore", value) end,
                 isMultiline = true,
             },
-            [8] = {
+            [9] = {
                 type = "editbox",
                 name = loc.nEReal,
                 tooltip = loc.tEReal,
