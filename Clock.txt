@@ -12,8 +12,8 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock |cFFA5000.6.2|r
-## Version 0.7.0
+## Title: Clock |cFFA5000.7.1|r
+## Version 0.7.1
 ## Author: |c5175eaTyx|r
 ## APIVersion: 100011
 ## SavedVariables: Clock_Settings
