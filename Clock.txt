@@ -13,9 +13,9 @@
 ###################################
 
 ## Title: Clock |cFFA5000.7.1|r
-## Version 0.7.1
+## Version 0.7.2
 ## Author: |c5175eaTyx|r
-## APIVersion: 100011
+## APIVersion: 100014
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
 
@@ -24,7 +24,8 @@
 ###############
 
 ## Source: http://www.esoui.com/downloads/info7-LibAddonMenu.html
-## Source_Author: Seerah
+## Source_Author: sirinsidiator, Seerah 
+## Source_Version: 2.0 r19
 libs\LibStub\LibStub.lua
 libs\LibAddonMenu-2.0\LibAddonMenu-2.0.lua
 libs\LibAddonMenu-2.0\controls\panel.lua
@@ -39,9 +40,11 @@ libs\LibAddonMenu-2.0\controls\editbox.lua
 libs\LibAddonMenu-2.0\controls\header.lua
 libs\LibAddonMenu-2.0\controls\slider.lua
 libs\LibAddonMenu-2.0\controls\texture.lua
+libs\LibAddonMenu-2.0\controls\iconpicker.lua
 
 ## Source: http://www.esoui.com/downloads/info56-LibMediaProvider.html
-## Source_Author: Seerah
+## Source_Author: Garkin, Seerah
+## Source_Version: 1.0 r8
 libs\LibMediaProvider-1.0\LibMediaProvider-1.0.lua
 
 #################
