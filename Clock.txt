@@ -15,8 +15,8 @@
 ## Title: Clock |cFFA4000.7.2|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
-## Version 0.7.2
-## APIVersion: 100014
+## Version 0.7.3
+## APIVersion: 100015
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
 
@@ -26,7 +26,7 @@
 
 ## Source: http://www.esoui.com/downloads/info7-LibAddonMenu.html
 ## Source_Author: sirinsidiator, Seerah 
-## Source_Version: 2.0 r19
+## Source_Version: 2.0 r20
 libs\LibStub\LibStub.lua
 libs\LibAddonMenu-2.0\LibAddonMenu-2.0.lua
 libs\LibAddonMenu-2.0\controls\panel.lua
