@@ -12,11 +12,12 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock |cFFA4000.7.2|r
+## Title: Clock |cFFA4000.7.3|r - |ccc0000neoView|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
 ## Version 0.7.3
 ## APIVersion: 100015
+
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
 
