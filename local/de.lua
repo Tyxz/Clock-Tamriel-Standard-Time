@@ -5,75 +5,51 @@
 cl.ln = {
     com = {
         -- COMMANDS ARE ENGLISH ONLY RIGHT NOW
-        --show = "zeige",
-        --midnight = "mitternacht",
-        --sunrise = "sonnenaufgang",
-        --noon = "mittag",
-        --sunset = "sonnenuntergang",
-        --reset = "zurücksetzen",
+        show = "show",
+        midnight = "midnight",
+        sunrise = "sunrise",
+        noon = "noon",
+        sunset = "sunset",
+        reset = "reset",
         resetTxt = "Clock ist nun zurückgesetzt.",
-        --resetui = "zurücksetzenUI",
+        resetui = "resetui",
         resetUITxt = "Clock Benutzeroberfläche ist nun zurückgesetzt.",
-        -- resettime = "zurücksetzenZeit",
+        resettime = "resettime",
         resetTimeTxt = "Clock Zeit ist nun zurückgesetzt.",
-        --us = "us",
+        us = "us",
         usOn = "Die Zeit wird nun in 12h mit am/pm dargestellt.",
         usOff = "Die Zeit wird nun in 24h dargestellt.",
-        --num = "num",
+        num = "num",
         numOn = "Nullen werden hinzugefügt.",
         numOff = "Einzelne Ziffern werden angezeigt.",
-        --sec = "sek",
+        sec = "sec",
         secOn = "Sekunden werden angezeigt.",
         secOff = "Sekunden werden ausgeblendet.",
-        --active = "aktiv",
+        active = "aktiv",
         activeOn = "Clock - TST ist eingeschaltet.",
         activeOff = "Clock - TST ist ausgeschaltet.",
-        --active = "bewege",
-        activeOn = "Clock kann nun verschoben werden.",
-        activeOff = "Clock ist nun fixiert.",
-        --moon = "mond",
+        move = "move",
+        moveOn = "Clock kann nun verschoben werden.",
+        moveOff = "Clock ist nun fixiert.",
+        moon = "moon",
         moonOn = "Der Mond wird angezeigt.",
         moonOff = "Der Mond wird ausgeblendet.",
-        --ldate = "ldatum",
+        ldate = "ldate",
         ldateOn = "Lore Datum wird angezeigt.",
         ldateOff = "Lore Datum wird ausgeblendet.",
-        --fldate = "ldatum",
+        fldate = "fldate",
         fldateOn = "Falsches lore Datum wird angezeigt.",
         fldateOff = "Falsches lore Datum wird ausgeblendet.",
-        --rt = "rz",
+        rt = "rt",
         rtOn = "Reale-Zeit wird angezeigt.",
         rtOff = "Reale-Zeit wird ausgeblendet.",
-        --date = "datum",
+        date = "date",
         dateOn = "Datum wird angezeigt.",
         dateOff = "Datum wird ausgeblendet.",
-        text = "Willkommen zu dem |cFFD700Clock|r - TST von |c5175ea@Tyx|r [EU] Hilfemenü\n"
-                .. "Um die aktuelle Datenbank anzuzeigen, schreibe:\n"
-                .. "\t\cl show\n"
-                .. "Um die aktuelle Zeit als Tamriel Mitternacht/Sonnenaufgang/Mittag/Sonnenuntergang zu speichern, benutze das passenden kommando:\n"
-                .. "\t\cl midnight\n\t\cl sunrise\n\t\cl noon\n\t\cl sunset\n"
-                .. "Um die aktuelle Datenbank, nur das Aussehen oder nur die Zeit auf ihre Anfangswerte zurückzusetzen, schreibe\n"
-                .. "\t\cl reset\n\t\cl resetUI\t\cl resetTime\n"
-                .. "Du kannst die angezeigte Zeit in das 12h/24h Format umschalten mit:\n"
-                .. "\t\cl us\n"
-                .. "Um die Nullen vor den einstelligen Stunden zu löschen, schreibe:\n"
-                .. "\t\cl num\n"
-                .. "Um die Sekuden ein- oder auszublenden, schreibe:\n"
-                .. "\t\cl sec\n"
-                .. "Um die Echtzeit einzublenden, schreibe:\n"
-                .. "\t\cl rt\n"
-                .. "Damit die Mondphase angezeigt wird, schreibe:\n"
-                .. "\t\cl moon\n"
-                .. "Um das Datum (lore/fake lore/real) anzuzeigen, schreibe:\n"
-                .. "\t\cl ldate\n\t\cl fldate\n\t\cl date\n"
-                .. "Damit die Clock nicht mehr bewegt werden kann, schreibe:\n"
-                .. "\t\cl move\n"
-                .. "Um die Clock ein-/auszuschalten benutze:\n"
-                .. "\t\cl active\n\n"
-                .. "Um das Einstellungsmenü aufzurufen, schreibe:\n"
-                .. "\t\clsettings\n",
+        text = "Willkommen zu dem |cFFD700Clock|r - TST von |c5175ea@Tyx|r [EU] Hilfemenü\n§Um die aktuelle Datenbank anzuzeigen, schreibe:\n§\t\cl show\n§Um die aktuelle Zeit als Tamriel Mitternacht/Sonnenaufgang/Mittag/Sonnenuntergang zu speichern, benutze das passenden kommando:\n§\t\cl midnight\n\t\cl sunrise\n\t\cl noon\n\t\cl sunset\n§Um die aktuelle Datenbank, nur das Aussehen oder nur die Zeit auf ihre Anfangswerte zurückzusetzen, schreibe\n§\t\cl reset\n\t\cl resetUI\t\cl resetTime\n§Du kannst die angezeigte Zeit in das 12h/24h Format umschalten mit:\n§\t\cl us\n§Um die Nullen vor den einstelligen Stunden zu löschen, schreibe:\n§\t\cl num\n§Um die Sekuden ein- oder auszublenden, schreibe:\n§\t\cl sec\n§Um die Echtzeit einzublenden, schreibe:\n§\t\cl rt\n§Damit die Mondphase angezeigt wird, schreibe:\n§\t\cl moon\n§Um das Datum (lore/fake lore/real) anzuzeigen, schreibe:\n§\t\cl ldate\n\t\cl fldate\n\t\cl date\n§Damit die Clock nicht mehr bewegt werden kann, schreibe:\n§\t\cl move\n§Um die Clock ein-/auszuschalten benutze:\n§\t\cl active\n\n§Um das Einstellungsmenü aufzurufen, schreibe:\n§\t\clsettings\n",
     },
     gui = {
-        com = "/cleinstellungen",
+        com = "/clsettings",
         -- Language
         lang = "Sprache",
         langTxt = "Wähle eine Sprache für das Clock Einstellungsmenü und die Kommandos.\n Achtung: dies wird das UI neuladen.",
@@ -89,7 +65,7 @@ cl.ln = {
         sFormat = "12h Format",
         sAMPM = "Zeige AM/PM",
         sNum = "Ergänze Nullen",
-        tNum = "Ergänzt NUllen vor eine einstellige Zahl: 1:24 -> 01:24",
+        tNum = "Ergänzt Nullen vor eine einstellige Zahl: 1:24 -> 01:24",
         sSec = "Zeige Sekunden",
         sMoon = "Zeige den Mond",
         tMoon = "Fügt ein kleines Bild mit der aktuellen Mondphase und den verbleibenden Stunden bis zum Beginn der nächsten Phase hinzu.",
@@ -103,8 +79,6 @@ cl.ln = {
         tDate = "Fügt eine Zeile unter der Clock ein mit dem Tag, Monat und Jahr deines Betriebssystems.",
         nsBg = "Zeige Hintergrund",
         tsBg = "Fügt einen Hintergrund hinter die Clock hinzu.",
-        sHor = "Horizontal",
-        tHor = "Zeige die lore- und reale Zeit nebeneinander an.",
         -- Look
         look = "Aussehen Einstellungen",
         lookTxt = "Verschiedene Einstellungen um das Aussehen der Clock zu verändern.",
@@ -117,18 +91,20 @@ cl.ln = {
         nSize = "Größe",
         tSize = "Verändere die Größe der Clock.",
         --real
-        nSepLR = "Different Looks",
-        tSepLR = "Choose if you want your real date have an other look than your lore date.",
-        nRColPick = "Color",
-        tRColPick = "Change the color of the Clock.",
-        nRFont = "Font",
-        tRFont = "Change the font of the Clock.",
-        nRStyle = "Style",
-        tRStyle = "Change the style of the Clock.",
-        nRSize = "Size",
-        tRSize = "Change the size of the Clock.",
+        nSepLR = "Unterschiedliches Aussehen.",
+        tSepLR = "Wähle aus, falls das reale- anders als das lore Datum aussehen soll.",
+        nRColPick = "Farbe",
+        tRColPick = "Verändere die Farbe der Clock",
+        nRFont = "Schriftart",
+        tRFont = "Verändere die Schriftart der Clock.",
+        nRStyle = "Design",
+        tRStyle = "Verändere das Design der Clock.",
+        nRSize = "Größe",
+        tRSize = "Verändere die Größe der Clock.",
         nBg = "Hintergrund",
         tBg = "Wählen Sie den Hintergrund aus.",
+        sHor = "Horizontal",
+        tHor = "Zeige die lore- und reale Zeit nebeneinander an.",
         descEditLookY = "Verändere das Format der Clock: Benutze '_' bevor einer Variablen!\n"
                 .. "Jahr/Monat/Tag",
         descEditLookYTxt = "Jahr: Y = 582 (14)\tYY = 2Ä 582 (2014)\n"
@@ -190,12 +166,12 @@ cl.ln = {
         nAplyMoon = "Berechne",
         tAplyMoon = "Berechne die aktuelle Mondphase basierend auf der ausgewählten Phasenlänge und deiner synchronisierten (oder anfangs) Startzeit.",
         -- Reset
-        reset = "Zurücksetz Einstellungen",
+        reset = "Einstellungen zurücksetzen",
         resetTxt = "Verschiedene Einstellungen um Alles oder nur Teile der Clock zurückzusetzen.",
         nResFull = "Alles zurücksetzen",
         tResFull = "Setze alles auf seine Anfangswerte zurück.",
         wResFull = "Dies wird alle von dir gemachten Anpassungen auf die Anfangswerte zurücksetzen!\nWird die UI neuladen!",
-        nResUI = "Setze die Benutzeroverfläche zurück",
+        nResUI = "Setze die UI zurück.",
         tResUI = "Setzt das Aussehen und die Position der Clock auf die Startwerte zurück.",
         wResUI = "Dies wird alle von dir gemachten Anpassungen an der Benutzeroverfläche auf die Anfangswerte zurücksetzen!",
         nResTime = "Setze die Zeit zurück",

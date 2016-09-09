@@ -12,10 +12,10 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock |cFFA4000.7.4|r
+## Title: Clock |cFFA4000.7.5|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
-## Version 0.7.4
+## Version 0.7.5
 ## APIVersion: 100016
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
@@ -55,6 +55,7 @@ libs\LibMediaProvider-1.0\LibMediaProvider-1.0.lua
 Clock.lua
 Clock.xml
 
+local\en.lua
 local\$(language).lua
 
 data\settings.lua   
