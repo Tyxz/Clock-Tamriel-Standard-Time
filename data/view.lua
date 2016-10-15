@@ -184,14 +184,16 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
     end
 
     -- hour
+    -- {0,11} am : {12,11} pm
+    -- {12,1,...,11} am : {12,1,...,11} pm
     if cl.st.IsUSTime() then
         if hour > 12 then
             hour = hour - 12
             am = false
-        else if hour = 12 then
+        elseif hour == 12 then
             am = false
-        else if hour = 0 then
-            hour = 0
+        elseif hour == 0 then
+            hour = 12
             am = true
         else
             am = true
