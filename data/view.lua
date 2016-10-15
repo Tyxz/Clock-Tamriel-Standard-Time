@@ -188,6 +188,11 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
         if hour > 12 then
             hour = hour - 12
             am = false
+        else if hour = 12 then
+            am = false
+        else if hour = 0 then
+            hour = 0
+            am = true
         else
             am = true
         end
@@ -286,7 +291,7 @@ function vi.UpdateMoon()
     vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, -2 / 3 * size, 1 / 3 * size)
 
     vi.moontexture:SetTexture(vi.moons[moon])
-    
+
     local font = LMP:Fetch('font', cl.st.GetLook("font"))
     local style = cl.st.GetLook("style")
     local size = cl.st.GetLook("size")
@@ -326,7 +331,7 @@ end
 
 function vi.UpdateClock()
     vi.UpdateBackground()
-    
+
     ClockUITime:SetColor(cl.st.GetColor())
 
     local font = LMP:Fetch('font', cl.st.GetLook("font"))
@@ -345,35 +350,35 @@ end
 function vi.UpdateBackground()
     --local bg = LMP:Fetch('background', cl.st.GetBg())
     local size = cl.st.GetLook("size")
-    
+
     local x = ClockUITime:GetDimensions() * 2
     local y = size * 8
     local pos_y = -size/2
 
     if cl.st.ShowRT() or cl.st.ShowDate() then -- real
-        if cl.st.ShowMoon() or cl.st.ShowTime() or cl.st.ShowFLDate() or cl.st.ShowLoreDate() then -- lore + real 
+        if cl.st.ShowMoon() or cl.st.ShowTime() or cl.st.ShowFLDate() or cl.st.ShowLoreDate() then -- lore + real
             if not cl.st.ShowHz() then
                 y = y*2
                 pos_y = 0
-            end   
+            end
         else
             pos_y = size/2
-        end 
-    end    
+        end
+    end
     if cl.st.ShowHz() then
         pos_y = 0
-    end   
-    
+    end
+
     vi.background:ClearAnchors()
-    vi.background:SetAnchor(CENTER, ClockUITime, CENTER, 0, pos_y)    
+    vi.background:SetAnchor(CENTER, ClockUITime, CENTER, 0, pos_y)
     vi.background:SetDimensions(x, y)
     vi.background:SetTexture("EsoUI/Art/Performance/StatusMeterMunge.dds")
-    
-    
+
+
 end
 
 function vi.PrintClock()
-    
+
     local osT = GetTimeStamp()
     local tst = cl.tm.GetTST(osT)
     local lore, real
@@ -422,7 +427,7 @@ function vi.PrintClock()
         HUD_SCENE:RemoveFragment(CLOCKUI_SCENE_FRAGMENT)
         HUD_UI_SCENE:RemoveFragment(CLOCKUI_SCENE_FRAGMENT)
     end
-    
+
     vi.HideBackground(cl.st.ShowBg())
     vi.HideMoon(cl.st.ShowMoon())
     vi.HideClock(cl.st.IsActive())
@@ -468,7 +473,7 @@ function vi.InitClock()
 	if not vi.background then
 		vi.background = WINDOW_MANAGER:CreateControl("cl_background", ClockUITime, CT_TEXTURE)
 	end
-    
+
     -- Thanks Garkin for the method
     CALLBACK_MANAGER:RegisterCallback("LAM-PanelControlsCreated",
         function(panel)
