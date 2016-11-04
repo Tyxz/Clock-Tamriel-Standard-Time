@@ -15,6 +15,7 @@ local defaults = {
     auto_hide = true,
     us_time = false,
     show_us = false,
+    show_jap = false,
     show_num = true,
     show_sec = true,
     show_moon = true,
@@ -105,6 +106,10 @@ end
 
 function st.SetShowUS(us)
     cl.settings.show_us = us
+end
+
+function st.SetShowJap(jap)
+    cl.settings.show_us = jap
 end
 
 function st.SetShowNum(num)
@@ -253,6 +258,14 @@ end
 
 function st.ShowUS()
     return cl.settings.show_us
+end
+
+function st.ShowJap()
+    -- Not part of previous (<0.7.6) saved variable
+    if cl.settings.show_jap == nil then
+        cl.settings.show_jap = false
+    end
+    return cl.settings.show_jap
 end
 
 function st.ShowNum()

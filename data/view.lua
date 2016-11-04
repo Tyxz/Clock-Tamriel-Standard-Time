@@ -186,13 +186,14 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
     -- hour
     -- {0,11} am : {12,11} pm
     -- {12,1,...,11} am : {12,1,...,11} pm
+    -- Japanese: {0,1,...,11} am : {12,1,...,11} pm
     if cl.st.IsUSTime() then
         if hour > 12 then
             hour = hour - 12
             am = false
         elseif hour == 12 then
             am = false
-        elseif hour == 0 then
+        elseif hour == 0 and not cl.st.ShowJap() then
             hour = 12
             am = true
         else

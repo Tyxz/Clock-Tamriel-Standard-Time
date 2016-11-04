@@ -104,20 +104,27 @@ local function AddToggle()
             },
             [8] = {
                 type = "checkbox",
+                name = loc.sJap,
+                getFunc = function() return cl.st.ShowJap() end,
+                setFunc = function(value) cl.st.SetShowJap(value) end,
+                disabled = function() return not cl.st.IsUSTime() or not cl.st.IsActive() end,
+            },
+            [9] = {
+                type = "checkbox",
                 name = loc.sNum,
                 tooltip = loc.tNum,
                 getFunc = function() return cl.st.ShowNum() end,
                 setFunc = function(value) cl.st.SetShowNum(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [9] = {
+            [10] = {
                 type = "checkbox",
                 name = loc.sSec,
                 getFunc = function() return cl.st.ShowSec() end,
                 setFunc = function(value) cl.st.SetShowSec(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [10] = {
+            [11] = {
                 type = "checkbox",
                 name = loc.sMoon,
                 tooltip = loc.tMoon,
@@ -125,7 +132,7 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowMoon(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [11] = {
+            [12] = {
                 type = "checkbox",
                 name = loc.sLDate,
                 tooltip = loc.tLDate,
@@ -138,7 +145,7 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [12] = {
+            [13] = {
                 type = "checkbox",
                 name = loc.sFLDate,
                 tooltip = loc.tFLDate,
@@ -151,7 +158,7 @@ local function AddToggle()
                 end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [13] = {
+            [14] = {
                 type = "checkbox",
                 name = loc.sRT,
                 tooltip = loc.tRT,
@@ -159,7 +166,7 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowRT(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [14] = {
+            [15] = {
                 type = "checkbox",
                 name = loc.sDate,
                 tooltip = loc.tDate,
@@ -167,7 +174,7 @@ local function AddToggle()
                 setFunc = function(value) cl.st.SetShowDate(value) end,
                 disabled = function() return not cl.st.IsActive() end,
             },
-            [15] = {
+            [16] = {
                 type = "checkbox",
                 name = loc.sHor,
                 tooltip = loc.tHor,

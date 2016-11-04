@@ -64,6 +64,7 @@ cl.ln = {
         tAHide = "Wähle ob die Clock versteckt werden soll, falls das menü geöffnet wird.",
         sFormat = "12h Format",
         sAMPM = "Zeige AM/PM",
+        sJap = "Zeige Mitternacht als 0",
         sNum = "Ergänze Nullen",
         tNum = "Ergänzt Nullen vor eine einstellige Zahl: 1:24 -> 01:24",
         sSec = "Zeige Sekunden",
