@@ -109,7 +109,7 @@ function st.SetShowUS(us)
 end
 
 function st.SetShowJap(jap)
-    cl.settings.show_us = jap
+    cl.settings.show_jap = jap
 end
 
 function st.SetShowNum(num)
@@ -261,10 +261,6 @@ function st.ShowUS()
 end
 
 function st.ShowJap()
-    -- Not part of previous (<0.7.6) saved variable
-    if cl.settings.show_jap == nil then
-        cl.settings.show_jap = false
-    end
     return cl.settings.show_jap
 end
 
