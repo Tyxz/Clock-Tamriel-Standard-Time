@@ -194,18 +194,18 @@ cl.ln = {
                     [7] = "Sundas"
                 },
                 months = {
-                    [1] = "Mornings étoile",
-                    [2] = "Dawn Sun",
-                    [3] = "First Seed",
-                    [4] = "Main de pluie",
-                    [5] = "Second Seed",
-                    [6] = "Milieu d[e l'année",
-                    [7] = "La hauteur de Sun",
-                    [8] = "vifazur",
-                    [9] = "Hearthfire",
-                    [10] = "Frostfall",
-                    [11] = "Crépuscule de Sun",
-                    [12] = "Étoile du soir"
+                    [1] = "Primétoile",
+                    [2] = "Clairciel",
+                    [3] = "Semailles",
+                    [4] = "Ondepluie",
+                    [5] = "Plantaison",
+                    [6] = "Mi-L´an",
+                    [7] = "Hautzénith",
+                    [8] = "Vifâzur",
+                    [9] = "Âtrefeu",
+                    [10] = "Soufflegivre",
+                    [11] = "Ombreciel",
+                    [12] = "Soirétoile"
                 },
                 year = "2F"
             },
