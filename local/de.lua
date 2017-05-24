@@ -91,6 +91,9 @@ cl.ln = {
         tStyle = "Verändere die Design der Clock.",
         nSize = "Größe",
         tSize = "Verändere die Größe der Clock.",
+        nMoonSize = "Mondgröße",
+        tMoonSize = "Verändere die Größe der dargestellten Zeit bis zur nächsten Mondphase.",
+        dMoonSize = "Clock |cFFA4000.7.9|r \nEs ist nun möglich, die Größe der Mondphase getrennt von der Größe der Zeit zu ändern. Teste es im Einstellungsmenü (Einstellungen-> Addons-> Clock).\nVielen Dank das du Clock |cFFA4000.7.9|r verwendest :)",
         --real
         nSepLR = "Unterschiedliches Aussehen.",
         tSepLR = "Wähle aus, falls das reale- anders als das lore Datum aussehen soll.",
