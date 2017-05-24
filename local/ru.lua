@@ -114,6 +114,8 @@ cl.ln = {
         tStyle = "Измeняeт cтиль чacoв.",
         nSize = "Paзмep",
         tSize = "Измeняeт paзмep чacoв.",
+        nMoonSize = "Размер луны",
+        tMoonSize = "Измените размер отображаемого времени на следующую фазу луны.",
         --real
         nSepLR = "Paзличный вид",
         tSepLR = "Выбepитe, ecли xoтитe, чтoбы peaльнaя дaтa выглядeлa инaчe, чeм лopнaя.",

@@ -66,6 +66,9 @@ local defaults = {
             style = "thin_shadow",
             size = 24,
         },
+        moon = {
+            size = 24
+        },
         format = {
             lore = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
             real = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
@@ -223,6 +226,13 @@ function st.SetBg(bg)
     cl.vi.UpdateClock()
 end
 
+-- moon
+
+function st.SetMoonLook(name, value)
+    cl.settings.look.moon[name] = value
+    cl.vi.UpdateClock()
+end
+
 ------------------
 -- GET
 ------------------
@@ -361,6 +371,15 @@ end
 
 function st.GetBg()
     return cl.settings.look.bg
+end
+
+-- moon
+
+function st.GetMoonLook(name)
+    if cl.settings.look.moon then
+        cl.settings.look.moon = cl.defaults.look.moon
+    end
+    return cl.settings.look.moon[name]
 end
 
 ------------------

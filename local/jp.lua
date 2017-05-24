@@ -112,6 +112,8 @@ cl.ln = {
         tStyle = "Clockのスタイルを変更します。",
         nSize = "サイズ",
         tSize = "Clockのサイズを変更します。",
+        nMoonSize = "ムーンサイズ",
+        tMoonSize = "表示される時刻のサイズを次の月の段階に変更します。",
         --real
         nSepLR = "別の見た目",
         tSepLR = "実日付を伝承の日付と異なる見た目にします。",

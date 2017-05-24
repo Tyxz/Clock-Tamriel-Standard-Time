@@ -297,7 +297,7 @@ function vi.UpdateMoon()
 
     local font = LMP:Fetch('font', cl.st.GetLook("font"))
     local style = cl.st.GetLook("style")
-    local size = cl.st.GetLook("size")
+    local size = cl.st.GetLook("moonsize")
     local look = string.format("%s|%u|%s", font, 1 / 2 * size, style)
 
     vi.moonlabel:SetFont(look)

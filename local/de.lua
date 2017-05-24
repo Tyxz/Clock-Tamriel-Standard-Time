@@ -91,6 +91,8 @@ cl.ln = {
         tStyle = "Verändere die Design der Clock.",
         nSize = "Größe",
         tSize = "Verändere die Größe der Clock.",
+        nMoonSize = "Mondgröße",
+        tMoonSize = "Verändere die Größe der dargestellten Zeit bis zur nächsten Mondphase.",
         --real
         nSepLR = "Unterschiedliches Aussehen.",
         tSepLR = "Wähle aus, falls das reale- anders als das lore Datum aussehen soll.",
