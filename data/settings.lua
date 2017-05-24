@@ -379,7 +379,7 @@ function st.GetMoonLook(name)
     if not cl.settings.look.moon then
         cl.settings.look.moon = defaults.look.moon
         cl.settings.look.moon["size"] = cl.st.GetLook("size");
-        d(cl.ln.gui.dMoonSize)
+        CHAT_SYSTEM:AddMessage(cl.ln.gui.dMoonSize)
     end
     return cl.settings.look.moon[name]
 end
