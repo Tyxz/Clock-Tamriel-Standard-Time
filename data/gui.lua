@@ -235,7 +235,7 @@ local function AddLook()
                 name = loc.nSize,
                 tooltip = loc.tSize,
                 min = 10,
-                max = 70,
+                max = 100,
                 step = 2,
                 getFunc = function() return cl.st.GetLook("size") end,
                 setFunc = function(value) cl.st.SetLook("size", value) end
@@ -245,7 +245,7 @@ local function AddLook()
                 name = loc.nMoonSize,
                 tooltip = loc.tMoonSize,
                 min = 10,
-                max = 70,
+                max = 100,
                 step = 2,
                 getFunc = function() return cl.st.GetMoonLook("size") end,
                 setFunc = function(value) cl.st.SetMoonLook("size", value) end

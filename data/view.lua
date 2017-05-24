@@ -288,21 +288,21 @@ function vi.UpdateMoon()
 
     local hms = cl.tm.ChangeSToHMS(t)
 
-    local size = cl.st.GetLook("size")
+    local size = cl.st.GetMoonLook("size")
 
     vi.moontexture:SetDimensions(size, size)
-    vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, -2 / 3 * size, 1 / 3 * size)
+    vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.66 * size, 0.33 * size)
 
     vi.moontexture:SetTexture(vi.moons[moon])
 
     local font = LMP:Fetch('font', cl.st.GetLook("font"))
     local style = cl.st.GetLook("style")
-    local size = cl.st.GetLook("moonsize")
-    local look = string.format("%s|%u|%s", font, 1 / 2 * size, style)
+    local look = string.format("%s|%u|%s", font, size * 0.5, style)
 
+    
     vi.moonlabel:SetFont(look)
     vi.moonlabel:SetDimensions(size, size)
-    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, -1 / 2 * size, 1 / 2 * size)
+    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.5 * size, 0.5 * size)
 
     if hms[1] > 0 then
         vi.moonlabel:SetText(hms[1] .. "h")
