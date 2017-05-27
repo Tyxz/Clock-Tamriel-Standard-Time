@@ -302,7 +302,7 @@ function vi.UpdateMoon()
     
     vi.moonlabel:SetFont(look)
     vi.moonlabel:SetDimensions(size, size)
-    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.5 * size, 0.5 * size)
+    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.45 * size, 0.5 * size)
 
     if hms[1] > 0 then
         vi.moonlabel:SetText(hms[1] .. "h")
