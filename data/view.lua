@@ -291,7 +291,12 @@ function vi.UpdateMoon()
     local size = cl.st.GetMoonLook("size")
 
     vi.moontexture:SetDimensions(size, size)
-    vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.66 * size, 0.33 * size)
+    local offsetX = -0.66 * size;
+    local offsetY = 0.33 * size;
+    if(size < 32) then
+        offsetY = 0.75 * size;
+    end
+    vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, offsetX, offsetY)
 
     vi.moontexture:SetTexture(vi.moons[moon])
 
@@ -302,7 +307,13 @@ function vi.UpdateMoon()
     
     vi.moonlabel:SetFont(look)
     vi.moonlabel:SetDimensions(size, size)
-    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, -0.45 * size, 0.5 * size)
+    offsetX = -0.45 * size;
+    offsetY = 0.5 * size;
+    if(size < 32) then
+        offsetX = -0.5 * size;
+        offsetY = 0.8 * size;
+    end
+    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, offsetX, offsetY)
 
     if hms[1] > 0 then
         vi.moonlabel:SetText(hms[1] .. "h")
