@@ -235,7 +235,7 @@ local function AddLook()
                 name = loc.nSize,
                 tooltip = loc.tSize,
                 min = 12,
-                max = 144,
+                max = 72,
                 step = 2,
                 getFunc = function() return cl.st.GetLook("size") end,
                 setFunc = function(value) cl.st.SetLook("size", value) end
