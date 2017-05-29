@@ -40,8 +40,12 @@ local defaults = {
         name = "full",
     },
     offset = {
-        x = 260,
+        x = 280,
         y = 70,
+        moon = {
+            x = 0,
+            y = 0
+        }
     },
     look = {
         lore = {
@@ -68,7 +72,7 @@ local defaults = {
         },
         moon = {
             style = "outline",
-            size = 42
+            size = 24
         },
         format = {
             lore = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
@@ -179,6 +183,11 @@ end
 function st.SetPosition(x, y)
     cl.settings.offset.x = x
     cl.settings.offset.y = y
+end
+
+function st.SetMoonPosition(x, y)
+    cl.settings.offset.moon.x = x
+    cl.settings.offset.moon.y = y
 end
 
 -----------
@@ -328,6 +337,13 @@ end
 -----------
 function st.GetPosition()
     return cl.settings.offset.x, cl.settings.offset.y
+end
+
+function st.GetMoonPosition()
+    if not cl.settings.offset.moon.x then
+        cl.settings.offset.moon = defaults.offset.moon
+    end
+    return cl.settings.offset.moon.x, cl.settings.offset.moon.y
 end
 
 -----------
