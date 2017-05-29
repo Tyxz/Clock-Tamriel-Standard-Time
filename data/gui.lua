@@ -234,18 +234,26 @@ local function AddLook()
                 type = "slider",
                 name = loc.nSize,
                 tooltip = loc.tSize,
-                min = 10,
-                max = 100,
+                min = 12,
+                max = 144,
                 step = 2,
                 getFunc = function() return cl.st.GetLook("size") end,
                 setFunc = function(value) cl.st.SetLook("size", value) end
             },
             [5] = {
+                type = "dropdown",
+                name = loc.nMoonStyle,
+                tooltip = loc.tMoonStyle,
+                choices = ui.styles,
+                getFunc = function() return cl.st.GetMoonLook("style") end,
+                setFunc = function(value) cl.st.SetMoonLook("style", value) end
+            },
+            [6] = {
                 type = "slider",
                 name = loc.nMoonSize,
                 tooltip = loc.tMoonSize,
-                min = 10,
-                max = 100,
+                min = 12,
+                max = 144,
                 step = 2,
                 getFunc = function() return cl.st.GetMoonLook("size") end,
                 setFunc = function(value) cl.st.SetMoonLook("size", value) end
@@ -297,22 +305,22 @@ local function AddLook()
                 disabled = function() return not cl.st.SepLR() end,
             },
             --]]
-            [6] = {
+            [7] = {
                 type = "description",
                 title = loc.descEditLookY,
                 text = loc.descEditLookYTxt,
             },
-            [7] = {
+            [8] = {
                 type = "description",
                 title = loc.descEditLookD,
                 text = loc.descEditLookDTxt,
             },
-            [8] = {
+            [9] = {
                 type = "description",
                 title = loc.descEditLookE,
                 text = loc.descEditLookETxt,
             },
-            [9] = {
+            [10] = {
                 type = "editbox",
                 name = loc.nELore,
                 tooltip = loc.tELore,
@@ -320,7 +328,7 @@ local function AddLook()
                 setFunc = function(value) cl.st.SetFormat("lore", value) end,
                 isMultiline = true,
             },
-            [10] = {
+            [11] = {
                 type = "editbox",
                 name = loc.nEReal,
                 tooltip = loc.tEReal,

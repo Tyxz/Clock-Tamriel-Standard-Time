@@ -51,8 +51,8 @@ local defaults = {
                 b = 1,
                 a = 0.75,
             },
-            font = "ESO Book Font",
-            style = "thin_shadow",
+            font = "ProseAntique",
+            style = "outline",
             size = 24,
         },
         real = {
@@ -62,12 +62,13 @@ local defaults = {
                 b = 1,
                 a = 0.75,
             },
-            font = "ESO Book Font",
-            style = "thin_shadow",
+            font = "ProseAntique",
+            style = "outline",
             size = 24,
         },
         moon = {
-            size = 24
+            style = "outline",
+            size = 42
         },
         format = {
             lore = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
