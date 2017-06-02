@@ -117,6 +117,8 @@ cl.ln = {
         nMoonSize = "Moon size",
         tMoonSize = "Change the size of the displayed time to next moon phase.",
         dMoonSize = "Clock |cFFA4000.7.9|r\nIt is now possible to change the size of the moon phase separately from the size of the time. Check it out in the settings menu (Settings->Addons->Clock).\nThanks for using Clock |cFFA4000.7.9|r :)",
+        nMoonOffsetY = "Moon y-offset",
+        tMoonOffsetY = "Move the moon in the vertical direction.",
         --real
         nSepLR = "Different Looks",
         tSepLR = "Choose if you want your real date have an other look than your lore date.",
