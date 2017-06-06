@@ -289,19 +289,22 @@ function vi.UpdateMoon()
     local hms = cl.tm.ChangeSToHMS(t)
 
     local size = cl.st.GetMoonLook("size")
+    local textSize = cl.st.GetLook("size")
+    local storedOffsetY = cl.st.GetMoonLook("offsetY");
 
-    vi.moontexture:SetDimensions(size, size)
     local offsetX = -0.66 * size
-    local offsetY = 0.33 * size
-    if(size < 22) then
-        offsetY = 0.4 * size
+    local offsetY = -storedOffsetY * 0.01 * size
+    if not (cl.st.ShowRT() or cl.st.ShowDate()) then
+        local tx, ty = ClockUITime:GetDimensions();
+        offsetY = offsetY - ty * 0.25
     end
-    vi.moontexture:SetAnchor(CENTER, ClockUITime, TOPLEFT, offsetX, offsetY)
-
     vi.moontexture:SetTexture(vi.moons[moon])
+    vi.moontexture:SetDimensions(size, size)
+    vi.moontexture:SetAnchor(CENTER, ClockUITime, LEFT, offsetX, offsetY)
+
 
     local font = LMP:Fetch('font', cl.st.GetLook("font"))
-    local style = cl.st.GetLook("style")
+    local style = cl.st.GetMoonLook("style")
     local look = string.format("%s|%u|%s", font, size * 0.5, style)
 
     
@@ -322,17 +325,16 @@ function vi.UpdateMoon()
         moonSufix = "s"
     end
 
+    offsetX = math.floor(size * 0.25);
+    if moonNumber > 99 then
+        offsetX = math.floor(size * 0.0625);
+    elseif moonNumber > 9 then
+        offsetX = math.floor(size * 0.125);
+    end
 
-    offsetX = -0.55 * size;
-    if moonNumber < 10 then
-        offsetX = -0.45 * size;
-    end
-    offsetY = 0.5 * size
-    if(size < 36) then
-        offsetY = 0.475 * size
-    end
-    vi.moonlabel:SetAnchor(CENTER, ClockUITime, TOPLEFT, offsetX, offsetY)
+    offsetY = math.floor(size * 0.18)
     vi.moonlabel:SetText(moonNumber .. moonSufix)
+    vi.moonlabel:SetAnchor(CENTER, vi.moontexture, CENTER, offsetX, offsetY)
 
     vi.moonlabel:SetColor(cl.st.GetColor())
 end

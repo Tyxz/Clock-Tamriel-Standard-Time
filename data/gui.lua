@@ -258,6 +258,18 @@ local function AddLook()
                 getFunc = function() return cl.st.GetMoonLook("size") end,
                 setFunc = function(value) cl.st.SetMoonLook("size", value) end
             },
+            [7] = {
+                type = "slider",
+                name = loc.nMoonOffsetY,
+                tooltip = loc.tMoonOffsetY,
+                min = -100,
+                max = 100,
+                step = 1,
+                getFunc = function() return cl.st.GetMoonLook("offsetY") end,
+                setFunc = function(value) 
+                        cl.st.SetMoonLook("offsetY", value) 
+                    end
+            },
             --[[
             [5] = {
                 type = "checkbox",
@@ -305,22 +317,22 @@ local function AddLook()
                 disabled = function() return not cl.st.SepLR() end,
             },
             --]]
-            [7] = {
+            [8] = {
                 type = "description",
                 title = loc.descEditLookY,
                 text = loc.descEditLookYTxt,
             },
-            [8] = {
+            [9] = {
                 type = "description",
                 title = loc.descEditLookD,
                 text = loc.descEditLookDTxt,
             },
-            [9] = {
+            [10] = {
                 type = "description",
                 title = loc.descEditLookE,
-                text = loc.descEditLookETxt,
+               text = loc.descEditLookETxt,
             },
-            [10] = {
+            [11] = {
                 type = "editbox",
                 name = loc.nELore,
                 tooltip = loc.tELore,
@@ -328,7 +340,7 @@ local function AddLook()
                 setFunc = function(value) cl.st.SetFormat("lore", value) end,
                 isMultiline = true,
             },
-            [11] = {
+            [12] = {
                 type = "editbox",
                 name = loc.nEReal,
                 tooltip = loc.tEReal,

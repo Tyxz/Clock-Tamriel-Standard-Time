@@ -72,6 +72,7 @@ local defaults = {
         },
         moon = {
             style = "outline",
+            offsetY = 33,
             size = 24
         },
         format = {
@@ -240,7 +241,7 @@ end
 
 function st.SetMoonLook(name, value)
     cl.settings.look.moon[name] = value
-    cl.vi.UpdateClock()
+    cl.vi.UpdateMoon()
 end
 
 ------------------
