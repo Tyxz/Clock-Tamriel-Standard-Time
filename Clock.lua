@@ -3,7 +3,7 @@
 -------------------------------------------
 cl = {}
 
-cl.VERSION = "0.7.10"
+cl.VERSION = "0.7.11"
 cl.SAV_VERSION = 0.7
 
 cl.LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
@@ -12,6 +12,9 @@ cl.LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 -------------------------------------------
 -- main
 -------------------------------------------
+
+local lastUpdate = math.huge;
+
 ------------------
 -- Events
 ------------------
@@ -23,8 +26,20 @@ function cl.OnMoved()
     cl.vi.UpdateClock()
 end
 
+function cl.OnMoonMoved()
+    local x, y = ClockUIMoon:GetCenter()
+    if cl.settings ~= nil and cl.st.IsMoveable() then
+        cl.st.SetMoonPosition(x, y)
+    end
+    cl.vi.UpdateMoon()
+end
+
 function cl.OnUpdate()
     if cl.settings ~= nil then
+        if math.floor(GetTimeStamp() - lastUpdate) == 0 then
+            return
+        end
+        lastUpdate = GetTimeStamp()
         if cl.st.IsActive() then
             cl.vi.PrintClock()
         else
