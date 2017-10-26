@@ -3,7 +3,7 @@
 -------------------------------------------
 cl = {}
 
-cl.VERSION = "0.7.12"
+cl.VERSION = "0.7.13"
 cl.SAV_VERSION = 0.7
 
 cl.LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
