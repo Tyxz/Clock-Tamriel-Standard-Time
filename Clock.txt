@@ -1,4 +1,4 @@
-################
+﻿################
 ## Disclosure ##
 ################
 
@@ -12,11 +12,11 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock |cFFA4000.7.12|r
+## Title: Clock |cFFA4000.7.13|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
-## Version 0.7.12
-## APIVersion: 100020
+## Version 0.7.13
+## APIVersion: 100021
 ## SavedVariables: Clock_Settings
 ## OptionalDependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: LibMediaProvider-1.0
@@ -30,20 +30,20 @@
 ## Source_Version: 2.0 r25
 libs\LibStub\LibStub.lua
 libs\LibAddonMenu-2.0\LibAddonMenu-2.0.lua
+libs\LibAddonMenu-2.0\controls\panel.lua
+libs\LibAddonMenu-2.0\controls\submenu.lua
 libs\LibAddonMenu-2.0\controls\button.lua
 libs\LibAddonMenu-2.0\controls\checkbox.lua
 libs\LibAddonMenu-2.0\controls\colorpicker.lua
 libs\LibAddonMenu-2.0\controls\custom.lua
 libs\LibAddonMenu-2.0\controls\description.lua
-libs\LibAddonMenu-2.0\controls\divider.lua
 libs\LibAddonMenu-2.0\controls\dropdown.lua
 libs\LibAddonMenu-2.0\controls\editbox.lua
 libs\LibAddonMenu-2.0\controls\header.lua
-libs\LibAddonMenu-2.0\controls\iconpicker.lua
-libs\LibAddonMenu-2.0\controls\panel.lua
 libs\LibAddonMenu-2.0\controls\slider.lua
-libs\LibAddonMenu-2.0\controls\submenu.lua
 libs\LibAddonMenu-2.0\controls\texture.lua
+libs\LibAddonMenu-2.0\controls\iconpicker.lua
+libs\LibAddonMenu-2.0\controls\divider.lua
 
 ## Source: http://www.esoui.com/downloads/info56-LibMediaProvider.html
 ## Source_Author: Garkin, Seerah
