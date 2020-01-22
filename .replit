@@ -1,0 +1,2 @@
+language = "lua"
+run = "luarocks install busted --local && /home/runner/.luarocks/bin/busted Test/Core/CompatibilityTest.lua && luarocks install ldoc --local && /home/runner/.luarocks/bin/ldoc ."
