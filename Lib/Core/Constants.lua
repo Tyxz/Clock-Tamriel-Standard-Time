@@ -7,7 +7,7 @@
 
 Clock_TST = Clock_TST or {}
 
-Clock_TST.CONSTANTS = {
+local Constants = {
     NAME = "Clock",
     DISPLAY = "Clock - Tamriel Standard Time",
     VERSION = "2.0.0",
@@ -231,11 +231,32 @@ Clock_TST.CONSTANTS = {
     },
 }
 
---- CONSTANTS is read-only
-Clock_TST.CONSTANTS = setmetatable({}, {
-    __index = Clock_TST.CONSTANTS,
-    __newindex = function(t, key, value)
-        error("attempting to change constant " ..
-                tostring(key) .. " to " .. tostring(value), 2)
+-- Makes a table read-only
+-- Source: http://andrejs-cainikovs.blogspot.com/2009/05/lua-constants.html
+-- @param tbl any table to be made read-only
+-- @return a read-only table
+local function Protect(tbl)
+    return setmetatable({}, {
+        __index = tbl,
+        __newindex = function(t, key, value)
+            error("attempting to change constant " ..
+                    tostring(key) .. " to " .. tostring(value), 2)
+        end,
+        __metatable = false,
+    })
+end
+
+-- Makes a table read-only recursively
+-- @param tbl any table to be made read-only
+-- @return a recursive read-only table
+local function DeepProtect(tbl)
+    for k, v in pairs(tbl) do
+        if type(v) == "table" then
+            tbl[k] = DeepProtect(v)
+        end
     end
-})
+    return Protect(tbl)
+end
+
+--- @todo make read-only
+Clock_TST.CONSTANTS = Constants

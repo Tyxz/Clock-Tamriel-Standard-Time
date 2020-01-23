@@ -82,11 +82,9 @@ end
 -- ----------------
 
 --- a function to get the stored style value for the moon
--- if it is linked to time, the moon moves with the time object
--- @return background texture
+-- @return background texture table key
 function Settings:GetMoonBackground()
-    local backgroundNumber = settings.styles.moon.background
-    return Clock_TST.CONSTANTS.UI.BACKGROUNDS.moon[backgroundNumber]
+    return settings.styles.moon.background
 end
 
 --- a function to store the style value for the moon
@@ -99,23 +97,99 @@ end
 -- ----------------
 
 --- a function to get the stored style value for the moon
--- if it is linked to time, the moon moves with the time object
--- @return background texture
+-- @return anchor for moon root control
 function Settings:GetMoonAnchor()
-    local backgroundNumber = settings.attributes.moon.background
-    return Clock_TST.CONSTANTS.UI.BACKGROUNDS.moon[backgroundNumber]
+    return settings.attributes.moon.anchor
 end
 
 --- a function to store the style value for the moon
--- @param table key for background texture
+-- @param anchor for moon root control
 function Settings:SetMoonAnchor(value)
-    settings.attributes.moon.background = value
+    settings.attributes.moon.anchor = value
+end
+
+--- a function to get the stored style value for the moon
+-- @return dimension of moon root control
+function Settings:GetMoonDimension()
+    return settings.attributes.moon.dimension
+end
+
+--- a function to store the style value for the moon
+-- @param dimension of moon root control
+function Settings:SetMoonDimension(value)
+    settings.attributes.moon.dimension = value
+end
+
+--- a function to get the stored style value for the moon
+-- @return anchor for moon masser control
+function Settings:GetMoonAnchorMasser()
+    return settings.attributes.moon.masser.anchor
+end
+
+--- a function to store the style value for the moon
+-- @param anchor for moon masser control
+function Settings:SetMoonAnchorMasser(value)
+    settings.attributes.moon.masser.anchor = value
+end
+
+--- a function to get the stored style value for the moon
+-- @return dimension of moon masser control
+function Settings:GetMoonDimensionMasser()
+    return settings.attributes.moon.masser.dimension
+end
+
+--- a function to store the style value for the moon
+-- @param dimension of moon masser control
+function Settings:SetMoonDimensionMasser(value)
+    settings.attributes.moon.masser.dimension = value
+end
+
+--- a function to get the stored style value for the moon
+-- @return anchor for moon secunda control
+function Settings:GetMoonAnchorSecunda()
+    return settings.attributes.moon.secunda.anchor
+end
+
+--- a function to store the style value for the moon
+-- @param anchor for moon secunda control
+function Settings:SetMoonAnchorSecunda(value)
+    settings.attributes.moon.secunda.anchor = value
+end
+
+--- a function to get the stored style value for the moon
+-- @return dimension of moon secunda control
+function Settings:GetMoonDimensionSecunda()
+    return settings.attributes.moon.secunda.dimension
+end
+
+--- a function to store the style value for the moon
+-- @param dimension of moon secunda control
+function Settings:SetMoonDimensionSecunda(value)
+    settings.attributes.moon.secunda.dimension = value
 end
 
 
 -- ----------------
--- Start
+-- Basic
 -- ----------------
+
+function Settings:ResetAttributes()
+    settings.attributes = Clock_TST:Copy(const.Settings.attributes.DEFAULTS)
+end
+
+function Settings:ResetBooleans()
+    settings.booleans = Clock_TST:Copy(const.Settings.booleans.DEFAULTS)
+end
+
+function Settings:ResetStyles()
+    settings.styles = Clock_TST:Copy(const.Settings.styles.DEFAULTS)
+end
+
+function Settings:Reset()
+    self:ResetAttributes()
+    self:ResetBooleans()
+    self:ResetStyles()
+end
 
 function Settings:New()
     settings.booleans = ZO_SavedVars:New(

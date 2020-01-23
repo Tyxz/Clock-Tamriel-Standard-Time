@@ -29,7 +29,6 @@ function Moon:UpdatePositions()
 end
 
 function Moon:UpdateVisibility()
-
     self.masser_background:SetHidden(settings.GetMoonHasBackground())
     self.secunda_background:SetHidden(settings.GetMoonHasBackground())
 
