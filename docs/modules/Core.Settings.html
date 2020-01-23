@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Clock Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Clock - Tamriel Standard Time</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/Clock.html">Clock</a></li>
+  <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
+  <li><a href="../modules/Core.Constants.html">Core.Constants</a></li>
+  <li><strong>Core.Settings</strong></li>
+  <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
+  <li><a href="../modules/I18n.de.html">I18n.de</a></li>
+  <li><a href="../modules/I18n.en.html">I18n.en</a></li>
+  <li><a href="../modules/I18n.jp.html">I18n.jp</a></li>
+  <li><a href="../modules/I18n.ru.html">I18n.ru</a></li>
+  <li><a href="../modules/View.Moon.html">View.Moon</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>Core.Settings</code></h1>
+<p>Location:   Core/Settings.lua
+<pre>
+Author:     Arne Rantzen (Tyx)
+Created:    <span class="number">2020</span>&ndash;<span class="number">01</span>&ndash;<span class="number">22</span>
+License:    GPL-<span class="number">3.0</span>
+</pre></p>
+<p>
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsMovable">GetMoonIsMovable ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsMovable">SetMoonIsMovable (if)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsVisible">GetMoonIsVisible ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsVisible">SetMoonIsVisible (if)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsMouseEnabled">GetMoonIsMouseEnabled ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsMouseEnabled">SetMoonIsMouseEnabled (if)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonHasBackground">GetMoonHasBackground ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonHasBackground">SetMoonHasBackground (if)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsLinkedToTime">GetMoonIsLinkedToTime ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon
+ if it is linked to time, the moon moves with the time object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsLinkedToTime">SetMoonIsLinkedToTime (if)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonBackground">GetMoonBackground ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonBackground">SetMoonBackground (table)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAnchor">GetMoonAnchor ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonAnchor">SetMoonAnchor (anchor)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonDimension">GetMoonDimension ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonDimension">SetMoonDimension (dimension)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAnchorMasser">GetMoonAnchorMasser ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonAnchorMasser">SetMoonAnchorMasser (anchor)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonDimensionMasser">GetMoonDimensionMasser ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonDimensionMasser">SetMoonDimensionMasser (dimension)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAnchorSecunda">GetMoonAnchorSecunda ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonAnchorSecunda">SetMoonAnchorSecunda (anchor)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonDimensionSecunda">GetMoonDimensionSecunda ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonDimensionSecunda">SetMoonDimensionSecunda (dimension)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "GetMoonIsMovable"></a>
+    <strong>GetMoonIsMovable ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is movable
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsMovable"></a>
+    <strong>SetMoonIsMovable (if)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">if</span>
+         the moon is movable
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsVisible"></a>
+    <strong>GetMoonIsVisible ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is visible
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsVisible"></a>
+    <strong>SetMoonIsVisible (if)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">if</span>
+         the moon is visible
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsMouseEnabled"></a>
+    <strong>GetMoonIsMouseEnabled ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is mouseEnabled
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsMouseEnabled"></a>
+    <strong>SetMoonIsMouseEnabled (if)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">if</span>
+         the moon is mouseEnabled
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonHasBackground"></a>
+    <strong>GetMoonHasBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon has background
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonHasBackground"></a>
+    <strong>SetMoonHasBackground (if)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">if</span>
+         the moon has background
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsLinkedToTime"></a>
+    <strong>GetMoonIsLinkedToTime ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+ if it is linked to time, the moon moves with the time object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is linked to time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsLinkedToTime"></a>
+    <strong>SetMoonIsLinkedToTime (if)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">if</span>
+         the moon is linked to time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonBackground"></a>
+    <strong>GetMoonBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background texture table key
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonBackground"></a>
+    <strong>SetMoonBackground (table)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table</span>
+         key for background texture
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonAnchor"></a>
+    <strong>GetMoonAnchor ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        anchor for moon root control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonAnchor"></a>
+    <strong>SetMoonAnchor (anchor)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">anchor</span>
+         for moon root control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonDimension"></a>
+    <strong>GetMoonDimension ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        dimension of moon root control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonDimension"></a>
+    <strong>SetMoonDimension (dimension)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dimension</span>
+         of moon root control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonAnchorMasser"></a>
+    <strong>GetMoonAnchorMasser ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        anchor for moon masser control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonAnchorMasser"></a>
+    <strong>SetMoonAnchorMasser (anchor)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">anchor</span>
+         for moon masser control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonDimensionMasser"></a>
+    <strong>GetMoonDimensionMasser ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        dimension of moon masser control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonDimensionMasser"></a>
+    <strong>SetMoonDimensionMasser (dimension)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dimension</span>
+         of moon masser control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonAnchorSecunda"></a>
+    <strong>GetMoonAnchorSecunda ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        anchor for moon secunda control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonAnchorSecunda"></a>
+    <strong>SetMoonAnchorSecunda (anchor)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">anchor</span>
+         for moon secunda control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonDimensionSecunda"></a>
+    <strong>GetMoonDimensionSecunda ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        dimension of moon secunda control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonDimensionSecunda"></a>
+    <strong>SetMoonDimensionSecunda (dimension)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dimension</span>
+         of moon secunda control
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2020-01-23 18:04:48 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
