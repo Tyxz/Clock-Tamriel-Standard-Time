@@ -1,4 +1,4 @@
-name: test
+name: Busted
 
 on: [push]
 
@@ -20,4 +20,4 @@ jobs:
 
     - name: test
       run: |
-        busted -o utfTerminal test/LibClockTSTTest.lua
+        busted -o utfTerminal -p Test -R Test/

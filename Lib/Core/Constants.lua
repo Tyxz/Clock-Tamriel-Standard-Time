@@ -10,7 +10,7 @@ Clock_TST = Clock_TST or {}
 Clock_TST.CONSTANTS = {
     NAME = "Clock",
     DISPLAY = "Clock - Tamriel Standard Time",
-    VERSION = "1.0.0",
+    VERSION = "2.0.0",
     SAVED_VERSION = 1,
     SAVED_NAME = "Clock_Settings",
     Menu = {
@@ -95,8 +95,8 @@ Clock_TST.CONSTANTS = {
         },
     },
     Settings = {
-        toggles = {
-            SAVED_NAME = "toggles",
+        booleans = {
+            SAVED_NAME = "booleans",
             DEFAULTS = {
                 time = {
                     isVisible = true,
@@ -110,6 +110,8 @@ Clock_TST.CONSTANTS = {
                     hasLoreDate = true,
                     hasFakeDate = false,
                     hasRealDate = false,
+
+                    isLinkedToMoon = true,
                 },
                 moon = {
                     isVisible = true,
