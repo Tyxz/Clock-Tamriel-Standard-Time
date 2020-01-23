@@ -1,8 +1,13 @@
--------------------------------------------
--- de - deutsch:german
--- Author: Tyx
--------------------------------------------
-cl.ln = {
+--[[----------------------------------------
+    Location:   Core/Constants.lua
+    Author:     Arne Rantzen (Tyx)
+    Created:    2020-01-22
+    License:    GPL-3.0
+----------------------------------------]]--
+
+Clock_TST = Clock_TST or ZO_Object:Subclass()
+
+Clock_TST.I18N = {
     com = {
         -- COMMANDS ARE ENGLISH ONLY RIGHT NOW
         show = "show",

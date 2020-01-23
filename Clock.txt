@@ -24,16 +24,19 @@
 ## Clock - TST ##
 #################
 
+# Local/en.lua
+# Local/$(language).lua
+
+Core/Utility.lua
+Core/Constants.lua
+Core/Settings.lua
+Core/Compatibility.lua
+
+View/Moon.lua
+# View/Menu.lua
+
 Clock.lua
 Clock.xml
 
-Local/en.lua
-Local/$(language).lua
 
-Core/Compatibility.lua
-Core/Constants.lua
-Core/Settings.lua
-Core/Utility.lua
 
-View/Menu.lua
-View/UserInterface.lua

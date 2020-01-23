@@ -1,64 +1,57 @@
--------------------------------------------
--- Globals
--------------------------------------------
-cl = {}
+--[[----------------------------------------
+    Project:    Clock - Tamriel Standard Time
+    Location:   Clock.lua
+    Author:     Arne Rantzen (Tyx)
+    Created:    2020-01-22
+    Updated:    2020-01-22
+    License:    GPL-3.0
+----------------------------------------]]--
 
-cl.VERSION = "0.7.14"
-cl.SAV_VERSION = 0.7
+Clock_TST = Clock_TST or {}
 
-cl.LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
-cl.LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
+local displayName = Clock_TST.CONSTANTS.DISPLAY
 
--------------------------------------------
--- main
--------------------------------------------
-
-local lastUpdate = math.huge;
-
-------------------
+-- ----------------
 -- Events
-------------------
-function cl.OnMoved()
-    local x, y = ClockUITime:GetCenter()
-    if cl.settings ~= nil and cl.st.IsMoveable() then
-        cl.st.SetPosition(x, y)
-    end
-    cl.vi.UpdateClock()
+-- ----------------
+function Clock_TST_Time_OnMouseEnter(control)
+    d("Time" .. "Enter")
+end
+function Clock_TST_Time_OnMouseExit(control)
+    d("Time" .. "Exit")
+end
+function Clock_TST_Time_OnMoveStop(control)
+    d("Time" .. "MoveStop")
+end
+function Clock_TST_Time_OnInitialized(control)
+    d("Time" .. "Init")
 end
 
-function cl.OnMoonMoved()
-    local x, y = ClockUIMoon:GetCenter()
-    if cl.settings ~= nil and cl.st.IsMoveable() then
-        cl.st.SetMoonPosition(x, y)
-    end
-    cl.vi.UpdateMoon()
-end
-
-function cl.OnUpdate()
-    if cl.settings ~= nil then
-        if math.floor(GetTimeStamp() - lastUpdate) == 0 then
-            return
+-- Register the slash command 'LibClockTST'
+local function RegisterCommands()
+    SLASH_COMMANDS["/cl"] = function (extra)
+        local options = {}
+        local searchResult = { string.match(extra,"^(%S*)%s*(.-)$") }
+        for i,v in pairs(searchResult) do
+            if (v ~= nil and v ~= "") then
+                options[i] = string.lower(v)
+            end
         end
-        lastUpdate = GetTimeStamp()
-        if cl.st.IsActive() then
-            cl.vi.PrintClock()
-        else
-            cl.vi.HideClock()
-        end
+        --CommandHandler(options)
     end
 end
 
-function cl.OnLoad(_, addOnName)
-    if (addOnName ~= "Clock") then
-        return
-    end
-    cl.st.Init()
-    cl.vi.InitClock()
-    cl.vi.InitMoon()
-    cl.ui.InitSettings()
-end
-
-------------------
+-- ----------------
 -- Start
-------------------
-EVENT_MANAGER:RegisterForEvent("Clock", EVENT_ADD_ON_LOADED, cl.OnLoad)
+-- ----------------
+
+-- Event to be called on Load
+local function OnLoad(_, addonName)
+    if addonName ~= Clock_TST.CONSTANTS.NAME then return end
+    -- wait for the first loaded event
+    EVENT_MANAGER:UnregisterForEvent(displayName, EVENT_ADD_ON_LOADED)
+    Clock_TST.settings = Clock_TST.Settings:New()
+
+    RegisterCommands()
+end
+EVENT_MANAGER:RegisterForEvent(displayName, EVENT_ADD_ON_LOADED, OnLoad)
