@@ -121,8 +121,8 @@ function Settings:New()
     settings.booleans = ZO_SavedVars:New(
             const.SAVED_NAME,
             const.SAVED_VERSION,
-            const.Settings.toggles.SAVED_NAME,
-            const.Settings.toggles.DEFAULTS
+            const.Settings.booleans.SAVED_NAME,
+            const.Settings.booleans.DEFAULTS
     )
     settings.styles = ZO_SavedVars:New(
             const.SAVED_NAME,

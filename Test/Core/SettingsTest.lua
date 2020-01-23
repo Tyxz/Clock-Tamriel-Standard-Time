@@ -6,13 +6,12 @@
     License:    GPL-3.0
 ----------------------------------------------------]]--
 
-require("Lib.Core.Utility")
 require("Lib.Core.Constants")
 require("Lib.Core.Settings")
-require("Test.Utility.lua")
+require("Test.Utility")
 
 --- Requires busted https://github.com/Olivine-Labs/busted
--- to run busted: run "luarocks install busted" then "busted -o utfTerminal -p Test -R Test/"
+-- to run busted: run "luarocks install busted" then "busted -p Test -R Test/ --coverage"
 local function Test()
     describe("Settings test", function()
         local tSettings
@@ -26,7 +25,7 @@ local function Test()
 
         it("should create a new Settings object", function()
             -- act
-            tSettings = Settings:New()
+            tSettings = Clock_TST.Settings:New()
             -- assert
             assert.spy(mZO_SavedVars.New).was.called()
             assert.truthy(tSettings)
@@ -39,81 +38,83 @@ local function Test()
                         -- act
                         local tIsVisible = tSettings:GetMoonIsVisible()
                         -- assert
-                        assert.is_not.nil_or_empty(tIsVisible)
+                        assert.is.boolean(tIsVisible)
                     end)
                     it("should set value", function()
                         -- arrange
                         local tValue = true
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonIsVisible(tValue))
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonIsVisible(tValue)
+                        end)
                         local tIsVisible = tSettings:GetMoonIsVisible()
                         -- assert
                         assert.is.same(tValue, tIsVisible)
                     end)
-                end)
-                describe("isMoveable", function()
                     it("should return value", function()
                         -- act
-                        local tIsMoveable = tSettings:GetMoonIsMoveable()
+                        local tIsMovable = tSettings:GetMoonIsMovable()
                         -- assert
-                        assert.is_not.nil_or_empty(tIsMoveable)
+                        assert.is.boolean(tIsMovable)
                     end)
                     it("should set value", function()
                         -- arrange
                         local tValue = true
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonIsMoveable(tValue))
-                        local tIsMoveable = tSettings:GetMoonIsMoveable()
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonIsMovable(tValue)
+                        end)
+                        local tIsMovable = tSettings:GetMoonIsMovable()
                         -- assert
-                        assert.is.same(tValue, tIsMoveable)
+                        assert.is.same(tValue, tIsMovable)
                     end)
-                end)
-                describe("isMouseEnabled", function()
                     it("should return value", function()
                         -- act
                         local tIsMouseEnabled = tSettings:GetMoonIsMouseEnabled()
                         -- assert
-                        assert.is_not.nil_or_empty(tIsMouseEnabled)
+                        assert.is.boolean(tIsMouseEnabled)
                     end)
                     it("should set value", function()
                         -- arrange
                         local tValue = true
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonIsMouseEnabled(tValue))
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonIsMouseEnabled(tValue)
+                        end)
                         local tIsMouseEnabled = tSettings:GetMoonIsMouseEnabled()
                         -- assert
                         assert.is.same(tValue, tIsMouseEnabled)
                     end)
-                end)
-                describe("hasBackground", function()
                     it("should return value", function()
                         -- act
                         local tHasBackground = tSettings:GetMoonHasBackground()
                         -- assert
-                        assert.is_not.nil_or_empty(tHasBackground)
+                        assert.is.boolean(tHasBackground)
                     end)
                     it("should set value", function()
                         -- arrange
                         local tValue = true
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonHasBackground(tValue))
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonHasBackground(tValue)
+                        end)
                         local tHasBackground = tSettings:GetMoonHasBackground()
                         -- assert
                         assert.is.same(tValue, tHasBackground)
                     end)
-                end)
-                describe("isLinkedToTime", function()
                     it("should return value", function()
                         -- act
                         local tIsLinkedToTime = tSettings:GetMoonIsLinkedToTime()
                         -- assert
-                        assert.is_not.nil_or_empty(tIsLinkedToTime)
+                        assert.is.boolean(tIsLinkedToTime)
                     end)
                     it("should set value", function()
                         -- arrange
                         local tValue = true
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonIsLinkedToTime(tValue))
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonIsLinkedToTime(tValue)
+                        end)
                         local tIsLinkedToTime = tSettings:GetMoonIsLinkedToTime()
                         -- assert
                         assert.is.same(tValue, tIsLinkedToTime)
@@ -134,7 +135,9 @@ local function Test()
                         local tValue = 100
                         local tResult = Clock_TST.CONSTANTS.UI.BACKGROUNDS.moon[tValue]
                         -- act
-                        assert.has_no.errors(tSettings:SetMoonBackground(tValue))
+                        assert.has_no.errors(function()
+                            tSettings:SetMoonBackground(tValue)
+                        end)
                         local tBackground = tSettings:GetMoonBackground()
                         -- assert
                         assert.is.same(tResult, tBackground)

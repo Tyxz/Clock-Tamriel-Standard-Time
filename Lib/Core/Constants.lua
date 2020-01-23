@@ -231,4 +231,11 @@ Clock_TST.CONSTANTS = {
     },
 }
 
-Clock_TST.CONSTANTS = Clock_TST:Protect(const)
+--- CONSTANTS is read-only
+Clock_TST.CONSTANTS = setmetatable({}, {
+    __index = Clock_TST.CONSTANTS,
+    __newindex = function(t, key, value)
+        error("attempting to change constant " ..
+                tostring(key) .. " to " .. tostring(value), 2)
+    end
+})
