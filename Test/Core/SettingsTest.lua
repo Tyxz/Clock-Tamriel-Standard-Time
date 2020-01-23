@@ -2,9 +2,11 @@
     Location:   Test/Core/SettingsTest.lua
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-23
+    Updated:    2020-01-23
     License:    GPL-3.0
 ----------------------------------------------------]]--
 
+require("Lib.Core.Utility")
 require("Lib.Core.Constants")
 require("Lib.Core.Settings")
 require("Test.Utility.lua")
