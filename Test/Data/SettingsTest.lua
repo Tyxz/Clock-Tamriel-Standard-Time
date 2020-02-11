@@ -6,9 +6,9 @@
     License:    GPL-3.0
 ----------------------------------------------------]]--
 
-require("Lib.Core.Constants")
+require("Data.Constants")
 require("Lib.Core.Utility")
-require("Lib.Core.Settings")
+require("Data.Settings")
 require("Test.Utility")
 
 --- Requires busted https://github.com/Olivine-Labs/busted

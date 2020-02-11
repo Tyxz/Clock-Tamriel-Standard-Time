@@ -1,15 +1,17 @@
+
+
 --[[----------------------------------------
-    Project:    Clock - Tamriel Standard Time
-    Location:   View/Moon.lua
-    Author:     Arne Rantzen (Tyx)
-    Created:    2020-01-23
-    Updated:    2020-01-23
-    License:    GPL-3.0
+Project:    Clock - Tamriel Standard Time
+Location:   View/Moon.lua
+Author:     Arne Rantzen (Tyx)
+Created:    2020-01-23
+Updated:    2020-01-23
+License:    GPL-3.0
 ----------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
 
-local Moon = ZO_Object:Subclass()
+local Time = ZO_Object:Subclass()
 local settings = Clock_TST.settings
 
 -- ----------------
@@ -22,20 +24,18 @@ local function UpdateControl(control, atr)
     control:SetDimension(atr.dimension.width, atr.dimension.height)
 end
 
-function Moon:UpdatePositions()
-    UpdateControl(self.control, atr)
-    UpdateControl(self.masser_background, atr.masser)
-    UpdateControl(self.secunda_background, atr.secunda)
+function Time:UpdatePositions()
+    -- UpdateControl(self.control, atr)
 end
 
-function Moon:UpdateVisibility()
+function Time:UpdateVisibility()
     self.masser_background:SetHidden(settings.GetMoonHasBackground())
     self.secunda_background:SetHidden(settings.GetMoonHasBackground())
 
     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings.GetMoonIsVisible(), 0, 0)
 end
 
-function Moon:UpdateMovable()
+function Time:UpdateMovable()
     self.control:SetMovable(settings.GetMoonIsMovable())
 end
 
@@ -43,18 +43,16 @@ end
 -- Start
 -- ----------------
 
-function Moon:SetupControls(control)
+function Time:SetupControls(control)
     self.control = control
-    self.masser = GetControl(control, "Masser")
-    self.masser_background = GetControl(control, "Masser_Background")
-    self.secunda = GetControl(control, "Secunda")
-    self.secunda_background = GetControl(control, "Secunda_Background")
+    self.background = GetControl(control, "Background")
+    self.label = GetControl(control, "Label")
 
     local function OnAddOnLoaded(_, name)
         if name == Clock_TST.CONSTANTS.NAME then
-            self:UpdatePositions()
-            self:UpdateVisibility()
-            self:UpdateMovable()
+            --self:UpdatePositions()
+            --self:UpdateVisibility()
+            --self:UpdateMovable()
             self.control:UnregisterForEvent(EVENT_ADD_ON_LOADED)
         end
     end
@@ -64,7 +62,7 @@ function Moon:SetupControls(control)
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
-function Moon:New(...)
+function Time:New(...)
     local container = ZO_Object.New(self)
     container:SetupControls(...)
     return container
@@ -74,18 +72,20 @@ end
 -- Events
 -- ----------------
 
-function Clock_TST_Moon_OnMouseEnter(control)
-    d("Moon" .. "Enter")
+function Clock_TST_Time_OnMouseEnter(control)
+    -- TODO: Choice to disable tooltip
+    InitializeTooltip(InformationTooltip, control, TOP, 0, 0)
+    SetTooltipText(InformationTooltip, "")
 end
 
-function Clock_TST_Moon_OnMouseExit(control)
-    d("Moon" .. "Exit")
+function Clock_TST_Time_OnMouseExit(control)
+    ClearTooltip(InformationTooltip)
 end
 
-function Clock_TST_Moon_OnMoveStop(control)
-    d("Moon" .. "MoveStop")
+function Clock_TST_Time_OnMoveStop(control)
+    d("Time" .. "MoveStop")
 end
 
-function Clock_TST_Moon_OnInitialized(control)
-    Clock_TST.Moon = Moon:New(control)
+function Clock_TST_Time_OnInitialized(control)
+    Clock_TST.Time = Time:New(control)
 end

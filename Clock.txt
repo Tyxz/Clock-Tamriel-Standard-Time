@@ -12,7 +12,7 @@
 ##            Manifest           ##
 ###################################
 
-## Title: Clock |cFFA4002.0.0|r
+## Title: Clock |cFFA4002.0|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
 ## Version 2.0.0
@@ -24,19 +24,21 @@
 ## Clock - TST ##
 #################
 
-# Lib/I18n/en.lua
-# Lib/I18n/$(language).lua
+Asset/I18n/en.lua
+Asset/I18n/$(language).lua
 
-Lib/Core/Utility.lua
-Lib/Core/Constants.lua
-Lib/Core/Settings.lua
 Lib/Core/Compatibility.lua
+Lib/Core/Utility.lua
 
-Lib/View/Moon.lua
-# Lib/View/Menu.lua
+Lib/Feature/Moon/Moon.xml
+Lib/Feature/Time/Time.xml
+
+Lib/Data/Constants.lua
+Lib/Data/Settings.lua
+
+Lib/Feature/Moon/Moon.lua
 
 Lib/Clock.lua
-Lib/Clock.xml
 
 
 

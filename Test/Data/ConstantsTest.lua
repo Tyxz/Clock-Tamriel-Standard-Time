@@ -6,7 +6,7 @@
     License:    GPL-3.0
 ----------------------------------------------------]]--
 
-require("Lib.Core.Constants")
+require("Data.Constants")
 require("Lib.Core.Utility")
 require("Test.Utility")
 
