@@ -10,6 +10,17 @@ Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
         view = {
+            error = {
+                library = "Konnte nicht mit der LibClockTST Bibliothek verbinden."
+            },
+            core = {
+                menu = {
+                    tooltip = "Tooltip anzeigen",
+                    background = "Hintergrund anzeigen",
+                    movable = "Ist beweglich",
+                    link = "Die Bewegung des Mondes mit der Zeit verknüpfen",
+                },
+            },
             moon = {
                 tooltip = {
                     full = "Der Mond ist gerade voll.\n"
@@ -20,9 +31,14 @@ function Clock_TST.I18N()
                     isWaning = "Der Mond ist zu <<1>>% voll und nimmt ab.\n"
                             .. "Er wird wieder <<2>> Stunden brauchen,\n"
                             .. "um seine volle Pracht zu erreichen.\n",
-                    duration = "Das <<1[ist weniger als ein Tag/ist ein Tag/sind $d Tage]>> in Tamriel.",
-                    error    = "Konnte nicht mit der LibClockTST Bibliothek verbinden."
+                    duration = "Das <<1[ist weniger als ein Tag/ist ein Tag/sind $d Tage]>> in Tamriel."
                 }
+            },
+            time = {
+                am = "am",
+                pm = "pm",
+                menu = {
+                },
             },
             date = {
                 lore = {
@@ -49,7 +65,7 @@ function Clock_TST.I18N()
                         [11] = "Sonnenuntergang",
                         [12] = "Abendstern",
                     },
-                    year = "2Ä ",
+                    year = "2Ä",
                 },
                 real = {
                     week = {

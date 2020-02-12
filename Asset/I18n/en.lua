@@ -9,11 +9,22 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        error = {
+            library = "Could not connect to the LibClockTST library."
+        },
         view = {
+            core = {
+                menu = {
+                    tooltip = "Show tooltip",
+                    background = "Show background",
+                    movable = "Is movable",
+                    link = "Link the movement of the moon to the time",
+                },
+            },
             moon = {
                 tooltip = {
                     full = "The moon is full right now.\n"
-                        .. "It will stay that way for <<1 [less than one hour/one hour/$d hours]>>.\n",
+                            .. "It will stay that way for <<1 [less than one hour/one hour/$d hours]>>.\n",
                     isWaxing = "The moon is <<1>>% full and is waxing.\n"
                             .. "He needs <<2 [less than one hour/one hour/$d hours]>>,\n"
                             .. "to reach its full glory.\n",
@@ -21,8 +32,13 @@ function Clock_TST.I18N()
                             .. "He needs <<2>> hours again,\n"
                             .. "to reach its full glory.\n",
                     duration = "That is <<1 [less than a day/a day/$d days]>> in Tamriel.",
-                    error = "Could not connect to the LibClockTST library."
                 }
+            },
+            time = {
+                am = "am",
+                pm = "pm",
+                menu = {
+                },
             },
             date = {
                 lore = {
@@ -49,7 +65,7 @@ function Clock_TST.I18N()
                         [11] = "Sun's Dusk",
                         [12] = "Evening Star",
                     },
-                    year = "2E ",
+                    year = "2E",
                 },
                 real = {
                     week = {

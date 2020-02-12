@@ -42,12 +42,12 @@ function Clock_TST.CONSTANTS()
                 us  = TIME_FORMAT_PRECISION_TWELVE_HOUR,
             },
             STYLES = {
-                normal          = "FONT_STYLE_NORMAL",
-                outline         = "FONT_STYLE_OUTLINE",
-                thick_outtline  = "FONT_STYLE_OUTLINE_THICK",
-                shadow          = "FONT_STYLE_SHADOW",
-                thick_shadow    = "FONT_STYLE_SOFT_SHADOW_THICK",
-                thin_shadow     = "FONT_STYLE_SOFT_SHADOW_THIN",
+                normal = "FONT_STYLE_NORMAL",
+                outline = "FONT_STYLE_OUTLINE",
+                thick_outline = "FONT_STYLE_OUTLINE_THICK",
+                shadow = "FONT_STYLE_SHADOW",
+                thick_shadow = "FONT_STYLE_SOFT_SHADOW_THICK",
+                thin_shadow = "FONT_STYLE_SOFT_SHADOW_THIN",
             },
             FONTS = {
                 ["Consolas"]                = "EsoUI/Common/Fonts/consola.ttf",
@@ -105,28 +105,27 @@ function Clock_TST.CONSTANTS()
             booleans = {
                 SAVED_NAME = "booleans",
                 DEFAULTS = {
+                    timeAndMoonAreLinked = true,
                     time = {
-                        isVisible       = true,
-                        isMovable       = true,
-                        isMouseEnabled  = true,
-                        hasBackground   = true,
+                        isVisible = true,
+                        isMovable = true,
+                        isMouseEnabled = true,
+                        hasBackground = true,
+                        hasTooltip = true,
 
-                        hasUSFormat     = false,
-                        hasJapanFormat  = false, -- if [hasUSFormat] then 12 am <=> pm
-                        fillUpNumber    = true, -- show 0[0-9] instead of [0-9]
-                        hasLoreDate     = true,
-                        hasFakeDate     = false,
-                        hasRealDate     = false,
-
-                        isLinkedToMoon  = true,
+                        hasUSFormat = false,
+                        hasJapFormat = false, -- if [hasUSFormat] then 12 am <=> pm
+                        fillUpNumber = true, -- show 0[0-9] instead of [0-9]
+                        hasLoreDate = true,
+                        hasFakeDate = false,
+                        hasRealDate = true,
                     },
                     moon = {
-                        isVisible       = true,
-                        isMovable       = true,
-                        isMouseEnabled  = true,
-                        hasBackground   = true,
-
-                        isLinkedToTime  = true,
+                        isVisible = true,
+                        isMovable = true,
+                        isMouseEnabled = true,
+                        hasBackground = true,
+                        hasTooltip = true,
                     },
                 },
             },
@@ -135,7 +134,7 @@ function Clock_TST.CONSTANTS()
                 DEFAULTS = {
                     time = {
                         background = "munge",
-                        format = "_DDD, _D. _MMM _YY _hh:_mm:_ss",
+                        format = "#X\n%X",
                         lineCount = 2, -- number of lines in format
                         color = {
                             r = 1,
@@ -162,28 +161,15 @@ function Clock_TST.CONSTANTS()
                         anchor = {
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,
-                            relativePoint = nil,
-                            offsetX = 100,
-                            offsetY = 20,
+                            relativePoint = 3, -- TOPLEFT
+                            offsetX = 75,
+                            offsetY = 30,
                         },
                         dimension = {
                             width = 300,
-                            height = 70,
+                            height = 50,
                         },
                         background = {
-                            anchor = {
-                                point = 128, -- CENTER
-                                relativeTo = "Clock_TST_Time",
-                                relativePoint = 128, -- CENTER
-                                offsetX = 0,
-                                offsetY = 0,
-                            },
-                            dimension = {
-                                width = 600,
-                                height = 256,
-                            },
-                        },
-                        label = {
                             anchor = {
                                 point = 128, -- CENTER
                                 relativeTo = Clock_TST_Time,
@@ -192,8 +178,8 @@ function Clock_TST.CONSTANTS()
                                 offsetY = 0,
                             },
                             dimension = {
-                                width = nil,
-                                height = nil,
+                                width = 500,
+                                height = 200,
                             },
                         },
                     },

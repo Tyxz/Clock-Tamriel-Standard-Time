@@ -9,9 +9,8 @@
 Clock_TST = Clock_TST or {}
 
 local Moon = ZO_Object:Subclass()
-local i18n = Clock_TST.I18N().view.moon
-local tooltip_format = i18n.tooltip
 local const = Clock_TST.CONSTANTS()
+local i18n = Clock_TST.I18N().view
 local settings
 
 -- ----------------
@@ -19,18 +18,21 @@ local settings
 -- ----------------
 
 function Moon:UpdatePositions()
-    local atr = settings.GetMoonAttributes()
+    local attribute = settings.GetMoonAttributes()
 
     local function UpdateControl(control, atr)
         local anchor = atr.anchor
         control:ClearAnchors()
-        control:SetAnchor(anchor.point, anchor.relativeTo, anchor.relativePoint, anchor.offsetX, anchor.offsetY)
+        control:SetAnchor(
+                anchor.point, anchor.relativeTo, anchor.relativePoint,
+                anchor.offsetX, anchor.offsetY
+        )
         control:SetDimensions(atr.dimension.width, atr.dimension.height)
     end
 
-    UpdateControl(self.control, atr)
-    UpdateControl(self.masser_background, atr.masser)
-    UpdateControl(self.secunda_background, atr.secunda)
+    UpdateControl(self.control, attribute)
+    UpdateControl(self.masser_background, attribute.masser)
+    UpdateControl(self.secunda_background, attribute.secunda)
 end
 
 function Moon:UpdateVisibility()
@@ -41,8 +43,9 @@ function Moon:UpdateVisibility()
     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible(), 0, 0)
 end
 
-function Moon:UpdateMovable()
+function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
+    self.control:SetMouseEnabled(settings.GetMoonIsMouseEnabled())
 end
 
 function Moon:UpdateTexture(currentPhaseName)
@@ -70,6 +73,7 @@ function Moon:UpdateTexture(currentPhaseName)
 end
 
 function Moon:UpdateTooltip(moon)
+    local tooltip_format = i18n.moon.tooltip
     local days
     if moon.isFull then
         local hours = math.floor(moon.secondsUntilNextPhase / 3600)
@@ -90,7 +94,10 @@ end
 
 function Moon:UpdateMoon(moon)
     self:UpdateTexture(moon.currentPhaseName)
-    self:UpdateTooltip(moon)
+
+    if settings:GetMoonHasTooltip() then
+        self:UpdateTooltip(moon)
+    end
 end
 
 -- ----------------
@@ -104,9 +111,9 @@ end
 
 function Moon:SetupTooltip()
     self.control:SetHandler("OnMouseEnter", function(control)
-        if settings:GetMoonIsMouseEnabled() then
+        if settings:GetMoonHasTooltip() then
             InitializeTooltip(InformationTooltip, control, TOP, 0, 0)
-            SetTooltipText(InformationTooltip, self.tooltip or tooltip_format.error)
+            SetTooltipText(InformationTooltip, self.tooltip or Clock_TST.I18N().error.library)
         end
     end)
     self.control:SetHandler("OnMouseExit", function(_)
@@ -115,20 +122,63 @@ function Moon:SetupTooltip()
 end
 
 function Moon:SetupMovement()
-    self.control:SetHandler("OnMoveStop", function(control)
-        local offsetX, offsetY = control:GetLeft(), control:GetTop()
+    local function LeftClick(control)
+        local offsetX, offsetY = control:GetCenter()
 
-        if settings:GetMoonIsLinkedToTime() then
+        if settings:GetTimeAndMoonAreLinked() then
             local timeOffsetX, timeOffsetY = settings:GetTimeOffset()
             local oldOffsetX, oldOffsetY = settings:GetMoonOffset()
-            local newTimeOffsetX  = timeOffsetX + offsetX - oldOffsetX
-            local newTimeOffsetY  = timeOffsetY + offsetY - oldOffsetY
+            local newTimeOffsetX = timeOffsetX + offsetX - oldOffsetX
+            local newTimeOffsetY = timeOffsetY + offsetY - oldOffsetY
             settings:SetTimeOffset(newTimeOffsetX, newTimeOffsetY)
             Clock_TST.time:UpdatePositions()
         end
 
         settings:SetMoonOffset(offsetX, offsetY)
         self:UpdatePositions()
+    end
+
+    local function RightClick(control)
+        local function Setup(isEnabled, func, text)
+            if isEnabled then
+                AddMenuItem("[X]\t" .. text,
+                        function()
+                            func(false)
+                        end)
+            else
+                AddMenuItem("[ ]\t" .. text,
+                        function()
+                            func(true)
+                        end)
+            end
+        end
+        ClearMenu()
+        Setup(settings.GetMoonIsMovable(), function(value)
+            settings.SetMoonIsMovable(value)
+            self:UpdateMouse()
+        end, i18n.core.menu.movable)
+        Setup(settings.GetTimeAndMoonAreLinked(), settings.SetTimeAndMoonAreLinked, i18n.core.menu.link)
+        Setup(settings.GetMoonHasTooltip(), settings.SetMoonHasTooltip, i18n.core.menu.tooltip)
+        Setup(settings.GetMoonHasBackground(), function(value)
+            settings.SetMoonHasBackground(value)
+            self:UpdateVisibility()
+        end, i18n.core.menu.background)
+        ShowMenu(control)
+    end
+
+    self.control:SetHandler("OnMouseDown", function(control, button)
+        if button == 2 then
+            control:SetMovable(false)
+        end
+    end)
+
+    self.control:SetHandler("OnMouseUp", function(control, button)
+        if button == 2 then
+            RightClick(control)
+            self:UpdateMouse()
+        else
+            LeftClick(control)
+        end
     end)
 end
 
@@ -143,7 +193,7 @@ function Moon:SetupScale()
             return dimension
         end
 
-        local default = settings:GetMoonDefaultAttributes()
+        local default = const.Settings.attributes.DEFAULTS.moon
         local moon_dimension = settings:GetMoonAttributes().dimension
         local masser_dimension = settings:GetMoonMasserAttributes().dimension
         local secunda_dimension = settings:GetMoonSecundaAttributes().dimension
@@ -179,13 +229,12 @@ end
 -- ----------------
 
 local function OnAddOnLoaded(_, name)
-    local moon = Moon:New(Clock_TST_Moon)
-
     if name == const.NAME then
+        local moon = Moon:New(Clock_TST_Moon)
         settings = Clock_TST.settings
         moon:UpdatePositions()
         moon:UpdateVisibility()
-        moon:UpdateMovable()
+        moon:UpdateMouse()
         moon:RegisterForUpdates()
         moon:SetupTooltip()
         moon:SetupMovement()

@@ -37,6 +37,7 @@ Lib/Data/Constants.lua
 Lib/Data/Settings.lua
 
 Lib/Feature/Moon/Moon.lua
+Lib/Feature/Time/Time.lua
 
 Lib/Clock.lua
 
