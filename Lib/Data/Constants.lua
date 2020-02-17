@@ -39,6 +39,8 @@ function Clock_TST.CONSTANTS()
                 },
                 BACKGROUND = {
                     -- "Munge",
+                    "Brush",
+                    "Phase",
                     "Splash",
                     "Stroke",
                 },
@@ -52,6 +54,8 @@ function Clock_TST.CONSTANTS()
                     "Ghost",
                 },
                 BACKGROUND = {
+                    "Brush",
+                    "Splash",
                     "Solid",
                 },
             },
@@ -80,17 +84,42 @@ function Clock_TST.CONSTANTS()
             BACKGROUNDS = {
                 time = {
                     -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
-                    ["Splash"] = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\background.dds",
-                    ["Stroke"] = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\background.dds",
+                    ["Brush"] = {
+                        background = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\hover.dds",
+                    },
+                    ["Phase"] = {
+                        background = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\hover.dds",
+                    },
+                    ["Splash"] = {
+                        background = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\hover.dds",
+                    },
+                    ["Stroke"] = {
+                        background = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\hover.dds",
+                    },
                 },
                 moon = {
-                    ["Solid"] = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\background.dds",
+                    ["Brush"] = {
+                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Brush\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Brush\\hover.dds",
+                    },
+                    ["Splash"] = {
+                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Splash\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Splash\\hover.dds",
+                    },
+                    ["Solid"] = {
+                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\background.dds",
+                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\hover.dds",
+                    },
                 },
             },
             MOONS = {
                 masser = {
                     ["Crimson"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\1\\",
+                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\Crimson\\",
                         waxingCrescent = "masser_one_wax_256x256.dds",
                         firstQuarter = "masser_half_wax_256x256.dds",
                         waxingGibbous = "masser_three_wax_256x256.dds",
@@ -100,7 +129,7 @@ function Clock_TST.CONSTANTS()
                         waningCrescent = "masser_one_wan_256x256.dds",
                     },
                     ["Pale"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\2\\",
+                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\Pale\\",
                         waxingCrescent = "masser_one_wax_256x256.dds",
                         firstQuarter = "masser_half_wax_256x256.dds",
                         waxingGibbous = "masser_three_wax_256x256.dds",
@@ -112,7 +141,7 @@ function Clock_TST.CONSTANTS()
                 },
                 secunda = {
                     ["Ghost"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Secunda\\1\\",
+                        path = "Clock\\Asset\\Texture\\Moon\\Secunda\\Ghost\\",
                         waxingCrescent = "secunda_one_wax_256x256.dds",
                         firstQuarter = "secunda_half_wax_256x256.dds",
                         waxingGibbous = "secunda_three_wax_256x256.dds",
@@ -134,13 +163,19 @@ function Clock_TST.CONSTANTS()
             booleans = {
                 SAVED_NAME = "booleans",
                 DEFAULTS = {
-                    timeAndMoonAreLinked = true,
+                    core = {
+                        timeAndMoonAreLinked = true,
+                        hideInFight = true,
+                        onlyShowOnMap = false,
+                    },
                     time = {
                         isVisible = true,
                         isMovable = true,
                         isMouseEnabled = true,
                         hasBackground = true,
                         hasTooltip = true,
+                        scaleWhenHover = false,
+                        highlightWhenHover = true,
 
                         hasUSFormat = lang == "en" or lang == "jp",
                         hasJapFormat = lang == "jp", -- if [hasUSFormat] then 12 am <=> pm
@@ -156,6 +191,8 @@ function Clock_TST.CONSTANTS()
                         isMouseEnabled = true,
                         hasBackground = true,
                         hasTooltip = true,
+                        scaleWhenHover = true,
+                        highlightWhenHover = false,
                     },
                 },
             },
@@ -189,13 +226,13 @@ function Clock_TST.CONSTANTS()
                 SAVED_NAME = "attributes",
                 DEFAULTS = {
                     core = {
-                        scale_factor = 1.1,
+                        scaleFactor = 1.1,
                     },
                     time = {
                         anchor = {
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,
-                            relativePoint = 3, -- TOPLEFT
+                            relativePoint = nil,
                             offsetX = 100,
                             offsetY = 30,
                         },

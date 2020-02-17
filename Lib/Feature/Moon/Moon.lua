@@ -36,13 +36,31 @@ function Moon:UpdatePositions()
 end
 
 function Moon:UpdateVisibility()
-    local backgroundIsHidden = not settings:GetMoonHasBackground()
-    self.masser_background:SetHidden(backgroundIsHidden)
-    self.secunda_background:SetHidden(backgroundIsHidden)
 
-    Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible(), 0, 0)
+    Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible())
 
     if settings:GetMoonIsVisible() then
+        local backgroundIsHidden = not settings:GetMoonHasBackground()
+        self.masser_background:SetHidden(backgroundIsHidden)
+        self.secunda_background:SetHidden(backgroundIsHidden)
+
+        local namespace = self.control:GetName()
+
+        HUD_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+        HUD_UI_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+        EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
+        if settings:GetHideInFight() then
+            EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
+                Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
+                d(inCombat)
+            end)
+        elseif settings:GetOnlyShowOnMap() then
+            HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+            HUD_UI_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+            WORLD_MAP_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+        end
+
         self:RegisterForUpdates()
     else
         self.UnregisterForUpdates()
@@ -52,6 +70,15 @@ end
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
     self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
+end
+
+function Moon:UpdateBackground()
+    local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()].background
+    local alpha = settings:GetMoonBackgroundStrength()
+    self.masser_background:SetTexture(texture)
+    self.masser_background:SetColor(1, 1, 1, alpha)
+    self.secunda_background:SetTexture(texture)
+    self.secunda_background:SetColor(1, 1, 1, alpha)
 end
 
 function Moon:UpdateTexture(currentPhaseName)
@@ -75,12 +102,7 @@ function Moon:UpdateTexture(currentPhaseName)
         end
     end
     if settings:GetMoonHasBackground() then
-        local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-        local alpha = settings:GetMoonBackgroundStrength()
-        self.masser_background:SetTexture(texture)
-        self.masser_background:SetColor(1, 1, 1, alpha)
-        self.secunda_background:SetTexture(texture)
-        self.secunda_background:SetColor(1, 1, 1, alpha)
+        self:UpdateBackground()
     end
 end
 
@@ -134,11 +156,28 @@ function Moon:SetupTooltip()
             InitializeTooltip(InformationTooltip, control, TOP, 0, 0)
             SetTooltipText(InformationTooltip, self.tooltip or Clock_TST.I18N().error.library)
         end
-        local scale = control:GetScale()
-        control:SetScale(scale * settings:GetScaleFactor()) -- TODO: Change color instead of scale
+
+        -- Hover
+        if settings:GetMoonHighlightWhenHover() then
+            local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()].hover
+            local alpha = math.min(1, settings:GetMoonBackgroundStrength() * 1.1)
+            self.masser_background:SetTexture(texture)
+            self.masser_background:SetColor(1, 1, 1, alpha)
+            self.secunda_background:SetTexture(texture)
+            self.secunda_background:SetColor(1, 1, 1, alpha)
+        end
+
+        if settings:GetMoonScaleWhenHover() then
+            local scale = control:GetScale()
+            control:SetScale(scale * settings:GetScaleFactor())
+        end
     end)
     self.control:SetHandler("OnMouseExit", function(control)
         ClearTooltip(InformationTooltip)
+
+        -- Hover
+        self:UpdateBackground()
+
         control:SetScale(settings:GetMoonScale())
     end)
 end
@@ -248,6 +287,7 @@ function Moon:SetupControls(control)
     self.secunda_background = GetControl(control, "Secunda_Background")
 
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
+    GAME_MENU_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
 end
 
 function Moon:New(...)
@@ -262,8 +302,8 @@ end
 
 local function OnAddOnLoaded(_, name)
     if name == const.NAME then
-        local moon = Moon:New(Clock_TST_Moon)
         settings = Clock_TST.settings
+        local moon = Moon:New(Clock_TST_Moon)
         moon:UpdatePositions()
         moon:UpdateVisibility()
         moon:UpdateMouse()

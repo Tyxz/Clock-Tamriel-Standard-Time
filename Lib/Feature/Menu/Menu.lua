@@ -11,6 +11,8 @@ local const = Clock_TST.CONSTANTS()
 
 local function SetupMenu()
     local settings = Clock_TST.settings
+    local time = Clock_TST.time
+    local moon = Clock_TST.moon
     local i18n = Clock_TST.I18N().menu
     local panel = {
         type = "panel",
@@ -36,7 +38,7 @@ local function SetupMenu()
     -- Attributes
     -- ----------------
 
-    local function AddAttributes()
+    local function AddBooleans()
         return {
             type = "submenu",
             name = i18n.booleans.nSub,
@@ -52,6 +54,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeIsVisible(value)
+                        time:UpdateVisibility()
                     end,
                     name = i18n.booleans.nTimeVisible,
                 },
@@ -62,6 +65,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeIsMouseEnabled(value)
+                        time:UpdateMouse()
                     end,
                     disabled = function()
                         return not settings:GetTimeIsVisible()
@@ -75,6 +79,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeIsMovable(value)
+                        time:UpdateMouse()
                     end,
                     disabled = function()
                         return not (settings:GetTimeIsMouseEnabled() and settings:GetTimeIsVisible())
@@ -90,6 +95,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeHasTooltip(value)
+                        time:UpdateTooltip()
                     end,
                     disabled = function()
                         return not (settings:GetTimeIsMouseEnabled() and settings:GetTimeIsVisible())
@@ -103,6 +109,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeHasBackground(value)
+                        time:UpdateVisibility()
                     end,
                     disabled = function()
                         return not settings:GetTimeIsVisible()
@@ -159,12 +166,39 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeHasFakeLoreDate(value)
+                        time:RegisterForUpdates()
                     end,
                     disabled = function()
                         return not settings:GetTimeIsVisible()
                     end,
                     name = i18n.booleans.nFake,
                     tooltip = i18n.booleans.tFake,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetTimeScaleWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetTimeScaleWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverScale,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetTimeHighlightWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetTimeHighlightWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverColour,
                 },
                 {
                     type = "header",
@@ -177,6 +211,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonIsVisible(value)
+                        moon:UpdateVisibility()
                     end,
                     name = i18n.booleans.nMoonVisible,
                 },
@@ -187,6 +222,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonIsMouseEnabled(value)
+                        moon:UpdateMouse()
                     end,
                     disabled = function()
                         return not settings:GetMoonIsVisible()
@@ -200,6 +236,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonIsMovable(value)
+                        moon:UpdateMouse()
                     end,
                     disabled = function()
                         return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
@@ -215,6 +252,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonHasTooltip(value)
+                        moon:RegisterForUpdates()
                     end,
                     disabled = function()
                         return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
@@ -228,6 +266,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonHasBackground(value)
+                        moon:UpdateVisibility()
                     end,
                     disabled = function()
                         return not settings:GetMoonIsVisible()
@@ -235,8 +274,74 @@ local function SetupMenu()
                     name = i18n.booleans.nBackground,
                 },
                 {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonScaleWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonScaleWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverScale,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonHighlightWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonHighlightWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverColour,
+                },
+                {
                     type = "header",
                     name = i18n.core.nHeadGeneral,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetHideInFight()
+                    end,
+                    setFunc = function(value)
+                        settings:SetHideInFight(value)
+                        if value then
+                            settings:SetOnlyShowOnMap(not value)
+                        end
+
+                        time:UpdateVisibility()
+                        moon:UpdateVisibility()
+                    end,
+                    disabled = function()
+                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                                and settings:GetOnlyShowOnMap()
+                    end,
+                    name = i18n.booleans.nFight,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetOnlyShowOnMap()
+                    end,
+                    setFunc = function(value)
+                        settings:SetOnlyShowOnMap(value)
+                        if value then
+                            settings:SetHideInFight(not value)
+                        end
+
+                        time:UpdateVisibility()
+                        moon:UpdateVisibility()
+                    end,
+                    disabled = function()
+                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                                and settings:GetHideInFight()
+                    end,
+                    name = i18n.booleans.nMap,
                 },
                 {
                     type = "checkbox",
@@ -288,6 +393,17 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeFormat(value)
+                        local _, count = string.gsub(value, "\n", "")
+                        if count == 0 then
+                            count = 1
+                        end
+                        settings:SetTimeLineCount(count)
+                        local _, loreCount = string.gsub(value, "#", "")
+                        settings:SetTimeHasLoreDate(loreCount ~= 0)
+                        local _, realCount = string.gsub(value, "%%", "")
+                        settings:SetTimeHasRealDate(realCount ~= 0)
+                        settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
+                        time:RegisterForUpdates()
                     end,
                     isMultiline = true,
                     width = "half",
@@ -302,6 +418,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(r, g, b, a)
                         settings:SetTimeColour(r, g, b, a)
+                        time:UpdateStyle()
                     end,
                     name = i18n.styles.nColor,
                     tooltip = i18n.styles.tColor,
@@ -320,6 +437,8 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeSize(value)
+                        time:UpdateSize()
+                        time:UpdateStyle()
                     end,
                     name = i18n.styles.nSize,
                     tooltip = i18n.styles.tSize,
@@ -336,6 +455,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeFont(value)
+                        time:UpdateStyle()
                     end,
                     name = i18n.styles.nFont,
                     tooltip = i18n.styles.tFont,
@@ -352,6 +472,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeStyle(value)
+                        time:UpdateStyle()
                     end,
                     name = i18n.styles.nStyle,
                     tooltip = i18n.styles.tStyle,
@@ -368,7 +489,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeBackground(value)
-                        Clock_TST.time:UpdateBackground()
+                        time:UpdateBackground()
                     end,
                     name = i18n.styles.nBackground,
                     width = "half",
@@ -386,7 +507,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeBackgroundStrength(value)
-                        Clock_TST.time:UpdateBackground()
+                        time:UpdateBackground()
                     end,
                     name = i18n.styles.nBackgroundStrength,
                     width = "half",
@@ -406,6 +527,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonTextureKeyMasser(value)
+                        moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nMasser,
                     width = "half",
@@ -421,6 +543,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonTextureKeySecunda(value)
+                        moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nSecunda,
                     width = "half",
@@ -436,6 +559,7 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonBackground(value)
+                        moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nBackground,
                     width = "half",
@@ -453,9 +577,28 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetMoonBackgroundStrength(value)
+                        moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nBackgroundStrength,
                     width = "half",
+                },
+                {
+                    type = "header",
+                    name = i18n.core.nHeadGeneral,
+                },
+                {
+                    type = "slider",
+                    min = 1,
+                    max = 4,
+                    step = .1,
+                    getFunc = function()
+                        return settings:GetScaleFactor()
+                    end,
+                    setFunc = function(value)
+                        settings:SetScaleFactor(value)
+                    end,
+                    name = i18n.styles.nScaleFactor,
+                    tooltip = i18n.styles.tScaleFactor,
                 },
 
             }
@@ -478,7 +621,7 @@ local function SetupMenu()
             name = i18n.account.nAccount,
             tooltip = i18n.account.tAccount
         },
-        AddAttributes(),
+        AddBooleans(),
         AddStyles(),
     }
 

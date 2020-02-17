@@ -34,13 +34,37 @@ end
 -- if it is linked to time, the moon moves with the time object
 -- @return if the moon is linked to time
 function Settings:GetTimeAndMoonAreLinked()
-    return self.booleans.timeAndMoonAreLinked
+    return self.booleans.core.timeAndMoonAreLinked
 end
 
 --- a function to store the boolean value for the core elements
 -- @param if the moon is linked to time
 function Settings:SetTimeAndMoonAreLinked(value)
-    self.booleans.timeAndMoonAreLinked = value
+    self.booleans.core.timeAndMoonAreLinked = value
+end
+
+--- a function to get the stored boolean value for the core elements
+-- @return if the view should be hidden in fights
+function Settings:GetHideInFight()
+    return self.booleans.core.hideInFight
+end
+
+--- a function to store the boolean value for the core elements
+-- @param if the view should be hidden in fights
+function Settings:SetHideInFight(value)
+    self.booleans.core.hideInFight = value
+end
+
+--- a function to get the stored boolean value for the core elements
+-- @return if the view should be only visible on the map
+function Settings:GetOnlyShowOnMap()
+    return self.booleans.core.onlyShowOnMap
+end
+
+--- a function to store the boolean value for the core elements
+-- @param if the view should be only visible on the map
+function Settings:SetOnlyShowOnMap(value)
+    self.booleans.core.onlyShowOnMap = value
 end
 
 -- ----------------
@@ -179,6 +203,30 @@ function Settings:SetTimeHasRealDate(value)
     self.booleans.time.hasRealDate = value
 end
 
+--- a function to get the stored boolean value for the time
+-- @return if the time should scale up when hovering over
+function Settings:GetTimeScaleWhenHover()
+    return self.booleans.time.scaleWhenHover
+end
+
+--- a function to store the boolean value for the time
+-- @param if the time should scale up when hovering over
+function Settings:SetTimeScaleWhenHover(value)
+    self.booleans.time.scaleWhenHover = value
+end
+
+--- a function to get the stored boolean value for the time
+-- @return if the time should change colour when hovering over
+function Settings:GetTimeHighlightWhenHover()
+    return self.booleans.time.highlightWhenHover
+end
+
+--- a function to store the boolean value for the time
+-- @param if the time should change colour when hovering over
+function Settings:SetTimeHighlightWhenHover(value)
+    self.booleans.time.highlightWhenHover = value
+end
+
 -- ----------------
 -- Moon Booleans
 -- ----------------
@@ -241,6 +289,30 @@ end
 -- @param if the moon has tooltip
 function Settings:SetMoonHasTooltip(value)
     self.booleans.moon.hasTooltip = value
+end
+
+--- a function to get the stored boolean value for the moon
+-- @return if the moon should scale up when hovering over
+function Settings:GetMoonScaleWhenHover()
+    return self.booleans.moon.scaleWhenHover
+end
+
+--- a function to store the boolean value for the moon
+-- @param if the moon should scale up when hovering over
+function Settings:SetMoonScaleWhenHover(value)
+    self.booleans.moon.scaleWhenHover = value
+end
+
+--- a function to get the stored boolean value for the moon
+-- @return if the moon should change colour when hovering over
+function Settings:GetMoonHighlightWhenHover()
+    return self.booleans.moon.highlightWhenHover
+end
+
+--- a function to store the boolean value for the moon
+-- @param if the moon should change colour when hovering over
+function Settings:SetMoonHighlightWhenHover(value)
+    self.booleans.moon.highlightWhenHover = value
 end
 
 -- ----------------
@@ -408,13 +480,13 @@ end
 --- a function to get the stored scale factor
 -- @return number range (-inf:inf)
 function Settings:GetScaleFactor()
-    return self.attributes.core.scale_factor
+    return self.attributes.core.scaleFactor
 end
 
 --- a function to store the scale factor
 -- @param number (-inf:inf)
 function Settings:SetScaleFactor(value)
-    self.attributes.core.scale_factor = value
+    self.attributes.core.scaleFactor = value
 end
 -- ----------------
 -- Time Attributes
@@ -565,17 +637,17 @@ end
 
 --- Resets the attributes table to the default values
 function Settings:ResetAttributes()
-    self.attributes = Clock_TST:Copy(const.Settings.attributes.DEFAULTS)
+    self.attributes = Clock_TST.CONSTANTS().Settings.attributes.DEFAULTS
 end
 
 --- Resets the booleans table to the default values
 function Settings:ResetBooleans()
-    self.booleans = Clock_TST:Copy(const.Settings.booleans.DEFAULTS)
+    self.booleans = Clock_TST.CONSTANTS().Settings.booleans.DEFAULTS
 end
 
 --- Resets the styles table to the default values
 function Settings:ResetStyles()
-    self.styles = Clock_TST:Copy(const.Settings.styles.DEFAULTS)
+    self.styles = Clock_TST.CONSTANTS().Settings.styles.DEFAULTS
 end
 
 --- Resets the self table to the default values

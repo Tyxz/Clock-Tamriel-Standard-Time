@@ -14,15 +14,13 @@
             <Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="75" offsetY="30"/>
             <Controls>
                 <Texture name="$(parent)Background" textureFile="EsoUI/Art/Performance/StatusMeterMunge.dds">
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
-                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"/>
+                    <AnchorFill/>
                 </Texture>
                 <Label name="$(parent)Label" font="ZoFontWinT2"
                        color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_NORMAL"
                        horizontalAlignment="CENTER" verticalAlignment="CENTER"
                        text="Fredas, 4th. Rain's Hand 2E 582 12:34:56 am">
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
-                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"/>
+                    <AnchorFill/>
                 </Label>
             </Controls>
         </TopLevelControl>

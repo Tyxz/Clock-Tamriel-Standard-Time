@@ -11,20 +11,6 @@ Clock_TST.DEBUG = true
 
 ZO_ONE_YEAR_IN_SECONDS = ZO_ONE_MONTH_IN_SECONDS * 12 -- 31104000
 
---- Makes a copy of an object
--- @param obj to be copied
--- @return copy of object
-function Clock_TST.Copy(obj)
-    if type(obj) ~= 'table' then
-        return obj
-    end
-    local res = {}
-    for k, v in pairs(obj) do
-        res[k] = self:Copy(v)
-    end
-    return res
-end
-
 --- Find the largest line in a string
 -- Lines are counted when separated by "\n"
 -- @param str with one or more lines

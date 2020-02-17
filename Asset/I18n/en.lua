@@ -38,17 +38,21 @@ function Clock_TST.I18N()
                 wAffect = "This does only affect a custom format not #X or %X",
                 nFake = "Show fake lore Date", -- sFLDate
                 tFake = "Will replace the day, month and week day in Tamriel with the real one but with Tamriel names.",
+                nHoverScale = "Scale when hovering",
+                nHoverColour = "Highlight when hovering",
                 nMoonVisible = "Show Moon", -- sMoon
+                nFight = "Hide in fights",
+                nMap = "Only show on map",
                 nLink = "Link the movements from the label with the moon",
             },
             styles = {
                 nSub = "Look Options", -- look
                 nFormat = "Write your own format of the time and date",
                 tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
-                dFormat = "%A\t\t full weekday name\n"
-                        .. "%b\t\t for the abbreviated\n"
-                        .. "%B\t\t full month name\n"
-                        .. "%b\t\t for the abbreviated\n"
+                dFormat = "%A\t\t full weekday name [Friday]\n"
+                        .. "%a\t\t for the abbreviated [Fri]\n"
+                        .. "%B\t\t full month name [March]\n"
+                        .. "%b\t\t for the abbreviated [Mar]\n"
                         .. "%d\t\t day of the month\n"
                         .. "%H\t\t hour\n"
                         .. "%M\t\t minute\n"
@@ -56,10 +60,10 @@ function Clock_TST.I18N()
                         .. "%p\t\t either \"am\" or \"pm\"\n"
                         .. "%S\t\t second\n"
                         .. "%w\t\t weekday [1-7 = Monday-Sunday]\n"
-                        .. "%x\t\t date (e.g., 17.02.20)\n"
-                        .. "%X\t\t time (e.g., 23:48:10)\n"
-                        .. "%Y\t\t full year\n"
-                        .. "%y\t\t two-digit year ",
+                        .. "%x\t\t date [17.02.20]\n"
+                        .. "%X\t\t time [23:48:10 | 11:48 PM]\n"
+                        .. "%Y\t\t full year [2020]\n"
+                        .. "%y\t\t shortened year [20]",
                 nColor = "Color", -- nColPick
                 tColor = "Change the color of the Clock.", -- tColor
                 nFont = "Font", -- nFont
@@ -72,6 +76,8 @@ function Clock_TST.I18N()
                 nBackgroundStrength = "Background strength",
                 nMasser = "Masser's texture",
                 nSecunda = "Secunda's texture",
+                nScaleFactor = "Scale factor",
+                tScaleFactor = "How much the item should increase when hovering."
             },
         },
         view = {

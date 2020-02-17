@@ -34,12 +34,30 @@ function Time:UpdatePositions()
 end
 
 function Time:UpdateVisibility()
-    local backgroundIsHidden = not settings:GetTimeHasBackground()
-    self.background:SetHidden(backgroundIsHidden)
 
-    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", not settings:GetTimeIsVisible(), 0, 0)
+    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", not settings:GetTimeIsVisible())
 
     if settings:GetTimeIsVisible() then
+        local backgroundIsHidden = not settings:GetTimeHasBackground()
+        self.background:SetHidden(backgroundIsHidden)
+
+        local namespace = self.control:GetName()
+
+        HUD_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+        HUD_UI_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
+        if settings:GetHideInFight() then
+            EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
+                Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
+                d(inCombat)
+            end)
+        elseif settings:GetOnlyShowOnMap() then
+            HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+            HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+            WORLD_MAP_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+        end
+
         self:RegisterForUpdates()
     else
         self.UnregisterForUpdates()
@@ -52,7 +70,7 @@ function Time:UpdateMouse()
 end
 
 function Time:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
+    local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()].background
     self.background:SetTexture(texture)
     self.background:SetColor(1, 1, 1, settings:GetTimeBackgroundStrength())
 end
@@ -207,42 +225,40 @@ function Time:CreateTimeReplacements(loreTime)
 end
 
 function Time:CreateDateReplacements(loreDate)
-    if settings:GetTimeHasRealDate() or settings:GetTimeHasFakeLoreDate() then
-        local realDateString = GetDateStringFromTimestamp(GetTimeStamp())
-        local rd, rm, ry = realDateString:match("(%d+).(%d+).(%d+)")
-        rd, rm, ry = tonumber(rd), tonumber(rm), tonumber(ry)
-        local rw = LibClockTST.GetWeekDay({ year = ry, month = rm, day = rd })
-        self.replacement.date.real = {
-            x = realDateString,
-            A = i18n.date.real.week[rw],
-            a = i18n.date.real.week[rw]:sub(1, 3),
-            B = i18n.date.real.months[rm],
-            b = i18n.date.real.months[rm]:sub(1, 3),
+    local realDateString = GetDateStringFromTimestamp(GetTimeStamp())
+    local rd, rm, ry = realDateString:match("(%d+).(%d+).(%d+)")
+    rd, rm, ry = tonumber(rd), tonumber(rm), tonumber(ry)
+    local rw = LibClockTST.GetWeekDay({ year = ry, month = rm, day = rd })
+    self.replacement.date.real = {
+        x = realDateString,
+        A = i18n.date.real.week[rw],
+        a = i18n.date.real.week[rw]:sub(1, 3),
+        B = i18n.date.real.months[rm],
+        b = i18n.date.real.months[rm]:sub(1, 3),
+        d = zo_strformat("<<i:1>>", AddZero(rd)),
+        m = AddZero(rm),
+        w = rw,
+        Y = "20" .. ry,
+        y = ry
+    }
+
+    if settings:GetTimeHasFakeLoreDate() then
+        self.replacement.date.lore = {
+            x = zo_strformat(
+                    "<<1>>.<<2>>.<<3>><<4>>",
+                    loreDate.day, loreDate.month, i18n.date.lore.year, loreDate.year
+            ),
+            A = i18n.date.lore.week[rw],
+            a = i18n.date.lore.week[rw]:sub(1, 3),
+            B = i18n.date.lore.months[rm],
+            b = i18n.date.lore.months[rm]:sub(1, 3),
             d = zo_strformat("<<i:1>>", AddZero(rd)),
             m = AddZero(rm),
             w = rw,
-            Y = "20" .. ry,
-            y = ry
+            Y = i18n.date.lore.year .. loreDate.year,
+            y = loreDate.year
         }
-        if settings:GetTimeHasFakeLoreDate() then
-            self.replacement.date.lore = {
-                x = zo_strformat(
-                        "<<1>>.<<2>>.<<3>><<4>>",
-                        loreDate.day, loreDate.month, i18n.date.lore.year, loreDate.year
-                ),
-                A = i18n.date.lore.week[rw],
-                a = i18n.date.lore.week[rw]:sub(1, 3),
-                B = i18n.date.lore.months[rm],
-                b = i18n.date.lore.months[rm]:sub(1, 3),
-                d = zo_strformat("<<i:1>>", AddZero(rd)),
-                m = AddZero(rm),
-                w = rw,
-                Y = i18n.date.lore.year .. loreDate.year,
-                y = loreDate.year
-            }
-        end
-    end
-    if settings:GetTimeHasLoreDate() then
+    else
         self.replacement.date.lore = {
             x = zo_strformat(
                     "<<1>>.<<2>>.<<3>><<4>>",
@@ -283,6 +299,7 @@ function Time:RegisterForUpdates()
         date = { real, lore },
         time = { real, lore }
     }
+    self.sizeHasUpdated = true
     lib:Register(const.NAME, function(time, date)
         self:UpdateTime(time, date)
     end)
@@ -299,13 +316,28 @@ function Time:SetupTooltip()
         if settings:GetTimeHasTooltip() then
             InitializeTooltip(InformationTooltip, control, TOP, 0, 0)
             SetTooltipText(InformationTooltip, self.tooltip or Clock_TST.I18N().error.library)
+        end
+
+        -- Hover
+        if settings:GetTimeHighlightWhenHover() then
+            local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()].hover
+            local alpha = settings:GetTimeBackgroundStrength()
+            self.background:SetTexture(texture)
+            self.background:SetColor(1, 1, 1, math.min(1, alpha * 1.1))
+        end
+
+        if settings:GetTimeScaleWhenHover() then
             scale = control:GetScale()
-            control:SetScale(scale * settings:GetScaleFactor()) -- TODO: Change color instead of scale
+            control:SetScale(scale * settings:GetScaleFactor())
         end
     end)
     self.control:SetHandler("OnMouseExit", function(control)
         ClearTooltip(InformationTooltip)
-        control:SetScale(scale)
+
+        -- Hover
+        self:UpdateBackground()
+
+        control:SetScale(scale or 1)
     end)
 end
 
@@ -387,6 +419,7 @@ function Time:SetupControls(control)
     self.label = GetControl(control, "Label")
 
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
+    GAME_MENU_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
 end
 
 function Time:New(...)
@@ -411,7 +444,6 @@ local function OnAddOnLoaded(_, name)
         time:SetupScale()
         time:UpdateStyle()
         time:UpdateBackground()
-        time.sizeHasUpdated = true
         Clock_TST.time = time
         Clock_TST_Time:UnregisterForEvent(EVENT_ADD_ON_LOADED)
     end
