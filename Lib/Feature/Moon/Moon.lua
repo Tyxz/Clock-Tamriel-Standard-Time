@@ -18,7 +18,7 @@ local settings
 -- ----------------
 
 function Moon:UpdatePositions()
-    local attribute = settings.GetMoonAttributes()
+    local attribute = settings:GetMoonAttributes()
 
     local function UpdateControl(control, atr)
         local anchor = atr.anchor
@@ -41,11 +41,17 @@ function Moon:UpdateVisibility()
     self.secunda_background:SetHidden(backgroundIsHidden)
 
     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible(), 0, 0)
+
+    if settings:GetMoonIsVisible() then
+        self:RegisterForUpdates()
+    else
+        self.UnregisterForUpdates()
+    end
 end
 
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
-    self.control:SetMouseEnabled(settings.GetMoonIsMouseEnabled())
+    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
 end
 
 function Moon:UpdateTexture(currentPhaseName)
@@ -53,22 +59,28 @@ function Moon:UpdateTexture(currentPhaseName)
         self.masser:SetHidden(true)
         self.secunda:SetHidden(true)
     else
-        for name, texture in pairs(const.UI.MOONS.masser) do
+        local texturesMasser = const.UI.MOONS.masser[settings:GetMoonTextureKeyMasser()]
+        for name, texture in pairs(texturesMasser) do
             if currentPhaseName == name then
                 self.masser:SetHidden(false)
-                self.masser:SetTexture(texture)
+                self.masser:SetTexture(texturesMasser.path .. texture)
             end
         end
-        for name, texture in pairs(const.UI.MOONS.secunda) do
+        local texturesSecunda = const.UI.MOONS.secunda[settings:GetMoonTextureKeySecunda()]
+        for name, texture in pairs(texturesSecunda) do
             if currentPhaseName == name then
                 self.secunda:SetHidden(false)
-                self.secunda:SetTexture(texture)
+                self.secunda:SetTexture(texturesSecunda.path .. texture)
             end
         end
     end
     if settings:GetMoonHasBackground() then
-        local background = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-        self.masser_background:SetTexture(background)
+        local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
+        local alpha = settings:GetMoonBackgroundStrength()
+        self.masser_background:SetTexture(texture)
+        self.masser_background:SetColor(1, 1, 1, alpha)
+        self.secunda_background:SetTexture(texture)
+        self.secunda_background:SetColor(1, 1, 1, alpha)
     end
 end
 
@@ -106,7 +118,14 @@ end
 
 function Moon:RegisterForUpdates()
     local lib = LibClockTST:Instance()
-    lib:RegisterForMoon(const.NAME, function(...) self:UpdateMoon(...) end)
+    lib:RegisterForMoon(const.NAME, function(...)
+        self:UpdateMoon(...)
+    end)
+end
+
+function Moon.UnregisterForUpdates()
+    local lib = LibClockTST:Instance()
+    lib:CancelSubscriptionForMoon(const.NAME)
 end
 
 function Moon:SetupTooltip()
@@ -115,9 +134,12 @@ function Moon:SetupTooltip()
             InitializeTooltip(InformationTooltip, control, TOP, 0, 0)
             SetTooltipText(InformationTooltip, self.tooltip or Clock_TST.I18N().error.library)
         end
+        local scale = control:GetScale()
+        control:SetScale(scale * settings:GetScaleFactor()) -- TODO: Change color instead of scale
     end)
-    self.control:SetHandler("OnMouseExit", function(_)
+    self.control:SetHandler("OnMouseExit", function(control)
         ClearTooltip(InformationTooltip)
+        control:SetScale(settings:GetMoonScale())
     end)
 end
 
@@ -153,14 +175,18 @@ function Moon:SetupMovement()
             end
         end
         ClearMenu()
-        Setup(settings.GetMoonIsMovable(), function(value)
-            settings.SetMoonIsMovable(value)
+        Setup(settings:GetMoonIsMovable(), function(value)
+            settings:SetMoonIsMovable(value)
             self:UpdateMouse()
         end, i18n.core.menu.movable)
-        Setup(settings.GetTimeAndMoonAreLinked(), settings.SetTimeAndMoonAreLinked, i18n.core.menu.link)
-        Setup(settings.GetMoonHasTooltip(), settings.SetMoonHasTooltip, i18n.core.menu.tooltip)
-        Setup(settings.GetMoonHasBackground(), function(value)
-            settings.SetMoonHasBackground(value)
+        Setup(settings:GetTimeAndMoonAreLinked(), function(value)
+            settings:SetTimeAndMoonAreLinked(value)
+        end, i18n.core.menu.link)
+        Setup(settings:GetMoonHasTooltip(), function(value)
+            settings:SetMoonHasTooltip(value)
+        end, i18n.core.menu.tooltip)
+        Setup(settings:GetMoonHasBackground(), function(value)
+            settings:SetMoonHasBackground(value)
             self:UpdateVisibility()
         end, i18n.core.menu.background)
         ShowMenu(control)
@@ -184,6 +210,7 @@ end
 
 function Moon:SetupScale()
     self.control:SetHandler("OnMouseWheel", function(_, delta)
+        --[[
         local factor_masser = settings:GetScaleFactor() * delta
         local factor_secunda = factor_masser * .625 -- size of secunda / size of masser
 
@@ -205,6 +232,11 @@ function Moon:SetupScale()
         moon_dimension.height = masser_dimension.height * .5 + secunda_dimension.height
 
         self:UpdatePositions()
+        ]]--
+        local scale = settings:GetMoonScale()
+        scale = scale + delta * 0.1
+        self.control:SetScale(scale)
+        settings:SetMoonScale(scale)
     end)
 end
 
@@ -235,7 +267,6 @@ local function OnAddOnLoaded(_, name)
         moon:UpdatePositions()
         moon:UpdateVisibility()
         moon:UpdateMouse()
-        moon:RegisterForUpdates()
         moon:SetupTooltip()
         moon:SetupMovement()
         moon:SetupScale()

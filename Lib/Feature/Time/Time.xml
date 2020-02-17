@@ -14,8 +14,8 @@
             <Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="75" offsetY="30"/>
             <Controls>
                 <Texture name="$(parent)Background" textureFile="EsoUI/Art/Performance/StatusMeterMunge.dds">
-                    <Dimensions x="500" y="200"/>
-                    <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER"/>
+                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT"/>
                 </Texture>
                 <Label name="$(parent)Label" font="ZoFontWinT2"
                        color="INTERFACE_COLOR_TYPE_TEXT_COLORS:INTERFACE_TEXT_COLOR_NORMAL"

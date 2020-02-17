@@ -8,6 +8,7 @@
 
 Clock_TST = Clock_TST or {}
 function Clock_TST.CONSTANTS()
+    local lang = GetCVar("Language.2")
     return {
         NAME = "Clock",
         DISPLAY = "Clock - Tamriel Standard Time",
@@ -15,32 +16,47 @@ function Clock_TST.CONSTANTS()
         SAVED_VERSION = 1,
         SAVED_NAME = "Clock_Settings",
         Menu = {
-            STYLES = {
-                "normal",
-                "outline",
-                "thick-outline",
-                "shadow",
-                "soft-shadow-thick",
-                "soft-shadow-thin",
+            time = {
+                STYLES = {
+                    "normal",
+                    "outline",
+                    "thick-outline",
+                    "shadow",
+                    "soft-shadow-thick",
+                    "soft-shadow-thin",
+                },
+                FONTS = {
+                    "Consolas",
+                    "Futura Condensed",
+                    "Futura Condensed Bold",
+                    "Futura Condensed Light",
+                    "ProseAntique",
+                    "Skyrim Handwritten",
+                    "Trajan Pro",
+                    "Univers 55",
+                    "Univers 57",
+                    "Univers 67",
+                },
+                BACKGROUND = {
+                    -- "Munge",
+                    "Splash",
+                    "Stroke",
+                },
             },
-            FONTS = {
-                "Consolas",
-                "Futura Condensed",
-                "Futura Condensed Bold",
-                "Futura Condensed Light",
-                "ProseAntique",
-                "Skyrim Handwritten",
-                "Trajan Pro",
-                "Univers 55",
-                "Univers 57",
-                "Univers 67",
+            moon = {
+                MASSER = {
+                    "Crimson",
+                    "Pale",
+                },
+                SECUNDA = {
+                    "Ghost",
+                },
+                BACKGROUND = {
+                    "Solid",
+                },
             },
         },
         UI = {
-            FORMATS = {
-                int = TIME_FORMAT_PRECISION_TWENTY_FOUR_HOUR,
-                us  = TIME_FORMAT_PRECISION_TWELVE_HOUR,
-            },
             STYLES = {
                 normal = "FONT_STYLE_NORMAL",
                 outline = "FONT_STYLE_OUTLINE",
@@ -63,35 +79,48 @@ function Clock_TST.CONSTANTS()
             },
             BACKGROUNDS = {
                 time = {
-                    munge = "EsoUI/Art/Performance/StatusMeterMunge.dds",
+                    -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
+                    ["Splash"] = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\background.dds",
+                    ["Stroke"] = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\background.dds",
                 },
                 moon = {
-                    [25]    = "Clock\\Asset\\Texture\\Moon\\Background\\background_25.dds",
-                    [33]    = "Clock\\Asset\\Texture\\Moon\\Background\\background_33.dds",
-                    [50]    = "Clock\\Asset\\Texture\\Moon\\Background\\background_50.dds",
-                    [66]    = "Clock\\Asset\\Texture\\Moon\\Background\\background_66.dds",
-                    [75]    = "Clock\\Asset\\Texture\\Moon\\Background\\background_75.dds",
-                    [100]   = "Clock\\Asset\\Texture\\Moon\\Background\\background.dds",
+                    ["Solid"] = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\background.dds",
                 },
             },
             MOONS = {
                 masser = {
-                    waxingCrescent  = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_one_wax_256x256.dds",
-                    firstQuarter    = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_half_wax_256x256.dds",
-                    waxingGibbous   = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_three_wax_256x256.dds",
-                    full            = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_full_256x256.dds",
-                    waningGibbous   = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_three_wan_256x256.dds",
-                    thirdQuarter    = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_half_wan_256x256.dds",
-                    waningCrescent  = "Clock\\Asset\\Texture\\Moon\\Masser\\masser_one_wan_256x256.dds",
+                    ["Crimson"] = {
+                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\1\\",
+                        waxingCrescent = "masser_one_wax_256x256.dds",
+                        firstQuarter = "masser_half_wax_256x256.dds",
+                        waxingGibbous = "masser_three_wax_256x256.dds",
+                        full = "masser_full_256x256.dds",
+                        waningGibbous = "masser_three_wan_256x256.dds",
+                        thirdQuarter = "masser_half_wan_256x256.dds",
+                        waningCrescent = "masser_one_wan_256x256.dds",
+                    },
+                    ["Pale"] = {
+                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\2\\",
+                        waxingCrescent = "masser_one_wax_256x256.dds",
+                        firstQuarter = "masser_half_wax_256x256.dds",
+                        waxingGibbous = "masser_three_wax_256x256.dds",
+                        full = "masser_full_256x256.dds",
+                        waningGibbous = "masser_three_wan_256x256.dds",
+                        thirdQuarter = "masser_half_wan_256x256.dds",
+                        waningCrescent = "masser_one_wan_256x256.dds",
+                    },
                 },
                 secunda = {
-                    waxingCrescent  = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_one_wax_256x256.dds",
-                    firstQuarter    = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_half_wax_256x256.dds",
-                    waxingGibbous   = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_three_wax_256x256.dds",
-                    full            = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_full_256x256.dds",
-                    waningGibbous   = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_three_wan_256x256.dds",
-                    thirdQuarter    = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_half_wan_256x256.dds",
-                    waningCrescent  = "Clock\\Asset\\Texture\\Moon\\Secunda\\secunda_one_wan_256x256.dds",
+                    ["Ghost"] = {
+                        path = "Clock\\Asset\\Texture\\Moon\\Secunda\\1\\",
+                        waxingCrescent = "secunda_one_wax_256x256.dds",
+                        firstQuarter = "secunda_half_wax_256x256.dds",
+                        waxingGibbous = "secunda_three_wax_256x256.dds",
+                        full = "secunda_full_256x256.dds",
+                        waningGibbous = "secunda_three_wan_256x256.dds",
+                        thirdQuarter = "secunda_half_wan_256x256.dds",
+                        waningCrescent = "secunda_one_wan_256x256.dds",
+                    }
                 }
             },
         },
@@ -113,9 +142,10 @@ function Clock_TST.CONSTANTS()
                         hasBackground = true,
                         hasTooltip = true,
 
-                        hasUSFormat = false,
-                        hasJapFormat = false, -- if [hasUSFormat] then 12 am <=> pm
-                        fillUpNumber = true, -- show 0[0-9] instead of [0-9]
+                        hasUSFormat = lang == "en" or lang == "jp",
+                        hasJapFormat = lang == "jp", -- if [hasUSFormat] then 12 am <=> pm
+                        addZero = lang ~= "en", -- show 0[0-9] instead of [0-9]
+
                         hasLoreDate = true,
                         hasFakeDate = false,
                         hasRealDate = true,
@@ -133,21 +163,25 @@ function Clock_TST.CONSTANTS()
                 SAVED_NAME = "styles",
                 DEFAULTS = {
                     time = {
-                        background = "munge",
-                        format = "#X\n%X",
+                        background = "Stroke",
+                        backgroundStrength = .5,
+                        format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
-                        color = {
+                        colour = {
                             r = 1,
                             g = 1,
                             b = 1,
-                            a = 0.75,
+                            a = 1,
                         },
                         font = "ProseAntique",
                         style = "outline",
-                        size = 24,
+                        size = 20,
                     },
                     moon = {
-                        background = 50
+                        background = "Solid",
+                        backgroundStrength = 0.5,
+                        masser = "Pale",
+                        secunda = "Ghost",
                     },
                 },
             },
@@ -155,35 +189,23 @@ function Clock_TST.CONSTANTS()
                 SAVED_NAME = "attributes",
                 DEFAULTS = {
                     core = {
-                        scale_factor = 10,
+                        scale_factor = 1.1,
                     },
                     time = {
                         anchor = {
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,
                             relativePoint = 3, -- TOPLEFT
-                            offsetX = 75,
+                            offsetX = 100,
                             offsetY = 30,
                         },
                         dimension = {
-                            width = 300,
+                            width = 400,
                             height = 50,
-                        },
-                        background = {
-                            anchor = {
-                                point = 128, -- CENTER
-                                relativeTo = Clock_TST_Time,
-                                relativePoint = 128, -- CENTER
-                                offsetX = 0,
-                                offsetY = 0,
-                            },
-                            dimension = {
-                                width = 500,
-                                height = 200,
-                            },
                         },
                     },
                     moon = {
+                        scale = 1,
                         anchor = {
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,

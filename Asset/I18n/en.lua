@@ -12,6 +12,68 @@ function Clock_TST.I18N()
         error = {
             library = "Could not connect to the LibClockTST library."
         },
+        menu = {
+            core = {
+                nHeadTime = "Time and date",
+                nHeadMoon = "Moon",
+                nHeadGeneral = "General",
+            },
+            account = {
+                nAccount = "Synchronize settings",
+                tAccount = "Use the same settings for all characters"
+            },
+            booleans = {
+                nSub = "On/Off Settings", -- togOpt
+                nTimeVisible = "Show Time", -- sTime
+                nMouseEnabled = "Interactable",
+                nMovable = "Movable", -- sMove
+                tMovable = "Select if the Clock should be movable.", -- tMove
+                nTooltip = "Show tooltip when hovering",
+                nBackground = "Show background", -- nsBg
+                tTimeBackground = "Adds a background behind the Clock.", -- tsBg
+                nAddZero = "Add zeros", -- sNum
+                tAddZero = "Add zeros before a single number: 1:24 -> 01:24", -- tNum
+                nUSFormat = "12h format", -- sFormat,
+                nJapanese = "Show midnight as 0", --sJap
+                wAffect = "This does only affect a custom format not #X or %X",
+                nFake = "Show fake lore Date", -- sFLDate
+                tFake = "Will replace the day, month and week day in Tamriel with the real one but with Tamriel names.",
+                nMoonVisible = "Show Moon", -- sMoon
+                nLink = "Link the movements from the label with the moon",
+            },
+            styles = {
+                nSub = "Look Options", -- look
+                nFormat = "Write your own format of the time and date",
+                tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
+                dFormat = "%A\t\t full weekday name\n"
+                        .. "%b\t\t for the abbreviated\n"
+                        .. "%B\t\t full month name\n"
+                        .. "%b\t\t for the abbreviated\n"
+                        .. "%d\t\t day of the month\n"
+                        .. "%H\t\t hour\n"
+                        .. "%M\t\t minute\n"
+                        .. "%m\t\t month\n"
+                        .. "%p\t\t either \"am\" or \"pm\"\n"
+                        .. "%S\t\t second\n"
+                        .. "%w\t\t weekday [1-7 = Monday-Sunday]\n"
+                        .. "%x\t\t date (e.g., 17.02.20)\n"
+                        .. "%X\t\t time (e.g., 23:48:10)\n"
+                        .. "%Y\t\t full year\n"
+                        .. "%y\t\t two-digit year ",
+                nColor = "Color", -- nColPick
+                tColor = "Change the color of the Clock.", -- tColor
+                nFont = "Font", -- nFont
+                tFont = "Change the font of the Clock.", -- tFont
+                nStyle = "Style", -- nStyle
+                tStyle = "Change the style of the Clock.", -- tStyle
+                nSize = "Size", -- nSize
+                tSize = "Change the size of the Clock.", -- tSize
+                nBackground = "Background texture",
+                nBackgroundStrength = "Background strength",
+                nMasser = "Masser's texture",
+                nSecunda = "Secunda's texture",
+            },
+        },
         view = {
             core = {
                 menu = {
@@ -37,8 +99,6 @@ function Clock_TST.I18N()
             time = {
                 am = "am",
                 pm = "pm",
-                menu = {
-                },
             },
             date = {
                 lore = {
