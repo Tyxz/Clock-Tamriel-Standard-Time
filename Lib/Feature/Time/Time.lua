@@ -70,8 +70,8 @@ function Time:UpdateMouse()
 end
 
 function Time:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()].background
-    self.background:SetTexture(texture)
+    local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
+    self.background:SetTexture(texture.path .. texture.background)
     self.background:SetColor(1, 1, 1, settings:GetTimeBackgroundStrength())
 end
 
@@ -92,10 +92,25 @@ function Time:UpdateSize()
         dimension.width = length / baseLength * size / baseSize * baseDimension.width
     end
 
+    local function CreateOffset(x, y, width, height, dimension)
+        local offsetX = x + (width - dimension.width) * .1
+        local offsetY = y + (height - dimension.height) * .1
+        return offsetX, offsetY
+    end
+    local width, height = settings:GetTimeDimension().width, settings:GetTimeDimension().height
     CreateDimension(
             settings:GetTimeDimension(),
             const.Settings.attributes.DEFAULTS.time.dimension
     )
+    local x, y = settings:GetTimeOffset()
+    settings:SetTimeOffset(
+            CreateOffset(
+                    x, y,
+                    width, height,
+                    settings:GetTimeDimension()
+            )
+    )
+
     self:UpdatePositions()
 end
 
@@ -320,9 +335,9 @@ function Time:SetupTooltip()
 
         -- Hover
         if settings:GetTimeHighlightWhenHover() then
-            local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()].hover
+            local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
             local alpha = settings:GetTimeBackgroundStrength()
-            self.background:SetTexture(texture)
+            self.background:SetTexture(texture.path .. texture.hover)
             self.background:SetColor(1, 1, 1, math.min(1, alpha * 1.1))
         end
 
@@ -343,7 +358,7 @@ end
 
 function Time:SetupMovement()
     local function LeftClick(control)
-        local offsetX, offsetY = control:GetCenter()
+        local offsetX, offsetY = control:GetLeft(), control:GetTop()
 
         if settings:GetTimeAndMoonAreLinked() then
             local moonOffsetX, moonOffsetY = settings:GetMoonOffset()

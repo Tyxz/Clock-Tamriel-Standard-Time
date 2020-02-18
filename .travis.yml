@@ -1,0 +1,25 @@
+language: python
+sudo: false
+
+env:
+  - LUA="lua=5.1"
+  - LUA="lua=5.2"
+
+before_install:
+  - pip install hererocks
+  - hererocks lua_install -r^ --$LUA
+  - export PATH=$PATH:$PWD/lua_install/bin
+
+install:
+  - luarocks install luacheck
+  - luarocks install busted
+  - luarocks install luacov
+  - luarocks install luacov-coveralls
+
+script:
+  - luacheck .
+  - busted -R Test/Lib --verbose --coverage
+
+after_success:
+  - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install
+  - bash <(curl -s https://codecov.io/bash)

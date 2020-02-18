@@ -19,6 +19,7 @@ local settings
 
 function Moon:UpdatePositions()
     local attribute = settings:GetMoonAttributes()
+    -- TODO: fix secunda offset
 
     local function UpdateControl(control, atr)
         local anchor = atr.anchor
@@ -73,11 +74,11 @@ function Moon:UpdateMouse()
 end
 
 function Moon:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()].background
+    local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
     local alpha = settings:GetMoonBackgroundStrength()
-    self.masser_background:SetTexture(texture)
+    self.masser_background:SetTexture(texture.path .. texture.background)
     self.masser_background:SetColor(1, 1, 1, alpha)
-    self.secunda_background:SetTexture(texture)
+    self.secunda_background:SetTexture(texture.path .. texture.background)
     self.secunda_background:SetColor(1, 1, 1, alpha)
 end
 
@@ -159,11 +160,11 @@ function Moon:SetupTooltip()
 
         -- Hover
         if settings:GetMoonHighlightWhenHover() then
-            local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()].hover
+            local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
             local alpha = math.min(1, settings:GetMoonBackgroundStrength() * 1.1)
-            self.masser_background:SetTexture(texture)
+            self.masser_background:SetTexture(texture.path .. texture.hover)
             self.masser_background:SetColor(1, 1, 1, alpha)
-            self.secunda_background:SetTexture(texture)
+            self.secunda_background:SetTexture(texture.path .. texture.hover)
             self.secunda_background:SetColor(1, 1, 1, alpha)
         end
 
@@ -184,7 +185,7 @@ end
 
 function Moon:SetupMovement()
     local function LeftClick(control)
-        local offsetX, offsetY = control:GetCenter()
+        local offsetX, offsetY = control:GetLeft(), control:GetTop()
 
         if settings:GetTimeAndMoonAreLinked() then
             local timeOffsetX, timeOffsetY = settings:GetTimeOffset()

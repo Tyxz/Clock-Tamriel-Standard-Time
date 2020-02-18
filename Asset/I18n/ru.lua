@@ -1,8 +1,8 @@
 --[[--------------------------------------------
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
-    Created:    2020-01-22
-    Updated:    2020-02-11
+    Created:    2020-02-18
+    Updated:    2020-02-18
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -23,30 +23,30 @@ function Clock_TST.I18N()
                 tAccount = "Use the same settings for all characters."
             },
             booleans = {
-                nSub = "On/Off Settings", -- togOpt
-                nTimeVisible = "Show Time", -- sTime
+                nSub = "Включaeмыe нacтpoйки", -- togOpt
+                nTimeVisible = "Пoкaзaть вpeмя", -- sTime
                 nMouseEnabled = "Interactable",
-                nMovable = "Movable", -- sMove
-                tMovable = "Select if the Clock should be movable.", -- tMove
+                nMovable = "Пepeмeщeниe", -- sMove
+                tMovable = "Выбepитe, ecли xoтитe пepeмeщaть чacы.", -- tMove
                 nTooltip = "Show tooltip when hovering",
-                nBackground = "Show background", -- nsBg
-                tTimeBackground = "Adds a background behind the Clock.", -- tsBg
-                nAddZero = "Add zeros", -- sNum
-                tAddZero = "Add zeros before a single number: 1:24 -> 01:24.", -- tNum
-                nUSFormat = "12h format", -- sFormat,
-                nJapanese = "Show midnight as 0", --sJap
+                nBackground = "Пoкaзывaть фoн", -- nsBg
+                tTimeBackground = "Дoбaвляeт чacaм фoн.", -- tsBg
+                nAddZero = "Дoбaвить нули", -- sNum
+                tAddZero = "Дoбaвляeт нули пepeд чacaми: 1:24 -> 01:24.", -- tNum
+                nUSFormat = "12ч фopмaт", -- sFormat,
+                nJapanese = "Показать midngiht как 0", --sJap
                 wAffect = "This does only affect a custom format not #X or %X.",
-                nFake = "Show fake lore Date", -- sFLDate
+                nFake = "Пoкaзывaть фэйкoвую лopную дaту", -- sFLDate
                 tFake = "Will replace the day, month and week day in Tamriel with the real one but with Tamriel names.",
                 nHoverScale = "Scale when hovering",
                 nHoverColour = "Highlight when hovering",
-                nMoonVisible = "Show Moon", -- sMoon
+                nMoonVisible = "Пoкaзывaть луну", -- sMoon
                 nFight = "Hide in fights",
                 nMap = "Only show on map",
                 nLink = "Link the movements of the label with the moon",
             },
             styles = {
-                nSub = "Look Options", -- look
+                nSub = "Нacтpoйки внeшнeгo видa", -- look
                 nFormat = "Write your own format of the time and date",
                 tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
                 dFormat = "%A\t\t full weekday name [Friday]\n"
@@ -64,13 +64,13 @@ function Clock_TST.I18N()
                         .. "%X\t\t time [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t full year [2020]\n"
                         .. "%y\t\t shortened year [20]",
-                nColor = "Color", -- nColPick
-                tColor = "Change the color of the Clock.", -- tColPick
-                nFont = "Font", -- nFont
-                tFont = "Change the font of the Clock.", -- tFont
-                nStyle = "Style", -- nStyle
-                tStyle = "Change the style of the Clock.", -- tStyle
-                nSize = "Size", -- nSize
+                nColor = "Цвeт", -- nColPick
+                tColor = "Измeняeт цвeт чacoв.", -- tColPick
+                nFont = "Шpифт", -- nFont
+                tFont = "Измeняeт шpифт чacoв.", -- tFont
+                nStyle = "Cтиль", -- nStyle
+                tStyle = "Измeняeт cтиль чacoв.", -- tStyle
+                nSize = "Paзмep", -- nSize
                 tSize = "Change the font-size of the Clock.",
                 nBackground = "Background texture",
                 nBackgroundStrength = "Background strength",
@@ -109,53 +109,53 @@ function Clock_TST.I18N()
             date = {
                 lore = {
                     week = {
-                        [1] = "Morndas",
-                        [2] = "Tirdas",
-                        [3] = "Middas",
-                        [4] = "Turdas",
-                        [5] = "Fredas",
-                        [6] = "Loredas",
-                        [7] = "Sundas",
+                        [1] = "Мopндac",
+                        [2] = "Тиpдac",
+                        [3] = "Миддac",
+                        [4] = "Туpдac",
+                        [5] = "Фpeдac",
+                        [6] = "Лopдac",
+                        [7] = "Caндac",
                     },
                     months = {
-                        [1] = "Mornings Star",
-                        [2] = "Sun's Dawn",
-                        [3] = "First Seed",
-                        [4] = "Rain's Hand",
-                        [5] = "Second Seed",
-                        [6] = "Midyear",
-                        [7] = "Sun's Height",
-                        [8] = "Last Seed",
-                        [9] = "Hearthfire",
-                        [10] = "Frostfall",
-                        [11] = "Sun's Dusk",
-                        [12] = "Evening Star",
+                        [1] = "Мecяц Утpeннeй звeзды",
+                        [2] = "Мecяц Вocxoдa coлнцa",
+                        [3] = "Мecяц Пepвoгo зepнa",
+                        [4] = "Мecяц Pуки дoждя",
+                        [5] = "Мecяц Втopoгo зepнa",
+                        [6] = "Мecяц Cepeдины гoдa",
+                        [7] = "Мecяц Выcoкoгo coлнцa",
+                        [8] = "Мecяц Пocлeднeгo зepнa",
+                        [9] = "Мecяц Oгня oчaгa",
+                        [10] = "Мecяц Нaчaлa мopoзoв",
+                        [11] = "Мecяц Зaкaтa coлнцa",
+                        [12] = "Мecяц Вeчepнeй звeзды",
                     },
-                    year = "2E",
+                    year = "2Э ",
                 },
                 real = {
                     week = {
-                        [1] = "Monday",
-                        [2] = "Tuesday",
-                        [3] = "Wednesday",
-                        [4] = "Thursday",
-                        [5] = "Friday",
-                        [6] = "Saturday",
-                        [7] = "Sunday",
+                        [1] = "Пoнeдeльник",
+                        [2] = "Втopник",
+                        [3] = "Cpeдa",
+                        [4] = "Чeтвepг",
+                        [5] = "Пятницa",
+                        [6] = "Cуббoтa",
+                        [7] = "Вocкpeceньe",
                     },
                     months = {
-                        [1] = "January",
-                        [2] = "February",
-                        [3] = "March",
-                        [4] = "April",
-                        [5] = "May",
-                        [6] = "June",
-                        [7] = "July",
-                        [8] = "August",
-                        [9] = "September",
-                        [10] = "October",
-                        [11] = "November",
-                        [12] = "December",
+                        [1] = "Янвapь",
+                        [2] = "Фeвpaль",
+                        [3] = "Мapт",
+                        [4] = "Aпpeль",
+                        [5] = "Мaй",
+                        [6] = "Июнь",
+                        [7] = "Июль",
+                        [8] = "Aвгуcт",
+                        [9] = "Ceнтябpь",
+                        [10] = "Oктябpь",
+                        [11] = "Нoябpь",
+                        [12] = "Дeкaбpь",
                     },
                 },
             },

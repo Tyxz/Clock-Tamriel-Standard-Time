@@ -85,34 +85,41 @@ function Clock_TST.CONSTANTS()
                 time = {
                     -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
                     ["Brush"] = {
-                        background = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                     ["Phase"] = {
-                        background = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        background = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                     ["Stroke"] = {
-                        background = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                 },
                 moon = {
                     ["Brush"] = {
-                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Brush\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Brush\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Splash\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Splash\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                     ["Solid"] = {
-                        background = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\background.dds",
-                        hover = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\hover.dds",
+                        path = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\",
+                        background = "background.dds",
+                        hover = "hover.dds",
                     },
                 },
             },
@@ -251,8 +258,8 @@ function Clock_TST.CONSTANTS()
                             offsetY = 30,
                         },
                         dimension = {
-                            width = 84,
-                            height = 72,
+                            width = 130,
+                            height = 90,
                         },
                         masser = {
                             anchor = {
@@ -263,8 +270,8 @@ function Clock_TST.CONSTANTS()
                                 offsetY = 0,
                             },
                             dimension = {
-                                width = 64,
-                                height = 64,
+                                width = 80,
+                                height = 80,
                             },
                         },
                         secunda = {
@@ -276,8 +283,8 @@ function Clock_TST.CONSTANTS()
                                 offsetY = 0,
                             },
                             dimension = {
-                                width = 40,
-                                height = 40,
+                                width = 50,
+                                height = 50,
                             },
                         },
                     },

@@ -1,8 +1,8 @@
 --[[--------------------------------------------
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
-    Created:    2020-01-22
-    Updated:    2020-02-11
+    Created:    2020-02-18
+    Updated:    2020-02-18
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -23,30 +23,30 @@ function Clock_TST.I18N()
                 tAccount = "Use the same settings for all characters."
             },
             booleans = {
-                nSub = "On/Off Settings", -- togOpt
-                nTimeVisible = "Show Time", -- sTime
+                nSub = "設定のオン/オフ", -- togOpt
+                nTimeVisible = "時間の表示", -- sTime
                 nMouseEnabled = "Interactable",
-                nMovable = "Movable", -- sMove
-                tMovable = "Select if the Clock should be movable.", -- tMove
+                nMovable = "移動可能", -- sMove
+                tMovable = "Clockが移動可能になります。", -- tMove
                 nTooltip = "Show tooltip when hovering",
-                nBackground = "Show background", -- nsBg
-                tTimeBackground = "Adds a background behind the Clock.", -- tsBg
-                nAddZero = "Add zeros", -- sNum
-                tAddZero = "Add zeros before a single number: 1:24 -> 01:24.", -- tNum
-                nUSFormat = "12h format", -- sFormat,
-                nJapanese = "Show midnight as 0", --sJap
+                nBackground = "背景の表示", -- nsBg
+                tTimeBackground = "Clockの背景を追加します。", -- tsBg
+                nAddZero = "ゼロ追加", -- sNum
+                tAddZero = "桁の数字にゼロを追加します: 1:24 -> 01:24.", -- tNum
+                nUSFormat = "12時間形式", -- sFormat,
+                nJapanese = "真夜中を0時として表示", --sJap
                 wAffect = "This does only affect a custom format not #X or %X.",
-                nFake = "Show fake lore Date", -- sFLDate
+                nFake = "偽伝承の日付を表示", -- sFLDate
                 tFake = "Will replace the day, month and week day in Tamriel with the real one but with Tamriel names.",
                 nHoverScale = "Scale when hovering",
                 nHoverColour = "Highlight when hovering",
-                nMoonVisible = "Show Moon", -- sMoon
+                nMoonVisible = "月齢の表示", -- sMoon
                 nFight = "Hide in fights",
                 nMap = "Only show on map",
                 nLink = "Link the movements of the label with the moon",
             },
             styles = {
-                nSub = "Look Options", -- look
+                nSub = "見た目のオプション", -- look
                 nFormat = "Write your own format of the time and date",
                 tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
                 dFormat = "%A\t\t full weekday name [Friday]\n"
@@ -64,14 +64,14 @@ function Clock_TST.I18N()
                         .. "%X\t\t time [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t full year [2020]\n"
                         .. "%y\t\t shortened year [20]",
-                nColor = "Color", -- nColPick
-                tColor = "Change the color of the Clock.", -- tColPick
-                nFont = "Font", -- nFont
-                tFont = "Change the font of the Clock.", -- tFont
-                nStyle = "Style", -- nStyle
-                tStyle = "Change the style of the Clock.", -- tStyle
-                nSize = "Size", -- nSize
-                tSize = "Change the font-size of the Clock.",
+                nColor = "色", -- nColPick
+                tColor = "Clockの色を変更します。", -- tColPick
+                nFont = "フォント", -- nFont
+                tFont = "Clockのフォントを変更します。", -- tFont
+                nStyle = "スタイル", -- nStyle
+                tStyle = "Clockのスタイルを変更します。", -- tStyle
+                nSize = "サイズ", -- nSize
+                tSize = "Clockのサイズを変更します。",
                 nBackground = "Background texture",
                 nBackgroundStrength = "Background strength",
                 nMasser = "Masser's texture",
@@ -109,53 +109,53 @@ function Clock_TST.I18N()
             date = {
                 lore = {
                     week = {
-                        [1] = "Morndas",
-                        [2] = "Tirdas",
-                        [3] = "Middas",
-                        [4] = "Turdas",
-                        [5] = "Fredas",
-                        [6] = "Loredas",
-                        [7] = "Sundas",
+                        [1] = "モーンダス",
+                        [2] = "ティルダス",
+                        [3] = "ミダス",
+                        [4] = "トゥルダス",
+                        [5] = "フレダス",
+                        [6] = "ロレダス",
+                        [7] = "サンダス",
                     },
                     months = {
-                        [1] = "Mornings Star",
-                        [2] = "Sun's Dawn",
-                        [3] = "First Seed",
-                        [4] = "Rain's Hand",
-                        [5] = "Second Seed",
-                        [6] = "Midyear",
-                        [7] = "Sun's Height",
-                        [8] = "Last Seed",
-                        [9] = "Hearthfire",
-                        [10] = "Frostfall",
-                        [11] = "Sun's Dusk",
-                        [12] = "Evening Star",
+                        [1] = "暁星の月",
+                        [2] = "薄明の月",
+                        [3] = "蒔種の月",
+                        [4] = "恵雨の月",
+                        [5] = "栽培の月",
+                        [6] = "真央の月",
+                        [7] = "南中の月",
+                        [8] = "収穫の月",
+                        [9] = "炉火の月",
+                        [10] = "降霜の月",
+                        [11] = "黄昏の月",
+                        [12] = "星霜の月",
                     },
-                    year = "2E",
+                    year = "2E ",
                 },
                 real = {
                     week = {
-                        [1] = "Monday",
-                        [2] = "Tuesday",
-                        [3] = "Wednesday",
-                        [4] = "Thursday",
-                        [5] = "Friday",
-                        [6] = "Saturday",
-                        [7] = "Sunday",
+                        [1] = "月曜日",
+                        [2] = "火曜日",
+                        [3] = "水曜日",
+                        [4] = "木曜日",
+                        [5] = "金曜日",
+                        [6] = "土曜日",
+                        [7] = "日曜日",
                     },
                     months = {
-                        [1] = "January",
-                        [2] = "February",
-                        [3] = "March",
-                        [4] = "April",
-                        [5] = "May",
-                        [6] = "June",
-                        [7] = "July",
-                        [8] = "August",
-                        [9] = "September",
-                        [10] = "October",
-                        [11] = "November",
-                        [12] = "December",
+                        [1] = "1月",
+                        [2] = "2月",
+                        [3] = "3月",
+                        [4] = "4月",
+                        [5] = "5月",
+                        [6] = "6月",
+                        [7] = "7月",
+                        [8] = "8月",
+                        [9] = "9月",
+                        [10] = "10月",
+                        [11] = "11月",
+                        [12] = "12月",
                     },
                 },
             },

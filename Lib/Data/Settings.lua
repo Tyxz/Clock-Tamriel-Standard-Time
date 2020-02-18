@@ -532,6 +532,7 @@ function Settings:SetTimeOffset(x, y)
     self.attributes.time.anchor.offsetX = x
     self.attributes.time.anchor.offsetY = y
 end
+
 --- a function to get the current dimension for the time.
 -- @return dimension = { width, height, }
 function Settings:GetTimeDimension()
