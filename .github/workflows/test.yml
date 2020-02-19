@@ -1,4 +1,4 @@
-name: Busted
+name: Check & Busted
 
 on: [push]
 
@@ -14,7 +14,13 @@ jobs:
       - uses: leafo/gh-actions-luarocks@v2
 
       - name: build
-        run: luarocks install busted && luarocks install luacov
+        run: luarocks install busted
+          && luarocks install luacheck
+          && luarocks install luacov
+          && luarocks install luacov-coveralls
 
-      - name: test
-        run: busted -o utfTerminal -p Test -R Test/ --coverage
+      - name: luacheck
+        run: luacheck .
+
+      - name: busted
+        run: busted -R Test/Lib --verbose --coverage

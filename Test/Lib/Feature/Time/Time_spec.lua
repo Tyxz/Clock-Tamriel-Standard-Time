@@ -5,12 +5,9 @@
     Updated:    2020-02-19
     License:    GPL-3.0
 --------------------------------------------]]--
-package.path = '../LibClockTST/?.lua;' .. package.path
-
 describe("Time", function()
     require("Test.Utility")
     require("Test.ZoMock")
-    require("Lib.LibClockTST")
     require("Asset.I18n.en")
     require("Lib.Data.Constants")
     require("Lib.Data.Settings")
