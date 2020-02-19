@@ -25,5 +25,5 @@ global:
 
 run:
 	$(LUAROCKS)luacheck . \
-	&& $(LUAROCKS)busted -R Test/Lib --verbose --coverage \
+	&& $(LUAROCKS)busted -R Test --verbose --coverage \
 	&& $(LUAROCKS)ldoc Lib -c ./config.ld

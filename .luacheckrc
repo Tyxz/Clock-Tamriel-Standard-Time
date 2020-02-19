@@ -1,4 +1,4 @@
-std = "min+busted+eso"
+std = "max+busted+eso"
 stds.eso = {
     globals = {
         "AddMenuItem",

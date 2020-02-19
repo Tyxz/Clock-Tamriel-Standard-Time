@@ -1,3 +1,11 @@
+--[[--------------------------------------------
+    Project:    Clock - Tamriel Standard Time
+    Author:     Arne Rantzen (Tyx)
+    Created:    2020-02-18
+    Updated:    2020-02-18
+    License:    GPL-3.0
+--------------------------------------------]]--
+
 describe("Compatibility", function()
     _G.LibClockTST = {}
     local tHour, tMinute, tSecond = 12, 56, 21

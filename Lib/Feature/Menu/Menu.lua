@@ -9,6 +9,7 @@
 Clock_TST = Clock_TST or {}
 local const = Clock_TST.CONSTANTS()
 
+--- Create the LibAddonMenu panel
 local function SetupMenu()
     local settings = Clock_TST.settings
     local time = Clock_TST.time
@@ -38,6 +39,7 @@ local function SetupMenu()
     -- Attributes
     -- ----------------
 
+    -- Create the boolean submenu
     local function AddBooleans()
         return {
             type = "submenu",
@@ -364,6 +366,7 @@ local function SetupMenu()
     -- Styles
     -- ----------------
 
+    --- Create the Style submenu
     local function AddStyles()
         return {
             type = "submenu",

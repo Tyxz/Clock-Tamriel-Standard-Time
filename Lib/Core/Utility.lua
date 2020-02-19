@@ -7,7 +7,6 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-Clock_TST.DEBUG = true
 
 ZO_ONE_YEAR_IN_SECONDS = ZO_ONE_MONTH_IN_SECONDS * 12 -- 31104000
 

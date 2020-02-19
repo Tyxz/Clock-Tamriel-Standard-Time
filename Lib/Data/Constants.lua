@@ -2,11 +2,12 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-11
+    Updated:    2020-02-19
     License:    GPL-3.0
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
+Clock_TST.DEBUG = true
 
 --- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
@@ -19,6 +20,7 @@ function Clock_TST.CONSTANTS()
         SAVED_NAME = "Clock_Settings",
         Menu = {
             time = {
+                -- Possible replace: esoui/fontdefs/keyboard/defaultfontdefs_keyboard.xml
                 STYLES = {
                     "normal",
                     "outline",
@@ -166,7 +168,7 @@ function Clock_TST.CONSTANTS()
             account = {
                 SAVED_NAME = "account",
                 DEFAULTS = {
-                    saveAccountWide     = true,
+                    saveAccountWide = true,
                 }
             },
             booleans = {
@@ -214,9 +216,9 @@ function Clock_TST.CONSTANTS()
                         format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
                         colour = {
-                            r = 1,
-                            g = 1,
-                            b = 1,
+                            r = 0.77254909276962,
+                            g = 0.7607843875885,
+                            b = 0.61960786581039,
                             a = 1,
                         },
                         font = "ProseAntique",

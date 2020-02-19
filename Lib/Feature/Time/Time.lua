@@ -307,13 +307,19 @@ end
 -- Start
 -- ----------------
 
-function Time:RegisterForUpdates()
-    local lib = LibClockTST:Instance()
+--- Reset the previous saved replacements and mark the size as updated
+function Time:ResetReplacement()
     self.replacement = {
         date = { real = {}, lore = {} },
         time = { real = {}, lore = {} }
     }
     self.sizeHasUpdated = true
+end
+
+--- Register the update function with the LibClockTST
+function Time:RegisterForUpdates()
+    local lib = LibClockTST:Instance()
+    self:ResetReplacement()
     lib:Register(const.NAME, function(time, date)
         self:UpdateTime(time, date)
     end)

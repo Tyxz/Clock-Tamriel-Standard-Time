@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-16
+    Updated:    2020-02-19
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -359,7 +359,6 @@ end
 -- @param b blue colour
 -- @param a alpha value
 function Settings:SetTimeColour(r, g, b, a)
-    d(ZO_ColorDef:New(r, g, b, a))
     self.styles.time.colour = {
         r = r,
         g = g,
