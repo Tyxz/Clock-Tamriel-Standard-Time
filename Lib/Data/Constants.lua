@@ -7,6 +7,8 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
+
+--- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
     local lang = GetCVar("Language.2")
     return {

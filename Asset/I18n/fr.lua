@@ -37,7 +37,8 @@ function Clock_TST.I18N()
                 nJapanese = "Afficher midngiht comme 0", --sJap
                 wAffect = "Cela ne concerne qu'un format personnalisé, et non pas #X ou %X.",
                 nFake = "Montrer faux lore date", -- sFLDate
-                tFake = "Remplacera le jour, le mois et le jour de la semaine en Tamriel par le vrai, mais avec le nom Tamriel.",
+                tFake = "Remplacera le jour, le mois et le jour de la semaine en Tamriel par le vrai, "
+                        .. "mais avec le nom Tamriel.",
                 nHoverScale = "Mise à l'échelle pendant le survol",
                 nHoverColour = "Mise en évidence pendant le survol",
                 nMoonVisible = "Afficher la Lune", -- sMoon

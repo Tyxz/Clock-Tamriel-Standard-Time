@@ -212,7 +212,6 @@ function Time:CreateTimeReplacements(loreTime)
         else
             return i18n.time.pm
         end
-        return nil
     end
     local format = TIME_FORMAT_PRECISION_TWENTY_FOUR_HOUR
     if settings:GetTimeHasUSFormat() then
@@ -227,7 +226,7 @@ function Time:CreateTimeReplacements(loreTime)
         S = s,
         p = p(h)
     }
-    lh, lm, ls = AddZero(loreTime.hour), AddZero(loreTime.minute), AddZero(loreTime.second)
+    local lh, lm, ls = AddZero(loreTime.hour), AddZero(loreTime.minute), AddZero(loreTime.second)
     -- zo_strformat("<<1>>:<<2>>:<<3>>", lh, lm, ls)
     self.replacement.time.lore = {
         X = ZO_FormatTime(lh * 3600 + lm * 60 + ls, TIME_FORMAT_STYLE_CLOCK_TIME, format),
@@ -311,8 +310,8 @@ end
 function Time:RegisterForUpdates()
     local lib = LibClockTST:Instance()
     self.replacement = {
-        date = { real, lore },
-        time = { real, lore }
+        date = { real = {}, lore = {} },
+        time = { real = {}, lore = {} }
     }
     self.sizeHasUpdated = true
     lib:Register(const.NAME, function(time, date)

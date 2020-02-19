@@ -25,7 +25,7 @@ function Settings:GetSaveAccountWide()
 end
 
 --- a function to store the boolean value for the core elements
--- @param if the saved variable is account wide
+-- @param value if the saved variable is account wide
 function Settings:SetSaveAccountWide(value)
     self.account.saveAccountWide = value
 end
@@ -38,7 +38,7 @@ function Settings:GetTimeAndMoonAreLinked()
 end
 
 --- a function to store the boolean value for the core elements
--- @param if the moon is linked to time
+-- @param value if the moon is linked to time
 function Settings:SetTimeAndMoonAreLinked(value)
     self.booleans.core.timeAndMoonAreLinked = value
 end
@@ -50,7 +50,7 @@ function Settings:GetHideInFight()
 end
 
 --- a function to store the boolean value for the core elements
--- @param if the view should be hidden in fights
+-- @param value if the view should be hidden in fights
 function Settings:SetHideInFight(value)
     self.booleans.core.hideInFight = value
 end
@@ -62,7 +62,7 @@ function Settings:GetOnlyShowOnMap()
 end
 
 --- a function to store the boolean value for the core elements
--- @param if the view should be only visible on the map
+-- @param value if the view should be only visible on the map
 function Settings:SetOnlyShowOnMap(value)
     self.booleans.core.onlyShowOnMap = value
 end
@@ -78,7 +78,7 @@ function Settings:GetTimeIsVisible()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time is visible
+-- @param value if the time is visible
 function Settings:SetTimeIsVisible(value)
     self.booleans.time.isVisible = value
 end
@@ -90,7 +90,7 @@ function Settings:GetTimeIsMouseEnabled()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time is mouseEnabled
+-- @param value if the time is mouseEnabled
 function Settings:SetTimeIsMouseEnabled(value)
     self.booleans.time.isMouseEnabled = value
 end
@@ -102,7 +102,7 @@ function Settings:GetTimeIsMovable()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time is movable
+-- @param value if the time is movable
 function Settings:SetTimeIsMovable(value)
     self.booleans.time.isMovable = value
 end
@@ -114,7 +114,7 @@ function Settings:GetTimeHasTooltip()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time has tooltip
+-- @param value if the time has tooltip
 function Settings:SetTimeHasTooltip(value)
     self.booleans.time.hasTooltip = value
 end
@@ -126,7 +126,7 @@ function Settings:GetTimeHasBackground()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time has background
+-- @param value if the time has background
 function Settings:SetTimeHasBackground(value)
     self.booleans.time.hasBackground = value
 end
@@ -138,7 +138,7 @@ function Settings:GetTimeAddZero()
 end
 
 --- a function to store the boolean value for the time
--- @param if a 0 should be added before a single digit
+-- @param value if a 0 should be added before a single digit
 function Settings:SetTimeAddZero(value)
     self.booleans.time.addZero = value
 end
@@ -150,7 +150,7 @@ function Settings:GetTimeHasUSFormat()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time has the US format
+-- @param value if the time has the US format
 function Settings:SetTimeHasUSFormat(value)
     self.booleans.time.hasUSFormat = value
 end
@@ -162,7 +162,7 @@ function Settings:GetTimeHasJapFormat()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time has the Japanese format
+-- @param value if the time has the Japanese format
 function Settings:SetTimeHasJapFormat(value)
     self.booleans.time.hasJapFormat = value
 end
@@ -210,7 +210,7 @@ function Settings:GetTimeScaleWhenHover()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time should scale up when hovering over
+-- @param value if the time should scale up when hovering over
 function Settings:SetTimeScaleWhenHover(value)
     self.booleans.time.scaleWhenHover = value
 end
@@ -222,7 +222,7 @@ function Settings:GetTimeHighlightWhenHover()
 end
 
 --- a function to store the boolean value for the time
--- @param if the time should change colour when hovering over
+-- @param value if the time should change colour when hovering over
 function Settings:SetTimeHighlightWhenHover(value)
     self.booleans.time.highlightWhenHover = value
 end
@@ -238,7 +238,7 @@ function Settings:GetMoonIsVisible()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon is visible
+-- @param value if the moon is visible
 function Settings:SetMoonIsVisible(value)
     self.booleans.moon.isVisible = value
 end
@@ -250,7 +250,7 @@ function Settings:GetMoonIsMouseEnabled()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon is mouseEnabled
+-- @param value if the moon is mouseEnabled
 function Settings:SetMoonIsMouseEnabled(value)
     self.booleans.moon.isMouseEnabled = value
 end
@@ -262,7 +262,7 @@ function Settings:GetMoonIsMovable()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon is movable
+-- @param value if the moon is movable
 function Settings:SetMoonIsMovable(value)
     self.booleans.moon.isMovable = value
 end
@@ -274,7 +274,7 @@ function Settings:GetMoonHasBackground()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon has background
+-- @param value if the moon has background
 function Settings:SetMoonHasBackground(value)
     self.booleans.moon.hasBackground = value
 end
@@ -286,7 +286,7 @@ function Settings:GetMoonHasTooltip()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon has tooltip
+-- @param value if the moon has tooltip
 function Settings:SetMoonHasTooltip(value)
     self.booleans.moon.hasTooltip = value
 end
@@ -298,7 +298,7 @@ function Settings:GetMoonScaleWhenHover()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon should scale up when hovering over
+-- @param value if the moon should scale up when hovering over
 function Settings:SetMoonScaleWhenHover(value)
     self.booleans.moon.scaleWhenHover = value
 end
@@ -310,7 +310,7 @@ function Settings:GetMoonHighlightWhenHover()
 end
 
 --- a function to store the boolean value for the moon
--- @param if the moon should change colour when hovering over
+-- @param value if the moon should change colour when hovering over
 function Settings:SetMoonHighlightWhenHover(value)
     self.booleans.moon.highlightWhenHover = value
 end
@@ -326,7 +326,7 @@ function Settings:GetTimeFormat()
 end
 
 --- a function to store the style value for the moon
--- @param the format for the time
+-- @param value the format for the time
 function Settings:SetTimeFormat(value)
     self.styles.time.format = value
 end
@@ -338,20 +338,26 @@ function Settings:GetTimeSize()
 end
 
 --- a function to store the style value for the moon
--- @param the size for the time
+-- @param value the size for the time
 function Settings:SetTimeSize(value)
     self.styles.time.size = value
 end
 
 --- a function to get the stored style value for the time
--- @return the style for the time
+-- @return r red colour
+-- @return g green colour
+-- @return b blue colour
+-- @return a alpha value
 function Settings:GetTimeColour()
     local colour = self.styles.time.colour
     return colour.r, colour.g, colour.b, colour.a
 end
 
 --- a function to store the style value for the moon
--- @param the style for the time
+-- @param r red colour
+-- @param g green colour
+-- @param b blue colour
+-- @param a alpha value
 function Settings:SetTimeColour(r, g, b, a)
     d(ZO_ColorDef:New(r, g, b, a))
     self.styles.time.colour = {
@@ -369,7 +375,7 @@ function Settings:GetTimeFont()
 end
 
 --- a function to store the style value for the moon
--- @param the font for the time
+-- @param value the font for the time
 function Settings:SetTimeFont(value)
     self.styles.time.font = value
 end
@@ -381,7 +387,7 @@ function Settings:GetTimeStyle()
 end
 
 --- a function to store the style value for the moon
--- @param the style for the time
+-- @param value the style for the time
 function Settings:SetTimeStyle(value)
     self.styles.time.style = value
 end
@@ -393,7 +399,7 @@ function Settings:GetTimeLineCount()
 end
 
 --- a function to store the style value for the moon
--- @param the line count for the time
+-- @param value the line count for the time
 function Settings:SetTimeLineCount(value)
     self.styles.time.lineCount = value
 end
@@ -405,7 +411,7 @@ function Settings:GetTimeBackground()
 end
 
 --- a function to store the style value for the time
--- @param table key for background name
+-- @param value table key for background name
 function Settings:SetTimeBackground(value)
     self.styles.time.background = value
 end
@@ -417,7 +423,7 @@ function Settings:GetTimeBackgroundStrength()
 end
 
 --- a function to store the style value for the time
--- @param background texture strength
+-- @param value background texture strength
 function Settings:SetTimeBackgroundStrength(value)
     self.styles.time.backgroundStrength = value
 end
@@ -433,7 +439,7 @@ function Settings:GetMoonBackground()
 end
 
 --- a function to store the style value for the moon
--- @param background texture table key
+-- @param value background texture table key
 function Settings:SetMoonBackground(value)
     self.styles.moon.background = value
 end
@@ -445,7 +451,7 @@ function Settings:GetMoonBackgroundStrength()
 end
 
 --- a function to store the style value for the moon
--- @param background texture strength
+-- @param value background texture strength
 function Settings:SetMoonBackgroundStrength(value)
     self.styles.moon.backgroundStrength = value
 end
@@ -457,7 +463,7 @@ function Settings:GetMoonTextureKeyMasser()
 end
 
 --- a function to store the style value for the moon
--- @param table key for masser texture
+-- @param value table key for masser texture
 function Settings:SetMoonTextureKeyMasser(value)
     self.styles.moon.masser = value
 end
@@ -469,7 +475,7 @@ function Settings:GetMoonTextureKeySecunda()
 end
 
 --- a function to store the style value for the moon
--- @param table key for secunda texture
+-- @param value table key for secunda texture
 function Settings:SetMoonTextureKeySecunda(value)
     self.styles.moon.secunda = value
 end
@@ -484,7 +490,7 @@ function Settings:GetScaleFactor()
 end
 
 --- a function to store the scale factor
--- @param number (-inf:inf)
+-- @param value number (-inf:inf)
 function Settings:SetScaleFactor(value)
     self.attributes.core.scaleFactor = value
 end
@@ -519,7 +525,8 @@ function Settings:GetTimeAttributes()
 end
 
 --- a function to get the current offset of the time
--- @return offsetX, offsetY
+-- @return offsetX
+-- @return offsetY
 function Settings:GetTimeOffset()
     local anchor = self.attributes.time.anchor
     return anchor.offsetX, anchor.offsetY
@@ -540,7 +547,7 @@ function Settings:GetTimeDimension()
 end
 
 --- a function to get the current dimension for the time.
--- @param dimension = { width, height, }
+-- @param value dimension = { width, height, }
 function Settings:SetTimeDimension(value)
     self.attributes.time.dimension = value
 end
@@ -582,7 +589,8 @@ function Settings:GetMoonAnchor()
 end
 
 --- a function to get the current offset of the moon
--- @return offsetX, offsetY
+-- @return offsetX
+-- @return offsetY
 function Settings:GetMoonOffset()
     local anchor = self.attributes.moon.anchor
     return anchor.offsetX, anchor.offsetY
@@ -627,7 +635,7 @@ function Settings:GetMoonScale()
 end
 
 --- a function to store the scale
--- @param number [0, inf)
+-- @param value number [0, inf)
 function Settings:SetMoonScale(value)
     self.attributes.moon.scale = value
 end

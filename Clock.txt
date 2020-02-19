@@ -39,8 +39,3 @@ Lib/Data/Settings.lua
 Lib/Feature/Moon/Moon.lua
 Lib/Feature/Time/Time.lua
 Lib/Feature/Menu/Menu.lua
-
-Lib/Clock.lua
-
-
-

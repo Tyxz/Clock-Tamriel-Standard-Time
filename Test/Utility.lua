@@ -14,7 +14,9 @@ local function RegisterExtensions()
     --- Register new extension Empty
     local function RegisterNilOrEmpty()
         local function NilOrEmpty(state, arguments)
-            if arguments.n ~= 1 then return not state.mod end
+            if arguments.n ~= 1 then
+                return not state.mod
+            end
             local obj = arguments[1]
             local nilOrEmpty = obj ~= {} and string.match(tostring(obj), "^%s*$") == nil
             return nilOrEmpty == state.mod
@@ -22,7 +24,10 @@ local function RegisterExtensions()
 
         say:set("assertion.nil_or_empty.positive", "Expected %s \nto be empty {}, '' or nil")
         say:set("assertion.nil_or_empty.negative", "Expected %s \nnot to be empty {}, '' or nil")
-        assert:register("assertion", "nil_or_empty", NilOrEmpty, "assertion.nil_or_empty.positive", "assertion.nil_or_empty.negative")
+        assert:register(
+                "assertion", "nil_or_empty", NilOrEmpty,
+                "assertion.nil_or_empty.positive", "assertion.nil_or_empty.negative"
+        )
     end
 
     --- Register new extension Empty

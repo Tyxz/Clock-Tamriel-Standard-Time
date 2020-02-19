@@ -7,11 +7,12 @@
 --------------------------------------------]]--
 
 --- a global function to get the current Tamriel Standard Time
--- @deprecated Use the LibClockTST library instead to subscribe to TST updates
--- @usage local hour, minute, second = GetTST()
+-- Deprecated: Use the LibClockTST library instead to subscribe to TST updates
+-- @usage local hour, minute, second = unpack(GetTST())
 -- @return[1] hour in 24h format
 -- @return[2] minute
 -- @return[3] second
-function GetTime()
-    return LibClockTST:Instance():GetTime()
+function GetTST()
+    local t = LibClockTST:Instance():GetTime()
+    return { t.hour, t.minute, t.second }
 end

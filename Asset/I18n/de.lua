@@ -37,7 +37,8 @@ function Clock_TST.I18N()
                 nJapanese = "Zeige Mitternacht als 0", --sJap
                 wAffect = "Dies betrifft nur ein benutzerdefiniertes Format, nicht #X oder %X.",
                 nFake = "Zeige falsches lore Datum", -- sFLDate
-                tFake = "Wird den Tag, den Monat und den Wochentag in Tamriel durch den echten ersetzen, aber mit Tamriel-Namen.",
+                tFake = "Wird den Tag, den Monat und den Wochentag in Tamriel durch den echten ersetzen, "
+                        .. "aber mit Tamriel-Namen.",
                 nHoverScale = "Skalierung beim Hovern",
                 nHoverColour = "Hervorhebung beim Hovern",
                 nMoonVisible = "Zeige den Mond", -- sMoon
@@ -48,7 +49,8 @@ function Clock_TST.I18N()
             styles = {
                 nSub = "Aussehen Einstellungen", -- look
                 nFormat = "Schreiben Sie Ihr eigenes Format der Zeit und des Datums",
-                tFormat = "Sie können ein Symbol (# für Geschichte, % für Realität) gefolgt von einem Buchstaben schreiben:",
+                tFormat = "Sie können ein Symbol (# für Geschichte, % für Realität) "
+                        .. "gefolgt von einem Buchstaben schreiben:",
                 dFormat = "%A\t\t voller Wochentagsname [Freitag]\n"
                         .. "%a\t\t für den abgekürzten [Fre]\n"
                         .. "%B\t\t vollständiger Monatsname [März]\n"
