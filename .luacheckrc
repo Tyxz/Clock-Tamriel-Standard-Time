@@ -2,9 +2,11 @@ std = "max+busted+eso"
 stds.eso = {
     globals = {
         "AddMenuItem",
+        "CALLBACK_MANAGER",
         "ClearMenu",
         "ClearTooltip",
         "Clock_TST",
+        "CLOCK_TST_MENU",
         "Clock_TST_Moon",
         "Clock_TST_Moon",
         "Clock_TST_Moon_Masser",
@@ -20,6 +22,7 @@ stds.eso = {
         "GetTST",
         "GetTimeStamp",
         "GetTimeString",
+        "GetWorldName",
         "GuiRoot",
         "HUD_SCENE",
         "HUD_UI_SCENE",
@@ -27,6 +30,7 @@ stds.eso = {
         "InitializeTooltip",
         "LibAddonMenu2",
         "LibClockTST",
+        "LibFeedback",
         "SLASH_COMMANDS",
         "SetTooltipText",
         "ShowMenu",

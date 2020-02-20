@@ -216,6 +216,8 @@ function Moon:SetupMovement()
         self:UpdatePositions()
     end
 
+    --- Create menu if user clicks right
+    -- control is the main control
     local function RightClick(control)
         local function Setup(isEnabled, func, text)
             if isEnabled then
@@ -245,6 +247,7 @@ function Moon:SetupMovement()
             settings:SetMoonHasBackground(value)
             self:UpdateVisibility()
         end, i18n.core.menu.background)
+        AddMenuItem( i18n.core.menu.open, function() LibAddonMenu2:OpenToPanel(CLOCK_TST_MENU) end)
         ShowMenu(control)
     end
 
@@ -308,7 +311,6 @@ function Moon:SetupControls(control)
     self.secunda_background = GetControl(control, "Secunda_Background")
 
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
-    GAME_MENU_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
 end
 
 --- Create a new Moon object

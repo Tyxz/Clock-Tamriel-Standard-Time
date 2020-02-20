@@ -15,17 +15,19 @@ local function SetupMenu()
     local time = Clock_TST.time
     local moon = Clock_TST.moon
     local i18n = Clock_TST.I18N().menu
+    local lang = GetCVar("Language.2")
+    local link = "https://" .. lang .. ".liberapay.com/Tyx/"
     local panel = {
         type = "panel",
-        name = "Clock",
-        displayName = "|cFFD700Clock|r - Tamriel Standard Time",
-        author = "|c5175ea@Tyx|r",
+        name = const.NAME,
+        displayName = const.DISPLAY,
+        author = "|c5175ea" .. const.AUTHOR .. "|r",
         version = const.VERSION,
         website = "https://rantzen.net/clock-tamriel-standard-time/",
         feedback = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/issues/new/choose",
         translation = "https://poeditor.com/join/project/3ldrMQvCrU",
-        donation = "https://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html#donate",
-        slashCommand = "/clsettings",
+        donation = link,
+        slashCommand = "/tstmenu",
         registerForRefresh = true,
         registerForDefaults = true,
         resetFunc = function()
@@ -35,7 +37,7 @@ local function SetupMenu()
         end,
     }
     local LAM = LibAddonMenu2
-    LAM:RegisterAddonPanel("ClockSettings", panel)
+    CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
 
     -- ----------------
     -- Attributes
@@ -691,6 +693,59 @@ local function SetupMenu()
             }
         }
     end
+
+    -- ----------------
+    -- Feedback
+    -- ----------------
+
+    local function AddFeedback()
+        if LibFeedback then
+            local buttons =
+            {
+                { panel.feedback, i18n.feedback.nGitHub, false },
+            }
+            local worldName = GetWorldName()
+            if worldName == "EU Megaserver" then
+                table.insert(buttons, { 0, i18n.feedback.nMail, false })
+                table.insert(buttons, { 5000, i18n.feedback.nLessGold, true })
+                table.insert(buttons, { 50000, i18n.feedback.nMoreGold, true })
+            end
+            table.insert(buttons, { panel.donation, i18n.feedback.nRealGold, false })
+            return LibFeedback:initializeFeedbackWindow(
+                    Clock_TST,
+                    const.NAME,
+                    CLOCK_TST_MENU,
+                    const.AUTHOR,
+                    {12 , CLOCK_TST_MENU, 12 , -20, 20}, -- Anchor
+                    buttons,
+                    i18n.feedback.tFeedback
+            )
+        end
+    end
+
+    -- ----------------
+    -- Visibility
+    -- ----------------
+
+    local function ShowInMenu()
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened",
+                function(libPanel)
+                    if libPanel == CLOCK_TST_MENU then
+                        GAME_MENU_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+                        GAME_MENU_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+                    end
+                end
+        )
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed",
+                function(libPanel)
+                    if libPanel == CLOCK_TST_MENU then
+                        GAME_MENU_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+                        GAME_MENU_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+                    end
+                end
+        )
+    end
+
     -- ----------------
     -- Register
     -- ----------------
@@ -711,8 +766,11 @@ local function SetupMenu()
         AddBooleans(),
         AddStyles(),
     }
+    AddFeedback()
 
-    LAM:RegisterOptionControls("ClockSettings", data)
+    LAM:RegisterOptionControls(const.NAME, data)
+
+    ShowInMenu()
 end
 
 -- ----------------

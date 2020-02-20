@@ -12,12 +12,14 @@ Clock_TST.DEBUG = false
 --- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
     local lang = GetCVar("Language.2")
+    local name = "ClockTST"
     return {
-        NAME = "Clock",
-        DISPLAY = "Clock - Tamriel Standard Time",
-        VERSION = "2.0.0",
+        NAME = name,
+        DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
+        AUTHOR = "@Tyx",
+        VERSION = "2.0.0-beta1",
         SAVED_VERSION = 1,
-        SAVED_NAME = "Clock_TST",
+        SAVED_NAME = name,
         Menu = {
             time = {
                 -- Possible replace: esoui/fontdefs/keyboard/defaultfontdefs_keyboard.xml
@@ -89,39 +91,39 @@ function Clock_TST.CONSTANTS()
                 time = {
                     -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
                     ["Brush"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Phase"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Phase\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Phase\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Stroke"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Stroke\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Stroke\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                 },
                 moon = {
                     ["Brush"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        path = "Clock\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Solid"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Background\\Solid\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Background\\Solid\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
@@ -130,7 +132,7 @@ function Clock_TST.CONSTANTS()
             MOONS = {
                 masser = {
                     ["Crimson"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\Crimson\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Masser\\Crimson\\",
                         waxingCrescent = "masser_one_wax_256x256.dds",
                         firstQuarter = "masser_half_wax_256x256.dds",
                         waxingGibbous = "masser_three_wax_256x256.dds",
@@ -140,7 +142,7 @@ function Clock_TST.CONSTANTS()
                         waningCrescent = "masser_one_wan_256x256.dds",
                     },
                     ["Pale"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Masser\\Pale\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Masser\\Pale\\",
                         waxingCrescent = "masser_one_wax_256x256.dds",
                         firstQuarter = "masser_half_wax_256x256.dds",
                         waxingGibbous = "masser_three_wax_256x256.dds",
@@ -152,7 +154,7 @@ function Clock_TST.CONSTANTS()
                 },
                 secunda = {
                     ["Ghost"] = {
-                        path = "Clock\\Asset\\Texture\\Moon\\Secunda\\Ghost\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Secunda\\Ghost\\",
                         waxingCrescent = "secunda_one_wax_256x256.dds",
                         firstQuarter = "secunda_half_wax_256x256.dds",
                         waxingGibbous = "secunda_three_wax_256x256.dds",

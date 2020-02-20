@@ -1,1826 +1,2047 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
     <title>Clock Documentation</title>
-    <link href="../ldoc.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
 
 <div id="container">
 
-    <div id="product">
-        <div id="product_logo"></div>
-        <div id="product_name"><big><b></b></big></div>
-        <div id="product_description"></div>
-    </div> <!-- id="product" -->
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
 
 
-    <div id="main">
+<div id="main">
 
 
-        <!-- Menu -->
+<!-- Menu -->
 
-        <div id="navigation">
-            <br/>
-            <h1>Clock - Tamriel Standard Time</h1>
+<div id="navigation">
+<br/>
+<h1>Clock - Tamriel Standard Time</h1>
 
-            <ul>
-                <li><a href="../index.html">Index</a></li>
-            </ul>
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
 
-            <h2>Contents</h2>
-            <ul>
-                <li><a href="#Functions">Functions</a></li>
-            </ul>
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
 
 
-            <h2>Modules</h2>
-            <ul class="nowrap">
-                <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
-                <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
-                <li><a href="../modules/Data.Constants.html">Data.Constants</a></li>
-                <li><strong>Data.Settings</strong></li>
-                <li><a href="../modules/Feature.Menu.Menu.html">Feature.Menu.Menu</a></li>
-                <li><a href="../modules/Feature.Moon.Moon.html">Feature.Moon.Moon</a></li>
-                <li><a href="../modules/Feature.Time.Time.html">Feature.Time.Time</a></li>
-            </ul>
-            <h2>Topics</h2>
-            <ul class="">
-                <li><a href="../topics/README.md.html">README</a></li>
-            </ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
+  <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
+  <li><a href="../modules/Data.Constants.html">Data.Constants</a></li>
+  <li><strong>Data.Settings</strong></li>
+  <li><a href="../modules/Feature.Menu.Menu.html">Feature.Menu.Menu</a></li>
+  <li><a href="../modules/Feature.Moon.Moon.html">Feature.Moon.Moon</a></li>
+  <li><a href="../modules/Feature.Time.Time.html">Feature.Time.Time</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
 
-        </div>
+</div>
 
-        <div id="content">
+<div id="content">
 
-            <h1>Module <code>Data.Settings</code></h1>
-            <p>Project: Clock &ndash; Tamriel Standard Time
-            <pre>
+<h1>Module <code>Data.Settings</code></h1>
+<p>Project:    Clock &ndash; Tamriel Standard Time
+<pre>
 Author:     Arne Rantzen (Tyx)
 Created:    <span class="number">2020</span>&ndash;<span class="number">01</span>&ndash;<span class="number">22</span>
 Updated:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">19</span>
 License:    GPL-<span class="number">3.0</span>
-</pre>
-            </p>
-            <p>
-            </p>
-
-
-            <h2><a href="#Functions">Functions</a></h2>
-            <table class="function_list">
-                <tr>
-                    <td class="name" nowrap><a href="#GetSaveAccountWide">GetSaveAccountWide ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetSaveAccountWide">SetSaveAccountWide (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeAndMoonAreLinked">GetTimeAndMoonAreLinked ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the core elements
-                        if it is linked to time, the moon moves with the time object
-                    </td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeAndMoonAreLinked">SetTimeAndMoonAreLinked (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetHideInFight">GetHideInFight ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetHideInFight">SetHideInFight (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetOnlyShowOnMap">GetOnlyShowOnMap ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetOnlyShowOnMap">SetOnlyShowOnMap (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the core elements</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeIsVisible">GetTimeIsVisible ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeIsVisible">SetTimeIsVisible (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeIsMouseEnabled">GetTimeIsMouseEnabled ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeIsMouseEnabled">SetTimeIsMouseEnabled (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeIsMovable">GetTimeIsMovable ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeIsMovable">SetTimeIsMovable (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasTooltip">GetTimeHasTooltip ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasTooltip">SetTimeHasTooltip (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasBackground">GetTimeHasBackground ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasBackground">SetTimeHasBackground (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeAddZero">GetTimeAddZero ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeAddZero">SetTimeAddZero (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasUSFormat">GetTimeHasUSFormat ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasUSFormat">SetTimeHasUSFormat (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasJapFormat">GetTimeHasJapFormat ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasJapFormat">SetTimeHasJapFormat (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasLoreDate">GetTimeHasLoreDate ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasLoreDate">SetTimeHasLoreDate (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasFakeLoreDate">GetTimeHasFakeLoreDate ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasFakeLoreDate">SetTimeHasFakeLoreDate (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHasRealDate">GetTimeHasRealDate ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHasRealDate">SetTimeHasRealDate (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeScaleWhenHover">GetTimeScaleWhenHover ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeScaleWhenHover">SetTimeScaleWhenHover (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeHighlightWhenHover">GetTimeHighlightWhenHover ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeHighlightWhenHover">SetTimeHighlightWhenHover (value)</a>
-                    </td>
-                    <td class="summary">a function to store the boolean value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonIsVisible">GetMoonIsVisible ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonIsVisible">SetMoonIsVisible (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonIsMouseEnabled">GetMoonIsMouseEnabled ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonIsMouseEnabled">SetMoonIsMouseEnabled (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonIsMovable">GetMoonIsMovable ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonIsMovable">SetMoonIsMovable (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonHasBackground">GetMoonHasBackground ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonHasBackground">SetMoonHasBackground (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonHasTooltip">GetMoonHasTooltip ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonHasTooltip">SetMoonHasTooltip (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonScaleWhenHover">GetMoonScaleWhenHover ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonScaleWhenHover">SetMoonScaleWhenHover (value)</a></td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonHighlightWhenHover">GetMoonHighlightWhenHover ()</a></td>
-                    <td class="summary">a function to get the stored boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonHighlightWhenHover">SetMoonHighlightWhenHover (value)</a>
-                    </td>
-                    <td class="summary">a function to store the boolean value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeFormat">GetTimeFormat ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeFormat">SetTimeFormat (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeSize">GetTimeSize ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeSize">SetTimeSize (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeColour">GetTimeColour ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeColour">SetTimeColour (r, g, b, a)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeFont">GetTimeFont ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeFont">SetTimeFont (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeStyle">GetTimeStyle ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeStyle">SetTimeStyle (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeLineCount">GetTimeLineCount ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeLineCount">SetTimeLineCount (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeBackground">GetTimeBackground ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeBackground">SetTimeBackground (value)</a></td>
-                    <td class="summary">a function to store the style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeBackgroundStrength">GetTimeBackgroundStrength ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeBackgroundStrength">SetTimeBackgroundStrength (value)</a>
-                    </td>
-                    <td class="summary">a function to store the style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeBackgroundOffset">GetTimeBackgroundOffset ()</a></td>
-                    <td class="summary">a function to get the stored style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeBackgroundOffset">SetTimeBackgroundOffset (value)</a></td>
-                    <td class="summary">a function to store the style value for the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonBackground">GetMoonBackground ()</a></td>
-                    <td class="summary">a function to get the stored style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonBackground">SetMoonBackground (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonBackgroundStrength">GetMoonBackgroundStrength ()</a></td>
-                    <td class="summary">a function to get the stored style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonBackgroundStrength">SetMoonBackgroundStrength (value)</a>
-                    </td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonTextureKeyMasser">GetMoonTextureKeyMasser ()</a></td>
-                    <td class="summary">a function to get the stored style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonTextureKeyMasser">SetMoonTextureKeyMasser (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonTextureKeySecunda">GetMoonTextureKeySecunda ()</a></td>
-                    <td class="summary">a function to get the stored style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonTextureKeySecunda">SetMoonTextureKeySecunda (value)</a>
-                    </td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonAlpha">GetMoonAlpha ()</a></td>
-                    <td class="summary">a function to get the stored style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonAlpha">SetMoonAlpha (value)</a></td>
-                    <td class="summary">a function to store the style value for the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetScaleFactor">GetScaleFactor ()</a></td>
-                    <td class="summary">a function to get the stored scale factor</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetScaleFactor">SetScaleFactor (value)</a></td>
-                    <td class="summary">a function to store the scale factor</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeAttributes">GetTimeAttributes ()</a></td>
-                    <td class="summary">a function to get the current attributes for the time.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeOffset">GetTimeOffset ()</a></td>
-                    <td class="summary">a function to get the current offset of the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeOffset">SetTimeOffset (x, y)</a></td>
-                    <td class="summary">a function to save the current offset of the time</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetTimeDimension">GetTimeDimension ()</a></td>
-                    <td class="summary">a function to get the current dimension for the time.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetTimeDimension">SetTimeDimension (value)</a></td>
-                    <td class="summary">a function to get the current dimension for the time.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonAttributes">GetMoonAttributes ()</a></td>
-                    <td class="summary">a function to get the current attributes for the moon.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonAnchor">GetMoonAnchor ()</a></td>
-                    <td class="summary">a function to get the current moon anchor</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonOffset">GetMoonOffset ()</a></td>
-                    <td class="summary">a function to get the current offset of the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonOffset">SetMoonOffset (x, y)</a></td>
-                    <td class="summary">a function to save the current offset of the moon</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonDimension">GetMoonDimension ()</a></td>
-                    <td class="summary">a function to get the current dimension for the moon.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonDimension">SetMoonDimension (value)</a></td>
-                    <td class="summary">a function to get the current dimension for the moon.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonMasserAttributes">GetMoonMasserAttributes ()</a></td>
-                    <td class="summary">a function to get the current attributes for the moon Masser.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonSecundaAttributes">GetMoonSecundaAttributes ()</a></td>
-                    <td class="summary">a function to get the current attributes for the moon Secunda.</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#GetMoonScale">GetMoonScale ()</a></td>
-                    <td class="summary">a function to get the stored scale</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#SetMoonScale">SetMoonScale (value)</a></td>
-                    <td class="summary">a function to store the scale</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#ResetAttributes">ResetAttributes ()</a></td>
-                    <td class="summary">Resets the attributes table to the default values</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#ResetBooleans">ResetBooleans ()</a></td>
-                    <td class="summary">Resets the booleans table to the default values</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#ResetStyles">ResetStyles ()</a></td>
-                    <td class="summary">Resets the styles table to the default values</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#Reset">Reset ()</a></td>
-                    <td class="summary">Resets the self table to the default values</td>
-                </tr>
-                <tr>
-                    <td class="name" nowrap><a href="#New">New ()</a></td>
-                    <td class="summary">Load the SavedVariables or register the default values.</td>
-                </tr>
-            </table>
-
-            <br/>
-            <br/>
-
-
-            <h2 class="section-header "><a name="Functions"></a>Functions</h2>
-
-            <dl class="function">
-                <dt>
-                    <a name="GetSaveAccountWide"></a>
-                    <strong>GetSaveAccountWide ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the core elements
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the saved variable is account wide
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetSaveAccountWide"></a>
-                    <strong>SetSaveAccountWide (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the core elements
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the saved variable is account wide
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeAndMoonAreLinked"></a>
-                    <strong>GetTimeAndMoonAreLinked ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the core elements
-                    if it is linked to time, the moon moves with the time object
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon is linked to time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeAndMoonAreLinked"></a>
-                    <strong>SetTimeAndMoonAreLinked (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the core elements
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon is linked to time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetHideInFight"></a>
-                    <strong>GetHideInFight ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the core elements
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the view should be hidden in fights
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetHideInFight"></a>
-                    <strong>SetHideInFight (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the core elements
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the view should be hidden in fights
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetOnlyShowOnMap"></a>
-                    <strong>GetOnlyShowOnMap ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the core elements
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the view should be only visible on the map
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetOnlyShowOnMap"></a>
-                    <strong>SetOnlyShowOnMap (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the core elements
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the view should be only visible on the map
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeIsVisible"></a>
-                    <strong>GetTimeIsVisible ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time is visible
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeIsVisible"></a>
-                    <strong>SetTimeIsVisible (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time is visible
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeIsMouseEnabled"></a>
-                    <strong>GetTimeIsMouseEnabled ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time is mouseEnabled
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeIsMouseEnabled"></a>
-                    <strong>SetTimeIsMouseEnabled (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time is mouseEnabled
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeIsMovable"></a>
-                    <strong>GetTimeIsMovable ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time is movable
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeIsMovable"></a>
-                    <strong>SetTimeIsMovable (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time is movable
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasTooltip"></a>
-                    <strong>GetTimeHasTooltip ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has tooltip
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasTooltip"></a>
-                    <strong>SetTimeHasTooltip (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time has tooltip
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasBackground"></a>
-                    <strong>GetTimeHasBackground ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has background
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasBackground"></a>
-                    <strong>SetTimeHasBackground (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time has background
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeAddZero"></a>
-                    <strong>GetTimeAddZero ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if a 0 should be added before a single digit
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeAddZero"></a>
-                    <strong>SetTimeAddZero (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if a 0 should be added before a single digit
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasUSFormat"></a>
-                    <strong>GetTimeHasUSFormat ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has US format {12,1,&hellip;,11} am : {12,1,&hellip;,11} pm
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasUSFormat"></a>
-                    <strong>SetTimeHasUSFormat (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time has the US format
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasJapFormat"></a>
-                    <strong>GetTimeHasJapFormat ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has Japanese format {0,1,&hellip;,11} am : {12,1,&hellip;,11} pm
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasJapFormat"></a>
-                    <strong>SetTimeHasJapFormat (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time has the Japanese format
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasLoreDate"></a>
-                    <strong>GetTimeHasLoreDate ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a lore date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasLoreDate"></a>
-                    <strong>SetTimeHasLoreDate (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-
-
-                        </li>
-                    </ul>
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a lore date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasFakeLoreDate"></a>
-                    <strong>GetTimeHasFakeLoreDate ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a fake lore date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasFakeLoreDate"></a>
-                    <strong>SetTimeHasFakeLoreDate (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-
-
-                        </li>
-                    </ul>
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a fake lore date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHasRealDate"></a>
-                    <strong>GetTimeHasRealDate ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a real date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHasRealDate"></a>
-                    <strong>SetTimeHasRealDate (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-
-
-                        </li>
-                    </ul>
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time has a real date
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeScaleWhenHover"></a>
-                    <strong>GetTimeScaleWhenHover ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time should scale up when hovering over
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeScaleWhenHover"></a>
-                    <strong>SetTimeScaleWhenHover (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time should scale up when hovering over
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeHighlightWhenHover"></a>
-                    <strong>GetTimeHighlightWhenHover ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the time should change colour when hovering over
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeHighlightWhenHover"></a>
-                    <strong>SetTimeHighlightWhenHover (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the time should change colour when hovering over
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonIsVisible"></a>
-                    <strong>GetMoonIsVisible ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon is visible
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonIsVisible"></a>
-                    <strong>SetMoonIsVisible (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon is visible
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonIsMouseEnabled"></a>
-                    <strong>GetMoonIsMouseEnabled ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon is mouseEnabled
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonIsMouseEnabled"></a>
-                    <strong>SetMoonIsMouseEnabled (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon is mouseEnabled
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonIsMovable"></a>
-                    <strong>GetMoonIsMovable ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon is movable
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonIsMovable"></a>
-                    <strong>SetMoonIsMovable (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon is movable
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonHasBackground"></a>
-                    <strong>GetMoonHasBackground ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon has background
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonHasBackground"></a>
-                    <strong>SetMoonHasBackground (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon has background
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonHasTooltip"></a>
-                    <strong>GetMoonHasTooltip ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon has tooltip
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonHasTooltip"></a>
-                    <strong>SetMoonHasTooltip (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon has tooltip
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonScaleWhenHover"></a>
-                    <strong>GetMoonScaleWhenHover ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon should scale up when hovering over
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonScaleWhenHover"></a>
-                    <strong>SetMoonScaleWhenHover (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon should scale up when hovering over
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonHighlightWhenHover"></a>
-                    <strong>GetMoonHighlightWhenHover ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored boolean value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        if the moon should change colour when hovering over
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonHighlightWhenHover"></a>
-                    <strong>SetMoonHighlightWhenHover (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the boolean value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            if the moon should change colour when hovering over
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeFormat"></a>
-                    <strong>GetTimeFormat ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        the format for the time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeFormat"></a>
-                    <strong>SetTimeFormat (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            the format for the time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeSize"></a>
-                    <strong>GetTimeSize ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        the size for the time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeSize"></a>
-                    <strong>SetTimeSize (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            the size for the time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeColour"></a>
-                    <strong>GetTimeColour ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-                        <li>
-                            r red colour
-                        </li>
-                        <li>
-                            g green colour
-                        </li>
-                        <li>
-                            b blue colour
-                        </li>
-                        <li>
-                            a alpha value
-                        </li>
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeColour"></a>
-                    <strong>SetTimeColour (r, g, b, a)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">r</span>
-                            red colour
-                        </li>
-                        <li><span class="parameter">g</span>
-                            green colour
-                        </li>
-                        <li><span class="parameter">b</span>
-                            blue colour
-                        </li>
-                        <li><span class="parameter">a</span>
-                            alpha value
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeFont"></a>
-                    <strong>GetTimeFont ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        the font for the time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeFont"></a>
-                    <strong>SetTimeFont (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            the font for the time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeStyle"></a>
-                    <strong>GetTimeStyle ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        the style for the time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeStyle"></a>
-                    <strong>SetTimeStyle (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            the style for the time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeLineCount"></a>
-                    <strong>GetTimeLineCount ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        the line count for the time
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeLineCount"></a>
-                    <strong>SetTimeLineCount (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            the line count for the time
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeBackground"></a>
-                    <strong>GetTimeBackground ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        background texture table key
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeBackground"></a>
-                    <strong>SetTimeBackground (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            table key for background name
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeBackgroundStrength"></a>
-                    <strong>GetTimeBackgroundStrength ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        background texture strength
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeBackgroundStrength"></a>
-                    <strong>SetTimeBackgroundStrength (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            background texture strength
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeBackgroundOffset"></a>
-                    <strong>GetTimeBackgroundOffset ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the time
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        background width offset
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeBackgroundOffset"></a>
-                    <strong>SetTimeBackgroundOffset (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the time
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            background width offset
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonBackground"></a>
-                    <strong>GetMoonBackground ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        background texture table key
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonBackground"></a>
-                    <strong>SetMoonBackground (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            background texture table key
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonBackgroundStrength"></a>
-                    <strong>GetMoonBackgroundStrength ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        background texture strength
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonBackgroundStrength"></a>
-                    <strong>SetMoonBackgroundStrength (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            background texture strength
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonTextureKeyMasser"></a>
-                    <strong>GetMoonTextureKeyMasser ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        table key for masser texture
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonTextureKeyMasser"></a>
-                    <strong>SetMoonTextureKeyMasser (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            table key for masser texture
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonTextureKeySecunda"></a>
-                    <strong>GetMoonTextureKeySecunda ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        table key for secunda texture
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonTextureKeySecunda"></a>
-                    <strong>SetMoonTextureKeySecunda (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            table key for secunda texture
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonAlpha"></a>
-                    <strong>GetMoonAlpha ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored style value for the moon
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        value of how much the moon texture is visible
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonAlpha"></a>
-                    <strong>SetMoonAlpha (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the style value for the moon
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            of how much the moon texture is visible
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetScaleFactor"></a>
-                    <strong>GetScaleFactor ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored scale factor
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        number range (-inf:inf)
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetScaleFactor"></a>
-                    <strong>SetScaleFactor (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the scale factor
-
-
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            number (-inf:inf)
-                        </li>
-                    </ul>
-
-
-                </dd>
-                <dt>
-                    <a name="GetTimeAttributes"></a>
-                    <strong>GetTimeAttributes ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current attributes for the time.
-                    Inside are also the attribute tables of label and background.
-
-
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        time = {</p>
-
-                        <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
+</pre></p>
+<p>
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#GetSaveAccountWide">GetSaveAccountWide ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetSaveAccountWide">SetSaveAccountWide (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeAndMoonAreLinked">GetTimeAndMoonAreLinked ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements
+ if it is linked to time, the moon moves with the time object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeAndMoonAreLinked">SetTimeAndMoonAreLinked (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetHideInFight">GetHideInFight ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetHideInFight">SetHideInFight (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetOnlyShowOnMap">GetOnlyShowOnMap ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetOnlyShowOnMap">SetOnlyShowOnMap (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeIsVisible">GetTimeIsVisible ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeIsVisible">SetTimeIsVisible (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeIsMouseEnabled">GetTimeIsMouseEnabled ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeIsMouseEnabled">SetTimeIsMouseEnabled (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeIsMovable">GetTimeIsMovable ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeIsMovable">SetTimeIsMovable (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasTooltip">GetTimeHasTooltip ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasTooltip">SetTimeHasTooltip (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasBackground">GetTimeHasBackground ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasBackground">SetTimeHasBackground (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeAddZero">GetTimeAddZero ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeAddZero">SetTimeAddZero (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasUSFormat">GetTimeHasUSFormat ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasUSFormat">SetTimeHasUSFormat (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasJapFormat">GetTimeHasJapFormat ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasJapFormat">SetTimeHasJapFormat (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasLoreDate">GetTimeHasLoreDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasLoreDate">SetTimeHasLoreDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasFakeLoreDate">GetTimeHasFakeLoreDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasFakeLoreDate">SetTimeHasFakeLoreDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHasRealDate">GetTimeHasRealDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHasRealDate">SetTimeHasRealDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeScaleWhenHover">GetTimeScaleWhenHover ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeScaleWhenHover">SetTimeScaleWhenHover (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeHighlightWhenHover">GetTimeHighlightWhenHover ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeHighlightWhenHover">SetTimeHighlightWhenHover (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsVisible">GetMoonIsVisible ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsVisible">SetMoonIsVisible (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsMouseEnabled">GetMoonIsMouseEnabled ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsMouseEnabled">SetMoonIsMouseEnabled (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonIsMovable">GetMoonIsMovable ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonIsMovable">SetMoonIsMovable (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonHasBackground">GetMoonHasBackground ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonHasBackground">SetMoonHasBackground (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonHasTooltip">GetMoonHasTooltip ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonHasTooltip">SetMoonHasTooltip (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonScaleWhenHover">GetMoonScaleWhenHover ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonScaleWhenHover">SetMoonScaleWhenHover (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonHighlightWhenHover">GetMoonHighlightWhenHover ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonHighlightWhenHover">SetMoonHighlightWhenHover (value)</a></td>
+	<td class="summary">a function to store the boolean value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeFormat">GetTimeFormat ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeFormat">SetTimeFormat (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeSize">GetTimeSize ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeSize">SetTimeSize (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeColour">GetTimeColour ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeColour">SetTimeColour (r, g, b, a)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeFont">GetTimeFont ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeFont">SetTimeFont (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeStyle">GetTimeStyle ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeStyle">SetTimeStyle (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeLineCount">GetTimeLineCount ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeLineCount">SetTimeLineCount (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeBackground">GetTimeBackground ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeBackground">SetTimeBackground (value)</a></td>
+	<td class="summary">a function to store the style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeBackgroundStrength">GetTimeBackgroundStrength ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeBackgroundStrength">SetTimeBackgroundStrength (value)</a></td>
+	<td class="summary">a function to store the style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeBackgroundOffset">GetTimeBackgroundOffset ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeBackgroundOffset">SetTimeBackgroundOffset (value)</a></td>
+	<td class="summary">a function to store the style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonBackground">GetMoonBackground ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonBackground">SetMoonBackground (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonBackgroundStrength">GetMoonBackgroundStrength ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonBackgroundStrength">SetMoonBackgroundStrength (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonTextureKeyMasser">GetMoonTextureKeyMasser ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonTextureKeyMasser">SetMoonTextureKeyMasser (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonTextureKeySecunda">GetMoonTextureKeySecunda ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonTextureKeySecunda">SetMoonTextureKeySecunda (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAlpha">GetMoonAlpha ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonAlpha">SetMoonAlpha (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetScaleFactor">GetScaleFactor ()</a></td>
+	<td class="summary">a function to get the stored scale factor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetScaleFactor">SetScaleFactor (value)</a></td>
+	<td class="summary">a function to store the scale factor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeAttributes">GetTimeAttributes ()</a></td>
+	<td class="summary">a function to get the current attributes for the time.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeOffset">GetTimeOffset ()</a></td>
+	<td class="summary">a function to get the current offset of the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeOffset">SetTimeOffset (x, y)</a></td>
+	<td class="summary">a function to save the current offset of the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeDimension">GetTimeDimension ()</a></td>
+	<td class="summary">a function to get the current dimension for the time.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeDimension">SetTimeDimension (value)</a></td>
+	<td class="summary">a function to get the current dimension for the time.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAttributes">GetMoonAttributes ()</a></td>
+	<td class="summary">a function to get the current attributes for the moon.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonAnchor">GetMoonAnchor ()</a></td>
+	<td class="summary">a function to get the current moon anchor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonOffset">GetMoonOffset ()</a></td>
+	<td class="summary">a function to get the current offset of the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonOffset">SetMoonOffset (x, y)</a></td>
+	<td class="summary">a function to save the current offset of the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonDimension">GetMoonDimension ()</a></td>
+	<td class="summary">a function to get the current dimension for the moon.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonDimension">SetMoonDimension (value)</a></td>
+	<td class="summary">a function to get the current dimension for the moon.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonMasserAttributes">GetMoonMasserAttributes ()</a></td>
+	<td class="summary">a function to get the current attributes for the moon Masser.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonSecundaAttributes">GetMoonSecundaAttributes ()</a></td>
+	<td class="summary">a function to get the current attributes for the moon Secunda.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonScale">GetMoonScale ()</a></td>
+	<td class="summary">a function to get the stored scale</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonScale">SetMoonScale (value)</a></td>
+	<td class="summary">a function to store the scale</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ResetAttributes">ResetAttributes ()</a></td>
+	<td class="summary">Resets the attributes table to the default values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ResetBooleans">ResetBooleans ()</a></td>
+	<td class="summary">Resets the booleans table to the default values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ResetStyles">ResetStyles ()</a></td>
+	<td class="summary">Resets the styles table to the default values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Reset">Reset ()</a></td>
+	<td class="summary">Resets the self table to the default values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#New">New ()</a></td>
+	<td class="summary">Load the SavedVariables or register the default values.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "GetSaveAccountWide"></a>
+    <strong>GetSaveAccountWide ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the saved variable is account wide
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetSaveAccountWide"></a>
+    <strong>SetSaveAccountWide (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the saved variable is account wide
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeAndMoonAreLinked"></a>
+    <strong>GetTimeAndMoonAreLinked ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+ if it is linked to time, the moon moves with the time object
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is linked to time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeAndMoonAreLinked"></a>
+    <strong>SetTimeAndMoonAreLinked (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon is linked to time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetHideInFight"></a>
+    <strong>GetHideInFight ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the view should be hidden in fights
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetHideInFight"></a>
+    <strong>SetHideInFight (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the view should be hidden in fights
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetOnlyShowOnMap"></a>
+    <strong>GetOnlyShowOnMap ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the view should be only visible on the map
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetOnlyShowOnMap"></a>
+    <strong>SetOnlyShowOnMap (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the view should be only visible on the map
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeIsVisible"></a>
+    <strong>GetTimeIsVisible ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time is visible
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeIsVisible"></a>
+    <strong>SetTimeIsVisible (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time is visible
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeIsMouseEnabled"></a>
+    <strong>GetTimeIsMouseEnabled ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time is mouseEnabled
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeIsMouseEnabled"></a>
+    <strong>SetTimeIsMouseEnabled (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time is mouseEnabled
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeIsMovable"></a>
+    <strong>GetTimeIsMovable ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time is movable
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeIsMovable"></a>
+    <strong>SetTimeIsMovable (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time is movable
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasTooltip"></a>
+    <strong>GetTimeHasTooltip ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has tooltip
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasTooltip"></a>
+    <strong>SetTimeHasTooltip (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time has tooltip
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasBackground"></a>
+    <strong>GetTimeHasBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has background
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasBackground"></a>
+    <strong>SetTimeHasBackground (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time has background
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeAddZero"></a>
+    <strong>GetTimeAddZero ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if a 0 should be added before a single digit
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeAddZero"></a>
+    <strong>SetTimeAddZero (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if a 0 should be added before a single digit
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasUSFormat"></a>
+    <strong>GetTimeHasUSFormat ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has US format {12,1,&hellip;,11} am : {12,1,&hellip;,11} pm
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasUSFormat"></a>
+    <strong>SetTimeHasUSFormat (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time has the US format
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasJapFormat"></a>
+    <strong>GetTimeHasJapFormat ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has Japanese format {0,1,&hellip;,11} am : {12,1,&hellip;,11} pm
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasJapFormat"></a>
+    <strong>SetTimeHasJapFormat (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time has the Japanese format
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasLoreDate"></a>
+    <strong>GetTimeHasLoreDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasLoreDate"></a>
+    <strong>SetTimeHasLoreDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasFakeLoreDate"></a>
+    <strong>GetTimeHasFakeLoreDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a fake lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasFakeLoreDate"></a>
+    <strong>SetTimeHasFakeLoreDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a fake lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHasRealDate"></a>
+    <strong>GetTimeHasRealDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a real date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHasRealDate"></a>
+    <strong>SetTimeHasRealDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time has a real date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeScaleWhenHover"></a>
+    <strong>GetTimeScaleWhenHover ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time should scale up when hovering over
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeScaleWhenHover"></a>
+    <strong>SetTimeScaleWhenHover (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time should scale up when hovering over
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeHighlightWhenHover"></a>
+    <strong>GetTimeHighlightWhenHover ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the time should change colour when hovering over
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeHighlightWhenHover"></a>
+    <strong>SetTimeHighlightWhenHover (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the time should change colour when hovering over
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsVisible"></a>
+    <strong>GetMoonIsVisible ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is visible
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsVisible"></a>
+    <strong>SetMoonIsVisible (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon is visible
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsMouseEnabled"></a>
+    <strong>GetMoonIsMouseEnabled ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is mouseEnabled
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsMouseEnabled"></a>
+    <strong>SetMoonIsMouseEnabled (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon is mouseEnabled
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonIsMovable"></a>
+    <strong>GetMoonIsMovable ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon is movable
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonIsMovable"></a>
+    <strong>SetMoonIsMovable (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon is movable
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonHasBackground"></a>
+    <strong>GetMoonHasBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon has background
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonHasBackground"></a>
+    <strong>SetMoonHasBackground (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon has background
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonHasTooltip"></a>
+    <strong>GetMoonHasTooltip ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon has tooltip
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonHasTooltip"></a>
+    <strong>SetMoonHasTooltip (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon has tooltip
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonScaleWhenHover"></a>
+    <strong>GetMoonScaleWhenHover ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon should scale up when hovering over
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonScaleWhenHover"></a>
+    <strong>SetMoonScaleWhenHover (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon should scale up when hovering over
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonHighlightWhenHover"></a>
+    <strong>GetMoonHighlightWhenHover ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        if the moon should change colour when hovering over
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonHighlightWhenHover"></a>
+    <strong>SetMoonHighlightWhenHover (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         if the moon should change colour when hovering over
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeFormat"></a>
+    <strong>GetTimeFormat ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the format for the time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeFormat"></a>
+    <strong>SetTimeFormat (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the format for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeSize"></a>
+    <strong>GetTimeSize ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the size for the time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeSize"></a>
+    <strong>SetTimeSize (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the size for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeColour"></a>
+    <strong>GetTimeColour ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        r red colour</li>
+        <li>
+        g green colour</li>
+        <li>
+        b blue colour</li>
+        <li>
+        a alpha value</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeColour"></a>
+    <strong>SetTimeColour (r, g, b, a)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+         red colour
+        </li>
+        <li><span class="parameter">g</span>
+         green colour
+        </li>
+        <li><span class="parameter">b</span>
+         blue colour
+        </li>
+        <li><span class="parameter">a</span>
+         alpha value
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeFont"></a>
+    <strong>GetTimeFont ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the font for the time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeFont"></a>
+    <strong>SetTimeFont (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the font for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeStyle"></a>
+    <strong>GetTimeStyle ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the style for the time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeStyle"></a>
+    <strong>SetTimeStyle (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the style for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeLineCount"></a>
+    <strong>GetTimeLineCount ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the line count for the time
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeLineCount"></a>
+    <strong>SetTimeLineCount (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         the line count for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeBackground"></a>
+    <strong>GetTimeBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background texture table key
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeBackground"></a>
+    <strong>SetTimeBackground (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         table key for background name
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeBackgroundStrength"></a>
+    <strong>GetTimeBackgroundStrength ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background texture strength
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeBackgroundStrength"></a>
+    <strong>SetTimeBackgroundStrength (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         background texture strength
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeBackgroundOffset"></a>
+    <strong>GetTimeBackgroundOffset ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background width offset
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeBackgroundOffset"></a>
+    <strong>SetTimeBackgroundOffset (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         background width offset
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonBackground"></a>
+    <strong>GetMoonBackground ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background texture table key
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonBackground"></a>
+    <strong>SetMoonBackground (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         background texture table key
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonBackgroundStrength"></a>
+    <strong>GetMoonBackgroundStrength ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        background texture strength
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonBackgroundStrength"></a>
+    <strong>SetMoonBackgroundStrength (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         background texture strength
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonTextureKeyMasser"></a>
+    <strong>GetMoonTextureKeyMasser ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table key for masser texture
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonTextureKeyMasser"></a>
+    <strong>SetMoonTextureKeyMasser (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         table key for masser texture
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonTextureKeySecunda"></a>
+    <strong>GetMoonTextureKeySecunda ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table key for secunda texture
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonTextureKeySecunda"></a>
+    <strong>SetMoonTextureKeySecunda (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         table key for secunda texture
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonAlpha"></a>
+    <strong>GetMoonAlpha ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        value of how much the moon texture is visible
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonAlpha"></a>
+    <strong>SetMoonAlpha (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         of how much the moon texture is visible
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetScaleFactor"></a>
+    <strong>GetScaleFactor ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored scale factor
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number range (-inf:inf)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetScaleFactor"></a>
+    <strong>SetScaleFactor (value)</strong>
+    </dt>
+    <dd>
+    a function to store the scale factor
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         number (-inf:inf)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeAttributes"></a>
+    <strong>GetTimeAttributes ()</strong>
+    </dt>
+    <dd>
+    a function to get the current attributes for the time.
+ Inside are also the attribute tables of label and background.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+         time = {</p>
+
+<pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
 background = {
     anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
@@ -1840,99 +2061,112 @@ label = {
 },
 </code></pre>
 
-                        <p>}
-                    </ol>
+<p>}
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="GetTimeOffset"></a>
-                    <strong>GetTimeOffset ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current offset of the time
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-                        <li>
-                            offsetX
-                        </li>
-                        <li>
-                            offsetY
-                        </li>
-                    </ol>
+</dd>
+    <dt>
+    <a name = "GetTimeOffset"></a>
+    <strong>GetTimeOffset ()</strong>
+    </dt>
+    <dd>
+    a function to get the current offset of the time
 
 
-                </dd>
-                <dt>
-                    <a name="SetTimeOffset"></a>
-                    <strong>SetTimeOffset (x, y)</strong>
-                </dt>
-                <dd>
-                    a function to save the current offset of the time
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        offsetX</li>
+        <li>
+        offsetY</li>
+    </ol>
 
 
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">x</span>
-                            offset
-                        </li>
-                        <li><span class="parameter">y</span>
-                            offset
-                        </li>
-                    </ul>
 
 
-                </dd>
-                <dt>
-                    <a name="GetTimeDimension"></a>
-                    <strong>GetTimeDimension ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current dimension for the time.
+</dd>
+    <dt>
+    <a name = "SetTimeOffset"></a>
+    <strong>SetTimeOffset (x, y)</strong>
+    </dt>
+    <dd>
+    a function to save the current offset of the time
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        dimension = { width, height, }
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetTimeDimension"></a>
-                    <strong>SetTimeDimension (value)</strong>
-                </dt>
-                <dd>
-                    a function to get the current dimension for the time.
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         offset
+        </li>
+        <li><span class="parameter">y</span>
+         offset
+        </li>
+    </ul>
 
 
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            dimension = { width, height, }
-                        </li>
-                    </ul>
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonAttributes"></a>
-                    <strong>GetMoonAttributes ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current attributes for the moon.
-                    Inside are also the attribute tables of Secunda and Masser.
+
+</dd>
+    <dt>
+    <a name = "GetTimeDimension"></a>
+    <strong>GetTimeDimension ()</strong>
+    </dt>
+    <dd>
+    a function to get the current dimension for the time.
 
 
-                    <h3>Returns:</h3>
-                    <ol>
 
-                        moon = {</p>
+    <h3>Returns:</h3>
+    <ol>
 
-                        <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
+        dimension = { width, height, }
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeDimension"></a>
+    <strong>SetTimeDimension (value)</strong>
+    </dt>
+    <dd>
+    a function to get the current dimension for the time.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         dimension = { width, height, }
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonAttributes"></a>
+    <strong>GetMoonAttributes ()</strong>
+    </dt>
+    <dd>
+    a function to get the current attributes for the moon.
+ Inside are also the attribute tables of Secunda and Masser.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+         moon = {</p>
+
+<pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
 masser = {
     anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
@@ -1952,237 +2186,289 @@ secunda = {
 },
 </code></pre>
 
-                        <p>}
-                    </ol>
+<p>}
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonAnchor"></a>
-                    <strong>GetMoonAnchor ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current moon anchor
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        anchor = { point, relativeTo, relativePoint, offsetX, offsetY, }
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="GetMoonOffset"></a>
-                    <strong>GetMoonOffset ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current offset of the moon
+</dd>
+    <dt>
+    <a name = "GetMoonAnchor"></a>
+    <strong>GetMoonAnchor ()</strong>
+    </dt>
+    <dd>
+    a function to get the current moon anchor
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-                        <li>
-                            offsetX
-                        </li>
-                        <li>
-                            offsetY
-                        </li>
-                    </ol>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        anchor = { point, relativeTo, relativePoint, offsetX, offsetY, }
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="SetMoonOffset"></a>
-                    <strong>SetMoonOffset (x, y)</strong>
-                </dt>
-                <dd>
-                    a function to save the current offset of the moon
 
 
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">x</span>
-                            offset
-                        </li>
-                        <li><span class="parameter">y</span>
-                            offset
-                        </li>
-                    </ul>
+</dd>
+    <dt>
+    <a name = "GetMoonOffset"></a>
+    <strong>GetMoonOffset ()</strong>
+    </dt>
+    <dd>
+    a function to get the current offset of the moon
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonDimension"></a>
-                    <strong>GetMoonDimension ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current dimension for the moon.
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        offsetX</li>
+        <li>
+        offsetY</li>
+    </ol>
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        dimension = { width, height, }
-                    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="SetMoonDimension"></a>
-                    <strong>SetMoonDimension (value)</strong>
-                </dt>
-                <dd>
-                    a function to get the current dimension for the moon.
+</dd>
+    <dt>
+    <a name = "SetMoonOffset"></a>
+    <strong>SetMoonOffset (x, y)</strong>
+    </dt>
+    <dd>
+    a function to save the current offset of the moon
 
 
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            dimension = { width, height, }
-                        </li>
-                    </ul>
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+         offset
+        </li>
+        <li><span class="parameter">y</span>
+         offset
+        </li>
+    </ul>
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonMasserAttributes"></a>
-                    <strong>GetMoonMasserAttributes ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current attributes for the moon Masser.
 
 
-                    <h3>Returns:</h3>
-                    <ol>
 
-                        masser = {</p>
+</dd>
+    <dt>
+    <a name = "GetMoonDimension"></a>
+    <strong>GetMoonDimension ()</strong>
+    </dt>
+    <dd>
+    a function to get the current dimension for the moon.
 
-                        <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        dimension = { width, height, }
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonDimension"></a>
+    <strong>SetMoonDimension (value)</strong>
+    </dt>
+    <dd>
+    a function to get the current dimension for the moon.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         dimension = { width, height, }
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonMasserAttributes"></a>
+    <strong>GetMoonMasserAttributes ()</strong>
+    </dt>
+    <dd>
+    a function to get the current attributes for the moon Masser.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+         masser = {</p>
+
+<pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
 background = {
     anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
     dimension = { width, height, },
 </code></pre>
 
-                        <p>}
-                    </ol>
+<p>}
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonSecundaAttributes"></a>
-                    <strong>GetMoonSecundaAttributes ()</strong>
-                </dt>
-                <dd>
-                    a function to get the current attributes for the moon Secunda.
 
 
-                    <h3>Returns:</h3>
-                    <ol>
+</dd>
+    <dt>
+    <a name = "GetMoonSecundaAttributes"></a>
+    <strong>GetMoonSecundaAttributes ()</strong>
+    </dt>
+    <dd>
+    a function to get the current attributes for the moon Secunda.
 
-                        secunda = {</p>
 
-                        <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
+
+    <h3>Returns:</h3>
+    <ol>
+
+         secunda = {</p>
+
+<pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
 background = {
     anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
     dimension = { width, height, },
 </code></pre>
 
-                        <p>}
-                    </ol>
+<p>}
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="GetMoonScale"></a>
-                    <strong>GetMoonScale ()</strong>
-                </dt>
-                <dd>
-                    a function to get the stored scale
 
 
-                    <h3>Returns:</h3>
-                    <ol>
-
-                        number range [0, inf)
-                    </ol>
-
-
-                </dd>
-                <dt>
-                    <a name="SetMoonScale"></a>
-                    <strong>SetMoonScale (value)</strong>
-                </dt>
-                <dd>
-                    a function to store the scale
+</dd>
+    <dt>
+    <a name = "GetMoonScale"></a>
+    <strong>GetMoonScale ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored scale
 
 
-                    <h3>Parameters:</h3>
-                    <ul>
-                        <li><span class="parameter">value</span>
-                            number [0, inf)
-                        </li>
-                    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number range [0, inf)
+    </ol>
 
 
-                </dd>
-                <dt>
-                    <a name="ResetAttributes"></a>
-                    <strong>ResetAttributes ()</strong>
-                </dt>
-                <dd>
-                    Resets the attributes table to the default values
 
 
-                </dd>
-                <dt>
-                    <a name="ResetBooleans"></a>
-                    <strong>ResetBooleans ()</strong>
-                </dt>
-                <dd>
-                    Resets the booleans table to the default values
+</dd>
+    <dt>
+    <a name = "SetMoonScale"></a>
+    <strong>SetMoonScale (value)</strong>
+    </dt>
+    <dd>
+    a function to store the scale
 
 
-                </dd>
-                <dt>
-                    <a name="ResetStyles"></a>
-                    <strong>ResetStyles ()</strong>
-                </dt>
-                <dd>
-                    Resets the styles table to the default values
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         number [0, inf)
+        </li>
+    </ul>
 
 
-                </dd>
-                <dt>
-                    <a name="Reset"></a>
-                    <strong>Reset ()</strong>
-                </dt>
-                <dd>
-                    Resets the self table to the default values
 
 
-                </dd>
-                <dt>
-                    <a name="New"></a>
-                    <strong>New ()</strong>
-                </dt>
-                <dd>
-                    Load the SavedVariables or register the default values.
+
+</dd>
+    <dt>
+    <a name = "ResetAttributes"></a>
+    <strong>ResetAttributes ()</strong>
+    </dt>
+    <dd>
+    Resets the attributes table to the default values
 
 
-                </dd>
-            </dl>
 
 
-        </div> <!-- id="content" -->
-    </div> <!-- id="main" -->
-    <div id="about">
-        <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-        <i style="float:right;">Last updated 2020-02-20 02:39:21 </i>
-    </div> <!-- id="about" -->
+
+
+
+</dd>
+    <dt>
+    <a name = "ResetBooleans"></a>
+    <strong>ResetBooleans ()</strong>
+    </dt>
+    <dd>
+    Resets the booleans table to the default values
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ResetStyles"></a>
+    <strong>ResetStyles ()</strong>
+    </dt>
+    <dd>
+    Resets the styles table to the default values
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Reset"></a>
+    <strong>Reset ()</strong>
+    </dt>
+    <dd>
+    Resets the self table to the default values
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "New"></a>
+    <strong>New ()</strong>
+    </dt>
+    <dd>
+    Load the SavedVariables or register the default values.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2020-02-20 21:15:02 </i>
+</div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
 </html>

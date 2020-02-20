@@ -429,6 +429,7 @@ function Time:SetupMovement()
             settings:SetTimeHasBackground(value)
             self:UpdateVisibility()
         end, i18n.core.menu.background)
+        AddMenuItem( i18n.core.menu.open, function() LibAddonMenu2:OpenToPanel(CLOCK_TST_MENU) end)
         ShowMenu(control)
     end
 
@@ -466,7 +467,6 @@ function Time:SetupControls(control)
     self.label = GetControl(control, "Label")
 
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
-    GAME_MENU_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
 end
 
 --- Create a new time object

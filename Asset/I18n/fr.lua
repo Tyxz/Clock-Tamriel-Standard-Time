@@ -85,6 +85,15 @@ function Clock_TST.I18N()
                 nScaleFactor = "Facteur d'échelle",
                 tScaleFactor = "De combien le poste devrait augmenter avec le vol stationnaire."
             },
+            feedback = {
+                tFeedback = "Si vous avez trouvé un bug, si vous avez une demande ou une suggestion,\n"
+                    .. "ou si vous souhaitez simplement faire un don, n'hésitez pas à m'envoyer un mail.",
+                nMail = "Commentaires en jeu",
+                nGitHub = "Signaler un problème",
+                nLessGold = "Petit don",
+                nMoreGold = "Don plus important",
+                nRealGold = "Don réel"
+            }
         },
         view = {
             core = {
@@ -93,6 +102,7 @@ function Clock_TST.I18N()
                     background = "Afficher le contexte",
                     movable = "Est mobile",
                     link = "Lier le mouvement de la lune avec le temps",
+                    open = "Ouvrir le menu des paramètres",
                 },
             },
             moon = {

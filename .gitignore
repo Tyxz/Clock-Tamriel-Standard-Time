@@ -4,6 +4,8 @@
 *.iml
 #VS Code
 /.vscode
+#Coverage
+luacov.*
 
 #Custom
 */[Pp]rivate

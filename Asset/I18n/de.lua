@@ -20,7 +20,7 @@ function Clock_TST.I18N()
             },
             account = {
                 nAccount = "Einstellungen synchronisieren",
-                tAccount = "Verwenden Sie die gleichen Einstellungen für alle Charaktäre."
+                tAccount = "Verwende die gleichen Einstellungen für alle Charaktäre."
             },
             booleans = {
                 nSub = "Ein/Aus Einstellungen", -- togOpt
@@ -44,12 +44,12 @@ function Clock_TST.I18N()
                 nMoonVisible = "Zeige den Mond", -- sMoon
                 nFight = "In Kämpfen verstecken",
                 nMap = "Nur auf der Karte anzeigen",
-                nLink = "Verbinden Sie die Bewegungen des Schriftzugs mit dem Mond",
+                nLink = "Verbinde die Bewegungen des Schriftzugs mit dem Mond",
             },
             styles = {
                 nSub = "Aussehen Einstellungen", -- look
-                nFormat = "Schreiben Sie Ihr eigenes Format der Zeit und des Datums",
-                tFormat = "Sie können ein Symbol (# für Geschichte, % für Realität) "
+                nFormat = "Schreibe dein eigenes Format der Zeit und des Datums",
+                tFormat = "Du kannst ein Symbol (# für Geschichte, % für Realität) "
                         .. "gefolgt von einem Buchstaben schreiben:",
                 dFormat = "%A\t\t voller Wochentagsname [Freitag]\n"
                         .. "%a\t\t für den abgekürzten [Fre]\n"
@@ -86,6 +86,15 @@ function Clock_TST.I18N()
                 nScaleFactor = "Skalierungsfaktor",
                 tScaleFactor = "Wie stark sich der Posten beim Hovern erhöhen sollte."
             },
+            feedback = {
+                tFeedback = "Wenn du einen Fehler gefunden, eine Anfrage oder einen Vorschlag hast,\n"
+                    .. "oder einfach nur spenden möchtest, kannst du mir gerne eine Mail schicken.",
+                nMail = "In-Game-Feedback",
+                nGitHub = "Ein Problem melden",
+                nLessGold = "Kleine Spende",
+                nMoreGold = "Größere Spende",
+                nRealGold = "Echte Spende"
+            }
         },
         view = {
             core = {
@@ -94,6 +103,7 @@ function Clock_TST.I18N()
                     background = "Hintergrund anzeigen",
                     movable = "Ist beweglich",
                     link = "Die Bewegung des Mondes mit der Zeit verknüpfen",
+                    open = "Einstellungsmenü öffnen",
                 },
             },
             moon = {

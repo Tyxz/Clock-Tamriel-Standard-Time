@@ -84,6 +84,15 @@ function Clock_TST.I18N()
                 nScaleFactor = "Scale factor",
                 tScaleFactor = "How much the item should increase when hovering."
             },
+            feedback = {
+                tFeedback = "If you found a bug, have a request or a suggestion, or simply wish to donate,\n"
+                    .. "you are welcome to send me an email.",
+                nMail = "In-game Feedback",
+                nGitHub = "Report an issue",
+                nLessGold = "Small donation",
+                nMoreGold = "Larger donation",
+                nRealGold = "Real donation"
+            }
         },
         view = {
             core = {
@@ -92,6 +101,7 @@ function Clock_TST.I18N()
                     background = "Show background",
                     movable = "Is movable",
                     link = "Link the movement of the moon to the time",
+                    open = "Open settings menu",
                 },
             },
             moon = {
