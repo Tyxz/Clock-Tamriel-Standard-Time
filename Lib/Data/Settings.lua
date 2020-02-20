@@ -427,6 +427,18 @@ function Settings:SetTimeBackgroundStrength(value)
     self.styles.time.backgroundStrength = value
 end
 
+--- a function to get the stored style value for the time
+-- @return background width offset
+function Settings:GetTimeBackgroundOffset()
+    return self.styles.time.backgroundOffset
+end
+
+--- a function to store the style value for the time
+-- @param value background width offset
+function Settings:SetTimeBackgroundOffset(value)
+    self.styles.time.backgroundOffset = value
+end
+
 -- ----------------
 -- Moon Styles
 -- ----------------
@@ -478,6 +490,19 @@ end
 function Settings:SetMoonTextureKeySecunda(value)
     self.styles.moon.secunda = value
 end
+
+--- a function to get the stored style value for the moon
+-- @return value of how much the moon texture is visible
+function Settings:GetMoonAlpha()
+    return self.styles.moon.alpha
+end
+
+--- a function to store the style value for the moon
+-- @param value of how much the moon texture is visible
+function Settings:SetMoonAlpha(value)
+    self.styles.moon.alpha = value
+end
+
 -- ----------------
 -- Core Attributes
 -- ----------------
@@ -601,6 +626,18 @@ end
 function Settings:SetMoonOffset(x, y)
     self.attributes.moon.anchor.offsetX = x
     self.attributes.moon.anchor.offsetY = y
+end
+
+--- a function to get the current dimension for the moon.
+-- @return dimension = { width, height, }
+function Settings:GetMoonDimension()
+    return self.attributes.moon.dimension
+end
+
+--- a function to get the current dimension for the moon.
+-- @param value dimension = { width, height, }
+function Settings:SetMoonDimension(value)
+    self.attributes.moon.dimension = value
 end
 
 --- a function to get the current attributes for the moon Masser.

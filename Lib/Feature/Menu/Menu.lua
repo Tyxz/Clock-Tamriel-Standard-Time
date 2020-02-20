@@ -30,6 +30,8 @@ local function SetupMenu()
         registerForDefaults = true,
         resetFunc = function()
             settings:Reset()
+            time:RegisterForUpdates()
+            moon:RegisterForUpdates()
         end,
     }
     local LAM = LibAddonMenu2
@@ -406,7 +408,7 @@ local function SetupMenu()
                         local _, realCount = string.gsub(value, "%%", "")
                         settings:SetTimeHasRealDate(realCount ~= 0)
                         settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
-                        time:RegisterForUpdates()
+                        time:ResetReplacement()
                     end,
                     isMultiline = true,
                     width = "half",
@@ -440,8 +442,8 @@ local function SetupMenu()
                     end,
                     setFunc = function(value)
                         settings:SetTimeSize(value)
-                        time:UpdateSize()
                         time:UpdateStyle()
+                        time:ResetReplacement()
                     end,
                     name = i18n.styles.nSize,
                     tooltip = i18n.styles.tSize,
@@ -459,6 +461,7 @@ local function SetupMenu()
                     setFunc = function(value)
                         settings:SetTimeFont(value)
                         time:UpdateStyle()
+                        time:ResetReplacement()
                     end,
                     name = i18n.styles.nFont,
                     tooltip = i18n.styles.tFont,
@@ -516,6 +519,25 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    min = -500,
+                    max = 500,
+                    step = 10,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundOffset()
+                    end,
+                    setFunc = function(value)
+                        settings:SetTimeBackgroundOffset(value)
+                        time:ResetReplacement()
+                    end,
+                    name = i18n.styles.nBackgroundOffset,
+                    tooltip = i18n.styles.tBackgroundOffset,
+                    width = "half",
+                },
+                {
                     type = "header",
                     name = i18n.core.nHeadMoon
                 },
@@ -552,6 +574,50 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = settings:GetMoonMasserAttributes().dimension.height,
+                    max = settings:GetMoonMasserAttributes().dimension.height * 2,
+                    step = 5,
+                    getFunc = function()
+                        return settings:GetMoonDimension().height
+                    end,
+                    setFunc = function(value)
+                        local width = settings:GetMoonDimension().width
+                        settings:SetMoonDimension({
+                            width = width,
+                            height = value
+                        })
+                        moon:UpdatePositions()
+                    end,
+                    name = i18n.styles.nMoonHeight,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = settings:GetMoonMasserAttributes().dimension.width,
+                    max = settings:GetMoonMasserAttributes().dimension.width * 2,
+                    step = 5,
+                    getFunc = function()
+                        return settings:GetMoonDimension().width
+                    end,
+                    setFunc = function(value)
+                        local height = settings:GetMoonDimension().height
+                        settings:SetMoonDimension({
+                            width = value,
+                            height = height,
+                        })
+                        moon:UpdatePositions()
+                    end,
+                    name = i18n.styles.nMoonWidth,
+                    width = "half",
+                },
+                {
                     type = "dropdown",
                     disabled = function()
                         return not settings:GetMoonIsVisible()
@@ -583,6 +649,24 @@ local function SetupMenu()
                         moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nBackgroundStrength,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 1,
+                    step = .1,
+                    getFunc = function()
+                        return settings:GetMoonAlpha()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonAlpha(value)
+                        moon:RegisterForUpdates()
+                    end,
+                    name = i18n.styles.nAlpha,
                     width = "half",
                 },
                 {

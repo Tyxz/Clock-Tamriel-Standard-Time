@@ -7,7 +7,7 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-Clock_TST.DEBUG = true
+Clock_TST.DEBUG = false
 
 --- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
@@ -66,12 +66,12 @@ function Clock_TST.CONSTANTS()
         },
         UI = {
             STYLES = {
-                normal = "FONT_STYLE_NORMAL",
-                outline = "FONT_STYLE_OUTLINE",
-                thick_outline = "FONT_STYLE_OUTLINE_THICK",
-                shadow = "FONT_STYLE_SHADOW",
-                thick_shadow = "FONT_STYLE_SOFT_SHADOW_THICK",
-                thin_shadow = "FONT_STYLE_SOFT_SHADOW_THIN",
+                ["normal"] = "normal",
+                ["outline"] = "outline",
+                ["thick-outline"] = "thick-outline",
+                ["shadow"] = "shadow",
+                ["soft-shadow-thick"] = "soft-shadow-thick",
+                ["soft-shadow-thin"] = "soft-shadow-thin",
             },
             FONTS = {
                 ["Consolas"]                = "EsoUI/Common/Fonts/consola.ttf",
@@ -211,18 +211,19 @@ function Clock_TST.CONSTANTS()
                 SAVED_NAME = "styles",
                 DEFAULTS = {
                     time = {
-                        background = "Stroke",
+                        background = "Splash",
                         backgroundStrength = .5,
+                        backgroundOffset = 0,
                         format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
                         colour = {
                             r = 0.77254909276962,
                             g = 0.7607843875885,
                             b = 0.61960786581039,
-                            a = 1,
+                            a = 1.0,
                         },
-                        font = "ProseAntique",
-                        style = "outline",
+                        font = "Univers 67",
+                        style = "soft-shadow-thick",
                         size = 20,
                     },
                     moon = {
@@ -230,6 +231,7 @@ function Clock_TST.CONSTANTS()
                         backgroundStrength = 0.5,
                         masser = "Pale",
                         secunda = "Ghost",
+                        alpha = 1.0,
                     },
                 },
             },
@@ -244,51 +246,51 @@ function Clock_TST.CONSTANTS()
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,
                             relativePoint = nil,
-                            offsetX = 100,
+                            offsetX = 90,
                             offsetY = 30,
                         },
                         dimension = {
-                            width = 400,
+                            width = 375,
                             height = 50,
                         },
                     },
                     moon = {
-                        scale = 1,
+                        scale = 0.4,
                         anchor = {
                             point = 3, -- TOPLEFT
                             relativeTo = GuiRoot,
                             relativePoint = nil,
                             offsetX = 34,
-                            offsetY = 30,
+                            offsetY = 20,
                         },
                         dimension = {
-                            width = 130,
-                            height = 90,
+                            width = 336,
+                            height = 336,
                         },
                         masser = {
                             anchor = {
-                                point = 128, -- CENTER
+                                point = 3, -- TOPLEFT
                                 relativeTo = Clock_TST_Moon,
-                                relativePoint = 128, -- CENTER
+                                relativePoint = 3, -- TOPLEFT
                                 offsetX = 0,
                                 offsetY = 0,
                             },
                             dimension = {
-                                width = 80,
-                                height = 80,
+                                width = 256,
+                                height = 256,
                             },
                         },
                         secunda = {
                             anchor = {
-                                point = 1, -- TOP
-                                relativeTo = Clock_TST_Moon_Masser,
-                                relativePoint = 8, -- RIGHT
+                                point = 12, -- BOTTOMRIGHT
+                                relativeTo = Clock_TST_Moon,
+                                relativePoint = 12, -- BOTTOMRIGHT
                                 offsetX = 0,
                                 offsetY = 0,
                             },
                             dimension = {
-                                width = 50,
-                                height = 50,
+                                width = 160,
+                                height = 160,
                             },
                         },
                     },

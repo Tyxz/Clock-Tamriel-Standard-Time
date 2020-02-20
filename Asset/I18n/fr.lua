@@ -75,8 +75,13 @@ function Clock_TST.I18N()
                 tSize = "Modifier la taille de la police de l'horloge.",
                 nBackground = "Texture du fond",
                 nBackgroundStrength = "La force de la base",
+                nBackgroundOffset = "Décalage du fond",
+                tBackgroundOffset = "Décalage par rapport à la largeur calculée du fond.",
                 nMasser = "La texture de Masser",
                 nSecunda = "La texture de Secunda",
+                nMoonWidth = "Largeur de la lune distance",
+                nMoonHeight = "Distance de la hauteur de la lune",
+                nAlpha = "Visibilité",
                 nScaleFactor = "Facteur d'échelle",
                 tScaleFactor = "De combien le poste devrait augmenter avec le vol stationnaire."
             },
@@ -104,8 +109,8 @@ function Clock_TST.I18N()
                 }
             },
             time = {
-                am = "am",
-                pm = "pm",
+                am = "A.M.",
+                pm = "P.M.",
             },
             date = {
                 lore = {

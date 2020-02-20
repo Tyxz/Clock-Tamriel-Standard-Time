@@ -76,8 +76,13 @@ function Clock_TST.I18N()
                 tSize = "Verändere die Schriftgröße der Clock.",
                 nBackground = "Textur des Hintergrunds",
                 nBackgroundStrength = "Stärke des Hintergrunds",
+                nBackgroundOffset = "Hintergrund Versatz",
+                tBackgroundOffset = "Versatz der berechneten Weite des Hintergrundes.",
                 nMasser = "Die Textur von Masser",
                 nSecunda = "Die Textur von Secunda",
+                nMoonWidth = "Breite des Mondabstands",
+                nMoonHeight = "Höhe des Mondabstands",
+                nAlpha = "Sichtbarkeit",
                 nScaleFactor = "Skalierungsfaktor",
                 tScaleFactor = "Wie stark sich der Posten beim Hovern erhöhen sollte."
             },
@@ -105,8 +110,8 @@ function Clock_TST.I18N()
                 }
             },
             time = {
-                am = "am",
-                pm = "pm",
+                am = "A.M.",
+                pm = "P.M.",
             },
             date = {
                 lore = {

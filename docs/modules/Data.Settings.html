@@ -332,6 +332,14 @@ License:    GPL-<span class="number">3.0</span>
                     <td class="summary">a function to store the style value for the time</td>
                 </tr>
                 <tr>
+                    <td class="name" nowrap><a href="#GetTimeBackgroundOffset">GetTimeBackgroundOffset ()</a></td>
+                    <td class="summary">a function to get the stored style value for the time</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetTimeBackgroundOffset">SetTimeBackgroundOffset (value)</a></td>
+                    <td class="summary">a function to store the style value for the time</td>
+                </tr>
+                <tr>
                     <td class="name" nowrap><a href="#GetMoonBackground">GetMoonBackground ()</a></td>
                     <td class="summary">a function to get the stored style value for the moon</td>
                 </tr>
@@ -363,6 +371,14 @@ License:    GPL-<span class="number">3.0</span>
                 <tr>
                     <td class="name" nowrap><a href="#SetMoonTextureKeySecunda">SetMoonTextureKeySecunda (value)</a>
                     </td>
+                    <td class="summary">a function to store the style value for the moon</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#GetMoonAlpha">GetMoonAlpha ()</a></td>
+                    <td class="summary">a function to get the stored style value for the moon</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetMoonAlpha">SetMoonAlpha (value)</a></td>
                     <td class="summary">a function to store the style value for the moon</td>
                 </tr>
                 <tr>
@@ -408,6 +424,14 @@ License:    GPL-<span class="number">3.0</span>
                 <tr>
                     <td class="name" nowrap><a href="#SetMoonOffset">SetMoonOffset (x, y)</a></td>
                     <td class="summary">a function to save the current offset of the moon</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#GetMoonDimension">GetMoonDimension ()</a></td>
+                    <td class="summary">a function to get the current dimension for the moon.</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetMoonDimension">SetMoonDimension (value)</a></td>
+                    <td class="summary">a function to get the current dimension for the moon.</td>
                 </tr>
                 <tr>
                     <td class="name" nowrap><a href="#GetMoonMasserAttributes">GetMoonMasserAttributes ()</a></td>
@@ -1552,6 +1576,39 @@ License:    GPL-<span class="number">3.0</span>
 
                 </dd>
                 <dt>
+                    <a name="GetTimeBackgroundOffset"></a>
+                    <strong>GetTimeBackgroundOffset ()</strong>
+                </dt>
+                <dd>
+                    a function to get the stored style value for the time
+
+
+                    <h3>Returns:</h3>
+                    <ol>
+
+                        background width offset
+                    </ol>
+
+
+                </dd>
+                <dt>
+                    <a name="SetTimeBackgroundOffset"></a>
+                    <strong>SetTimeBackgroundOffset (value)</strong>
+                </dt>
+                <dd>
+                    a function to store the style value for the time
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">value</span>
+                            background width offset
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
                     <a name="GetMoonBackground"></a>
                     <strong>GetMoonBackground ()</strong>
                 </dt>
@@ -1678,6 +1735,39 @@ License:    GPL-<span class="number">3.0</span>
                     <ul>
                         <li><span class="parameter">value</span>
                             table key for secunda texture
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
+                    <a name="GetMoonAlpha"></a>
+                    <strong>GetMoonAlpha ()</strong>
+                </dt>
+                <dd>
+                    a function to get the stored style value for the moon
+
+
+                    <h3>Returns:</h3>
+                    <ol>
+
+                        value of how much the moon texture is visible
+                    </ol>
+
+
+                </dd>
+                <dt>
+                    <a name="SetMoonAlpha"></a>
+                    <strong>SetMoonAlpha (value)</strong>
+                </dt>
+                <dd>
+                    a function to store the style value for the moon
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">value</span>
+                            of how much the moon texture is visible
                         </li>
                     </ul>
 
@@ -1924,6 +2014,39 @@ secunda = {
 
                 </dd>
                 <dt>
+                    <a name="GetMoonDimension"></a>
+                    <strong>GetMoonDimension ()</strong>
+                </dt>
+                <dd>
+                    a function to get the current dimension for the moon.
+
+
+                    <h3>Returns:</h3>
+                    <ol>
+
+                        dimension = { width, height, }
+                    </ol>
+
+
+                </dd>
+                <dt>
+                    <a name="SetMoonDimension"></a>
+                    <strong>SetMoonDimension (value)</strong>
+                </dt>
+                <dd>
+                    a function to get the current dimension for the moon.
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">value</span>
+                            dimension = { width, height, }
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
                     <a name="GetMoonMasserAttributes"></a>
                     <strong>GetMoonMasserAttributes ()</strong>
                 </dt>
@@ -2058,7 +2181,7 @@ background = {
     </div> <!-- id="main" -->
     <div id="about">
         <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-        <i style="float:right;">Last updated 2020-02-19 23:55:42 </i>
+        <i style="float:right;">Last updated 2020-02-20 02:39:21 </i>
     </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

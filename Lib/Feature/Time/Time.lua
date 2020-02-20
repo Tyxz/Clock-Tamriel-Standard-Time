@@ -17,6 +17,7 @@ local settings
 -- Update
 -- ----------------
 
+--- Update the Time anchor
 function Time:UpdatePositions()
     local attribute = settings:GetTimeAttributes()
 
@@ -33,6 +34,7 @@ function Time:UpdatePositions()
     UpdateControl(self.control, attribute)
 end
 
+--- Update the visibility and fragment visibility of the Time object
 function Time:UpdateVisibility()
 
     Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", not settings:GetTimeIsVisible())
@@ -64,17 +66,21 @@ function Time:UpdateVisibility()
     end
 end
 
+--- Update if the object is interactable with the mouse
 function Time:UpdateMouse()
     self.control:SetMovable(settings:GetTimeIsMovable())
     self.control:SetMouseEnabled(settings:GetTimeIsMouseEnabled())
 end
 
+--- Update the background texture and alpha value
 function Time:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
     self.background:SetTexture(texture.path .. texture.background)
     self.background:SetColor(1, 1, 1, settings:GetTimeBackgroundStrength())
 end
 
+--- Update the dimension and offset of the control
+-- Only if the sizeHasUpdated variable is true!
 function Time:UpdateSize()
     if not self.sizeHasUpdated then
         return
@@ -87,9 +93,9 @@ function Time:UpdateSize()
     local length = Clock_TST.GetLargestLine(self.label:GetText())
     local lines = settings:GetTimeLineCount()
 
-    local function CreateDimension(dimension, baseDimension)
+    local function CreateDimension(dimension, baseDimension, offsetX)
         dimension.height = size / baseSize * math.max(1, lines * 0.66) * baseDimension.height
-        dimension.width = length / baseLength * size / baseSize * baseDimension.width
+        dimension.width = length / baseLength * size / baseSize * baseDimension.width + offsetX
     end
 
     local function CreateOffset(x, y, width, height, dimension)
@@ -100,7 +106,8 @@ function Time:UpdateSize()
     local width, height = settings:GetTimeDimension().width, settings:GetTimeDimension().height
     CreateDimension(
             settings:GetTimeDimension(),
-            const.Settings.attributes.DEFAULTS.time.dimension
+            const.Settings.attributes.DEFAULTS.time.dimension,
+            settings:GetTimeBackgroundOffset()
     )
     local x, y = settings:GetTimeOffset()
     settings:SetTimeOffset(
@@ -111,19 +118,22 @@ function Time:UpdateSize()
             )
     )
 
+
     self:UpdatePositions()
 end
 
+--- Update the Style of the label
 function Time:UpdateStyle()
     local size = settings:GetTimeSize()
     local font = const.UI.FONTS[settings:GetTimeFont()]
-    local style = const.UI.STYLES[settings:GetTimeStyle()]
+    local style = settings:GetTimeStyle()
     local look = zo_strformat("<<1>>|<<2>>|<<3>>", font, size, style)
 
     self.label:SetFont(look)
     self.label:SetColor(settings:GetTimeColour())
 end
 
+--- Update the content of the label
 function Time:UpdateLabel()
     local format = settings:GetTimeFormat()
 
@@ -172,6 +182,7 @@ function Time:UpdateLabel()
     self.label:SetText(format)
 end
 
+--- Update the content of the tooltip
 function Time:UpdateTooltip()
     local loreTime = self.replacement.time.lore
     local loreDate = self.replacement.date.lore
@@ -184,6 +195,8 @@ function Time:UpdateTooltip()
             loreDate.A, realDate.d, realDate.B, realDate.Y, realTime.X)
 end
 
+--- Add a zero in front of a number if smaller than 10
+--@param value is the number
 local function AddZero(value)
     local number = tonumber(value)
     if not settings:GetTimeAddZero() then
@@ -195,6 +208,8 @@ local function AddZero(value)
     return number
 end
 
+--- Create the values for the time to be exchanged with their respective chars
+--@param loreTime is the lore time object with { hour = h, minute = m, second = s }
 function Time:CreateTimeReplacements(loreTime)
     local function I(hour)
         local h = tonumber(hour)
@@ -238,6 +253,8 @@ function Time:CreateTimeReplacements(loreTime)
     }
 end
 
+--- Create the values for the date to be exchanged with their respective chars
+--@param loreDate is the lore date object with { day = d, weekDay = w, month = m, year = y }
 function Time:CreateDateReplacements(loreDate)
     local realDateString = GetDateStringFromTimestamp(GetTimeStamp())
     local rd, rm, ry = realDateString:match("(%d+).(%d+).(%d+)")
@@ -291,6 +308,10 @@ function Time:CreateDateReplacements(loreDate)
     end
 end
 
+--- Function to be given to the LibClockTST for the time and date updates
+-- It will handle the updates of the label and tooltip
+--@param time for the time object { hour = h, minute = m, second = s }
+--@param date for the date object { day = d, weekDay = w, month = m, year = y }
 function Time:UpdateTime(time, date)
     self:CreateTimeReplacements(time)
     if tonumber(self.replacement.date.d) ~= date.day then
@@ -325,11 +346,13 @@ function Time:RegisterForUpdates()
     end)
 end
 
+--- Remove this object from receiving further updates from the LibClockTST
 function Time.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscription(const.NAME)
 end
 
+--- Setup the tooltip to show when hovering over the label
 function Time:SetupTooltip()
     local scale
     self.control:SetHandler("OnMouseEnter", function(control)
@@ -361,6 +384,7 @@ function Time:SetupTooltip()
     end)
 end
 
+--- Setup the movement of the Time and link it with the Moon control
 function Time:SetupMovement()
     local function LeftClick(control)
         local offsetX, offsetY = control:GetLeft(), control:GetTop()
@@ -424,6 +448,7 @@ function Time:SetupMovement()
     end)
 end
 
+--- Setup the mouse wheel interaction to change the size of the font when scrolling
 function Time:SetupScale()
     self.control:SetHandler("OnMouseWheel", function(_, delta)
         local size = settings:GetTimeSize()
@@ -433,6 +458,8 @@ function Time:SetupScale()
     end)
 end
 
+--- Setup all controls and the Time fragment
+--@param control of the TopLevelControl
 function Time:SetupControls(control)
     self.control = control
     self.background = GetControl(control, "Background")
@@ -442,6 +469,7 @@ function Time:SetupControls(control)
     GAME_MENU_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
 end
 
+--- Create a new time object
 function Time:New(...)
     local container = ZO_Object.New(self)
     container:SetupControls(...)
@@ -452,6 +480,9 @@ end
 -- Start
 -- ----------------
 
+--- Initialize the Time
+--@param _ eventId doesn't matter
+--@param name of the addon is Clock
 local function OnAddOnLoaded(_, name)
     if name == const.NAME then
         local time = Time:New(Clock_TST_Time)

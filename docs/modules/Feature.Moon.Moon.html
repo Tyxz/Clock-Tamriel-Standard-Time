@@ -30,6 +30,12 @@
                 <li><a href="../index.html">Index</a></li>
             </ul>
 
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#Functions">Functions</a></li>
+                <li><a href="#Local_Functions">Local Functions</a></li>
+            </ul>
+
 
             <h2>Modules</h2>
             <ul class="nowrap">
@@ -63,15 +69,283 @@ License:    GPL-<span class="number">3.0</span>
             </p>
 
 
+            <h2><a href="#Functions">Functions</a></h2>
+            <table class="function_list">
+                <tr>
+                    <td class="name" nowrap><a href="#UpdatePositions">UpdatePositions ()</a></td>
+                    <td class="summary">Update the anchor of the moon controls</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateVisibility">UpdateVisibility ()</a></td>
+                    <td class="summary">Update the visibility of the moon controls and manage their fragments</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateMouse">UpdateMouse ()</a></td>
+                    <td class="summary">Update if mouse interactions are possible</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateBackground">UpdateBackground ()</a></td>
+                    <td class="summary">Update the background texture</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateTexture">UpdateTexture (currentPhaseName)</a></td>
+                    <td class="summary">Update the texture of the moons to fit the phases</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateTooltip">UpdateTooltip (moon)</a></td>
+                    <td class="summary">Update the tooltip information</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UpdateMoon">UpdateMoon (moon)</a></td>
+                    <td class="summary">Update the moon texture and tooltip
+                        This function is meant to be given to the LibClockTST.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#RegisterForUpdates">RegisterForUpdates ()</a></td>
+                    <td class="summary">Register the moon updates with the LibClockTST</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#UnregisterForUpdates">UnregisterForUpdates ()</a></td>
+                    <td class="summary">Stop further updates from the LibClockTST</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetupTooltip">SetupTooltip ()</a></td>
+                    <td class="summary">Setup a tooltip to be shown if hovering over the moon control</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetupMovement">SetupMovement ()</a></td>
+                    <td class="summary">Setup the movement of the moon control and link the time control to it if set
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetupScale">SetupScale ()</a></td>
+                    <td class="summary">Setup a mouse wheel interaction to change the size of the moon</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#SetupControls">SetupControls (control)</a></td>
+                    <td class="summary">Setup the controls and the fragment</td>
+                </tr>
+                <tr>
+                    <td class="name" nowrap><a href="#New">New (...)</a></td>
+                    <td class="summary">Create a new Moon object</td>
+                </tr>
+            </table>
+            <h2><a href="#Local_Functions">Local Functions</a></h2>
+            <table class="function_list">
+                <tr>
+                    <td class="name" nowrap><a href="#OnAddOnLoaded">OnAddOnLoaded (_, name)</a></td>
+                    <td class="summary">Initialize the Moon</td>
+                </tr>
+            </table>
+
             <br/>
             <br/>
+
+
+            <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+            <dl class="function">
+                <dt>
+                    <a name="UpdatePositions"></a>
+                    <strong>UpdatePositions ()</strong>
+                </dt>
+                <dd>
+                    Update the anchor of the moon controls
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateVisibility"></a>
+                    <strong>UpdateVisibility ()</strong>
+                </dt>
+                <dd>
+                    Update the visibility of the moon controls and manage their fragments
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateMouse"></a>
+                    <strong>UpdateMouse ()</strong>
+                </dt>
+                <dd>
+                    Update if mouse interactions are possible
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateBackground"></a>
+                    <strong>UpdateBackground ()</strong>
+                </dt>
+                <dd>
+                    Update the background texture
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateTexture"></a>
+                    <strong>UpdateTexture (currentPhaseName)</strong>
+                </dt>
+                <dd>
+                    Update the texture of the moons to fit the phases
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">currentPhaseName</span>
+                            is the name of the current phase in English
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateTooltip"></a>
+                    <strong>UpdateTooltip (moon)</strong>
+                </dt>
+                <dd>
+                    Update the tooltip information
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">moon</span>
+                            object { &hellip; }
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
+                    <a name="UpdateMoon"></a>
+                    <strong>UpdateMoon (moon)</strong>
+                </dt>
+                <dd>
+                    Update the moon texture and tooltip
+                    This function is meant to be given to the LibClockTST.
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">moon</span>
+                            object { &hellip; }
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
+                    <a name="RegisterForUpdates"></a>
+                    <strong>RegisterForUpdates ()</strong>
+                </dt>
+                <dd>
+                    Register the moon updates with the LibClockTST
+
+
+                </dd>
+                <dt>
+                    <a name="UnregisterForUpdates"></a>
+                    <strong>UnregisterForUpdates ()</strong>
+                </dt>
+                <dd>
+                    Stop further updates from the LibClockTST
+
+
+                </dd>
+                <dt>
+                    <a name="SetupTooltip"></a>
+                    <strong>SetupTooltip ()</strong>
+                </dt>
+                <dd>
+                    Setup a tooltip to be shown if hovering over the moon control
+
+
+                </dd>
+                <dt>
+                    <a name="SetupMovement"></a>
+                    <strong>SetupMovement ()</strong>
+                </dt>
+                <dd>
+                    Setup the movement of the moon control and link the time control to it if set
+
+
+                </dd>
+                <dt>
+                    <a name="SetupScale"></a>
+                    <strong>SetupScale ()</strong>
+                </dt>
+                <dd>
+                    Setup a mouse wheel interaction to change the size of the moon
+
+
+                </dd>
+                <dt>
+                    <a name="SetupControls"></a>
+                    <strong>SetupControls (control)</strong>
+                </dt>
+                <dd>
+                    Setup the controls and the fragment
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">control</span>
+                            of the TopLevelControl
+                        </li>
+                    </ul>
+
+
+                </dd>
+                <dt>
+                    <a name="New"></a>
+                    <strong>New (...)</strong>
+                </dt>
+                <dd>
+                    Create a new Moon object
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">...</span>
+
+
+                        </li>
+                    </ul>
+
+
+                </dd>
+            </dl>
+            <h2 class="section-header "><a name="Local_Functions"></a>Local Functions</h2>
+
+            <dl class="function">
+                <dt>
+                    <a name="OnAddOnLoaded"></a>
+                    <strong>OnAddOnLoaded (_, name)</strong>
+                </dt>
+                <dd>
+                    Initialize the Moon
+
+
+                    <h3>Parameters:</h3>
+                    <ul>
+                        <li><span class="parameter">_</span>
+                            eventId doesn&rsquo;t matter
+                        </li>
+                        <li><span class="parameter">name</span>
+                            of the addon is Clock
+                        </li>
+                    </ul>
+
+
+                </dd>
+            </dl>
 
 
         </div> <!-- id="content" -->
     </div> <!-- id="main" -->
     <div id="about">
         <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-        <i style="float:right;">Last updated 2020-02-19 23:55:42 </i>
+        <i style="float:right;">Last updated 2020-02-20 02:39:21 </i>
     </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

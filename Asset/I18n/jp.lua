@@ -74,8 +74,13 @@ function Clock_TST.I18N()
                 tSize = "Clockのサイズを変更します。",
                 nBackground = "Background texture",
                 nBackgroundStrength = "Background strength",
+                nBackgroundOffset = "Background offset",
+                tBackgroundOffset = "Offset to the calculated width of the background.",
                 nMasser = "Masser's texture",
                 nSecunda = "Secunda's texture",
+                nMoonWidth = "Width of the moon distance",
+                nMoonHeight = "Height of the moon distance",
+                nAlpha = "Visibility",
                 nScaleFactor = "Scale factor",
                 tScaleFactor = "How much the item should increase when hovering."
             },
@@ -103,8 +108,8 @@ function Clock_TST.I18N()
                 }
             },
             time = {
-                am = "am",
-                pm = "pm",
+                am = "午前",
+                pm = "午後",
             },
             date = {
                 lore = {

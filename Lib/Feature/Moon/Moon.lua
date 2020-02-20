@@ -17,9 +17,9 @@ local settings
 -- Update
 -- ----------------
 
+--- Update the anchor of the moon controls
 function Moon:UpdatePositions()
     local attribute = settings:GetMoonAttributes()
-    -- TODO: fix secunda offset
 
     local function UpdateControl(control, atr)
         local anchor = atr.anchor
@@ -36,6 +36,7 @@ function Moon:UpdatePositions()
     UpdateControl(self.secunda_background, attribute.secunda)
 end
 
+--- Update the visibility of the moon controls and manage their fragments
 function Moon:UpdateVisibility()
 
     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible())
@@ -68,11 +69,13 @@ function Moon:UpdateVisibility()
     end
 end
 
+--- Update if mouse interactions are possible
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
     self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
 end
 
+--- Update the background texture
 function Moon:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
     local alpha = settings:GetMoonBackgroundStrength()
@@ -82,6 +85,8 @@ function Moon:UpdateBackground()
     self.secunda_background:SetColor(1, 1, 1, alpha)
 end
 
+--- Update the texture of the moons to fit the phases
+--@param currentPhaseName is the name of the current phase in English
 function Moon:UpdateTexture(currentPhaseName)
     if currentPhaseName == "new" then
         self.masser:SetHidden(true)
@@ -92,6 +97,7 @@ function Moon:UpdateTexture(currentPhaseName)
             if currentPhaseName == name then
                 self.masser:SetHidden(false)
                 self.masser:SetTexture(texturesMasser.path .. texture)
+                self.masser:SetColor(1, 1, 1, settings:GetMoonAlpha())
             end
         end
         local texturesSecunda = const.UI.MOONS.secunda[settings:GetMoonTextureKeySecunda()]
@@ -99,6 +105,7 @@ function Moon:UpdateTexture(currentPhaseName)
             if currentPhaseName == name then
                 self.secunda:SetHidden(false)
                 self.secunda:SetTexture(texturesSecunda.path .. texture)
+                self.secunda:SetColor(1, 1, 1, settings:GetMoonAlpha())
             end
         end
     end
@@ -107,6 +114,8 @@ function Moon:UpdateTexture(currentPhaseName)
     end
 end
 
+--- Update the tooltip information
+--@param moon object { ... }
 function Moon:UpdateTooltip(moon)
     local tooltip_format = i18n.moon.tooltip
     local days
@@ -127,6 +136,9 @@ function Moon:UpdateTooltip(moon)
     self.tooltip = self.tooltip .. zo_strformat(tooltip_format.duration, days)
 end
 
+--- Update the moon texture and tooltip
+-- This function is meant to be given to the LibClockTST.
+--@param moon object { ... }
 function Moon:UpdateMoon(moon)
     self:UpdateTexture(moon.currentPhaseName)
 
@@ -139,6 +151,7 @@ end
 -- Start
 -- ----------------
 
+--- Register the moon updates with the LibClockTST
 function Moon:RegisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:RegisterForMoon(const.NAME, function(...)
@@ -146,11 +159,13 @@ function Moon:RegisterForUpdates()
     end)
 end
 
+--- Stop further updates from the LibClockTST
 function Moon.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscriptionForMoon(const.NAME)
 end
 
+--- Setup a tooltip to be shown if hovering over the moon control
 function Moon:SetupTooltip()
     self.control:SetHandler("OnMouseEnter", function(control)
         if settings:GetMoonHasTooltip() then
@@ -169,7 +184,7 @@ function Moon:SetupTooltip()
         end
 
         if settings:GetMoonScaleWhenHover() then
-            local scale = control:GetScale()
+            local scale = settings:GetMoonScale()
             control:SetScale(scale * settings:GetScaleFactor())
         end
     end)
@@ -183,6 +198,7 @@ function Moon:SetupTooltip()
     end)
 end
 
+--- Setup the movement of the moon control and link the time control to it if set
 function Moon:SetupMovement()
     local function LeftClick(control)
         local offsetX, offsetY = control:GetLeft(), control:GetTop()
@@ -248,7 +264,9 @@ function Moon:SetupMovement()
     end)
 end
 
+--- Setup a mouse wheel interaction to change the size of the moon
 function Moon:SetupScale()
+    self.control:SetScale(settings:GetMoonScale())
     self.control:SetHandler("OnMouseWheel", function(_, delta)
         --[[
         local factor_masser = settings:GetScaleFactor() * delta
@@ -274,12 +292,14 @@ function Moon:SetupScale()
         self:UpdatePositions()
         ]]--
         local scale = settings:GetMoonScale()
-        scale = scale + delta * 0.1
+        scale = scale + delta * 0.02
         self.control:SetScale(scale)
         settings:SetMoonScale(scale)
     end)
 end
 
+--- Setup the controls and the fragment
+--@param control of the TopLevelControl
 function Moon:SetupControls(control)
     self.control = control
     self.masser = GetControl(control, "Masser")
@@ -291,6 +311,7 @@ function Moon:SetupControls(control)
     GAME_MENU_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
 end
 
+--- Create a new Moon object
 function Moon:New(...)
     local container = ZO_Object.New(self)
     container:SetupControls(...)
@@ -301,6 +322,9 @@ end
 -- Start
 -- ----------------
 
+--- Initialize the Moon
+--@param _ eventId doesn't matter
+--@param name of the addon is Clock
 local function OnAddOnLoaded(_, name)
     if name == const.NAME then
         settings = Clock_TST.settings
