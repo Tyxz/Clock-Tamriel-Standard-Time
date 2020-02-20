@@ -9,4 +9,4 @@
 |---|---|---|
 | Version: | 2.0.0 | [![Documentation](https://img.shields.io/website?label=%7C&up_color=important&up_message=documentation&url=https%3A%2F%2Ftyxz.github.io%2FClock-Tamriel-Standard-Time%2F)](https://tyxz.github.io/Clock-Tamriel-Standard-Time/) |  
 | Build for game version: | 100030 | [![Download](https://img.shields.io/website?label=%7C&up_color=blue&up_message=download&url=http%3A%2F%2Fwww.esoui.com%2Fdownloads%2Finfo241-Clock-TamrielStandardTime.html)](https://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html) |
-| | [![Run on Repl.it](https://repl.it/badge/github/Tyxz/Clock-Tamriel-Standard-Time)](https://repl.it/github/Tyxz/Clock-Tamriel-Standard-Time) | [![POEditor](https://img.shields.io/badge/POEditor-Help%20Translate-blue.svg?style=flat)](https://poeditor.com/join/project/3ldrMQvCrU) |
+| | [![Run on Repl.it](https://repl.it/badge/github/Tyxz/Clock-Tamriel-Standard-Time)](https://repl.it/github/Tyxz/Clock-Tamriel-Standard-Time) | [![POEditor](https://img.shields.io/badge/POEditor-Help%20Translate-blue.svg?style=flat)](https://poeditor.com/join/project/NJq0ZZpySZ) |

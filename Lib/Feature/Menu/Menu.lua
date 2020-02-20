@@ -25,7 +25,7 @@ local function SetupMenu()
         version = const.VERSION,
         website = "https://rantzen.net/clock-tamriel-standard-time/",
         feedback = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/issues/new/choose",
-        translation = "https://poeditor.com/join/project/3ldrMQvCrU",
+        translation = "https://poeditor.com/join/project/NJq0ZZpySZ",
         donation = link,
         slashCommand = "/tstmenu",
         registerForRefresh = true,
