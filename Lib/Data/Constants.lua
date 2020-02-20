@@ -17,7 +17,7 @@ function Clock_TST.CONSTANTS()
         DISPLAY = "Clock - Tamriel Standard Time",
         VERSION = "2.0.0",
         SAVED_VERSION = 1,
-        SAVED_NAME = "Clock_Settings",
+        SAVED_NAME = "Clock_TST",
         Menu = {
             time = {
                 -- Possible replace: esoui/fontdefs/keyboard/defaultfontdefs_keyboard.xml
