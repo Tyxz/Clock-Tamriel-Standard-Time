@@ -206,6 +206,10 @@ cl.ln = {
         nResTime = "時間のリセット",
         tResTime = "カスタイマイズしたClockの同期点と長さをデフォルト値にリセットします。",
         wResTime = "時間に関するカスタマイズ内容はデフォルト値に置き換えられます！\nUIをリロードします！",
+        nDeprecated = "Outdated version ",
+        tDeprecated = "This is an outdated version of Clock.\n"
+                .. "Most likely it will still work for a very long time, but I will not update it anymore.\n"
+                .. "However, I wrote a whole new version from scratch, which is nicer and eats less power.",
     },
     vi = {
         dbTS = {

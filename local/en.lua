@@ -206,6 +206,10 @@ cl.ln = {
         nResTime = "Reset the Time",
         tResTime = "Resets your customized syncs and lengths of the Clock to the default values.",
         wResTime = "This will replace all your customizations to the Time with the default values!\nWill reload the UI!",
+        nDeprecated = "Outdated version ",
+        tDeprecated = "This is an outdated version of Clock.\n"
+                .. "Most likely it will still work for a very long time, but I will not update it anymore.\n"
+                .. "However, I wrote a whole new version from scratch, which is nicer and eats less power.",
     },
     vi = {
         dbTS = {

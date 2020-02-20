@@ -14,6 +14,9 @@ local panel = {
     displayName = "|cFFD700Clock|r - Tamriel Standard Time",
     author = "|c5175ea@Tyx|r",
     version = cl.VERSION,
+    website = "https://rantzen.net/clock-tamriel-standard-time/",
+    feedback = "https://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html#comments",
+    donation = "https://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html#donate",
     slashCommand = "/clsettings",
     registerForRefresh = true,
     registerForDefaults = true,
@@ -650,13 +653,24 @@ function ui.InitSettings()
     loc = cl.ln.gui -- Localization table with the current selected language
     
     LAM:RegisterAddonPanel("ClockSettings", panel)
+    local link = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/tree/feature/2020"
 
     local data = {
-        [1] = AddToggle(),
-        [2] = AddLook(),
-        [3] = AddDay(),
-        [4] = AddMoon(),
-        [5] = AddReset(),
+        {
+            type = "description",
+            title = loc.nDeprecated,
+            text = loc.tDeprecated
+        },
+        {
+            type = "button",
+            name = "Clock 2.0",
+            func = function() RequestOpenUnsafeURL(link) end
+        },
+        AddToggle(),
+        AddLook(),
+        AddDay(),
+        AddMoon(),
+        AddReset(),
     }
     LAM:RegisterOptionControls("ClockSettings", data)
 end

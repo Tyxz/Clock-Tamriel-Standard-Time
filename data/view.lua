@@ -14,19 +14,19 @@ vi.format = {
 }
 
 vi.styles = {
-    normal = "FONT_STYLE_NORMAL",
-    outline = "FONT_STYLE_OUTLINE",
-    thick_outtline = "FONT_STYLE_OUTLINE_THICK",
-    shadow = "FONT_STYLE_SHADOW",
-    thick_shadow = "FONT_STYLE_SOFT_SHADOW_THICK",
-    thin_shadow = "FONT_STYLE_SOFT_SHADOW_THIN",
+    normal = "normal",
+    outline = "outline",
+    thick_outtline = "thick-outtline",
+    shadow = "shadow",
+    thick_shadow = "soft-shadow-thick",
+    thin_shadow = "soft-shadow-thin",
 }
 
 vi.moons = {
-    full = [[Clock\img\fullmoon.dds]],
-    new = [[Clock\img\newmoon.dds]],
-    waning = [[Clock\img\waningmoon.dds]],
-    waxing = [[Clock\img\waxingmoon.dds]],
+    full = [[Clock\\img\\fullmoon.dds]],
+    new = [[Clock\\img\\newmoon.dds]],
+    waning = [[Clock\\img\\waningmoon.dds]],
+    waxing = [[Clock\\img\\waxingmoon.dds]],
 }
 
 ------------------
@@ -108,7 +108,14 @@ function vi.ParseFormat(year, month, day, hour, minute, second, isLore)
         if cl.st.ShowLoreDate() or cl.st.ShowFLDate() then
             year = locL.year .. year
             monthName = locL.months[month]
-            dayName = locL.week[(day % 7) + 1]
+            local wd = (day % 7) + 1
+            if cl.st.ShowFLDate() then
+                local dat = GetDate()
+                year = tonumber(string.sub(dat, 1, 4))
+                yearShort = year - 2000
+                wd = cl.tm.GetRealWeekDay(day, month, yearShort)
+            end
+            dayName = locL.week[wd]
         end
     else
         if not cl.st.ShowDate() and not cl.st.ShowRT() then
@@ -289,13 +296,12 @@ function vi.UpdateMoon()
     local hms = cl.tm.ChangeSToHMS(t)
 
     local size = cl.st.GetMoonLook("size")
-    local textSize = cl.st.GetLook("size")
     local storedOffsetY = cl.st.GetMoonLook("offsetY");
 
     local offsetX = -0.66 * size
     local offsetY = -storedOffsetY * 0.01 * size
     if not (cl.st.ShowRT() or cl.st.ShowDate()) then
-        local tx, ty = ClockUITime:GetDimensions();
+        local _, ty = ClockUITime:GetDimensions();
         offsetY = offsetY - ty * 0.25
     end
     vi.moontexture:SetTexture(vi.moons[moon])
@@ -342,19 +348,6 @@ end
 --------------------
 -- Print Clock
 --------------------
-local function IsMenuHidden()
-    -- Menu
-    -- local isProgressHidden = ZO_PlayerProgressBar:IsHidden() nice solution but conflicts with other mods
-    local isWorldMapHidden = ZO_WorldMap:IsHidden()
-    local isPlayerInventoryHidden = ZO_PlayerInventory:IsHidden()
-    local isCraftingHidden = ZO_CraftingResultsTopLevel:IsHidden()
-    local isInteractWindowHidden = ZO_InteractWindow:IsHidden()
-    local isGameMenuHidden = ZO_GameMenu:IsHidden()
-    local isGameMenuIGHidden = ZO_GameMenu_InGame:IsHidden()
-
-    return isWorldMapHidden and isPlayerInventoryHidden
-            and isCraftingHidden and isInteractWindowHidden
-end
 
 function vi.UpdateClock()
     vi.UpdateBackground()
@@ -417,7 +410,10 @@ function vi.PrintClock()
     if cl.st.ShowLoreDate() then
         year, month, day = cl.tm.GetLoreDate()
     elseif cl.st.ShowFLDate() then
-        year, month, day = cl.tm.GetFakeLoreDate()
+        local dat = GetDate()
+        month, day = tonumber(string.sub(dat, 5, 6)), tonumber(string.sub(dat, 7, 8))
+        year, _, _ = cl.tm.GetLoreDate()
+
     end
 
     hour, minute, second = tst[1], tst[2], tst[3]
@@ -461,14 +457,14 @@ function vi.PrintClock()
 end
 
 function vi.HideBackground(value)
-    local value = not value
-    vi.background:SetHidden(value)
+    local v = not value
+    vi.background:SetHidden(v)
 end
 
 function vi.HideMoon(value)
-    local value = not value
-    vi.moontexture:SetHidden(value)
-    vi.moonlabel:SetHidden(value)
+    local v = not value
+    vi.moontexture:SetHidden(v)
+    vi.moonlabel:SetHidden(v)
 end
 
 function vi.InitMoon()
@@ -483,8 +479,8 @@ function vi.InitMoon()
 end
 
 function vi.HideClock(value)
-    local value = not value
-    ClockUITime:SetHidden(value)
+    local v = not value
+    ClockUITime:SetHidden(v)
 end
 
 function vi.InitClock()
@@ -501,17 +497,18 @@ function vi.InitClock()
 		vi.background = WINDOW_MANAGER:CreateControl("cl_background", ClockUITime, CT_TEXTURE)
 	end
 
-    -- Thanks Garkin for the method
-    CALLBACK_MANAGER:RegisterCallback("LAM-PanelControlsCreated",
+    CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened",
         function(panel)
             if panel == ClockSettings then
-				if cl.st.AutoHide() then
-					GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT)
-				end
-                ZO_PreHookHandler(ClockSettings, "OnShow", function() GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT) end)
-                ZO_PreHookHandler(ClockSettings, "OnHide", function() GAME_MENU_SCENE:RemoveFragment(CLOCKUI_SCENE_FRAGMENT) end)
+                GAME_MENU_SCENE:AddFragment(CLOCKUI_SCENE_FRAGMENT)
             end
         end)
+    CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed",
+            function(panel)
+                if panel == ClockSettings then
+                    GAME_MENU_SCENE:RemoveFragment(CLOCKUI_SCENE_FRAGMENT)
+                end
+            end)
     CLOCKUI_SCENE_FRAGMENT = ZO_HUDFadeSceneFragment:New(ClockUI)
 
     vi.UpdateClock()

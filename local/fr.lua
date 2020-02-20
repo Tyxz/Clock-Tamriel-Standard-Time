@@ -173,7 +173,11 @@ cl.ln = {
         nResTime = "Réinitialiser le temps",
         tResTime = "Remet vos synchronisations personnalisées et des longueurs de l'horloge aux valeurs par défaut.",
         wResTime = "Cela remplacera toutes vos personnalisations à l'heure avec les valeurs par défaut!\nRechargera l'interface utilisateur!",
-        sJap = "Afficher midngiht comme 0"
+        sJap = "Afficher midngiht comme 0",
+        nDeprecated = "Outdated version ",
+        tDeprecated = "This is an outdated version of Clock.\n"
+                .. "Most likely it will still work for a very long time, but I will not update it anymore.\n"
+                .. "However, I wrote a whole new version from scratch, which is nicer and eats less power.",
     },
     vi = {
         dbTS = {

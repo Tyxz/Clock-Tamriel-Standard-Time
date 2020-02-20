@@ -208,6 +208,10 @@ cl.ln = {
         nResTime = "Cбpocить вpeмя",
         tResTime = "Cбpocить вaши нacтpoйки cинxpoнизaции идлитeльнocти чacoв к знaчeниям пo умoлчaнию.",
         wResTime = "Этo cбpocит вce вaши нacтpoйки вpeмeни к знaчeниям пo умoлчaнию!\nПepeзaгpузит UI!",
+        nDeprecated = "Outdated version ",
+        tDeprecated = "This is an outdated version of Clock.\n"
+                .. "Most likely it will still work for a very long time, but I will not update it anymore.\n"
+                .. "However, I wrote a whole new version from scratch, which is nicer and eats less power.",
     },
     vi = {
         dbTS = {

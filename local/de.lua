@@ -185,6 +185,10 @@ cl.ln = {
         nResTime = "Setze die Zeit zurück",
         tResTime = "Setzt deine Anpassungen an der Synchronisation und der Längen von der Clock auf die Anfangswerte zurück.",
         wResTime = "Dies wird alle von dir gemachten Anpassungen an der Zeit auf die Anfangswerte zurücksetzen!\nWird die UI neuladen!",
+        nDeprecated = "Veraltete Version",
+        tDeprecated = "Dies ist eine veraltete Version von Clock.\n"
+                .. "Sehr wahrscheinlich wird sie noch für sehr lange funktionieren, aber ich werde sie nicht mehr updaten.\n"
+                .. "Ich habe jedoch eine ganz neue Version von grund auf neu geschrieben, welche schöner ist und weniger Leistung frisst.",
     },
     vi = {
         dbTS = {

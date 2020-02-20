@@ -33,8 +33,8 @@ function tm.ChangeSToHMS(s)
 end
 
 function tm.ChangeHMSToS(h, m, s)
-    local s = h * 3600 + m * 60 + s
-    return s
+    local sec = h * 3600 + m * 60 + s
+    return sec
 end
 
 ------------------
@@ -167,18 +167,6 @@ function tm.GetLoreDate()
     local day = math.ceil(tSinceStart / length.day)
 
     return year, month, day
-end
-
-function tm.GetFakeLoreDate()
-
-    local date = GetDate()
-    local year, month = string.sub(date, 1, 4), string.sub(date, 5, 6)
-
-    local yearStart = 582
-    year = tonumber(year) - 2014 + yearStart
-    local _, _, day = tm.GetLoreDate()
-
-    return year, tonumber(month), day
 end
 
 local tmpWD = {
