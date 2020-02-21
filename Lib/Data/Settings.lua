@@ -682,17 +682,23 @@ end
 
 --- Resets the attributes table to the default values
 function Settings:ResetAttributes()
-    self.attributes = Clock_TST.CONSTANTS().Settings.attributes.DEFAULTS
+    for k, v in pairs(Clock_TST.CONSTANTS().Settings.attributes.DEFAULTS) do
+        self.attributes[k] = v
+    end
 end
 
 --- Resets the booleans table to the default values
 function Settings:ResetBooleans()
-    self.booleans = Clock_TST.CONSTANTS().Settings.booleans.DEFAULTS
+    for k, v in pairs(Clock_TST.CONSTANTS().Settings.booleans.DEFAULTS) do
+        self.booleans[k] = v
+    end
 end
 
 --- Resets the styles table to the default values
 function Settings:ResetStyles()
-    self.styles = Clock_TST.CONSTANTS().Settings.styles.DEFAULTS
+    for k, v in pairs(Clock_TST.CONSTANTS().Settings.styles.DEFAULTS) do
+        self.styles[k] = v
+    end
 end
 
 --- Resets the self table to the default values
