@@ -113,12 +113,12 @@ function Clock_TST.CONSTANTS()
                 },
                 moon = {
                     ["Brush"] = {
-                        path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Background\\Brush\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Background\\Splash\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },

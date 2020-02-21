@@ -509,7 +509,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetTimeBackgroundStrength()
                     end,
@@ -669,7 +669,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetMoonBackgroundStrength()
                     end,
@@ -687,7 +687,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetMoonAlpha()
                     end,
