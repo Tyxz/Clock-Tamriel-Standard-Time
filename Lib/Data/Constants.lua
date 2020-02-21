@@ -17,7 +17,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.0.0-beta1",
+        VERSION = "2.0.1",
         SAVED_VERSION = 1,
         SAVED_NAME = name .. "_Settings",
         Menu = {
