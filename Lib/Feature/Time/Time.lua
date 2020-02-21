@@ -256,12 +256,12 @@ end
 --- Create the values for the date to be exchanged with their respective chars
 --@param loreDate is the lore date object with { day = d, weekDay = w, month = m, year = y }
 function Time:CreateDateReplacements(loreDate)
-    local realDateString = GetDateStringFromTimestamp(GetTimeStamp())
-    local rd, rm, ry = realDateString:match("(%d+).(%d+).(%d+)")
+    local realDateString = tostring(GetDate())
+    local ry, rm, rd = realDateString:match("(%d%d%d%d)(%d%d)(%d%d)")
     rd, rm, ry = tonumber(rd), tonumber(rm), tonumber(ry)
     local rw = LibClockTST.GetWeekDay({ year = ry, month = rm, day = rd })
     self.replacement.date.real = {
-        x = realDateString,
+        x = GetDateStringFromTimestamp(GetTimeStamp()),
         A = i18n.date.real.week[rw],
         a = i18n.date.real.week[rw]:sub(1, 3),
         B = i18n.date.real.months[rm],
@@ -269,8 +269,8 @@ function Time:CreateDateReplacements(loreDate)
         d = zo_strformat("<<i:1>>", AddZero(rd)),
         m = AddZero(rm),
         w = rw,
-        Y = "20" .. ry,
-        y = ry
+        Y = ry,
+        y = ry - 2000
     }
 
     if settings:GetTimeHasFakeLoreDate() then
