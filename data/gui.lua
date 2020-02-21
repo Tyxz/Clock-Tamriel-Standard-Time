@@ -653,7 +653,7 @@ function ui.InitSettings()
     loc = cl.ln.gui -- Localization table with the current selected language
     
     LAM:RegisterAddonPanel("ClockSettings", panel)
-    local link = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/tree/feature/2020"
+    local link = "https://www.esoui.com/downloads/info2536-Clock-TamrielStandardTime2.0.html"
 
     local data = {
         {
