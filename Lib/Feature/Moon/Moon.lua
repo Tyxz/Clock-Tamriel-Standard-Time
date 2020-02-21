@@ -25,7 +25,7 @@ function Moon:UpdatePositions()
         local anchor = atr.anchor
         control:ClearAnchors()
         control:SetAnchor(
-                anchor.point, anchor.relativeTo, anchor.relativePoint,
+                anchor.point, _G[anchor.relativeTo], anchor.relativePoint,
                 anchor.offsetX, anchor.offsetY
         )
         control:SetDimensions(atr.dimension.width, atr.dimension.height)
@@ -320,6 +320,17 @@ function Moon:New(...)
     return container
 end
 
+--- function to reload all values from the settings
+function Moon:Setup()
+    self:SetupTooltip()
+    self:SetupMovement()
+    self:SetupScale()
+
+    self:UpdatePositions()
+    self:UpdateVisibility()
+    self:UpdateMouse()
+end
+
 -- ----------------
 -- Start
 -- ----------------
@@ -331,12 +342,7 @@ local function OnAddOnLoaded(_, name)
     if name == const.NAME then
         settings = Clock_TST.settings
         local moon = Moon:New(Clock_TST_Moon)
-        moon:UpdatePositions()
-        moon:UpdateVisibility()
-        moon:UpdateMouse()
-        moon:SetupTooltip()
-        moon:SetupMovement()
-        moon:SetupScale()
+        moon:Setup()
         Clock_TST.moon = moon
         Clock_TST_Moon:UnregisterForEvent(EVENT_ADD_ON_LOADED)
     end

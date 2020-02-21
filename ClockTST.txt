@@ -17,7 +17,7 @@
 ## Author: |c0080ffTyx|r
 ## Version 2.0.0
 ## APIVersion: 100029 100030
-## SavedVariables: Clock_Settings
+## SavedVariables: ClockTST_Settings
 ## DependsOn: LibClockTST
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: LibFeedback

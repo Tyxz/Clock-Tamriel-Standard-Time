@@ -25,7 +25,7 @@ function Time:UpdatePositions()
         local anchor = atr.anchor
         control:ClearAnchors()
         control:SetAnchor(
-                anchor.point, anchor.relativeTo, anchor.relativePoint,
+                anchor.point, _G[anchor.relativeTo], anchor.relativePoint,
                 anchor.offsetX, anchor.offsetY
         )
         control:SetDimensions(atr.dimension.width, atr.dimension.height)
@@ -93,9 +93,9 @@ function Time:UpdateSize()
     local length = Clock_TST.GetLargestLine(self.label:GetText())
     local lines = settings:GetTimeLineCount()
 
-    local function CreateDimension(dimension, baseDimension, offsetX)
-        dimension.height = size / baseSize * math.max(1, lines * 0.66) * baseDimension.height
-        dimension.width = length / baseLength * size / baseSize * baseDimension.width + offsetX
+    local function CreateDimension(dimension, baseDimension, offset)
+        dimension.height = size / baseSize * math.max(1, lines * 0.75) * baseDimension.height + offset.y
+        dimension.width = length / baseLength * size / baseSize * baseDimension.width + offset.x
     end
 
     local function CreateOffset(x, y, width, height, dimension)
@@ -476,6 +476,19 @@ function Time:New(...)
     return container
 end
 
+--- function to reload all values from the settings
+function Time:Setup()
+    self:SetupTooltip()
+    self:SetupMovement()
+    self:SetupScale()
+
+    self:UpdatePositions()
+    self:UpdateVisibility()
+    self:UpdateMouse()
+    self:UpdateStyle()
+    self:UpdateBackground()
+end
+
 -- ----------------
 -- Start
 -- ----------------
@@ -487,14 +500,7 @@ local function OnAddOnLoaded(_, name)
     if name == const.NAME then
         local time = Time:New(Clock_TST_Time)
         settings = Clock_TST.settings
-        time:UpdatePositions()
-        time:UpdateVisibility()
-        time:UpdateMouse()
-        time:SetupTooltip()
-        time:SetupMovement()
-        time:SetupScale()
-        time:UpdateStyle()
-        time:UpdateBackground()
+        time:Setup()
         Clock_TST.time = time
         Clock_TST_Time:UnregisterForEvent(EVENT_ADD_ON_LOADED)
     end

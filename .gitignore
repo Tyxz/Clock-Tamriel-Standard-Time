@@ -5,7 +5,7 @@
 #VS Code
 /.vscode
 #Coverage
-luacov.*
+*.out
 
 #Custom
 */[Pp]rivate

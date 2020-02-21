@@ -19,7 +19,7 @@ function Clock_TST.CONSTANTS()
         AUTHOR = "@Tyx",
         VERSION = "2.0.0-beta1",
         SAVED_VERSION = 1,
-        SAVED_NAME = name,
+        SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
                 -- Possible replace: esoui/fontdefs/keyboard/defaultfontdefs_keyboard.xml
@@ -113,12 +113,12 @@ function Clock_TST.CONSTANTS()
                 },
                 moon = {
                     ["Brush"] = {
-                        path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Background\\Brush\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
                     ["Splash"] = {
-                        path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
+                        path = name .. "\\Asset\\Texture\\Moon\\Background\\Splash\\",
                         background = "background.dds",
                         hover = "hover.dds",
                     },
@@ -215,7 +215,10 @@ function Clock_TST.CONSTANTS()
                     time = {
                         background = "Splash",
                         backgroundStrength = .5,
-                        backgroundOffset = 0,
+                        backgroundOffset = {
+                            x = 0,
+                            y = 0,
+                        },
                         format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
                         colour = {
@@ -246,7 +249,7 @@ function Clock_TST.CONSTANTS()
                     time = {
                         anchor = {
                             point = 3, -- TOPLEFT
-                            relativeTo = GuiRoot,
+                            relativeTo = "GuiRoot",
                             relativePoint = nil,
                             offsetX = 90,
                             offsetY = 30,
@@ -260,7 +263,7 @@ function Clock_TST.CONSTANTS()
                         scale = 0.4,
                         anchor = {
                             point = 3, -- TOPLEFT
-                            relativeTo = GuiRoot,
+                            relativeTo = "GuiRoot",
                             relativePoint = nil,
                             offsetX = 34,
                             offsetY = 20,
@@ -272,7 +275,7 @@ function Clock_TST.CONSTANTS()
                         masser = {
                             anchor = {
                                 point = 3, -- TOPLEFT
-                                relativeTo = Clock_TST_Moon,
+                                relativeTo = "Clock_TST_Moon",
                                 relativePoint = 3, -- TOPLEFT
                                 offsetX = 0,
                                 offsetY = 0,
@@ -285,7 +288,7 @@ function Clock_TST.CONSTANTS()
                         secunda = {
                             anchor = {
                                 point = 12, -- BOTTOMRIGHT
-                                relativeTo = Clock_TST_Moon,
+                                relativeTo = "Clock_TST_Moon",
                                 relativePoint = 12, -- BOTTOMRIGHT
                                 offsetX = 0,
                                 offsetY = 0,

@@ -32,8 +32,8 @@ local function SetupMenu()
         registerForDefaults = true,
         resetFunc = function()
             settings:Reset()
-            time:RegisterForUpdates()
-            moon:RegisterForUpdates()
+            time:Setup()
+            moon:Setup()
         end,
     }
     local LAM = LibAddonMenu2
@@ -509,7 +509,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetTimeBackgroundStrength()
                     end,
@@ -529,14 +529,41 @@ local function SetupMenu()
                     max = 500,
                     step = 10,
                     getFunc = function()
-                        return settings:GetTimeBackgroundOffset()
+                        return settings:GetTimeBackgroundOffset().x
                     end,
                     setFunc = function(value)
-                        settings:SetTimeBackgroundOffset(value)
+                        local y = settings:GetTimeBackgroundOffset().y
+                        settings:SetTimeBackgroundOffset({
+                            x = value,
+                            y = y
+                        })
                         time:ResetReplacement()
                     end,
-                    name = i18n.styles.nBackgroundOffset,
-                    tooltip = i18n.styles.tBackgroundOffset,
+                    name = i18n.styles.nBackgroundOffsetX,
+                    tooltip = i18n.styles.tBackgroundOffsetX,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    min = -500,
+                    max = 500,
+                    step = 10,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundOffset().y
+                    end,
+                    setFunc = function(value)
+                        local x = settings:GetTimeBackgroundOffset().x
+                        settings:SetTimeBackgroundOffset({
+                            x = x,
+                            y = value,
+                        })
+                        time:ResetReplacement()
+                    end,
+                    name = i18n.styles.nBackgroundOffsetY,
+                    tooltip = i18n.styles.tBackgroundOffsetY,
                     width = "half",
                 },
                 {
@@ -581,7 +608,7 @@ local function SetupMenu()
                         return not settings:GetMoonIsVisible()
                     end,
                     min = settings:GetMoonMasserAttributes().dimension.height,
-                    max = settings:GetMoonMasserAttributes().dimension.height * 2,
+                    max = settings:GetMoonMasserAttributes().dimension.height * 5,
                     step = 5,
                     getFunc = function()
                         return settings:GetMoonDimension().height
@@ -603,7 +630,7 @@ local function SetupMenu()
                         return not settings:GetMoonIsVisible()
                     end,
                     min = settings:GetMoonMasserAttributes().dimension.width,
-                    max = settings:GetMoonMasserAttributes().dimension.width * 2,
+                    max = settings:GetMoonMasserAttributes().dimension.width * 5,
                     step = 5,
                     getFunc = function()
                         return settings:GetMoonDimension().width
@@ -642,7 +669,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetMoonBackgroundStrength()
                     end,
@@ -660,7 +687,7 @@ local function SetupMenu()
                     end,
                     min = 0,
                     max = 1,
-                    step = .1,
+                    step = .01,
                     getFunc = function()
                         return settings:GetMoonAlpha()
                     end,
