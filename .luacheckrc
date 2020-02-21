@@ -17,6 +17,7 @@ stds.eso = {
         "GAME_MENU_SCENE",
         "GetCVar",
         "GetControl",
+        "GetDate",
         "GetDateStringFromTimestamp",
         "GetSecondsSinceMidnight",
         "GetTST",

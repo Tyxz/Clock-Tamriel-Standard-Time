@@ -47,7 +47,7 @@ function Clock_TST.I18N()
                 nLink = "Relier les mouvements du lettrage avec la lune",
             },
             styles = {
-                nSub = "Aussehen Einstellungen", -- look
+                nSub = "Paramètres d'apparence", -- look
                 nFormat = "Rédigez votre date et votre heure dans un format qui vous est propre",
                 tFormat = "Vous pouvez écrire un symbole (# pour l'lore, % pour la réalité) suivi d'une lettre :",
                 dFormat = "%A\t\t nom complet du jour de la semaine [Vendredi]\n"
@@ -65,13 +65,13 @@ function Clock_TST.I18N()
                         .. "%X\t\t Heure [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t année complète [2020]\n"
                         .. "%y\t\t année raccourcie [20]",
-                nColor = "Farbe", -- nColPick
-                tColor = "Verändere die Farbe der Clock.", -- tColPick
-                nFont = "Schriftart", -- nFont
-                tFont = "Verändere die Schriftart der Clock.", -- tFont
-                nStyle = "Design", -- nStyle
-                tStyle = "Verändere die Design der Clock.", -- tStyle
-                nSize = "Größe", -- nSize
+                nColor = "Couleur", -- nColPick
+                tColor = "Changez la couleur de l'horloge.", -- tColPick
+                nFont = "Police", -- nFont
+                tFont = "Changez la police de l'horloge.", -- tFont
+                nStyle = "Conception", -- nStyle
+                tStyle = "Changer la conception de l'horloge.", -- tStyle
+                nSize = "Taille", -- nSize
                 tSize = "Modifier la taille de la police de l'horloge.",
                 nBackground = "Texture du fond",
                 nBackgroundStrength = "La force de la base",
