@@ -4,6 +4,10 @@
 *.iml
 #VS Code
 /.vscode
+#Coverage
+*.out
 
 #Custom
 */[Pp]rivate
+/Asset/Texture/Moon/fadingsignal/
+/dev/skygazer_moons/

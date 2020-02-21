@@ -1,4 +1,4 @@
-name: test
+name: Check & Busted
 
 on: [push]
 
@@ -7,17 +7,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@master
 
-    - uses: leafo/gh-actions-lua@v5
-      
-    - uses: leafo/gh-actions-luarocks@v2
+      - uses: leafo/gh-actions-lua@v5
 
-    - name: build
-      run: |
-        luarocks install busted
-        luarocks make
+      - uses: leafo/gh-actions-luarocks@v2
 
-    - name: test
-      run: |
-        busted -o utfTerminal test/LibClockTSTTest.lua
+      - name: build
+        run: luarocks install busted
+          && luarocks install luacheck
+          && luarocks install luacov
+          && luarocks install luacov-coveralls
+
+      - name: luacheck
+        run: luacheck .
+
+      - name: busted
+        run: busted -R Test/Lib --verbose --coverage
