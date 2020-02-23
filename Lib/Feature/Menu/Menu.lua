@@ -61,6 +61,7 @@ local function SetupMenu()
                     setFunc = function(value)
                         settings:SetTimeIsVisible(value)
                         time:UpdateVisibility()
+                        time:UpdateMouse()
                     end,
                     name = i18n.booleans.nTimeVisible,
                 },
@@ -168,21 +169,6 @@ local function SetupMenu()
                 {
                     type = "checkbox",
                     getFunc = function()
-                        return settings:GetTimeHasFakeLoreDate()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeHasFakeLoreDate(value)
-                        time:RegisterForUpdates()
-                    end,
-                    disabled = function()
-                        return not settings:GetTimeIsVisible()
-                    end,
-                    name = i18n.booleans.nFake,
-                    tooltip = i18n.booleans.tFake,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
                         return settings:GetTimeScaleWhenHover()
                     end,
                     setFunc = function(value)
@@ -218,6 +204,7 @@ local function SetupMenu()
                     setFunc = function(value)
                         settings:SetMoonIsVisible(value)
                         moon:UpdateVisibility()
+                        moon:UpdateMouse()
                     end,
                     name = i18n.booleans.nMoonVisible,
                 },
@@ -409,6 +396,8 @@ local function SetupMenu()
                         settings:SetTimeHasLoreDate(loreCount ~= 0)
                         local _, realCount = string.gsub(value, "%%", "")
                         settings:SetTimeHasRealDate(realCount ~= 0)
+                        local _, fakeCount = string.gsub(value, "$", "")
+                        settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
                         settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
                         time:ResetReplacement()
                     end,
@@ -508,13 +497,13 @@ local function SetupMenu()
                         return not settings:GetTimeIsVisible()
                     end,
                     min = 0,
-                    max = 1,
-                    step = .01,
+                    max = 100,
+                    step = 1,
                     getFunc = function()
-                        return settings:GetTimeBackgroundStrength()
+                        return settings:GetTimeBackgroundStrength() * 100
                     end,
                     setFunc = function(value)
-                        settings:SetTimeBackgroundStrength(value)
+                        settings:SetTimeBackgroundStrength(value * .01)
                         time:UpdateBackground()
                     end,
                     name = i18n.styles.nBackgroundStrength,
@@ -668,13 +657,13 @@ local function SetupMenu()
                         return not settings:GetMoonIsVisible()
                     end,
                     min = 0,
-                    max = 1,
-                    step = .01,
+                    max = 100,
+                    step = 1,
                     getFunc = function()
-                        return settings:GetMoonBackgroundStrength()
+                        return settings:GetMoonBackgroundStrength() * 100
                     end,
                     setFunc = function(value)
-                        settings:SetMoonBackgroundStrength(value)
+                        settings:SetMoonBackgroundStrength(value * .01)
                         moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nBackgroundStrength,
@@ -686,13 +675,31 @@ local function SetupMenu()
                         return not settings:GetMoonIsVisible()
                     end,
                     min = 0,
-                    max = 1,
-                    step = .01,
+                    max = 200,
+                    step = 1,
                     getFunc = function()
-                        return settings:GetMoonAlpha()
+                        return settings:GetMoonScale() * 100
                     end,
                     setFunc = function(value)
-                        settings:SetMoonAlpha(value)
+                        settings:SetMoonScale(value * .01)
+                        moon:SetupScale()
+                    end,
+                    name = i18n.styles.nScale,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 100,
+                    step = 1,
+                    getFunc = function()
+                        return settings:GetMoonAlpha() * 100
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonAlpha(value * .01)
                         moon:RegisterForUpdates()
                     end,
                     name = i18n.styles.nAlpha,

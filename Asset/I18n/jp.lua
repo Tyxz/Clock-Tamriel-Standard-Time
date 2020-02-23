@@ -9,6 +9,11 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        bindings = {
+            nToggle = "Toggle visibility",
+            nToggleTime = "Toggle date visibility",
+            nToggleMoon = "Toggle moon visibility"
+        },
         error = {
             library = "Could not connect to the LibClockTST library."
         },
@@ -82,6 +87,7 @@ function Clock_TST.I18N()
                 nSecunda = "Secunda's texture",
                 nMoonWidth = "Width of the moon distance",
                 nMoonHeight = "Height of the moon distance",
+                nScale = "Scaling",
                 nAlpha = "Visibility",
                 nScaleFactor = "Scale factor",
                 tScaleFactor = "How much the item should increase when hovering."

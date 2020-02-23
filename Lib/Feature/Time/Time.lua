@@ -52,7 +52,6 @@ function Time:UpdateVisibility()
         if settings:GetHideInFight() then
             EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                 Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-                d(inCombat)
             end)
         elseif settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
@@ -69,7 +68,7 @@ end
 --- Update if the object is interactable with the mouse
 function Time:UpdateMouse()
     self.control:SetMovable(settings:GetTimeIsMovable())
-    self.control:SetMouseEnabled(settings:GetTimeIsMouseEnabled())
+    self.control:SetMouseEnabled(settings:GetTimeIsMouseEnabled() and settings:GetTimeIsVisible())
 end
 
 --- Update the background texture and alpha value
@@ -156,6 +155,20 @@ function Time:UpdateLabel()
         format = format:gsub("%%M", rTime.M)
         format = format:gsub("%%S", rTime.S)
         format = format:gsub("%%p", rTime.p)
+    end
+
+    if settings:GetTimeHasFakeLoreDate() then
+        local lDate = self.replacement.date.fake
+        format = format:gsub("$x", lDate.x)
+        format = format:gsub("$A", lDate.A)
+        format = format:gsub("$a", lDate.a)
+        format = format:gsub("$B", lDate.B)
+        format = format:gsub("$b", lDate.b)
+        format = format:gsub("$d", lDate.d)
+        format = format:gsub("$m", lDate.m)
+        format = format:gsub("$w", lDate.w)
+        format = format:gsub("$Y", lDate.Y)
+        format = format:gsub("$y", lDate.y)
     end
 
     if settings:GetTimeHasLoreDate() or settings:GetTimeHasFakeLoreDate() then
@@ -271,41 +284,39 @@ function Time:CreateDateReplacements(loreDate)
         w = rw,
         Y = ry,
         y = ry - 2000
+}
+
+    self.replacement.date.fake = {
+        x = zo_strformat(
+                "<<1>>.<<2>>.<<3>><<4>>",
+                rd, rm, i18n.date.lore.year, loreDate.year
+        ),
+        A = i18n.date.lore.week[rw],
+        a = i18n.date.lore.week[rw]:sub(1, 3),
+        B = i18n.date.lore.months[rm],
+        b = i18n.date.lore.months[rm]:sub(1, 3),
+        d = zo_strformat("<<i:1>>", AddZero(rd)),
+        m = AddZero(rm),
+        w = rw,
+        Y = i18n.date.lore.year .. loreDate.year,
+        y = loreDate.year
     }
 
-    if settings:GetTimeHasFakeLoreDate() then
-        self.replacement.date.lore = {
-            x = zo_strformat(
-                    "<<1>>.<<2>>.<<3>><<4>>",
-                    loreDate.day, loreDate.month, i18n.date.lore.year, loreDate.year
-            ),
-            A = i18n.date.lore.week[rw],
-            a = i18n.date.lore.week[rw]:sub(1, 3),
-            B = i18n.date.lore.months[rm],
-            b = i18n.date.lore.months[rm]:sub(1, 3),
-            d = zo_strformat("<<i:1>>", AddZero(rd)),
-            m = AddZero(rm),
-            w = rw,
-            Y = i18n.date.lore.year .. loreDate.year,
-            y = loreDate.year
-        }
-    else
-        self.replacement.date.lore = {
-            x = zo_strformat(
-                    "<<1>>.<<2>>.<<3>><<4>>",
-                    loreDate.day, loreDate.month, i18n.date.lore.year, loreDate.year
-            ),
-            A = i18n.date.lore.week[loreDate.weekDay],
-            a = i18n.date.lore.week[loreDate.weekDay]:sub(1, 3),
-            B = i18n.date.lore.months[loreDate.month],
-            b = i18n.date.lore.months[loreDate.month]:sub(1, 3),
-            d = zo_strformat("<<i:1>>", AddZero(loreDate.day)),
-            m = AddZero(loreDate.month),
-            w = loreDate.weekDay,
-            Y = i18n.date.lore.year .. loreDate.year,
-            y = loreDate.year
-        }
-    end
+    self.replacement.date.lore = {
+        x = zo_strformat(
+                "<<1>>.<<2>>.<<3>><<4>>",
+                loreDate.day, loreDate.month, i18n.date.lore.year, loreDate.year
+        ),
+        A = i18n.date.lore.week[loreDate.weekDay],
+        a = i18n.date.lore.week[loreDate.weekDay]:sub(1, 3),
+        B = i18n.date.lore.months[loreDate.month],
+        b = i18n.date.lore.months[loreDate.month]:sub(1, 3),
+        d = zo_strformat("<<i:1>>", AddZero(loreDate.day)),
+        m = AddZero(loreDate.month),
+        w = loreDate.weekDay,
+        Y = i18n.date.lore.year .. loreDate.year,
+        y = loreDate.year
+    }
 end
 
 --- Function to be given to the LibClockTST for the time and date updates
@@ -325,13 +336,13 @@ function Time:UpdateTime(time, date)
 end
 
 -- ----------------
--- Start
+-- Register
 -- ----------------
 
 --- Reset the previous saved replacements and mark the size as updated
 function Time:ResetReplacement()
     self.replacement = {
-        date = { real = {}, lore = {} },
+        date = { real = {}, lore = {}, fake = {} },
         time = { real = {}, lore = {} }
     }
     self.sizeHasUpdated = true
@@ -351,6 +362,10 @@ function Time.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscription(const.NAME)
 end
+
+-- ----------------
+-- Start
+-- ----------------
 
 --- Setup the tooltip to show when hovering over the label
 function Time:SetupTooltip()
@@ -469,13 +484,6 @@ function Time:SetupControls(control)
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- Create a new time object
-function Time:New(...)
-    local container = ZO_Object.New(self)
-    container:SetupControls(...)
-    return container
-end
-
 --- function to reload all values from the settings
 function Time:Setup()
     self:SetupTooltip()
@@ -492,6 +500,14 @@ end
 -- ----------------
 -- Start
 -- ----------------
+
+--- Create a new time object
+--@param ... control of the time object
+function Time:New(...)
+    local container = ZO_Object.New(self)
+    container:SetupControls(...)
+    return container
+end
 
 --- Initialize the Time
 --@param _ eventId doesn't matter

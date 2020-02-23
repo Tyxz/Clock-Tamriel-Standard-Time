@@ -55,7 +55,6 @@ function Moon:UpdateVisibility()
         if settings:GetHideInFight() then
             EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                 Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-                d(inCombat)
             end)
         elseif settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
@@ -72,13 +71,13 @@ end
 --- Update if mouse interactions are possible
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
-    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
+    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
 end
 
 --- Update the background texture
 function Moon:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-    local alpha = settings:GetMoonBackgroundStrength()
+    local alpha = settings:GetMoonBackgroundStrength() * settings:GetMoonAlpha()
     self.masser_background:SetTexture(texture.path .. texture.background)
     self.masser_background:SetColor(1, 1, 1, alpha)
     self.secunda_background:SetTexture(texture.path .. texture.background)
@@ -148,7 +147,7 @@ function Moon:UpdateMoon(moon)
 end
 
 -- ----------------
--- Start
+-- Register
 -- ----------------
 
 --- Register the moon updates with the LibClockTST
@@ -164,6 +163,10 @@ function Moon.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscriptionForMoon(const.NAME)
 end
+
+-- ----------------
+-- Start
+-- ----------------
 
 --- Setup a tooltip to be shown if hovering over the moon control
 function Moon:SetupTooltip()
@@ -313,13 +316,6 @@ function Moon:SetupControls(control)
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- Create a new Moon object
-function Moon:New(...)
-    local container = ZO_Object.New(self)
-    container:SetupControls(...)
-    return container
-end
-
 --- function to reload all values from the settings
 function Moon:Setup()
     self:SetupTooltip()
@@ -334,6 +330,14 @@ end
 -- ----------------
 -- Start
 -- ----------------
+
+--- Create a new Moon object
+--@param ... control of the moon object
+function Moon:New(...)
+    local container = ZO_Object.New(self)
+    container:SetupControls(...)
+    return container
+end
 
 --- Initialize the Moon
 --@param _ eventId doesn't matter

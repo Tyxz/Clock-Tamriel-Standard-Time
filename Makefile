@@ -24,6 +24,12 @@ global:
 	@make run
 
 run:
+	@make test
+	@make docs
+
+test:
 	$(LUAROCKS)luacheck . \
-	&& $(LUAROCKS)busted -R Test --verbose --coverage \
-	&& $(LUAROCKS)ldoc Lib -c ./config.ld
+	&& $(LUAROCKS)busted -R Test --verbose --coverage
+
+docs:
+	$(LUAROCKS)ldoc Lib -c ./config.ld
