@@ -111,6 +111,7 @@ function Clock_TST.I18N()
                     movable = "Est mobile",
                     link = "Lier le mouvement de la lune avec le temps",
                     open = "Ouvrir le menu des paramètres",
+                    scale = "Réinitialisation de la mise à l'échelle",
                 },
             },
             moon = {

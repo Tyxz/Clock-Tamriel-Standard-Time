@@ -236,6 +236,12 @@ function Moon:SetupMovement()
             end
         end
         ClearMenu()
+        local baseScale = const.Settings.attributes.DEFAULTS.moon.scale
+        local scalePercentage = math.floor(settings:GetMoonScale() * 100 / baseScale)
+        AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
+            settings:SetMoonScale(baseScale)
+            self:SetupScale()
+        end)
         Setup(settings:GetMoonIsMovable(), function(value)
             settings:SetMoonIsMovable(value)
             self:UpdateMouse()

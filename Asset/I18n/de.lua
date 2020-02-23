@@ -112,6 +112,7 @@ function Clock_TST.I18N()
                     movable = "Ist beweglich",
                     link = "Die Bewegung des Mondes mit der Zeit verknüpfen",
                     open = "Einstellungsmenü öffnen",
+                    scale = "Skalierung zurücksetzen",
                 },
             },
             moon = {

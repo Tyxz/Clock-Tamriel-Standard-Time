@@ -110,6 +110,7 @@ function Clock_TST.I18N()
                     movable = "Is movable",
                     link = "Link the movement of the moon to the time",
                     open = "Open settings menu",
+                    scale = "Reset scaling",
                 },
             },
             moon = {

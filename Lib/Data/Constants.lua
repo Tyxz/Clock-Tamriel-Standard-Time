@@ -49,6 +49,7 @@ function Clock_TST.CONSTANTS()
                     "Phase",
                     "Splash",
                     "Stroke",
+                    "EsoUI-Item"
                 },
             },
             moon = {
@@ -93,22 +94,27 @@ function Clock_TST.CONSTANTS()
                     ["Brush"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
                         background = "background.dds",
-                        hover = "hover.dds",
+                        hover = "hover.dds"
                     },
                     ["Phase"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Phase\\",
                         background = "background.dds",
-                        hover = "hover.dds",
+                        hover = "hover.dds"
                     },
                     ["Splash"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
                         background = "background.dds",
-                        hover = "hover.dds",
+                        hover = "hover.dds"
                     },
                     ["Stroke"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Stroke\\",
                         background = "background.dds",
-                        hover = "hover.dds",
+                        hover = "hover.dds"
+                    },
+                    ["EsoUI-Item"] = {
+                        path = "EsoUI\\Art\\",
+                        background = "Miscellaneous\\listItem_backdrop.dds",
+                        hover = "ActionBar\\actionBar_mouseOver.dds"
                     },
                 },
                 moon = {

@@ -430,6 +430,13 @@ function Time:SetupMovement()
             end
         end
         ClearMenu()
+        local baseSize = const.Settings.styles.DEFAULTS.time.size
+        local scalePercentage = math.floor(settings:GetTimeSize() * 100 / baseSize)
+        AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
+            settings:SetTimeSize(baseSize)
+            self.sizeHasUpdated = true
+            self:UpdateStyle()
+        end)
         Setup(settings:GetTimeIsMovable(), function(value)
             settings:SetTimeIsMovable(value)
             self:UpdateMouse()
