@@ -147,7 +147,7 @@ function Moon:UpdateMoon(moon)
 end
 
 -- ----------------
--- Start
+-- Register
 -- ----------------
 
 --- Register the moon updates with the LibClockTST
@@ -163,6 +163,10 @@ function Moon.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscriptionForMoon(const.NAME)
 end
+
+-- ----------------
+-- Start
+-- ----------------
 
 --- Setup a tooltip to be shown if hovering over the moon control
 function Moon:SetupTooltip()
@@ -312,13 +316,6 @@ function Moon:SetupControls(control)
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- Create a new Moon object
-function Moon:New(...)
-    local container = ZO_Object.New(self)
-    container:SetupControls(...)
-    return container
-end
-
 --- function to reload all values from the settings
 function Moon:Setup()
     self:SetupTooltip()
@@ -333,6 +330,14 @@ end
 -- ----------------
 -- Start
 -- ----------------
+
+--- Create a new Moon object
+--@param ... control of the moon object
+function Moon:New(...)
+    local container = ZO_Object.New(self)
+    container:SetupControls(...)
+    return container
+end
 
 --- Initialize the Moon
 --@param _ eventId doesn't matter

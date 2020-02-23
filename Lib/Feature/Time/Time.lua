@@ -336,7 +336,7 @@ function Time:UpdateTime(time, date)
 end
 
 -- ----------------
--- Start
+-- Register
 -- ----------------
 
 --- Reset the previous saved replacements and mark the size as updated
@@ -362,6 +362,10 @@ function Time.UnregisterForUpdates()
     local lib = LibClockTST:Instance()
     lib:CancelSubscription(const.NAME)
 end
+
+-- ----------------
+-- Start
+-- ----------------
 
 --- Setup the tooltip to show when hovering over the label
 function Time:SetupTooltip()
@@ -480,13 +484,6 @@ function Time:SetupControls(control)
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- Create a new time object
-function Time:New(...)
-    local container = ZO_Object.New(self)
-    container:SetupControls(...)
-    return container
-end
-
 --- function to reload all values from the settings
 function Time:Setup()
     self:SetupTooltip()
@@ -503,6 +500,14 @@ end
 -- ----------------
 -- Start
 -- ----------------
+
+--- Create a new time object
+--@param ... control of the time object
+function Time:New(...)
+    local container = ZO_Object.New(self)
+    container:SetupControls(...)
+    return container
+end
 
 --- Initialize the Time
 --@param _ eventId doesn't matter

@@ -40,6 +40,7 @@ describe("ZoMock", function()
             assert.stub(EVENT_MANAGER.UnregisterForEvent).was.called()
         end)
     end)
+
     describe("ZO_Object", function()
         it("should create a new object", function()
             local tObj1 = ZO_Object:New()
@@ -60,10 +61,13 @@ describe("ZoMock", function()
             assert.same(tTable, tResult)
         end)
     end)
-
+--[[
     describe("Clock_TST_Time", function()
         it("should inherit methods of EVENT_MANAGER", function()
-            d(_G.Clock_TST_Time)
+            local tSpy = spy.new(function() end)
+            Clock_TST_Time:RegisterForEvent(EVENT_ADD_ON_LOADED, tSpy)
+            assert.spy(tSpy).was.called()
         end)
     end)
+--]]
 end)

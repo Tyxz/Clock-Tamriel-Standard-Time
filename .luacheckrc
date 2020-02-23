@@ -32,6 +32,7 @@ stds.eso = {
         "LibAddonMenu2",
         "LibClockTST",
         "LibFeedback",
+        "SCENE_MANAGER",
         "SLASH_COMMANDS",
         "SetTooltipText",
         "ShowMenu",

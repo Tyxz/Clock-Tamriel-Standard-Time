@@ -31,6 +31,8 @@ end
 function _G.EVENT_MANAGER:UnregisterForUpdate(_)
 end
 
+_G.SCENE_MANAGER = {}
+
 _G.ZO_SavedVars = {}
 function _G.ZO_SavedVars:New(_, _, _, defaults)
     return defaults
@@ -77,5 +79,26 @@ end
 function Control:RegisterForEvent(eventID, func)
     EVENT_MANAGER:RegisterForEvent(nil, eventID, func)
 end
+function Control:SetHandler(_, func)
+    func(self)
+end
 
+function _G.GetControl(_, _)
+    return Control:New(EVENT_MANAGER)
+end
+
+_G.ZO_HUDFadeSceneFragment = {}
+function _G.ZO_HUDFadeSceneFragment:SetHiddenForReason(_, isHidden)
+    self.isHidden = isHidden
+end
+
+_G.SCENE_MANAGER = {}
+function _G.SCENE_MANAGER:AddFragment(_) end
+function _G.SCENE_MANAGER:RemoveFragment(_) end
+
+_G.HUD_SCENE = Control:New(SCENE_MANAGER)
+_G.HUD_UI_SCENE = Control:New(SCENE_MANAGER)
+_G.WORLD_MAP_SCENE = Control:New(SCENE_MANAGER)
+
+_G.Clock_TST_Moon = Control:New(EVENT_MANAGER)
 _G.Clock_TST_Time = Control:New(EVENT_MANAGER)
