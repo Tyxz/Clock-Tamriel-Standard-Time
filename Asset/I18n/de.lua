@@ -9,6 +9,11 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        bindings = {
+            nToggle = "Sichtbarkeit umschalten",
+            nToggleTime = "Sichtbarkeit des Datums umschalten",
+            nToggleMoon = "Sichtbarkeit des Mondes umschalten"
+        },
         error = {
             library = "Konnte nicht mit der LibClockTST Bibliothek verbinden."
         },
@@ -84,6 +89,7 @@ function Clock_TST.I18N()
                 nSecunda = "Die Textur von Secunda",
                 nMoonWidth = "Breite des Mondabstands",
                 nMoonHeight = "Höhe des Mondabstands",
+                nScale = "Skalierung",
                 nAlpha = "Sichtbarkeit",
                 nScaleFactor = "Skalierungsfaktor",
                 tScaleFactor = "Wie stark sich der Posten beim Hovern erhöhen sollte."

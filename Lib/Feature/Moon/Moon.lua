@@ -55,7 +55,6 @@ function Moon:UpdateVisibility()
         if settings:GetHideInFight() then
             EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                 Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-                d(inCombat)
             end)
         elseif settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
@@ -72,13 +71,13 @@ end
 --- Update if mouse interactions are possible
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
-    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
+    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
 end
 
 --- Update the background texture
 function Moon:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-    local alpha = settings:GetMoonBackgroundStrength()
+    local alpha = settings:GetMoonBackgroundStrength() * settings:GetMoonAlpha()
     self.masser_background:SetTexture(texture.path .. texture.background)
     self.masser_background:SetColor(1, 1, 1, alpha)
     self.secunda_background:SetTexture(texture.path .. texture.background)

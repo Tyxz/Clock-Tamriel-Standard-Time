@@ -9,6 +9,11 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        bindings = {
+            nToggle = "Basculer la visibilité",
+            nToggleTime = "Basculer la visibilité des dates",
+            nToggleMoon = "Basculer la visibilité de la lune"
+        },
         error = {
             library = "Impossible de se connecter à la bibliothèque LibClockTST."
         },
@@ -83,6 +88,7 @@ function Clock_TST.I18N()
                 nSecunda = "La texture de Secunda",
                 nMoonWidth = "Largeur de la lune distance",
                 nMoonHeight = "Distance de la hauteur de la lune",
+                nScale = "Mise à l'échelle",
                 nAlpha = "Visibilité",
                 nScaleFactor = "Facteur d'échelle",
                 tScaleFactor = "De combien le poste devrait augmenter avec le vol stationnaire."
