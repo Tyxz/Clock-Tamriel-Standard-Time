@@ -43,6 +43,16 @@ _G.ZO_Object = {}
 function _G.ZO_Object:Subclass()
     return setmetatable({}, { __index = self })
 end
+function _G.ZO_Object:New(template)
+    template = template or self
+
+    local newObject = setmetatable ({}, template)
+
+    local mt = getmetatable (newObject)
+    mt.__index = template
+
+    return newObject
+end
 
 _G.d = function(...)
     for i = 1, select('#', ...) do

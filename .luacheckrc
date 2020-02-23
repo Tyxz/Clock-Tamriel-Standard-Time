@@ -42,6 +42,7 @@ stds.eso = {
         "TOP",
         "WORLD_MAP_SCENE",
         "ZO_ColorDef",
+        "ZO_CreateStringId",
         "ZO_FormatTime",
         "ZO_HUDFadeSceneFragment",
         "ZO_HUDFadeSceneFragment",
