@@ -90,26 +90,21 @@ function Clock_TST.CONSTANTS()
             },
             BACKGROUNDS = {
                 time = {
-                    -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
                     ["Brush"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
                         background = "background.dds",
-                        hover = "hover.dds"
                     },
                     ["Phase"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Phase\\",
                         background = "background.dds",
-                        hover = "hover.dds"
                     },
                     ["Splash"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
                         background = "background.dds",
-                        hover = "hover.dds"
                     },
                     ["Stroke"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Stroke\\",
                         background = "background.dds",
-                        hover = "hover.dds"
                     },
                     ["EsoUI-Item"] = {
                         path = "EsoUI\\Art\\",
@@ -121,17 +116,14 @@ function Clock_TST.CONSTANTS()
                     ["Brush"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Brush\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Splash"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Splash\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Solid"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Solid\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                 },
             },
@@ -220,7 +212,18 @@ function Clock_TST.CONSTANTS()
                 DEFAULTS = {
                     time = {
                         background = "Splash",
-                        backgroundStrength = .5,
+                        backgroundColour = {
+                            r = 0,08235294117640,
+                            g = 0,08235294117640,
+                            b = 0,08235294117640,
+                            a = .5,
+                        },
+                        backgroundHoverColour = {
+                            r = 0,34509803921570,
+                            g = 0,64705882352940,
+                            b = 0,71764705882350,
+                            a = .66,
+                        },
                         backgroundOffset = {
                             x = 0,
                             y = 0,
@@ -239,7 +242,18 @@ function Clock_TST.CONSTANTS()
                     },
                     moon = {
                         background = "Solid",
-                        backgroundStrength = 0.5,
+                        backgroundColour = {
+                            r = 0.00000000000000,
+                            g = 0.00000000000000,
+                            b = 0,08235294117640,
+                            a = .5,
+                        },
+                        backgroundHoverColour = {
+                            r = 0,34509803921570,
+                            g = 0,64705882352940,
+                            b = 0,71764705882350,
+                            a = .66,
+                        },
                         masser = "Pale",
                         secunda = "Ghost",
                         alpha = 1.0,

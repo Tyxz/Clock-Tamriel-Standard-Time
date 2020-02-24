@@ -41,9 +41,6 @@ function Clock_TST.I18N()
                 nUSFormat = "12h Format", -- sFormat,
                 nJapanese = "Zeige Mitternacht als 0", --sJap
                 wAffect = "Dies betrifft nur ein benutzerdefiniertes Format, nicht #X oder %X.",
-                nFake = "Zeige falsches lore Datum", -- sFLDate
-                tFake = "Wird den Tag, den Monat und den Wochentag in Tamriel durch den echten ersetzen, "
-                        .. "aber mit Tamriel-Namen.",
                 nHoverScale = "Skalierung beim Hovern",
                 nHoverColour = "Hervorhebung beim Hovern",
                 nMoonVisible = "Zeige den Mond", -- sMoon
@@ -54,7 +51,7 @@ function Clock_TST.I18N()
             styles = {
                 nSub = "Aussehen Einstellungen", -- look
                 nFormat = "Schreibe dein eigenes Format der Zeit und des Datums",
-                tFormat = "Du kannst ein Symbol (# für Geschichte, % für Realität) "
+                tFormat = "Du kannst ein Symbol (# für Kunde, % für Realität und $ für falsche Kunde) "
                         .. "gefolgt von einem Buchstaben schreiben:",
                 dFormat = "%A\t\t voller Wochentagsname [Freitag]\n"
                         .. "%a\t\t für den abgekürzten [Fre]\n"
@@ -80,7 +77,8 @@ function Clock_TST.I18N()
                 nSize = "Größe", -- nSize
                 tSize = "Verändere die Schriftgröße der Clock.",
                 nBackground = "Textur des Hintergrunds",
-                nBackgroundStrength = "Stärke des Hintergrunds",
+                nBackgroundColour = "Background colour",
+                nBackgroundHoverColour = "Background hover colour",
                 nBackgroundOffsetX = "Versatz der Hintergrundbreite",
                 tBackgroundOffsetX = "Versatz auf die berechnete Breite des Hintergrunds.",
                 nBackgroundOffsetY = "Versatz der Hintergrundhöhe",

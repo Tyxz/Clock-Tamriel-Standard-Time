@@ -2,11 +2,11 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-02-11
-    Updated:    2020-02-11
+    Updated:    2020-02-23
     License:    GPL-3.0
 -->
 
-<GuiXml>
+<GuiXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sir.insidi.at/or/schema/esoui.xsd">
     <Controls>
         <TopLevelControl name="Clock_TST_Moon" movable="false" mouseEnabled="false" clampedToScreen="true">
             <Dimensions x="84" y="72"/>

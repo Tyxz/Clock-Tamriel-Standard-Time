@@ -75,7 +75,7 @@ end
 function Time:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
     self.background:SetTexture(texture.path .. texture.background)
-    self.background:SetColor(1, 1, 1, settings:GetTimeBackgroundStrength())
+    self.background:SetColor(settings:GetTimeBackgroundColour())
 end
 
 --- Update the dimension and offset of the control
@@ -378,10 +378,7 @@ function Time:SetupTooltip()
 
         -- Hover
         if settings:GetTimeHighlightWhenHover() then
-            local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
-            local alpha = settings:GetTimeBackgroundStrength()
-            self.background:SetTexture(texture.path .. texture.hover)
-            self.background:SetColor(1, 1, 1, math.min(1, alpha * 1.1))
+            self.background:SetColor(settings:GetTimeBackgroundHoverColour())
         end
 
         if settings:GetTimeScaleWhenHover() then
@@ -432,11 +429,13 @@ function Time:SetupMovement()
         ClearMenu()
         local baseSize = const.Settings.styles.DEFAULTS.time.size
         local scalePercentage = math.floor(settings:GetTimeSize() * 100 / baseSize)
-        AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
-            settings:SetTimeSize(baseSize)
-            self.sizeHasUpdated = true
-            self:UpdateStyle()
-        end)
+        if scalePercentage ~= 100 then
+            AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
+                settings:SetTimeSize(baseSize)
+                self.sizeHasUpdated = true
+                self:UpdateStyle()
+            end)
+        end
         Setup(settings:GetTimeIsMovable(), function(value)
             settings:SetTimeIsMovable(value)
             self:UpdateMouse()

@@ -492,22 +492,7 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
-                    type = "slider",
-                    disabled = function()
-                        return not settings:GetTimeIsVisible()
-                    end,
-                    min = 0,
-                    max = 100,
-                    step = 1,
-                    getFunc = function()
-                        return settings:GetTimeBackgroundStrength() * 100
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeBackgroundStrength(value * .01)
-                        time:UpdateBackground()
-                    end,
-                    name = i18n.styles.nBackgroundStrength,
-                    width = "half",
+                    type = "description",
                 },
                 {
                     type = "slider",
@@ -556,8 +541,73 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
+                    type = "colorpicker",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundColour()
+                    end,
+                    setFunc = function(r, g, b, a)
+                        settings:SetTimeBackgroundColour(r, g, b, a)
+                        time:UpdateBackground()
+                    end,
+                    name = i18n.styles.nBackgroundColour,
+                    width = "half",
+                },
+                {
+                    type = "colorpicker",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundHoverColour()
+                    end,
+                    setFunc = function(r, g, b, a)
+                        settings:SetTimeBackgroundHoverColour(r, g, b, a)
+                    end,
+                    name = i18n.styles.nBackgroundHoverColour,
+                    width = "half",
+                },
+                {
                     type = "header",
                     name = i18n.core.nHeadMoon
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 200,
+                    step = 1,
+                    getFunc = function()
+                        return settings:GetMoonScale() * 100
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonScale(value * .01)
+                        moon:SetupScale()
+                    end,
+                    name = i18n.styles.nScale,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 100,
+                    step = 1,
+                    getFunc = function()
+                        return settings:GetMoonAlpha() * 100
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonAlpha(value * .01)
+                        moon:RegisterForUpdates()
+                    end,
+                    name = i18n.styles.nAlpha,
+                    width = "half",
                 },
                 {
                     type = "dropdown",
@@ -590,6 +640,25 @@ local function SetupMenu()
                     end,
                     name = i18n.styles.nSecunda,
                     width = "half",
+                },
+                {
+                    type = "dropdown",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    choices = const.Menu.moon.BACKGROUND,
+                    getFunc = function()
+                        return settings:GetMoonBackground()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonBackground(value)
+                        moon:RegisterForUpdates()
+                    end,
+                    name = i18n.styles.nBackground,
+                    width = "half",
+                },
+                {
+                    type = "description",
                 },
                 {
                     type = "slider",
@@ -636,73 +705,32 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
-                    type = "dropdown",
+                    type = "colorpicker",
                     disabled = function()
                         return not settings:GetMoonIsVisible()
                     end,
-                    choices = const.Menu.moon.BACKGROUND,
                     getFunc = function()
-                        return settings:GetMoonBackground()
+                        return settings:GetMoonBackgroundColour()
                     end,
-                    setFunc = function(value)
-                        settings:SetMoonBackground(value)
-                        moon:RegisterForUpdates()
+                    setFunc = function(r, g, b, a)
+                        settings:SetMoonBackgroundColour(r, g, b, a)
+                        moon:UpdateBackground()
                     end,
-                    name = i18n.styles.nBackground,
+                    name = i18n.styles.nBackgroundColour,
                     width = "half",
                 },
                 {
-                    type = "slider",
+                    type = "colorpicker",
                     disabled = function()
                         return not settings:GetMoonIsVisible()
                     end,
-                    min = 0,
-                    max = 100,
-                    step = 1,
                     getFunc = function()
-                        return settings:GetMoonBackgroundStrength() * 100
+                        return settings:GetMoonBackgroundHoverColour()
                     end,
-                    setFunc = function(value)
-                        settings:SetMoonBackgroundStrength(value * .01)
-                        moon:RegisterForUpdates()
+                    setFunc = function(r, g, b, a)
+                        settings:SetMoonBackgroundHoverColour(r, g, b, a)
                     end,
-                    name = i18n.styles.nBackgroundStrength,
-                    width = "half",
-                },
-                {
-                    type = "slider",
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    min = 0,
-                    max = 200,
-                    step = 1,
-                    getFunc = function()
-                        return settings:GetMoonScale() * 100
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonScale(value * .01)
-                        moon:SetupScale()
-                    end,
-                    name = i18n.styles.nScale,
-                    width = "half",
-                },
-                {
-                    type = "slider",
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    min = 0,
-                    max = 100,
-                    step = 1,
-                    getFunc = function()
-                        return settings:GetMoonAlpha() * 100
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonAlpha(value * .01)
-                        moon:RegisterForUpdates()
-                    end,
-                    name = i18n.styles.nAlpha,
+                    name = i18n.styles.nBackgroundHoverColour,
                     width = "half",
                 },
                 {

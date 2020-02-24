@@ -77,11 +77,10 @@ end
 --- Update the background texture
 function Moon:UpdateBackground()
     local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-    local alpha = settings:GetMoonBackgroundStrength() * settings:GetMoonAlpha()
     self.masser_background:SetTexture(texture.path .. texture.background)
-    self.masser_background:SetColor(1, 1, 1, alpha)
+    self.masser_background:SetColor(settings:GetMoonBackgroundColour())
     self.secunda_background:SetTexture(texture.path .. texture.background)
-    self.secunda_background:SetColor(1, 1, 1, alpha)
+    self.secunda_background:SetColor(settings:GetMoonBackgroundColour())
 end
 
 --- Update the texture of the moons to fit the phases
@@ -178,12 +177,8 @@ function Moon:SetupTooltip()
 
         -- Hover
         if settings:GetMoonHighlightWhenHover() then
-            local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-            local alpha = math.min(1, settings:GetMoonBackgroundStrength() * 1.1)
-            self.masser_background:SetTexture(texture.path .. texture.hover)
-            self.masser_background:SetColor(1, 1, 1, alpha)
-            self.secunda_background:SetTexture(texture.path .. texture.hover)
-            self.secunda_background:SetColor(1, 1, 1, alpha)
+            self.masser_background:SetColor(settings:GetMoonBackgroundHoverColour())
+            self.secunda_background:SetColor(settings:GetMoonBackgroundHoverColour())
         end
 
         if settings:GetMoonScaleWhenHover() then
@@ -238,10 +233,12 @@ function Moon:SetupMovement()
         ClearMenu()
         local baseScale = const.Settings.attributes.DEFAULTS.moon.scale
         local scalePercentage = math.floor(settings:GetMoonScale() * 100 / baseScale)
-        AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
-            settings:SetMoonScale(baseScale)
-            self:SetupScale()
-        end)
+        if scalePercentage ~= 100 then
+            AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
+                settings:SetMoonScale(baseScale)
+                self:SetupScale()
+            end)
+        end
         Setup(settings:GetMoonIsMovable(), function(value)
             settings:SetMoonIsMovable(value)
             self:UpdateMouse()

@@ -51,7 +51,7 @@ function Clock_TST.I18N()
             styles = {
                 nSub = "Look Options", -- look
                 nFormat = "Write your own format of the time and date",
-                tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
+                tFormat = "You can write a symbol (# for lore, % for real and $ for fake lore) followed by a letter:",
                 dFormat = "%A\t\t full weekday name [Friday]\n"
                         .. "%a\t\t for the abbreviated [Fri]\n"
                         .. "%B\t\t full month name [March]\n"
@@ -76,7 +76,8 @@ function Clock_TST.I18N()
                 nSize = "Size", -- nSize
                 tSize = "Change the font-size of the Clock.",
                 nBackground = "Background texture",
-                nBackgroundStrength = "Background strength",
+                nBackgroundColour = "Background colour",
+                nBackgroundHoverColour = "Background hover colour",
                 nBackgroundOffsetX = "Background width offset",
                 tBackgroundOffsetX = "Offset to the calculated width of the background.",
                 nBackgroundOffsetY = "Background height offset",

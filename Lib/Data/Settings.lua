@@ -416,15 +416,55 @@ function Settings:SetTimeBackground(value)
 end
 
 --- a function to get the stored style value for the time
--- @return background texture strength
-function Settings:GetTimeBackgroundStrength()
-    return self.styles.time.backgroundStrength
+-- @since 2.1.0
+-- @return r red colour
+-- @return g green colour
+-- @return b blue colour
+-- @return a alpha value
+function Settings:GetTimeBackgroundColour()
+    local colour = self.styles.time.backgroundColour or const.Settings.styles.DEFAULTS.time.backgroundColour
+    return colour.r, colour.g, colour.b, colour.a
 end
 
---- a function to store the style value for the time
--- @param value background texture strength
-function Settings:SetTimeBackgroundStrength(value)
-    self.styles.time.backgroundStrength = value
+--- a function to store the style value for the moon
+-- @since 2.1.0
+-- @param r red colour
+-- @param g green colour
+-- @param b blue colour
+-- @param a alpha value
+function Settings:SetTimeBackgroundColour(r, g, b, a)
+    self.styles.time.backgroundColour = {
+        r = r,
+        g = g,
+        b = b,
+        a = a
+    }
+end
+
+--- a function to get the stored style value for the time
+-- @since 2.1.0
+-- @return r red colour
+-- @return g green colour
+-- @return b blue colour
+-- @return a alpha value
+function Settings:GetTimeBackgroundHoverColour()
+    local colour = self.styles.time.backgroundHoverColour or const.Settings.styles.DEFAULTS.time.backgroundHoverColour
+    return colour.r, colour.g, colour.b, colour.a
+end
+
+--- a function to store the style value for the moon
+-- @since 2.1.0
+-- @param r red colour
+-- @param g green colour
+-- @param b blue colour
+-- @param a alpha value
+function Settings:SetTimeBackgroundHoverColour(r, g, b, a)
+    self.styles.time.backgroundHoverColour = {
+        r = r,
+        g = g,
+        b = b,
+        a = a
+    }
 end
 
 --- a function to get the stored style value for the time
@@ -456,15 +496,55 @@ function Settings:SetMoonBackground(value)
 end
 
 --- a function to get the stored style value for the moon
--- @return background texture strength
-function Settings:GetMoonBackgroundStrength()
-    return self.styles.moon.backgroundStrength
+-- @since 2.1.0
+-- @return r red colour
+-- @return g green colour
+-- @return b blue colour
+-- @return a alpha value
+function Settings:GetMoonBackgroundColour()
+    local colour = self.styles.moon.backgroundColour or const.Settings.styles.DEFAULTS.moon.backgroundColour
+    return colour.r, colour.g, colour.b, colour.a
 end
 
 --- a function to store the style value for the moon
--- @param value background texture strength
-function Settings:SetMoonBackgroundStrength(value)
-    self.styles.moon.backgroundStrength = value
+-- @since 2.1.0
+-- @param r red colour
+-- @param g green colour
+-- @param b blue colour
+-- @param a alpha value
+function Settings:SetMoonBackgroundColour(r, g, b, a)
+    self.styles.moon.backgroundColour = {
+        r = r,
+        g = g,
+        b = b,
+        a = a
+    }
+end
+
+--- a function to get the stored style value for the moon
+-- @since 2.1.0
+-- @return r red colour
+-- @return g green colour
+-- @return b blue colour
+-- @return a alpha value
+function Settings:GetMoonBackgroundHoverColour()
+    local colour = self.styles.moon.backgroundHoverColour or const.Settings.styles.DEFAULTS.moon.backgroundHoverColour
+    return colour.r, colour.g, colour.b, colour.a
+end
+
+--- a function to store the style value for the moon
+-- @since 2.1.0
+-- @param r red colour
+-- @param g green colour
+-- @param b blue colour
+-- @param a alpha value
+function Settings:SetMoonBackgroundHoverColour(r, g, b, a)
+    self.styles.moon.backgroundHoverColour = {
+        r = r,
+        g = g,
+        b = b,
+        a = a
+    }
 end
 
 --- a function to get the stored style value for the moon

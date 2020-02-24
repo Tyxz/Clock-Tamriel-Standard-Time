@@ -447,15 +447,44 @@ describe("Settings", function()
                     assert.is.same(reference.background, tResult)
                 end)
             end)
-            describe("TimeBackgroundStrength", function()
+            describe("TimeBackgroundColour", function()
                 it("should store the value", function()
-                    local tStyle = "Test"
-                    settings:SetTimeBackgroundStrength(tStyle)
-                    assert.is.same(tStyle, reference.backgroundStrength)
+                    local tR, tG, tB, tA = 1, 2, 3, 4
+                    local tStyle = {
+                        r = tR,
+                        g = tG,
+                        b = tB,
+                        a = tA
+                    }
+                    settings:SetTimeBackgroundColour(tR, tG, tB, tA)
+                    assert.is.same(tStyle, reference.backgroundColour)
                 end)
                 it("should get the stored value", function()
-                    local tResult = settings:GetTimeBackgroundStrength()
-                    assert.is.same(reference.backgroundStrength, tResult)
+                    local tR, tG, tB, tA = settings:GetTimeBackgroundColour()
+                    assert.is.same(reference.backgroundColour.r, tR)
+                    assert.is.same(reference.backgroundColour.g, tG)
+                    assert.is.same(reference.backgroundColour.b, tB)
+                    assert.is.same(reference.backgroundColour.a, tA)
+                end)
+            end)
+            describe("TimeBackgroundHoverColour", function()
+                it("should store the value", function()
+                    local tR, tG, tB, tA = 1, 2, 3, 4
+                    local tStyle = {
+                        r = tR,
+                        g = tG,
+                        b = tB,
+                        a = tA
+                    }
+                    settings:SetTimeBackgroundHoverColour(tR, tG, tB, tA)
+                    assert.is.same(tStyle, reference.backgroundHoverColour)
+                end)
+                it("should get the stored value", function()
+                    local tR, tG, tB, tA = settings:GetTimeBackgroundHoverColour()
+                    assert.is.same(reference.backgroundHoverColour.r, tR)
+                    assert.is.same(reference.backgroundHoverColour.g, tG)
+                    assert.is.same(reference.backgroundHoverColour.b, tB)
+                    assert.is.same(reference.backgroundHoverColour.a, tA)
                 end)
             end)
             describe("TimeBackgroundOffset", function()
@@ -483,15 +512,44 @@ describe("Settings", function()
                     assert.is.same(reference.background, tResult)
                 end)
             end)
-            describe("MoonBackgroundStrength", function()
+            describe("MoonBackgroundColour", function()
                 it("should store the value", function()
-                    local tStyle = "Test"
-                    settings:SetMoonBackgroundStrength(tStyle)
-                    assert.is.same(tStyle, reference.backgroundStrength)
+                    local tR, tG, tB, tA = 1, 2, 3, 4
+                    local tStyle = {
+                        r = tR,
+                        g = tG,
+                        b = tB,
+                        a = tA
+                    }
+                    settings:SetMoonBackgroundColour(tR, tG, tB, tA)
+                    assert.is.same(tStyle, reference.backgroundColour)
                 end)
                 it("should get the stored value", function()
-                    local tResult = settings:GetMoonBackgroundStrength()
-                    assert.is.same(reference.backgroundStrength, tResult)
+                    local tR, tG, tB, tA = settings:GetMoonBackgroundColour()
+                    assert.is.same(reference.backgroundColour.r, tR)
+                    assert.is.same(reference.backgroundColour.g, tG)
+                    assert.is.same(reference.backgroundColour.b, tB)
+                    assert.is.same(reference.backgroundColour.a, tA)
+                end)
+            end)
+            describe("MoonBackgroundHoverColour", function()
+                it("should store the value", function()
+                    local tR, tG, tB, tA = 1, 2, 3, 4
+                    local tStyle = {
+                        r = tR,
+                        g = tG,
+                        b = tB,
+                        a = tA
+                    }
+                    settings:SetMoonBackgroundHoverColour(tR, tG, tB, tA)
+                    assert.is.same(tStyle, reference.backgroundHoverColour)
+                end)
+                it("should get the stored value", function()
+                    local tR, tG, tB, tA = settings:GetMoonBackgroundHoverColour()
+                    assert.is.same(reference.backgroundHoverColour.r, tR)
+                    assert.is.same(reference.backgroundHoverColour.g, tG)
+                    assert.is.same(reference.backgroundHoverColour.b, tB)
+                    assert.is.same(reference.backgroundHoverColour.a, tA)
                 end)
             end)
             describe("MoonTextureKeyMasser", function()
