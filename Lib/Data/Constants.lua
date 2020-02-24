@@ -7,7 +7,6 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-Clock_TST.DEBUG = false
 
 --- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
@@ -18,7 +17,6 @@ function Clock_TST.CONSTANTS()
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
         VERSION = "2.1.0",
-        SAVED_VERSION = 1,
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -167,12 +165,15 @@ function Clock_TST.CONSTANTS()
         Settings = {
             account = {
                 SAVED_NAME = "account",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     saveAccountWide = true,
+                    lastVersion = "2.1.0"
                 }
             },
             booleans = {
                 SAVED_NAME = "booleans",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     core = {
                         timeAndMoonAreLinked = true,
@@ -209,19 +210,20 @@ function Clock_TST.CONSTANTS()
             },
             styles = {
                 SAVED_NAME = "styles",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     time = {
                         background = "Splash",
                         backgroundColour = {
-                            r = 0,08235294117640,
-                            g = 0,08235294117640,
-                            b = 0,08235294117640,
+                            r = 0.08235294117640,
+                            g = 0.08235294117640,
+                            b = 0.08235294117640,
                             a = .5,
                         },
                         backgroundHoverColour = {
-                            r = 0,34509803921570,
-                            g = 0,64705882352940,
-                            b = 0,71764705882350,
+                            r = 0.34509803921570,
+                            g = 0.64705882352940,
+                            b = 0.71764705882350,
                             a = .66,
                         },
                         backgroundOffset = {
@@ -245,13 +247,13 @@ function Clock_TST.CONSTANTS()
                         backgroundColour = {
                             r = 0.00000000000000,
                             g = 0.00000000000000,
-                            b = 0,08235294117640,
+                            b = 0.08235294117640,
                             a = .5,
                         },
                         backgroundHoverColour = {
-                            r = 0,34509803921570,
-                            g = 0,64705882352940,
-                            b = 0,71764705882350,
+                            r = 0.34509803921570,
+                            g = 0.64705882352940,
+                            b = 0.71764705882350,
                             a = .66,
                         },
                         masser = "Pale",
@@ -262,6 +264,7 @@ function Clock_TST.CONSTANTS()
             },
             attributes = {
                 SAVED_NAME = "attributes",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     core = {
                         scaleFactor = 1.1,

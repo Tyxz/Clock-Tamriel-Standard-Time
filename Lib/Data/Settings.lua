@@ -8,6 +8,7 @@
 
 Clock_TST = Clock_TST or {}
 local const = Clock_TST.CONSTANTS()
+local d = d
 local Settings = {
     account = {},
     booleans = {},
@@ -422,7 +423,7 @@ end
 -- @return b blue colour
 -- @return a alpha value
 function Settings:GetTimeBackgroundColour()
-    local colour = self.styles.time.backgroundColour or const.Settings.styles.DEFAULTS.time.backgroundColour
+    local colour = self.styles.time.backgroundColour
     return colour.r, colour.g, colour.b, colour.a
 end
 
@@ -448,7 +449,7 @@ end
 -- @return b blue colour
 -- @return a alpha value
 function Settings:GetTimeBackgroundHoverColour()
-    local colour = self.styles.time.backgroundHoverColour or const.Settings.styles.DEFAULTS.time.backgroundHoverColour
+    local colour = self.styles.time.backgroundHoverColour
     return colour.r, colour.g, colour.b, colour.a
 end
 
@@ -502,7 +503,7 @@ end
 -- @return b blue colour
 -- @return a alpha value
 function Settings:GetMoonBackgroundColour()
-    local colour = self.styles.moon.backgroundColour or const.Settings.styles.DEFAULTS.moon.backgroundColour
+    local colour = self.styles.moon.backgroundColour
     return colour.r, colour.g, colour.b, colour.a
 end
 
@@ -528,7 +529,7 @@ end
 -- @return b blue colour
 -- @return a alpha value
 function Settings:GetMoonBackgroundHoverColour()
-    local colour = self.styles.moon.backgroundHoverColour or const.Settings.styles.DEFAULTS.moon.backgroundHoverColour
+    local colour = self.styles.moon.backgroundHoverColour
     return colour.r, colour.g, colour.b, colour.a
 end
 
@@ -762,6 +763,7 @@ end
 
 --- Resets the attributes table to the default values
 function Settings:ResetAttributes()
+    self.attributes = {}
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.attributes.DEFAULTS) do
         self.attributes[k] = v
     end
@@ -769,6 +771,7 @@ end
 
 --- Resets the booleans table to the default values
 function Settings:ResetBooleans()
+    self.booleans = {}
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.booleans.DEFAULTS) do
         self.booleans[k] = v
     end
@@ -776,6 +779,7 @@ end
 
 --- Resets the styles table to the default values
 function Settings:ResetStyles()
+    self.styles = {}
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.styles.DEFAULTS) do
         self.styles[k] = v
     end
@@ -792,58 +796,78 @@ end
 -- Initialize
 -- ----------------
 
+--- Function to migrate saved variables to latest version without having to reset it
+function Settings:Migrate()
+    local major, minor, _ = string.match(self.account.lastVersion or "", "(%d+).(%d+).(%d+)")
+    major, minor = tonumber(major), tonumber(minor)
+    -- Update 2.1.0 introduced background and hover colour
+    if not major or major == 2 and minor < 1 then
+        local function CopyRGBA(colour, default)
+            for k, c in pairs(default) do
+                colour[k] = c
+            end
+        end
+        -- Add background colour
+        local default = Clock_TST.CONSTANTS().Settings.styles.DEFAULTS
+        CopyRGBA(self.styles.time.backgroundColour, default.time.backgroundColour)
+        CopyRGBA(self.styles.time.backgroundHoverColour, default.time.backgroundHoverColour)
+        CopyRGBA(self.styles.moon.backgroundColour, default.moon.backgroundColour)
+        CopyRGBA(self.styles.moon.backgroundHoverColour, default.moon.backgroundHoverColour)
+
+
+        -- Remove background strength
+        self.styles.time.backgroundStrength = nil
+        self.styles.moon.backgroundStrength = nil
+
+        d("Updated to 2.1")
+    end
+
+    self.account.lastVersion = const.VERSION
+end
+
 --- Load the SavedVariables or register the default values.
 function Settings:New()
     local function InitializeSavedVariable(table, isAccountWide)
         if isAccountWide then
             return ZO_SavedVars:NewAccountWide(
                     const.SAVED_NAME,
-                    const.SAVED_VERSION,
+                    table.SAVED_VERSION,
                     table.SAVED_NAME,
                     table.DEFAULTS
                 )
         else
             return ZO_SavedVars:New(
                 const.SAVED_NAME,
-                const.SAVED_VERSION,
+                table.SAVED_VERSION,
                 table.SAVED_NAME,
                 table.DEFAULTS
             )
         end
     end
-    if not Clock_TST.DEBUG then
-        self.account = InitializeSavedVariable(
-                const.Settings.account,
-                true
-        )
-        self.booleans = InitializeSavedVariable(
-                const.Settings.booleans,
-                self.account.saveAccountWide
-        )
-        self.styles = InitializeSavedVariable(
-                const.Settings.styles,
-                self.account.saveAccountWide
-        )
-        self.attributes = InitializeSavedVariable(
-                const.Settings.attributes,
-                self.account.saveAccountWide
-        )
-    else
-        self.account = const.Settings.account.DEFAULTS
-        self.booleans = const.Settings.booleans.DEFAULTS
-        self.styles = const.Settings.styles.DEFAULTS
-        self.attributes = const.Settings.attributes.DEFAULTS
-    end
+    self.account = InitializeSavedVariable(
+            const.Settings.account,
+            true
+    )
+    self.booleans = InitializeSavedVariable(
+            const.Settings.booleans,
+            self.account.saveAccountWide
+    )
+    self.styles = InitializeSavedVariable(
+            const.Settings.styles,
+            self.account.saveAccountWide
+    )
+    self.attributes = InitializeSavedVariable(
+            const.Settings.attributes,
+            self.account.saveAccountWide
+    )
+    self:Migrate()
     return self
 end
 
-local eventHandle = const.DISPLAY .. "Settings"
--- Event to be called on Load
-local function OnLoad(_, addonName)
-    if addonName ~= const.NAME then return end
-    Clock_TST.settings = Settings:New()
-
-    -- wait for the first loaded event
-    EVENT_MANAGER:UnregisterForEvent(eventHandle, EVENT_ADD_ON_LOADED)
+function Clock_TST:SetupSettings()
+    if self.logger then
+        local logger = self.logger:Create("Settings")
+        d = function(...) logger:Debug(...) end
+    end
+    self.settings = Settings:New()
 end
-EVENT_MANAGER:RegisterForEvent(eventHandle, EVENT_ADD_ON_LOADED, OnLoad)

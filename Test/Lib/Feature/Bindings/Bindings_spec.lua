@@ -18,6 +18,8 @@ insulate("Bindings", function()
         stub(Clock_TST.time, "UpdateMouse")
         stub(Clock_TST.moon, "UpdateVisibility")
         stub(Clock_TST.moon, "UpdateMouse")
+        Clock_TST:SetupSettings()
+        Clock_TST:SetupBindings()
     end)
 
     local function testTime(tOldVisibility)

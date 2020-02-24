@@ -76,10 +76,10 @@ end
 
 --- Update the background texture
 function Moon:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-    self.masser_background:SetTexture(texture.path .. texture.background)
+    self.texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
+    self.masser_background:SetTexture(self.texture.path .. self.texture.background)
     self.masser_background:SetColor(settings:GetMoonBackgroundColour())
-    self.secunda_background:SetTexture(texture.path .. texture.background)
+    self.secunda_background:SetTexture(self.texture.path .. self.texture.background)
     self.secunda_background:SetColor(settings:GetMoonBackgroundColour())
 end
 
@@ -177,6 +177,10 @@ function Moon:SetupTooltip()
 
         -- Hover
         if settings:GetMoonHighlightWhenHover() then
+            if self.texture.hover then
+                self.masser_background:SetTexture(self.texture.path .. self.texture.hover)
+                self.secunda_background:SetTexture(self.texture.path .. self.texture.hover)
+            end
             self.masser_background:SetColor(settings:GetMoonBackgroundHoverColour())
             self.secunda_background:SetColor(settings:GetMoonBackgroundHoverColour())
         end

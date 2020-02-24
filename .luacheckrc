@@ -31,6 +31,7 @@ stds.eso = {
         "InitializeTooltip",
         "LibAddonMenu2",
         "LibClockTST",
+        "LibDebugLogger",
         "LibFeedback",
         "SCENE_MANAGER",
         "SLASH_COMMANDS",

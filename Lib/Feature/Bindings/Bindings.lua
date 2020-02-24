@@ -7,7 +7,6 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-local const = Clock_TST.CONSTANTS()
 local settings
 local Bindings = ZO_Object:Subclass()
 
@@ -58,15 +57,8 @@ end
 -- Start
 -- ----------------
 
-local eventHandle = const.DISPLAY .. "Bindings"
--- Event to be called on Load
-local function OnLoad(_, addonName)
-    if addonName ~= const.NAME then
-        return
-    end
+--- Function to create the bindings
+function Clock_TST:SetupBindings()
     settings = Clock_TST.settings
-    Clock_TST.bindings = Bindings:New()
-    -- wait for the first loaded event
-    EVENT_MANAGER:UnregisterForEvent(eventHandle, EVENT_ADD_ON_LOADED)
+    self.bindings = Bindings:New()
 end
-EVENT_MANAGER:RegisterForEvent(eventHandle, EVENT_ADD_ON_LOADED, OnLoad)

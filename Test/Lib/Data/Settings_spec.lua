@@ -12,23 +12,25 @@ describe("Settings", function()
     local match = require("luassert.match")
     insulate("load", function()
         setup(function()
-            _G.EVENT_MANAGER = mock(EVENT_MANAGER)
+            require("Lib.Data.Settings")
         end)
         it("should create saved variables when loaded", function()
-            require("Lib.Data.Settings")
-            assert.spy(EVENT_MANAGER.RegisterForEvent).was.called_with(
-                    match.is_ref(EVENT_MANAGER), match.is_string(), EVENT_ADD_ON_LOADED, match.is_function()
-            )
-        end)
-        it("should unregister after loaded once", function()
-            require("Lib.Data.Settings")
-            assert.spy(EVENT_MANAGER.UnregisterForEvent).was.called_with(
-                    match.is_ref(EVENT_MANAGER), match.is_string(), EVENT_ADD_ON_LOADED
-            )
+            _G.ZO_SavedVars = mock(ZO_SavedVars)
+            Clock_TST:SetupSettings()
+            local function assertSpy()
+                assert.spy(ZO_SavedVars.NewAccountWide).was.called_with(
+                        match.is_ref(ZO_SavedVars), match.is_string(),
+                        match.is_number(), match.is_string(), match.is_table()
+                )
+            end
+            assertSpy()
+            assertSpy()
+            assertSpy()
+            assertSpy()
         end)
         it("should create global settings object", function()
             Clock_TST.settings = nil
-            require("Lib.Data.Settings")
+            Clock_TST:SetupSettings()
             assert.is_not.nil_or_empty(Clock_TST.settings)
         end)
     end)

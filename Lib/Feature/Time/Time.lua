@@ -73,8 +73,8 @@ end
 
 --- Update the background texture and alpha value
 function Time:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
-    self.background:SetTexture(texture.path .. texture.background)
+    self.texture = const.UI.BACKGROUNDS.time[settings:GetTimeBackground()]
+    self.background:SetTexture(self.texture.path .. self.texture.background)
     self.background:SetColor(settings:GetTimeBackgroundColour())
 end
 
@@ -378,6 +378,9 @@ function Time:SetupTooltip()
 
         -- Hover
         if settings:GetTimeHighlightWhenHover() then
+            if self.texture.hover then
+                self.background:SetTexture(self.texture.path .. self.texture.hover)
+            end
             self.background:SetColor(settings:GetTimeBackgroundHoverColour())
         end
 
