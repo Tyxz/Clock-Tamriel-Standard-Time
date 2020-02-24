@@ -9,6 +9,11 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        bindings = {
+            nToggle = "Toggle visibility",
+            nToggleTime = "Toggle date visibility",
+            nToggleMoon = "Toggle moon visibility"
+        },
         error = {
             library = "Could not connect to the LibClockTST library."
         },
@@ -36,8 +41,6 @@ function Clock_TST.I18N()
                 nUSFormat = "12時間形式", -- sFormat,
                 nJapanese = "真夜中を0時として表示", --sJap
                 wAffect = "This does only affect a custom format not #X or %X.",
-                nFake = "偽伝承の日付を表示", -- sFLDate
-                tFake = "Will replace the day, month and week day in Tamriel with the real one but with Tamriel names.",
                 nHoverScale = "Scale when hovering",
                 nHoverColour = "Highlight when hovering",
                 nMoonVisible = "月齢の表示", -- sMoon
@@ -48,7 +51,7 @@ function Clock_TST.I18N()
             styles = {
                 nSub = "見た目のオプション", -- look
                 nFormat = "Write your own format of the time and date",
-                tFormat = "You can write a symbol (# for lore, % for real) followed by a letter:",
+                tFormat = "You can write a symbol (# for lore, % for real and $ for fake lore) followed by a letter:",
                 dFormat = "%A\t\t full weekday name [Friday]\n"
                         .. "%a\t\t for the abbreviated [Fri]\n"
                         .. "%B\t\t full month name [March]\n"
@@ -73,7 +76,8 @@ function Clock_TST.I18N()
                 nSize = "サイズ", -- nSize
                 tSize = "Clockのサイズを変更します。",
                 nBackground = "Background texture",
-                nBackgroundStrength = "Background strength",
+                nBackgroundColour = "Background colour",
+                nBackgroundHoverColour = "Background hover colour",
                 nBackgroundOffsetX = "Background width offset",
                 tBackgroundOffsetX = "Offset to the calculated width of the background.",
                 nBackgroundOffsetY = "Background height offset",
@@ -82,6 +86,7 @@ function Clock_TST.I18N()
                 nSecunda = "Secunda's texture",
                 nMoonWidth = "Width of the moon distance",
                 nMoonHeight = "Height of the moon distance",
+                nScale = "Scaling",
                 nAlpha = "Visibility",
                 nScaleFactor = "Scale factor",
                 tScaleFactor = "How much the item should increase when hovering."
@@ -104,6 +109,7 @@ function Clock_TST.I18N()
                     movable = "Is movable",
                     link = "Link the movement of the moon to the time",
                     open = "Open settings menu",
+                    scale = "Reset scaling",
                 },
             },
             moon = {

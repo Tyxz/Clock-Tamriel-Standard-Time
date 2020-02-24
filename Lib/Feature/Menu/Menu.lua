@@ -7,14 +7,14 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-local const = Clock_TST.CONSTANTS()
 
 --- Create the LibAddonMenu panel
-local function SetupMenu()
-    local settings = Clock_TST.settings
-    local time = Clock_TST.time
-    local moon = Clock_TST.moon
-    local i18n = Clock_TST.I18N().menu
+function Clock_TST:SetupMenu()
+    local const = self.CONSTANTS()
+    local settings = self.settings
+    local time = self.time
+    local moon = self.moon
+    local i18n = self.I18N().menu
     local lang = GetCVar("Language.2")
     local link = "https://" .. lang .. ".liberapay.com/Tyx/"
     local panel = {
@@ -32,26 +32,115 @@ local function SetupMenu()
         registerForDefaults = true,
         resetFunc = function()
             settings:Reset()
-            time:Setup()
-            moon:Setup()
+            self:SetupTime()
+            self:SetupMoon()
         end,
     }
     local LAM = LibAddonMenu2
     CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
 
     -- ----------------
-    -- Attributes
+    -- General
     -- ----------------
 
-    -- Create the boolean submenu
-    local function AddBooleans()
+    -- Create the general submenu
+    local function AddGeneral()
         return {
             type = "submenu",
-            name = i18n.booleans.nSub,
+            name = i18n.core.nHeadGeneral,
             controls = {
                 {
                     type = "header",
-                    name = i18n.core.nHeadTime
+                    name = i18n.booleans.nSub,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetHideInFight()
+                    end,
+                    setFunc = function(value)
+                        settings:SetHideInFight(value)
+                        if value then
+                            settings:SetOnlyShowOnMap(not value)
+                        end
+
+                        time:UpdateVisibility()
+                        moon:UpdateVisibility()
+                    end,
+                    disabled = function()
+                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                                and settings:GetOnlyShowOnMap()
+                    end,
+                    name = i18n.booleans.nFight,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetOnlyShowOnMap()
+                    end,
+                    setFunc = function(value)
+                        settings:SetOnlyShowOnMap(value)
+                        if value then
+                            settings:SetHideInFight(not value)
+                        end
+
+                        time:UpdateVisibility()
+                        moon:UpdateVisibility()
+                    end,
+                    disabled = function()
+                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                                and settings:GetHideInFight()
+                    end,
+                    name = i18n.booleans.nMap,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetTimeAndMoonAreLinked()
+                    end,
+                    setFunc = function(value)
+                        settings:SetTimeAndMoonAreLinked(value)
+                    end,
+                    disabled = function()
+                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                    end,
+                    name = i18n.booleans.nLink,
+                },
+                {
+                    type = "header",
+                    name = i18n.styles.nSub,
+                },
+                {
+                    type = "slider",
+                    min = 1,
+                    max = 4,
+                    step = .1,
+                    getFunc = function()
+                        return settings:GetScaleFactor()
+                    end,
+                    setFunc = function(value)
+                        settings:SetScaleFactor(value)
+                    end,
+                    name = i18n.styles.nScaleFactor,
+                    tooltip = i18n.styles.tScaleFactor,
+                },
+            }
+        }
+    end
+
+    -- ----------------
+    -- Time
+    -- ----------------
+
+    -- Create the time submenu
+    local function AddTime()
+        return {
+            type = "submenu",
+            name = i18n.core.nHeadTime,
+            controls = {
+                {
+                    type = "header",
+                    name = i18n.booleans.nSub,
                 },
                 {
                     type = "checkbox",
@@ -61,6 +150,7 @@ local function SetupMenu()
                     setFunc = function(value)
                         settings:SetTimeIsVisible(value)
                         time:UpdateVisibility()
+                        time:UpdateMouse()
                     end,
                     name = i18n.booleans.nTimeVisible,
                 },
@@ -168,21 +258,6 @@ local function SetupMenu()
                 {
                     type = "checkbox",
                     getFunc = function()
-                        return settings:GetTimeHasFakeLoreDate()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeHasFakeLoreDate(value)
-                        time:RegisterForUpdates()
-                    end,
-                    disabled = function()
-                        return not settings:GetTimeIsVisible()
-                    end,
-                    name = i18n.booleans.nFake,
-                    tooltip = i18n.booleans.tFake,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
                         return settings:GetTimeScaleWhenHover()
                     end,
                     setFunc = function(value)
@@ -208,212 +283,7 @@ local function SetupMenu()
                 },
                 {
                     type = "header",
-                    name = i18n.core.nHeadMoon
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonIsVisible()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonIsVisible(value)
-                        moon:UpdateVisibility()
-                    end,
-                    name = i18n.booleans.nMoonVisible,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonIsMouseEnabled()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonIsMouseEnabled(value)
-                        moon:UpdateMouse()
-                    end,
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    name = i18n.booleans.nMouseEnabled,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonIsMovable()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonIsMovable(value)
-                        moon:UpdateMouse()
-                    end,
-                    disabled = function()
-                        return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
-                    end,
-                    name = i18n.booleans.nMovable,
-                    tooltip = i18n.booleans.tMovable,
-
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonHasTooltip()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonHasTooltip(value)
-                        moon:RegisterForUpdates()
-                    end,
-                    disabled = function()
-                        return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
-                    end,
-                    name = i18n.booleans.nTooltip,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonHasBackground()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonHasBackground(value)
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    name = i18n.booleans.nBackground,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonScaleWhenHover()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonScaleWhenHover(value)
-                    end,
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    name = i18n.booleans.nHoverScale,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetMoonHighlightWhenHover()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonHighlightWhenHover(value)
-                    end,
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    name = i18n.booleans.nHoverColour,
-                },
-                {
-                    type = "header",
-                    name = i18n.core.nHeadGeneral,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetHideInFight()
-                    end,
-                    setFunc = function(value)
-                        settings:SetHideInFight(value)
-                        if value then
-                            settings:SetOnlyShowOnMap(not value)
-                        end
-
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetOnlyShowOnMap()
-                    end,
-                    name = i18n.booleans.nFight,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetOnlyShowOnMap()
-                    end,
-                    setFunc = function(value)
-                        settings:SetOnlyShowOnMap(value)
-                        if value then
-                            settings:SetHideInFight(not value)
-                        end
-
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetHideInFight()
-                    end,
-                    name = i18n.booleans.nMap,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetTimeAndMoonAreLinked()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeAndMoonAreLinked(value)
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                    end,
-                    name = i18n.booleans.nLink,
-                },
-            }
-        }
-    end
-
-    -- ----------------
-    -- Styles
-    -- ----------------
-
-    --- Create the Style submenu
-    local function AddStyles()
-        return {
-            type = "submenu",
-            name = i18n.styles.nSub,
-            controls = {
-                {
-                    type = "header",
-                    name = i18n.core.nHeadTime
-                },
-                {
-                    type = "description",
-                    title = i18n.styles.nFormat,
-                    text = i18n.styles.tFormat,
-                },
-                {
-                    type = "description",
-                    text = i18n.styles.dFormat,
-                    width = "half",
-                },
-                {
-                    type = "editbox",
-                    disabled = function()
-                        return not settings:GetTimeIsVisible()
-                    end,
-                    getFunc = function()
-                        return settings:GetTimeFormat()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeFormat(value)
-                        local _, count = string.gsub(value, "\n", "")
-                        if count == 0 then
-                            count = 1
-                        end
-                        settings:SetTimeLineCount(count)
-                        local _, loreCount = string.gsub(value, "#", "")
-                        settings:SetTimeHasLoreDate(loreCount ~= 0)
-                        local _, realCount = string.gsub(value, "%%", "")
-                        settings:SetTimeHasRealDate(realCount ~= 0)
-                        settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
-                        time:ResetReplacement()
-                    end,
-                    isMultiline = true,
-                    width = "half",
+                    name = i18n.styles.nSub
                 },
                 {
                     type = "colorpicker",
@@ -503,22 +373,7 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
-                    type = "slider",
-                    disabled = function()
-                        return not settings:GetTimeIsVisible()
-                    end,
-                    min = 0,
-                    max = 1,
-                    step = .01,
-                    getFunc = function()
-                        return settings:GetTimeBackgroundStrength()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeBackgroundStrength(value)
-                        time:UpdateBackground()
-                    end,
-                    name = i18n.styles.nBackgroundStrength,
-                    width = "half",
+                    type = "description",
                 },
                 {
                     type = "slider",
@@ -567,8 +422,187 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
+                    type = "colorpicker",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundColour()
+                    end,
+                    setFunc = function(r, g, b, a)
+                        settings:SetTimeBackgroundColour(r, g, b, a)
+                        time:UpdateBackground()
+                    end,
+                    name = i18n.styles.nBackgroundColour,
+                    width = "half",
+                },
+                {
+                    type = "colorpicker",
+                    disabled = function()
+                        return not settings:GetTimeIsVisible()
+                    end,
+                    getFunc = function()
+                        return settings:GetTimeBackgroundHoverColour()
+                    end,
+                    setFunc = function(r, g, b, a)
+                        settings:SetTimeBackgroundHoverColour(r, g, b, a)
+                    end,
+                    name = i18n.styles.nBackgroundHoverColour,
+                    width = "half",
+                },
+            }
+        }
+    end
+
+    -- ----------------
+    -- Moon
+    -- ----------------
+
+    --- Create the Moon submenu
+    local function AddMoon()
+        return {
+            type = "submenu",
+            name = i18n.core.nHeadMoon,
+            controls = {
+                {
                     type = "header",
-                    name = i18n.core.nHeadMoon
+                    name = i18n.booleans.nSub,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonIsVisible()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonIsVisible(value)
+                        moon:UpdateVisibility()
+                        moon:UpdateMouse()
+                    end,
+                    name = i18n.booleans.nMoonVisible,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonIsMouseEnabled()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonIsMouseEnabled(value)
+                        moon:UpdateMouse()
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nMouseEnabled,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonIsMovable()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonIsMovable(value)
+                        moon:UpdateMouse()
+                    end,
+                    disabled = function()
+                        return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
+                    end,
+                    name = i18n.booleans.nMovable,
+                    tooltip = i18n.booleans.tMovable,
+
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonHasTooltip()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonHasTooltip(value)
+                        moon:RegisterForUpdates()
+                    end,
+                    disabled = function()
+                        return not (settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
+                    end,
+                    name = i18n.booleans.nTooltip,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonHasBackground()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonHasBackground(value)
+                        moon:UpdateVisibility()
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nBackground,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonScaleWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonScaleWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverScale,
+                },
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetMoonHighlightWhenHover()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonHighlightWhenHover(value)
+                    end,
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    name = i18n.booleans.nHoverColour,
+                },
+                {
+                    type = "header",
+                    name = i18n.styles.nSub,
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 200,
+                    step = 1,
+                    getFunc = function()
+                        return settings:GetMoonScale() * 100
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonScale(value * .01)
+                        moon:SetupScale()
+                    end,
+                    name = i18n.styles.nScale,
+                    width = "half",
+                },
+                {
+                    type = "slider",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    min = 0,
+                    max = 100,
+                    step = 1,
+                    getFunc = function()
+                        return settings:GetMoonAlpha() * 100
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonAlpha(value * .01)
+                        moon:RegisterForUpdates()
+                    end,
+                    name = i18n.styles.nAlpha,
+                    width = "half",
                 },
                 {
                     type = "dropdown",
@@ -601,6 +635,25 @@ local function SetupMenu()
                     end,
                     name = i18n.styles.nSecunda,
                     width = "half",
+                },
+                {
+                    type = "dropdown",
+                    disabled = function()
+                        return not settings:GetMoonIsVisible()
+                    end,
+                    choices = const.Menu.moon.BACKGROUND,
+                    getFunc = function()
+                        return settings:GetMoonBackground()
+                    end,
+                    setFunc = function(value)
+                        settings:SetMoonBackground(value)
+                        moon:RegisterForUpdates()
+                    end,
+                    name = i18n.styles.nBackground,
+                    width = "half",
+                },
+                {
+                    type = "description",
                 },
                 {
                     type = "slider",
@@ -647,76 +700,34 @@ local function SetupMenu()
                     width = "half",
                 },
                 {
-                    type = "dropdown",
+                    type = "colorpicker",
                     disabled = function()
                         return not settings:GetMoonIsVisible()
                     end,
-                    choices = const.Menu.moon.BACKGROUND,
                     getFunc = function()
-                        return settings:GetMoonBackground()
+                        return settings:GetMoonBackgroundColour()
                     end,
-                    setFunc = function(value)
-                        settings:SetMoonBackground(value)
-                        moon:RegisterForUpdates()
+                    setFunc = function(r, g, b, a)
+                        settings:SetMoonBackgroundColour(r, g, b, a)
+                        moon:UpdateBackground()
                     end,
-                    name = i18n.styles.nBackground,
+                    name = i18n.styles.nBackgroundColour,
                     width = "half",
                 },
                 {
-                    type = "slider",
+                    type = "colorpicker",
                     disabled = function()
                         return not settings:GetMoonIsVisible()
                     end,
-                    min = 0,
-                    max = 1,
-                    step = .01,
                     getFunc = function()
-                        return settings:GetMoonBackgroundStrength()
+                        return settings:GetMoonBackgroundHoverColour()
                     end,
-                    setFunc = function(value)
-                        settings:SetMoonBackgroundStrength(value)
-                        moon:RegisterForUpdates()
+                    setFunc = function(r, g, b, a)
+                        settings:SetMoonBackgroundHoverColour(r, g, b, a)
                     end,
-                    name = i18n.styles.nBackgroundStrength,
+                    name = i18n.styles.nBackgroundHoverColour,
                     width = "half",
                 },
-                {
-                    type = "slider",
-                    disabled = function()
-                        return not settings:GetMoonIsVisible()
-                    end,
-                    min = 0,
-                    max = 1,
-                    step = .01,
-                    getFunc = function()
-                        return settings:GetMoonAlpha()
-                    end,
-                    setFunc = function(value)
-                        settings:SetMoonAlpha(value)
-                        moon:RegisterForUpdates()
-                    end,
-                    name = i18n.styles.nAlpha,
-                    width = "half",
-                },
-                {
-                    type = "header",
-                    name = i18n.core.nHeadGeneral,
-                },
-                {
-                    type = "slider",
-                    min = 1,
-                    max = 4,
-                    step = .1,
-                    getFunc = function()
-                        return settings:GetScaleFactor()
-                    end,
-                    setFunc = function(value)
-                        settings:SetScaleFactor(value)
-                    end,
-                    name = i18n.styles.nScaleFactor,
-                    tooltip = i18n.styles.tScaleFactor,
-                },
-
             }
         }
     end
@@ -739,7 +750,7 @@ local function SetupMenu()
             end
             table.insert(buttons, { panel.donation, i18n.feedback.nRealGold, false })
             return LibFeedback:initializeFeedbackWindow(
-                    Clock_TST,
+                    self,
                     const.NAME,
                     CLOCK_TST_MENU,
                     const.AUTHOR,
@@ -758,16 +769,16 @@ local function SetupMenu()
         CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened",
                 function(libPanel)
                     if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+                        GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
+                        GAME_MENU_SCENE:AddFragment(self.MOON_FRAGMENT)
                     end
                 end
         )
         CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed",
                 function(libPanel)
                     if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+                        GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
+                        GAME_MENU_SCENE:RemoveFragment(self.MOON_FRAGMENT)
                     end
                 end
         )
@@ -790,8 +801,46 @@ local function SetupMenu()
             name = i18n.account.nAccount,
             tooltip = i18n.account.tAccount
         },
-        AddBooleans(),
-        AddStyles(),
+        {
+            type = "description",
+            title = i18n.styles.nFormat,
+            text = i18n.styles.tFormat,
+        },
+        {
+            type = "description",
+            text = i18n.styles.dFormat,
+            width = "half",
+        },
+        {
+            type = "editbox",
+            disabled = function()
+                return not settings:GetTimeIsVisible()
+            end,
+            getFunc = function()
+                return settings:GetTimeFormat()
+            end,
+            setFunc = function(value)
+                settings:SetTimeFormat(value)
+                local _, count = string.gsub(value, "\n", "")
+                if count == 0 then
+                    count = 1
+                end
+                settings:SetTimeLineCount(count)
+                local _, loreCount = string.gsub(value, "#", "")
+                settings:SetTimeHasLoreDate(loreCount ~= 0)
+                local _, realCount = string.gsub(value, "%%", "")
+                settings:SetTimeHasRealDate(realCount ~= 0)
+                local _, fakeCount = string.gsub(value, "$", "")
+                settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
+                settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
+                time:ResetReplacement()
+            end,
+            isMultiline = true,
+            width = "half",
+        },
+        AddTime(),
+        AddMoon(),
+        AddGeneral(),
     }
     AddFeedback()
 
@@ -799,19 +848,3 @@ local function SetupMenu()
 
     ShowInMenu()
 end
-
--- ----------------
--- Start
--- ----------------
-
-local eventHandle = const.DISPLAY .. "Menu"
--- Event to be called on Load
-local function OnLoad(_, addonName)
-    if addonName ~= const.NAME then
-        return
-    end
-    SetupMenu()
-    -- wait for the first loaded event
-    EVENT_MANAGER:UnregisterForEvent(eventHandle, EVENT_ADD_ON_LOADED)
-end
-EVENT_MANAGER:RegisterForEvent(eventHandle, EVENT_ADD_ON_LOADED, OnLoad)

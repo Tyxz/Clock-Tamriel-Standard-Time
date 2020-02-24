@@ -9,6 +9,11 @@
 Clock_TST = Clock_TST or {}
 function Clock_TST.I18N()
     return {
+        bindings = {
+            nToggle = "Basculer la visibilité",
+            nToggleTime = "Basculer la visibilité des dates",
+            nToggleMoon = "Basculer la visibilité de la lune"
+        },
         error = {
             library = "Impossible de se connecter à la bibliothèque LibClockTST."
         },
@@ -36,9 +41,6 @@ function Clock_TST.I18N()
                 nUSFormat = "Format 12h", -- sFormat,
                 nJapanese = "Afficher midngiht comme 0", --sJap
                 wAffect = "Cela ne concerne qu'un format personnalisé, et non pas #X ou %X.",
-                nFake = "Montrer faux lore date", -- sFLDate
-                tFake = "Remplacera le jour, le mois et le jour de la semaine en Tamriel par le vrai, "
-                        .. "mais avec le nom Tamriel.",
                 nHoverScale = "Mise à l'échelle pendant le survol",
                 nHoverColour = "Mise en évidence pendant le survol",
                 nMoonVisible = "Afficher la Lune", -- sMoon
@@ -49,7 +51,8 @@ function Clock_TST.I18N()
             styles = {
                 nSub = "Paramètres d'apparence", -- look
                 nFormat = "Rédigez votre date et votre heure dans un format qui vous est propre",
-                tFormat = "Vous pouvez écrire un symbole (# pour l'lore, % pour la réalité) suivi d'une lettre :",
+                tFormat = "Vous pouvez écrire un symbole (# pour l'lore, % pour la réalité "
+                        .. "et $ pour les fausses traditions) suivi d'une lettre:",
                 dFormat = "%A\t\t nom complet du jour de la semaine [Vendredi]\n"
                         .. "%a\t\t pour l'abréviation [Ven].\n"
                         .. "%B\t\t le nom complet du mois [Mars].\n"
@@ -74,7 +77,8 @@ function Clock_TST.I18N()
                 nSize = "Taille", -- nSize
                 tSize = "Modifier la taille de la police de l'horloge.",
                 nBackground = "Texture du fond",
-                nBackgroundStrength = "La force de la base",
+                nBackgroundColour = "Background colour",
+                nBackgroundHoverColour = "Background hover colour",
                 nBackgroundOffsetX = "Décalage de la largeur du fond",
                 tBackgroundOffsetX = "Décalage par rapport à la largeur calculée du fond.",
                 nBackgroundOffsetY = "Décalage de la hauteur du fond",
@@ -83,6 +87,7 @@ function Clock_TST.I18N()
                 nSecunda = "La texture de Secunda",
                 nMoonWidth = "Largeur de la lune distance",
                 nMoonHeight = "Distance de la hauteur de la lune",
+                nScale = "Mise à l'échelle",
                 nAlpha = "Visibilité",
                 nScaleFactor = "Facteur d'échelle",
                 tScaleFactor = "De combien le poste devrait augmenter avec le vol stationnaire."
@@ -105,6 +110,7 @@ function Clock_TST.I18N()
                     movable = "Est mobile",
                     link = "Lier le mouvement de la lune avec le temps",
                     open = "Ouvrir le menu des paramètres",
+                    scale = "Réinitialisation de la mise à l'échelle",
                 },
             },
             moon = {

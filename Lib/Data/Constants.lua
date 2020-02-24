@@ -7,7 +7,6 @@
 --------------------------------------------]]--
 
 Clock_TST = Clock_TST or {}
-Clock_TST.DEBUG = false
 
 --- Constant table with all settings for Clock
 function Clock_TST.CONSTANTS()
@@ -17,8 +16,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.0.1",
-        SAVED_VERSION = 1,
+        VERSION = "2.1.0",
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -49,6 +47,7 @@ function Clock_TST.CONSTANTS()
                     "Phase",
                     "Splash",
                     "Stroke",
+                    "EsoUI-Item"
                 },
             },
             moon = {
@@ -89,43 +88,40 @@ function Clock_TST.CONSTANTS()
             },
             BACKGROUNDS = {
                 time = {
-                    -- ["Munge"] = "EsoUI/Art/Performance/StatusMeterMunge.dds",
                     ["Brush"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Brush\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Phase"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Phase\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Splash"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Splash\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Stroke"] = {
                         path = name .. "\\Asset\\Texture\\Time\\Background\\Stroke\\",
                         background = "background.dds",
-                        hover = "hover.dds",
+                    },
+                    ["EsoUI-Item"] = {
+                        path = "EsoUI\\Art\\",
+                        background = "Miscellaneous\\listItem_backdrop.dds",
+                        hover = "ActionBar\\actionBar_mouseOver.dds"
                     },
                 },
                 moon = {
                     ["Brush"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Brush\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Splash"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Splash\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                     ["Solid"] = {
                         path = name .. "\\Asset\\Texture\\Moon\\Background\\Solid\\",
                         background = "background.dds",
-                        hover = "hover.dds",
                     },
                 },
             },
@@ -169,12 +165,15 @@ function Clock_TST.CONSTANTS()
         Settings = {
             account = {
                 SAVED_NAME = "account",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     saveAccountWide = true,
+                    lastVersion = "2.1.0"
                 }
             },
             booleans = {
                 SAVED_NAME = "booleans",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     core = {
                         timeAndMoonAreLinked = true,
@@ -211,10 +210,22 @@ function Clock_TST.CONSTANTS()
             },
             styles = {
                 SAVED_NAME = "styles",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     time = {
                         background = "Splash",
-                        backgroundStrength = .5,
+                        backgroundColour = {
+                            r = 0.08235294117640,
+                            g = 0.08235294117640,
+                            b = 0.08235294117640,
+                            a = .5,
+                        },
+                        backgroundHoverColour = {
+                            r = 0.34509803921570,
+                            g = 0.64705882352940,
+                            b = 0.71764705882350,
+                            a = .66,
+                        },
                         backgroundOffset = {
                             x = 0,
                             y = 0,
@@ -233,7 +244,18 @@ function Clock_TST.CONSTANTS()
                     },
                     moon = {
                         background = "Solid",
-                        backgroundStrength = 0.5,
+                        backgroundColour = {
+                            r = 0.00000000000000,
+                            g = 0.00000000000000,
+                            b = 0.08235294117640,
+                            a = .5,
+                        },
+                        backgroundHoverColour = {
+                            r = 0.34509803921570,
+                            g = 0.64705882352940,
+                            b = 0.71764705882350,
+                            a = .66,
+                        },
                         masser = "Pale",
                         secunda = "Ghost",
                         alpha = 1.0,
@@ -242,6 +264,7 @@ function Clock_TST.CONSTANTS()
             },
             attributes = {
                 SAVED_NAME = "attributes",
+                SAVED_VERSION = 1,
                 DEFAULTS = {
                     core = {
                         scaleFactor = 1.1,

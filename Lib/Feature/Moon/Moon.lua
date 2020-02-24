@@ -55,7 +55,6 @@ function Moon:UpdateVisibility()
         if settings:GetHideInFight() then
             EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                 Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-                d(inCombat)
             end)
         elseif settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
@@ -72,17 +71,16 @@ end
 --- Update if mouse interactions are possible
 function Moon:UpdateMouse()
     self.control:SetMovable(settings:GetMoonIsMovable())
-    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled())
+    self.control:SetMouseEnabled(settings:GetMoonIsMouseEnabled() and settings:GetMoonIsVisible())
 end
 
 --- Update the background texture
 function Moon:UpdateBackground()
-    local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-    local alpha = settings:GetMoonBackgroundStrength()
-    self.masser_background:SetTexture(texture.path .. texture.background)
-    self.masser_background:SetColor(1, 1, 1, alpha)
-    self.secunda_background:SetTexture(texture.path .. texture.background)
-    self.secunda_background:SetColor(1, 1, 1, alpha)
+    self.texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
+    self.masser_background:SetTexture(self.texture.path .. self.texture.background)
+    self.masser_background:SetColor(settings:GetMoonBackgroundColour())
+    self.secunda_background:SetTexture(self.texture.path .. self.texture.background)
+    self.secunda_background:SetColor(settings:GetMoonBackgroundColour())
 end
 
 --- Update the texture of the moons to fit the phases
@@ -148,7 +146,7 @@ function Moon:UpdateMoon(moon)
 end
 
 -- ----------------
--- Start
+-- Register
 -- ----------------
 
 --- Register the moon updates with the LibClockTST
@@ -165,6 +163,10 @@ function Moon.UnregisterForUpdates()
     lib:CancelSubscriptionForMoon(const.NAME)
 end
 
+-- ----------------
+-- Start
+-- ----------------
+
 --- Setup a tooltip to be shown if hovering over the moon control
 function Moon:SetupTooltip()
     self.control:SetHandler("OnMouseEnter", function(control)
@@ -175,12 +177,12 @@ function Moon:SetupTooltip()
 
         -- Hover
         if settings:GetMoonHighlightWhenHover() then
-            local texture = const.UI.BACKGROUNDS.moon[settings:GetMoonBackground()]
-            local alpha = math.min(1, settings:GetMoonBackgroundStrength() * 1.1)
-            self.masser_background:SetTexture(texture.path .. texture.hover)
-            self.masser_background:SetColor(1, 1, 1, alpha)
-            self.secunda_background:SetTexture(texture.path .. texture.hover)
-            self.secunda_background:SetColor(1, 1, 1, alpha)
+            if self.texture.hover then
+                self.masser_background:SetTexture(self.texture.path .. self.texture.hover)
+                self.secunda_background:SetTexture(self.texture.path .. self.texture.hover)
+            end
+            self.masser_background:SetColor(settings:GetMoonBackgroundHoverColour())
+            self.secunda_background:SetColor(settings:GetMoonBackgroundHoverColour())
         end
 
         if settings:GetMoonScaleWhenHover() then
@@ -233,6 +235,14 @@ function Moon:SetupMovement()
             end
         end
         ClearMenu()
+        local baseScale = const.Settings.attributes.DEFAULTS.moon.scale
+        local scalePercentage = math.floor(settings:GetMoonScale() * 100 / baseScale)
+        if scalePercentage ~= 100 then
+            AddMenuItem(zo_strformat("[<<1>>%]\t<<2>>", scalePercentage, i18n.core.menu.scale), function()
+                settings:SetMoonScale(baseScale)
+                self:SetupScale()
+            end)
+        end
         Setup(settings:GetMoonIsMovable(), function(value)
             settings:SetMoonIsMovable(value)
             self:UpdateMouse()
@@ -313,7 +323,12 @@ function Moon:SetupControls(control)
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
+-- ----------------
+-- Start
+-- ----------------
+
 --- Create a new Moon object
+--@param ... control of the moon object
 function Moon:New(...)
     local container = ZO_Object.New(self)
     container:SetupControls(...)
@@ -321,31 +336,15 @@ function Moon:New(...)
 end
 
 --- function to reload all values from the settings
-function Moon:Setup()
-    self:SetupTooltip()
-    self:SetupMovement()
-    self:SetupScale()
+function Clock_TST:SetupMoon()
+    settings = self.settings
+    self.moon = Moon:New(Clock_TST_Moon)
 
-    self:UpdatePositions()
-    self:UpdateVisibility()
-    self:UpdateMouse()
+    self.moon:SetupTooltip()
+    self.moon:SetupMovement()
+    self.moon:SetupScale()
+
+    self.moon:UpdatePositions()
+    self.moon:UpdateVisibility()
+    self.moon:UpdateMouse()
 end
-
--- ----------------
--- Start
--- ----------------
-
---- Initialize the Moon
---@param _ eventId doesn't matter
---@param name of the addon is Clock
-local function OnAddOnLoaded(_, name)
-    if name == const.NAME then
-        settings = Clock_TST.settings
-        local moon = Moon:New(Clock_TST_Moon)
-        moon:Setup()
-        Clock_TST.moon = moon
-        Clock_TST_Moon:UnregisterForEvent(EVENT_ADD_ON_LOADED)
-    end
-end
-
-Clock_TST_Moon:RegisterForEvent(EVENT_ADD_ON_LOADED, OnAddOnLoaded)

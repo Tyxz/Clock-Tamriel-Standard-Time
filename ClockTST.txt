@@ -15,12 +15,13 @@
 ## Title: Clock |cFFA4002.0|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
-## Version 2.0.0
-## APIVersion: 100029 100030
+## Version 2.1.0
+## APIVersion: 100030
 ## SavedVariables: ClockTST_Settings
 ## DependsOn: LibClockTST
 ## DependsOn: LibAddonMenu-2.0
 ## OptionalDependsOn: LibFeedback
+## OptionalDependsOn: LibDebugLogger
 
 #################
 ## Clock - TST ##
@@ -29,15 +30,21 @@
 Asset/I18n/en.lua
 Asset/I18n/$(language).lua
 
-Lib/Core/Compatibility.lua
-Lib/Core/Utility.lua
-
 Lib/Feature/Moon/Moon.xml
 Lib/Feature/Time/Time.xml
 
 Lib/Data/Constants.lua
 Lib/Data/Settings.lua
 
+Lib/Core/Compatibility.lua
+Lib/Core/Utility.lua
+
 Lib/Feature/Moon/Moon.lua
 Lib/Feature/Time/Time.lua
 Lib/Feature/Menu/Menu.lua
+
+Lib/Core/I18n.lua
+Lib/Feature/Bindings/Bindings.lua
+Lib/Feature/Bindings/Bindings.xml
+
+Lib/Clock.lua
