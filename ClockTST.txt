@@ -46,3 +46,5 @@ Lib/Feature/Menu/Menu.lua
 Lib/Core/I18n.lua
 Lib/Feature/Bindings/Bindings.lua
 Lib/Feature/Bindings/Bindings.xml
+
+Lib/Clock.lua

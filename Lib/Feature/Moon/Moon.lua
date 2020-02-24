@@ -323,17 +323,6 @@ function Moon:SetupControls(control)
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- function to reload all values from the settings
-function Moon:Setup()
-    self:SetupTooltip()
-    self:SetupMovement()
-    self:SetupScale()
-
-    self:UpdatePositions()
-    self:UpdateVisibility()
-    self:UpdateMouse()
-end
-
 -- ----------------
 -- Start
 -- ----------------
@@ -346,17 +335,16 @@ function Moon:New(...)
     return container
 end
 
---- Initialize the Moon
---@param _ eventId doesn't matter
---@param name of the addon is Clock
-local function OnAddOnLoaded(_, name)
-    if name == const.NAME then
-        settings = Clock_TST.settings
-        local moon = Moon:New(Clock_TST_Moon)
-        moon:Setup()
-        Clock_TST.moon = moon
-        Clock_TST_Moon:UnregisterForEvent(EVENT_ADD_ON_LOADED)
-    end
-end
+--- function to reload all values from the settings
+function Clock_TST:SetupMoon()
+    settings = self.settings
+    self.moon = Moon:New(Clock_TST_Moon)
 
-Clock_TST_Moon:RegisterForEvent(EVENT_ADD_ON_LOADED, OnAddOnLoaded)
+    self.moon:SetupTooltip()
+    self.moon:SetupMovement()
+    self.moon:SetupScale()
+
+    self.moon:UpdatePositions()
+    self.moon:UpdateVisibility()
+    self.moon:UpdateMouse()
+end

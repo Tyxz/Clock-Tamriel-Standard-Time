@@ -32,8 +32,8 @@ function Clock_TST:SetupMenu()
         registerForDefaults = true,
         resetFunc = function()
             settings:Reset()
-            time:Setup()
-            moon:Setup()
+            self:SetupTime()
+            self:SetupMoon()
         end,
     }
     local LAM = LibAddonMenu2

@@ -9,7 +9,9 @@ Clock_TST = Clock_TST or {}
 local const = Clock_TST.CONSTANTS()
 local eventHandle = const.DISPLAY
 
--- Event to be called on Load
+--- Initialize the Clock TST
+--@param _ eventId doesn't matter
+--@param name of the addon is Clock
 local function OnLoad(_, addonName)
     if addonName ~= const.NAME then return end
 
@@ -19,6 +21,8 @@ local function OnLoad(_, addonName)
 
     Clock_TST:SetupSettings()
     Clock_TST:SetupBindings()
+    Clock_TST:SetupTime()
+    Clock_TST:SetupMoon()
     Clock_TST:SetupMenu()
 
     -- wait for the first loaded event

@@ -493,19 +493,6 @@ function Time:SetupControls(control)
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
 end
 
---- function to reload all values from the settings
-function Time:Setup()
-    self:SetupTooltip()
-    self:SetupMovement()
-    self:SetupScale()
-
-    self:UpdatePositions()
-    self:UpdateVisibility()
-    self:UpdateMouse()
-    self:UpdateStyle()
-    self:UpdateBackground()
-end
-
 -- ----------------
 -- Start
 -- ----------------
@@ -518,17 +505,17 @@ function Time:New(...)
     return container
 end
 
---- Initialize the Time
---@param _ eventId doesn't matter
---@param name of the addon is Clock
-local function OnAddOnLoaded(_, name)
-    if name == const.NAME then
-        local time = Time:New(Clock_TST_Time)
-        settings = Clock_TST.settings
-        time:Setup()
-        Clock_TST.time = time
-        Clock_TST_Time:UnregisterForEvent(EVENT_ADD_ON_LOADED)
-    end
-end
+--- function to reload all values from the settings
+function Clock_TST:SetupTime()
+    settings = self.settings
+    self.time = Time:New(Clock_TST_Time)
+    self.time:SetupTooltip()
+    self.time:SetupMovement()
+    self.time:SetupScale()
 
-Clock_TST_Time:RegisterForEvent(EVENT_ADD_ON_LOADED, OnAddOnLoaded)
+    self.time:UpdatePositions()
+    self.time:UpdateVisibility()
+    self.time:UpdateMouse()
+    self.time:UpdateStyle()
+    self.time:UpdateBackground()
+end
