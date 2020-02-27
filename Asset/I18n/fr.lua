@@ -23,6 +23,10 @@ function Clock_TST.I18N()
                 nHeadMoon = "Lune",
                 nHeadGeneral = "Généralités",
             },
+            presets = {
+                nPreset = "Preset",
+                nWarning = "This will replace your current settings with a preset"
+            },
             account = {
                 nAccount = "Synchroniser les paramètres",
                 tAccount = "Utilisez les mêmes paramètres pour tous les caractères."
@@ -47,6 +51,7 @@ function Clock_TST.I18N()
                 nFight = "Se cacher dans les combats",
                 nMap = "Afficher sur la carte uniquement",
                 nLink = "Relier les mouvements du lettrage avec la lune",
+                nGroup = "Se cacher en groupe",
             },
             styles = {
                 nSub = "Paramètres d'apparence", -- look

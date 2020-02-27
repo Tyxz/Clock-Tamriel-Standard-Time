@@ -16,7 +16,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.1.0",
+        VERSION = "2.1.1",
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -168,7 +168,7 @@ function Clock_TST.CONSTANTS()
                 SAVED_VERSION = 1,
                 DEFAULTS = {
                     saveAccountWide = true,
-                    lastVersion = "2.1.0"
+                    lastVersion = "2.1.1"
                 }
             },
             booleans = {
@@ -177,6 +177,7 @@ function Clock_TST.CONSTANTS()
                 DEFAULTS = {
                     core = {
                         timeAndMoonAreLinked = true,
+                        hideInGroup = false,
                         hideInFight = true,
                         onlyShowOnMap = false,
                     },
@@ -323,6 +324,159 @@ function Clock_TST.CONSTANTS()
                         },
                     },
                 },
+            },
+            presets = {
+                SAVED_NAME = "presets",
+                SAVED_VERSION = 1,
+                DEFAULTS = {
+                    saved = {
+                        ["Default"] = {},
+                        ["Map"] = {
+                            styles = {
+                                moon = {
+                                    backgroundColour = {
+                                        g = 0,
+                                        a = 0.5000000000,
+                                        r = 0,
+                                        b = 0.0823529412,
+                                    },
+                                    backgroundStrength = 0.5000000000,
+                                    secunda = "Ghost",
+                                    background = "Brush",
+                                    backgroundHoverColour = {
+                                        g = 0.6470588235,
+                                        a = 0.6600000000,
+                                        r = 0.3450980392,
+                                        b = 0.7176470588,
+                                    },
+                                    masser = "Crimson",
+                                    alpha = 0.9900000000,
+                                },
+                                version = 1,
+                                time = {
+                                    size = 16,
+                                    format = "#A, #d #B #Y #H:#M -- %H:%M",
+                                    backgroundHoverColour = {
+                                        g = 0.6470588235,
+                                        a = 0.6600000000,
+                                        r = 0.3450980392,
+                                        b = 0.7176470588,
+                                    },
+                                    lineCount = 1,
+                                    backgroundOffset = {
+                                        y = 0,
+                                        x = 0,
+                                    },
+                                    colour = {
+                                        g = 0.7607843876,
+                                        a = 1,
+                                        r = 0.7725490928,
+                                        b = 0.6196078658,
+                                    },
+                                    font = "Univers 67",
+                                    background = "Splash",
+                                    backgroundStrength = 0.5000000000,
+                                    style = "soft-shadow-thick",
+                                    backgroundColour = {
+                                        g = 0.0823529412,
+                                        a = 0.5000000000,
+                                        r = 0.0823529412,
+                                        b = 0.0823529412,
+                                    },
+                                },
+                            },
+                            attributes = {
+                                moon = {
+                                    scale = 0.3400000000,
+                                    masser = {
+                                        dimension = {
+                                            height = 256,
+                                            width = 256,
+                                        },
+                                        anchor = {
+                                            relativePoint = 3,
+                                            point = 3,
+                                            offsetY = 0,
+                                            relativeTo = "Clock_TST_Moon",
+                                            offsetX = 0,
+                                        },
+                                    },
+                                    secunda = {
+                                        dimension = {
+                                            height = 160,
+                                            width = 160,
+                                        },
+                                        anchor = {
+                                            relativePoint = 12,
+                                            point = 12,
+                                            offsetY = 0,
+                                            relativeTo = "Clock_TST_Moon",
+                                            offsetX = 0,
+                                        },
+                                    },
+                                    dimension = {
+                                        height = 336,
+                                        width = 336,
+                                    },
+                                    anchor = {
+                                        relativeTo = "GuiRoot",
+                                        offsetY = 910,
+                                        point = 3,
+                                        offsetX = 469,
+                                    },
+                                },
+                                time = {
+                                    dimension = {
+                                        height = 40,
+                                        width = 360,
+                                    },
+                                    anchor = {
+                                        relativeTo = "GuiRoot",
+                                        offsetY = 949,
+                                        point = 3,
+                                        offsetX = 506.4999869211,
+                                    },
+                                },
+                                core = {
+                                    scaleFactor = 1.1000000000,
+                                },
+                            },
+                            booleans = {
+                                moon = {
+                                    hasTooltip = true,
+                                    isMouseEnabled = true,
+                                    isMovable = false,
+                                    hasBackground = true,
+                                    highlightWhenHover = true,
+                                    scaleWhenHover = false,
+                                    isVisible = true,
+                                },
+                                time = {
+                                    hasUSFormat = false,
+                                    hasFakeLoreDate = true,
+                                    isMouseEnabled = true,
+                                    isMovable = false,
+                                    hasLoreDate = true,
+                                    hasJapFormat = false,
+                                    isVisible = true,
+                                    hasTooltip = true,
+                                    hasRealDate = true,
+                                    highlightWhenHover = true,
+                                    hasFakeDate = false,
+                                    hasBackground = true,
+                                    scaleWhenHover = false,
+                                    addZero = true,
+                                },
+                                core = {
+                                    onlyShowOnMap = true,
+                                    timeAndMoonAreLinked = true,
+                                    hideInFight = false,
+                                    hideInGroup = false,
+                                },
+                            },
+                        },
+                    },
+                }
             },
         },
     }

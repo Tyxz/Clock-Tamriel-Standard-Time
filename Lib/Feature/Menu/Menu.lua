@@ -43,88 +43,214 @@ function Clock_TST:SetupMenu()
     -- General
     -- ----------------
 
+    local function CurrentPresetExists()
+        for _, v in pairs(settings:GetPresets()) do
+            if settings:GetCurrentPreset() == v then return true end
+        end
+        return false
+    end
+
     -- Create the general submenu
     local function AddGeneral()
         return {
-            type = "submenu",
-            name = i18n.core.nHeadGeneral,
-            controls = {
-                {
-                    type = "header",
-                    name = i18n.booleans.nSub,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetHideInFight()
-                    end,
-                    setFunc = function(value)
-                        settings:SetHideInFight(value)
-                        if value then
-                            settings:SetOnlyShowOnMap(not value)
+            {
+                type = "header",
+                name = i18n.booleans.nSub,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetSaveAccountWide()
+                end,
+                setFunc = function(value)
+                    settings:SetSaveAccountWide(value)
+                end,
+                requiresReload = true,
+                name = i18n.account.nAccount,
+                tooltip = i18n.account.tAccount
+            },
+            {
+                type = "dropdown",
+                choices = settings:GetPresets(),
+                getFunc = function() return settings:GetCurrentPreset() end,
+                setFunc = function(value)
+                    LAM.util.ShowConfirmationDialog(i18n.presets.nPreset, i18n.presets.nWarning, function()
+                        settings:ApplyPreset(value)
+                        self:SetupTime()
+                        self:SetupMoon()
+                        if value == "Default" then
+                            settings:SetCurrentPreset(nil)
                         end
+                        CLOCK_TST_MENU:RefreshPanel()
+                    end)
+                end,
+                name = i18n.presets.nPreset,
+                warning = i18n.presets.wPreset,
+                width = "half",
+            },
+            {
+                type = "editbox",
+                getFunc = function()
+                    return settings:GetCurrentPreset()
+                end,
+                setFunc = function(value)
+                    if string.find(value, "%S") then
+                        settings:SetCurrentPreset(value)
+                    end
+                end,
+                name = i18n.presets.nCurrent,
+                width = "half",
+            },
+            {
+                type = "button",
+                name = i18n.presets.nSave,
+                warning = i18n.presets.wSave,
+                isDangerous = CurrentPresetExists(),
+                func = function()
+                    settings:AddPreset(settings:GetCurrentPreset())
+                    CLOCK_TST_MENU:RefreshPanel()
+                end,
+                disabled = function() return not settings:GetCurrentPreset() end,
+                width = "half",
+            },
+            {
+                type = "button",
+                name = i18n.presets.nDelete,
+                warning = i18n.presets.wDelete,
+                isDangerous = true,
+                func = function()
+                    settings:RemovePreset(settings:GetCurrentPreset())
+                    CLOCK_TST_MENU:RefreshPanel()
+                end,
+                disabled = function() return not settings:GetCurrentPreset() or not CurrentPresetExists() end,
+                width = "half",
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetHideInGroup()
+                end,
+                setFunc = function(value)
+                    settings:SetHideInGroup(value)
+                    if value then
+                        settings:SetOnlyShowOnMap(not value)
+                    end
 
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetOnlyShowOnMap()
-                    end,
-                    name = i18n.booleans.nFight,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetOnlyShowOnMap()
-                    end,
-                    setFunc = function(value)
-                        settings:SetOnlyShowOnMap(value)
-                        if value then
-                            settings:SetHideInFight(not value)
-                        end
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nGroup,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetHideInFight()
+                end,
+                setFunc = function(value)
+                    settings:SetHideInFight(value)
+                    if value then
+                        settings:SetOnlyShowOnMap(not value)
+                    end
 
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetHideInFight()
-                    end,
-                    name = i18n.booleans.nMap,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetTimeAndMoonAreLinked()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeAndMoonAreLinked(value)
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                    end,
-                    name = i18n.booleans.nLink,
-                },
-                {
-                    type = "header",
-                    name = i18n.styles.nSub,
-                },
-                {
-                    type = "slider",
-                    min = 1,
-                    max = 4,
-                    step = .1,
-                    getFunc = function()
-                        return settings:GetScaleFactor()
-                    end,
-                    setFunc = function(value)
-                        settings:SetScaleFactor(value)
-                    end,
-                    name = i18n.styles.nScaleFactor,
-                    tooltip = i18n.styles.tScaleFactor,
-                },
-            }
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nFight,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetOnlyShowOnMap()
+                end,
+                setFunc = function(value)
+                    settings:SetOnlyShowOnMap(value)
+                    if value then
+                        settings:SetHideInFight(not value)
+                        settings:SetHideInGroup(not value)
+                    end
+
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nMap,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetTimeAndMoonAreLinked()
+                end,
+                setFunc = function(value)
+                    settings:SetTimeAndMoonAreLinked(value)
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nLink,
+            },
+            {
+                type = "header",
+                name = i18n.styles.nSub,
+            },
+            {
+                type = "description",
+                title = i18n.styles.nFormat,
+                text = i18n.styles.tFormat,
+            },
+            {
+                type = "description",
+                text = i18n.styles.dFormat,
+                width = "half",
+            },
+            {
+                type = "editbox",
+                disabled = function()
+                    return not settings:GetTimeIsVisible()
+                end,
+                getFunc = function()
+                    return settings:GetTimeFormat()
+                end,
+                setFunc = function(value)
+                    settings:SetTimeFormat(value)
+                    local _, count = string.gsub(value, "\n", "")
+                    if count == 0 then
+                        count = 1
+                    end
+                    settings:SetTimeLineCount(count)
+                    local _, loreCount = string.gsub(value, "#", "")
+                    settings:SetTimeHasLoreDate(loreCount ~= 0)
+                    local _, realCount = string.gsub(value, "%%", "")
+                    settings:SetTimeHasRealDate(realCount ~= 0)
+                    local _, fakeCount = string.gsub(value, "$", "")
+                    settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
+                    settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
+                    time:ResetReplacement()
+                end,
+                isMultiline = true,
+                width = "half",
+            },
+            {
+                type = "slider",
+                min = 1,
+                max = 4,
+                step = .1,
+                getFunc = function()
+                    return settings:GetScaleFactor()
+                end,
+                setFunc = function(value)
+                    settings:SetScaleFactor(value)
+                end,
+                name = i18n.styles.nScaleFactor,
+                tooltip = i18n.styles.tScaleFactor,
+            },
         }
     end
 
@@ -788,60 +914,9 @@ function Clock_TST:SetupMenu()
     -- Register
     -- ----------------
 
-    local data = {
-        {
-            type = "checkbox",
-            getFunc = function()
-                return settings:GetSaveAccountWide()
-            end,
-            setFunc = function(value)
-                settings:SetSaveAccountWide(value)
-            end,
-            requiresReload = true,
-            name = i18n.account.nAccount,
-            tooltip = i18n.account.tAccount
-        },
-        {
-            type = "description",
-            title = i18n.styles.nFormat,
-            text = i18n.styles.tFormat,
-        },
-        {
-            type = "description",
-            text = i18n.styles.dFormat,
-            width = "half",
-        },
-        {
-            type = "editbox",
-            disabled = function()
-                return not settings:GetTimeIsVisible()
-            end,
-            getFunc = function()
-                return settings:GetTimeFormat()
-            end,
-            setFunc = function(value)
-                settings:SetTimeFormat(value)
-                local _, count = string.gsub(value, "\n", "")
-                if count == 0 then
-                    count = 1
-                end
-                settings:SetTimeLineCount(count)
-                local _, loreCount = string.gsub(value, "#", "")
-                settings:SetTimeHasLoreDate(loreCount ~= 0)
-                local _, realCount = string.gsub(value, "%%", "")
-                settings:SetTimeHasRealDate(realCount ~= 0)
-                local _, fakeCount = string.gsub(value, "$", "")
-                settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
-                settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
-                time:ResetReplacement()
-            end,
-            isMultiline = true,
-            width = "half",
-        },
-        AddTime(),
-        AddMoon(),
-        AddGeneral(),
-    }
+    local data = AddGeneral()
+    table.insert(data, AddTime())
+    table.insert(data, AddMoon())
     AddFeedback()
 
     LAM:RegisterOptionControls(const.NAME, data)

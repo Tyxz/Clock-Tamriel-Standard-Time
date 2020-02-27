@@ -36,27 +36,28 @@ end
 
 --- Update the visibility and fragment visibility of the Time object
 function Time:UpdateVisibility()
-
-    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", not settings:GetTimeIsVisible())
+    local isHidden = not settings:GetTimeIsVisible() or settings:GetHideInGroup() and IsUnitGrouped("player")
+    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", isHidden)
 
     if settings:GetTimeIsVisible() then
         local backgroundIsHidden = not settings:GetTimeHasBackground()
         self.background:SetHidden(backgroundIsHidden)
 
         local namespace = self.control:GetName()
-
-        HUD_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
-        HUD_UI_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
-        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
         EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
-        if settings:GetHideInFight() then
-            EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
-                Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-            end)
-        elseif settings:GetOnlyShowOnMap() then
+        if settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             WORLD_MAP_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+        else
+            if settings:GetHideInFight() then
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
+                    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
+                end)
+            end
+            HUD_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+            HUD_UI_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+            WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
         end
 
         self:RegisterForUpdates()
@@ -491,6 +492,7 @@ function Time:SetupControls(control)
     self.label = GetControl(control, "Label")
 
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
+    Clock_TST.TIME_FRAGMENT:Hide()
 end
 
 -- ----------------

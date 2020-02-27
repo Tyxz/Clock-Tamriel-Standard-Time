@@ -23,6 +23,15 @@ function Clock_TST.I18N()
                 nHeadMoon = "Moon",
                 nHeadGeneral = "General",
             },
+            presets = {
+                nPreset = "Preset",
+                wPreset = "This will replace your current settings with a preset",
+                nSave = "Save",
+                wSave = "This will overwrite you current preset.",
+                nDelete = "Delete",
+                wDelete = "This will delete your current preset.",
+                nCurrent = "Current preset",
+            },
             account = {
                 nAccount = "Synchronize settings",
                 tAccount = "Use the same settings for all characters."
@@ -47,6 +56,7 @@ function Clock_TST.I18N()
                 nFight = "Hide in fights",
                 nMap = "Only show on map",
                 nLink = "Link the movements of the label with the moon",
+                nGroup = "Hide in groups",
             },
             styles = {
                 nSub = "Look Options", -- look

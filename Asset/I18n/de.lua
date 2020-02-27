@@ -23,6 +23,10 @@ function Clock_TST.I18N()
                 nHeadMoon = "Mond",
                 nHeadGeneral = "Allgemein",
             },
+            presets = {
+                nPreset = "Preset",
+                nWarning = "This will replace your current settings with a preset"
+            },
             account = {
                 nAccount = "Einstellungen synchronisieren",
                 tAccount = "Verwende die gleichen Einstellungen für alle Charaktäre."
@@ -47,6 +51,7 @@ function Clock_TST.I18N()
                 nFight = "In Kämpfen verstecken",
                 nMap = "Nur auf der Karte anzeigen",
                 nLink = "Verbinde die Bewegungen des Schriftzugs mit dem Mond",
+                nGroup = "In Gruppen verstecken",
             },
             styles = {
                 nSub = "Aussehen Einstellungen", -- look

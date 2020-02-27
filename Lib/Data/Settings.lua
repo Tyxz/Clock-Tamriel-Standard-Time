@@ -45,6 +45,18 @@ function Settings:SetTimeAndMoonAreLinked(value)
 end
 
 --- a function to get the stored boolean value for the core elements
+-- @return if the view should be hidden in groups
+function Settings:GetHideInGroup()
+    return self.booleans.core.hideInGroup
+end
+
+--- a function to store the boolean value for the core elements
+-- @param value if the view should be hidden in groups
+function Settings:SetHideInGroup(value)
+    self.booleans.core.hideInGroup = value
+end
+
+--- a function to get the stored boolean value for the core elements
 -- @return if the view should be hidden in fights
 function Settings:GetHideInFight()
     return self.booleans.core.hideInFight
@@ -758,6 +770,71 @@ function Settings:SetMoonScale(value)
 end
 
 -- ----------------
+-- Presets
+-- ----------------
+
+--- Function to get a list of all presets
+-- @return table of preset keys
+function Settings:GetPresets()
+    return Clock_TST.GetKeys(self.presets.saved)
+end
+
+--- Function to apply a specific preset
+-- @param key of the preset
+function Settings:ApplyPreset(key)
+    local function Replace(old, new)
+        for k, v in pairs(new) do
+            old[k] = v
+        end
+    end
+
+    if key == "Default" then
+        self:ResetAttributes()
+        self:ResetBooleans()
+        self:ResetStyles()
+    else
+        local copy = Clock_TST.DeepCopy(self.presets.saved[key])
+
+        Replace(self.attributes, copy.attributes)
+        Replace(self.booleans, copy.booleans)
+        Replace(self.styles, copy.styles)
+    end
+
+    self.presets.current = key
+end
+
+--- Function to add a new preset
+-- @param key of the new preset
+function Settings:AddPreset(key)
+    self.presets.saved[key] = {
+        attributes = Clock_TST.DeepCopy(self.attributes),
+        booleans = Clock_TST.DeepCopy(self.booleans),
+        styles = Clock_TST.DeepCopy(self.styles)
+    }
+end
+
+--- Function to remove a preset
+-- @param key of the preset
+function Settings:RemovePreset(key)
+    self.presets.saved[key] = nil
+    if self.presets.current == key then
+        self.presets.current = nil
+    end
+end
+
+--- Function to get the current preset
+-- @return current preset key
+function Settings:GetCurrentPreset()
+    return self.presets.current
+end
+
+---Function to set the current preset
+-- @param key for preset
+function Settings:SetCurrentPreset(key)
+    self.presets.current = key
+end
+
+-- ----------------
 -- Reset
 -- ----------------
 
@@ -785,11 +862,20 @@ function Settings:ResetStyles()
     end
 end
 
+--- Resets the preset table to the default values
+function Settings:ResetPresets()
+    self.presets = {}
+    for k, v in pairs(Clock_TST.CONSTANTS().Settings.presets.DEFAULTS) do
+        self.presets[k] = v
+    end
+end
+
 --- Resets the self table to the default values
 function Settings:Reset()
     self:ResetAttributes()
     self:ResetBooleans()
     self:ResetStyles()
+    self:ResetPresets()
 end
 
 -- ----------------
@@ -858,6 +944,10 @@ function Settings:New()
     )
     self.attributes = InitializeSavedVariable(
             const.Settings.attributes,
+            self.account.saveAccountWide
+    )
+    self.presets = InitializeSavedVariable(
+            const.Settings.presets,
             self.account.saveAccountWide
     )
     self:Migrate()

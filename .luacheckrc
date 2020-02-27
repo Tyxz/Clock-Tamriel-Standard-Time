@@ -29,6 +29,7 @@ stds.eso = {
         "HUD_UI_SCENE",
         "InformationTooltip",
         "InitializeTooltip",
+        "IsUnitGrouped",
         "LibAddonMenu2",
         "LibClockTST",
         "LibDebugLogger",
