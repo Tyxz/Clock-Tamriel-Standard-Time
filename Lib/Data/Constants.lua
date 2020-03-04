@@ -16,7 +16,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.1.1",
+        VERSION = "2.2.0",
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -168,7 +168,7 @@ function Clock_TST.CONSTANTS()
                 SAVED_VERSION = 1,
                 DEFAULTS = {
                     saveAccountWide = true,
-                    lastVersion = "2.1.1"
+                    lastVersion = "2.2.0"
                 }
             },
             booleans = {

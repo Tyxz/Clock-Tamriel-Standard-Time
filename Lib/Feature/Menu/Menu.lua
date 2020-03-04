@@ -8,6 +8,7 @@
 
 Clock_TST = Clock_TST or {}
 
+
 --- Create the LibAddonMenu panel
 function Clock_TST:SetupMenu()
     local const = self.CONSTANTS()
@@ -30,45 +31,22 @@ function Clock_TST:SetupMenu()
         slashCommand = "/tstmenu",
         registerForRefresh = true,
         registerForDefaults = true,
-        resetFunc = function()
-            settings:Reset()
-            self:SetupTime()
-            self:SetupMoon()
-        end,
     }
     local LAM = LibAddonMenu2
-    CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
+    local options = setmetatable({}, { __index = table })
 
     -- ----------------
     -- General
     -- ----------------
-
-    local function CurrentPresetExists()
-        for _, v in pairs(settings:GetPresets()) do
-            if settings:GetCurrentPreset() == v then return true end
-        end
-        return false
+    local function UpdatePresets()
+        local choices = settings:GetPresets()
+        CLOCK_TST_MENU_PRESETS:UpdateChoices(choices)
+        CLOCK_TST_MENU_PRESETS:UpdateValue()
     end
 
     -- Create the general submenu
     local function AddGeneral()
         return {
-            {
-                type = "header",
-                name = i18n.booleans.nSub,
-            },
-            {
-                type = "checkbox",
-                getFunc = function()
-                    return settings:GetSaveAccountWide()
-                end,
-                setFunc = function(value)
-                    settings:SetSaveAccountWide(value)
-                end,
-                requiresReload = true,
-                name = i18n.account.nAccount,
-                tooltip = i18n.account.tAccount
-            },
             {
                 type = "dropdown",
                 choices = settings:GetPresets(),
@@ -87,6 +65,7 @@ function Clock_TST:SetupMenu()
                 name = i18n.presets.nPreset,
                 warning = i18n.presets.wPreset,
                 width = "half",
+                reference = "CLOCK_TST_MENU_PRESETS"
             },
             {
                 type = "editbox",
@@ -96,6 +75,7 @@ function Clock_TST:SetupMenu()
                 setFunc = function(value)
                     if string.find(value, "%S") then
                         settings:SetCurrentPreset(value)
+                        CLOCK_TST_MENU_PRESET_SAVE:UpdateWarning()
                     end
                 end,
                 name = i18n.presets.nCurrent,
@@ -105,13 +85,15 @@ function Clock_TST:SetupMenu()
                 type = "button",
                 name = i18n.presets.nSave,
                 warning = i18n.presets.wSave,
-                isDangerous = CurrentPresetExists(),
+                isDangerous = settings:CurrentPresetExists(),
                 func = function()
                     settings:AddPreset(settings:GetCurrentPreset())
+                    UpdatePresets()
                     CLOCK_TST_MENU:RefreshPanel()
                 end,
-                disabled = function() return not settings:GetCurrentPreset() end,
+                disabled = function() return not settings:GetCurrentPreset() or not settings:CurrentPresetChanged() end,
                 width = "half",
+                reference = "CLOCK_TST_MENU_PRESET_SAVE"
             },
             {
                 type = "button",
@@ -120,10 +102,31 @@ function Clock_TST:SetupMenu()
                 isDangerous = true,
                 func = function()
                     settings:RemovePreset(settings:GetCurrentPreset())
+                    UpdatePresets()
                     CLOCK_TST_MENU:RefreshPanel()
                 end,
-                disabled = function() return not settings:GetCurrentPreset() or not CurrentPresetExists() end,
+                disabled = function() return not settings:GetCurrentPreset() or not settings:CurrentPresetExists() end,
                 width = "half",
+                reference = "CLOCK_TST_MENU_PRESET_DELETE"
+            },
+            {
+                type = "header",
+                name = i18n.booleans.nSub,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetSaveAccountWide()
+                end,
+                setFunc = function(value)
+                    settings:SetSaveAccountWide(value)
+                end,
+                requiresReload = true,
+                name = i18n.account.nAccount,
+                tooltip = i18n.account.tAccount
+            },
+            {
+                type = "divider"
             },
             {
                 type = "checkbox",
@@ -859,6 +862,30 @@ function Clock_TST:SetupMenu()
     end
 
     -- ----------------
+    -- Debug
+    -- ----------------
+
+    --- Create the Debug submenu
+    local function AddDebug()
+        return {
+            type = "submenu",
+            name = i18n.core.nHeadDebug,
+            controls = {
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetDebug()
+                    end,
+                    setFunc = function(value)
+                        settings:SetDebug(value)
+                    end,
+                    name = i18n.booleans.nDebug
+                },
+            }
+        }
+    end
+
+    -- ----------------
     -- Feedback
     -- ----------------
 
@@ -913,13 +940,21 @@ function Clock_TST:SetupMenu()
     -- ----------------
     -- Register
     -- ----------------
+    panel.resetFunc = function()
+        settings:Reset()
+        self:SetupTime()
+        self:SetupMoon()
+        UpdatePresets()
+    end
+    CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
 
-    local data = AddGeneral()
-    table.insert(data, AddTime())
-    table.insert(data, AddMoon())
+    options = Clock_TST.MergeTable(options, AddGeneral())
+    options:insert(AddTime())
+    options:insert(AddMoon())
+    options:insert(AddDebug())
     AddFeedback()
 
-    LAM:RegisterOptionControls(const.NAME, data)
+    LAM:RegisterOptionControls(const.NAME, options)
 
     ShowInMenu()
 end

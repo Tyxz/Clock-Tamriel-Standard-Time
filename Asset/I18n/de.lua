@@ -22,10 +22,16 @@ function Clock_TST.I18N()
                 nHeadTime = "Zeit und Datum",
                 nHeadMoon = "Mond",
                 nHeadGeneral = "Allgemein",
+                nHeadDebug = "Debug",
             },
             presets = {
                 nPreset = "Preset",
-                nWarning = "This will replace your current settings with a preset"
+                wPreset = "This will replace your current settings with a preset",
+                nSave = "Save",
+                wSave = "This will overwrite you current preset.",
+                nDelete = "Delete",
+                wDelete = "This will delete your current preset.",
+                nCurrent = "Current preset",
             },
             account = {
                 nAccount = "Einstellungen synchronisieren",
@@ -52,6 +58,7 @@ function Clock_TST.I18N()
                 nMap = "Nur auf der Karte anzeigen",
                 nLink = "Verbinde die Bewegungen des Schriftzugs mit dem Mond",
                 nGroup = "In Gruppen verstecken",
+                nDebug = "Debug mode",
             },
             styles = {
                 nSub = "Aussehen Einstellungen", -- look

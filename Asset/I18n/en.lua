@@ -22,6 +22,7 @@ function Clock_TST.I18N()
                 nHeadTime = "Time and date",
                 nHeadMoon = "Moon",
                 nHeadGeneral = "General",
+                nHeadDebug = "Debug",
             },
             presets = {
                 nPreset = "Preset",
@@ -57,6 +58,7 @@ function Clock_TST.I18N()
                 nMap = "Only show on map",
                 nLink = "Link the movements of the label with the moon",
                 nGroup = "Hide in groups",
+                nDebug = "Debug mode",
             },
             styles = {
                 nSub = "Look Options", -- look
