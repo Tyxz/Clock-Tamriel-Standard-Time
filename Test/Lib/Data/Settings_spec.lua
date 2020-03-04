@@ -6,10 +6,16 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 describe("Settings", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Data.Settings")
     require("Test.Utility")
+    require("Lib.Core.Utility")
     require("Lib.Data.Constants")
     local match = require("luassert.match")
+    setup(function()
+        stub(Clock_TST, "Print")
+        stub(Clock_TST, "Debug")
+        stub(Clock_TST, "Warn")
+    end)
     insulate("load", function()
         setup(function()
             require("Lib.Data.Settings")
@@ -35,43 +41,171 @@ describe("Settings", function()
         end)
     end)
     describe("Reset", function()
-        local tBool, tStyle, tAtr
+        local tBool, tStyle, tAtr, tPre, set
 
         before_each(function()
             require("Lib.Data.Settings")
-            local tBoolRef = Clock_TST.settings.booleans.core
-            tBoolRef.timeAndMoonAreLinked = not tBoolRef.timeAndMoonAreLinked
-            tBool = tBoolRef.timeAndMoonAreLinked
-            local tStyleRef = Clock_TST.settings.styles.moon
-            tStyleRef.masser = "test"
-            tStyle = tStyleRef.masser
-            local tAtrRef = Clock_TST.settings.attributes.time.dimension
-            tAtrRef.width = tAtrRef.width + 2
-            tAtr = tAtrRef.width
-        end)
-        it("should reset only the booleans", function()
-            Clock_TST.settings:ResetBooleans()
-            assert.is_not.equal(tBool, Clock_TST.settings.booleans.core.timeAndMoonAreLinked)
-            assert.is.equal(tStyle, Clock_TST.settings.styles.moon.masser)
-            assert.is.equal(tAtr, Clock_TST.settings.attributes.time.dimension.width)
-        end)
-        it("should reset only the styles", function()
-            Clock_TST.settings:ResetStyles()
-            assert.is.equal(tBool, Clock_TST.settings.booleans.core.timeAndMoonAreLinked)
-            assert.is_not.equal(tStyle, Clock_TST.settings.styles.moon.masser)
-            assert.is.equal(tAtr, Clock_TST.settings.attributes.time.dimension.width)
+            set = Clock_TST.settings
+            local const = Clock_TST.CONSTANTS().Settings
+
+            set.booleans.core.timeAndMoonAreLinked = "test"
+            tBool = const.booleans.DEFAULTS.core.timeAndMoonAreLinked
+
+            set.styles.moon.masser = "test"
+            tStyle = const.styles.DEFAULTS.moon.masser
+
+            set.attributes.time.dimension.width = "test"
+            tAtr = const.attributes.DEFAULTS.time.dimension.width
+
+            set.presets.saved["Test"] = {}
+            tPre = nil
         end)
         it("should reset only the attributes", function()
-            Clock_TST.settings:ResetAttributes()
-            assert.is.equal(tBool, Clock_TST.settings.booleans.core.timeAndMoonAreLinked)
-            assert.is.equal(tStyle, Clock_TST.settings.styles.moon.masser)
-            assert.is_not.equal(tAtr, Clock_TST.settings.attributes.time.dimension.width)
+            set:ResetAttributes()
+            assert.is.equal(tAtr, set.attributes.time.dimension.width)
+            assert.is_not.equal(tBool, set.booleans.core.timeAndMoonAreLinked)
+            assert.is_not.equal(tStyle, set.styles.moon.masser)
+            assert.is_not.equal(tPre, set.presets.saved["Test"])
+        end)
+        it("should reset only the booleans", function()
+            set:ResetBooleans()
+            assert.is_not.equal(tAtr, set.attributes.time.dimension.width)
+            assert.is.equal(tBool, set.booleans.core.timeAndMoonAreLinked)
+            assert.is_not.equal(tStyle, set.styles.moon.masser)
+            assert.is_not.equal(tPre, set.presets.saved["Test"])
+        end)
+        it("should reset only the styles", function()
+            set:ResetStyles()
+            assert.is_not.equal(tAtr, set.attributes.time.dimension.width)
+            assert.is_not.equal(tBool, set.booleans.core.timeAndMoonAreLinked)
+            assert.is.equal(tStyle, set.styles.moon.masser)
+            assert.is_not.equal(tPre, set.presets.saved["Test"])
+        end)
+        it("should reset only the presets", function()
+            set:ResetPresets()
+            assert.is_not.equal(tAtr, set.attributes.time.dimension.width)
+            assert.is_not.equal(tBool, set.booleans.core.timeAndMoonAreLinked)
+            assert.is_not.equal(tStyle, set.styles.moon.masser)
+            assert.is.equal(tPre, set.presets.saved["Test"])
         end)
         it("should reset all", function()
-            Clock_TST.settings:Reset()
-            assert.is_not.equal(tBool, Clock_TST.settings.booleans.core.timeAndMoonAreLinked)
-            assert.is_not.equal(tStyle, Clock_TST.settings.styles.moon.masser)
-            assert.is_not.equal(tAtr, Clock_TST.settings.attributes.time.dimension.width)
+            set:Reset()
+            assert.is.equal(tAtr, set.attributes.time.dimension.width)
+            assert.is.equal(tBool, set.booleans.core.timeAndMoonAreLinked)
+            assert.is.equal(tStyle, set.styles.moon.masser)
+            assert.is.equal(tPre, set.presets.saved["Test"])
+        end)
+    end)
+
+    describe("Presets", function()
+        local set
+        local tPreset = {booleans = {core={timeAndMoonAreLinked="test"}}}
+        setup(function()
+            Clock_TST:SetupSettings()
+            set = Clock_TST.settings
+        end)
+        it("should return a list of all presets", function()
+            local tExcept = {"Default", "Map"}
+            local tResult = set:GetPresets()
+            assert.same(tExcept, tResult)
+        end)
+        describe("AddPreset", function()
+            it("should not add a new preset without changes", function()
+                local tExcept = nil
+                set:AddPreset("test")
+                assert.is.equal(tExcept, set.presets.saved["test"])
+            end)
+            it("should print waring when adding a new preset without changes", function()
+                set:AddPreset("test")
+                assert.stub(Clock_TST.Warn).was.called_with(match.is_string())
+            end)
+            it("should add changes from default to preset", function()
+                local tExcept = tPreset
+                set.booleans.core.timeAndMoonAreLinked = "test"
+                set:AddPreset("test")
+                assert.same(tExcept, set.presets.saved.test)
+            end)
+        end)
+        insulate("ApplyPreset", function()
+            setup(function()
+                set = mock(set)
+                set.presets.saved.test = tPreset
+            end)
+            it("should reset to default", function()
+                set:ApplyPreset("test")
+                assert.spy(set.ResetAttributes).was_called()
+                assert.spy(set.ResetBooleans).was_called()
+                assert.spy(set.ResetStyles).was_called()
+            end)
+            it("should apply changes of preset from default", function()
+                local const = Clock_TST.CONSTANTS().Settings
+                local tExcept = {
+                    attributes = const.attributes.DEFAULTS,
+                    booleans = const.booleans.DEFAULTS,
+                    styles = const.styles.DEFAULTS
+                }
+                tExcept.booleans.core.timeAndMoonAreLinked = tPreset.booleans.core.timeAndMoonAreLinked
+                set:ApplyPreset("test")
+                assert.same(tExcept.attributes.core, set.attributes.core)
+                assert.same(tExcept.attributes.time, set.attributes.time)
+                assert.same(tExcept.attributes.moon, set.attributes.moon)
+                assert.same(tExcept.booleans.core, set.booleans.core)
+                assert.same(tExcept.booleans.time, set.booleans.time)
+                assert.same(tExcept.booleans.moon, set.booleans.moon)
+                assert.same(tExcept.styles.time, set.styles.time)
+                assert.same(tExcept.styles.moon, set.styles.moon)
+            end)
+        end)
+
+        describe("RemovePreset", function()
+            before_each(function()
+                set.presets.saved.test = tPreset
+            end)
+            it("should remove preset", function()
+                local tExcept = nil
+                set:RemovePreset("test")
+                assert.same(tExcept, set.presets.test)
+            end)
+
+            it("should unset current preset if equal to key", function()
+                local tExcept = nil
+                local tKey = "test"
+                set.presets.current = tKey
+                set:RemovePreset(tKey)
+                assert.same(tExcept, set.presets.current)
+            end)
+        end)
+
+        describe("CurrentPreset", function()
+            it("should set the current preset", function()
+                local tExcept = "test"
+                set:SetCurrentPreset(tExcept)
+                local tResult = set.presets.current
+                assert.equal(tExcept, tResult)
+
+            end)
+            it("should return current preset", function()
+                local tExcept = "test"
+                set.presets.current = tExcept
+                local tResult = set:GetCurrentPreset()
+                assert.equal(tExcept, tResult)
+            end)
+        end)
+
+        describe("CurrentPresetExists", function()
+            it("should return true if preset exists", function()
+                local tExcept = true
+                set:SetCurrentPreset("Default")
+                local tResult = set:CurrentPresetExists()
+                assert.equal(tExcept, tResult)
+            end)
+
+            it("should return false if preset does not exists", function()
+                local tExcept = false
+                set:SetCurrentPreset(nil)
+                local tResult = set:CurrentPresetExists()
+                assert.equal(tExcept, tResult)
+            end)
         end)
     end)
 
@@ -90,6 +224,17 @@ describe("Settings", function()
                 it("should get the stored value", function()
                     local tResult = settings:GetSaveAccountWide()
                     assert.is.same(reference.saveAccountWide, tResult)
+                end)
+            end)
+            describe("Debug", function()
+                it("should store the value", function()
+                    local tBool = not reference.debug
+                    settings:SetDebug(tBool)
+                    assert.is.same(tBool, reference.debug)
+                end)
+                it("should get the stored value", function()
+                    local tResult = settings:GetDebug()
+                    assert.is.same(reference.debug, tResult)
                 end)
             end)
         end)

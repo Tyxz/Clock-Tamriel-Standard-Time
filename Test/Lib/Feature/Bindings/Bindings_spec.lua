@@ -6,7 +6,7 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 insulate("Bindings", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Feature.Bindings.Bindings")
     require("Lib.Data.Constants")
     require("Lib.Data.Settings")
     require("Lib.Feature.Bindings.Bindings")

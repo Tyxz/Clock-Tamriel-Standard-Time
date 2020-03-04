@@ -91,7 +91,7 @@ function Clock_TST:SetupMenu()
                     UpdatePresets()
                     CLOCK_TST_MENU:RefreshPanel()
                 end,
-                disabled = function() return not settings:GetCurrentPreset() or not settings:CurrentPresetChanged() end,
+                disabled = function() return not settings:GetCurrentPreset() end,
                 width = "half",
                 reference = "CLOCK_TST_MENU_PRESET_SAVE"
             },

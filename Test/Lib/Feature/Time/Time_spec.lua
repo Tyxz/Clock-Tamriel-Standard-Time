@@ -6,8 +6,8 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 describe("Time", function()
+    require("Test.Lib.Feature.Time.Time")
     require("Test.Utility")
-    require("Test.ZoMock")
     require("Asset.I18n.en")
     require("Lib.Data.Constants")
     require("Lib.Data.Settings")

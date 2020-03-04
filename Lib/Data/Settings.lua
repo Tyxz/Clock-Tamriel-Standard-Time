@@ -8,7 +8,7 @@
 
 Clock_TST = Clock_TST or {}
 local const = Clock_TST.CONSTANTS()
-local d, p
+local d, p, w
 local Settings = {
     account = {},
     booleans = {},
@@ -798,9 +798,18 @@ end
 --- since 2.2.2
 --- @param key string of the preset
 function Settings:ApplyPreset(key)
+    --- Function to deep replace values from one table in an other
+    --- @param old table which should be changed
+    --- @param new table of the source
     local function Replace(old, new)
-        for k, v in pairs(new) do
-            old[k] = v
+        if type(new) == "table" and next(new) then
+            for k, v in pairs(new) do
+                if type(v) == "table" then
+                    Replace(old[k], v)
+                else
+                    old[k] = v
+                end
+            end
         end
     end
 
@@ -810,7 +819,6 @@ function Settings:ApplyPreset(key)
 
     if key ~= "Default" then
         local copy = Clock_TST.DeepCopy(self.presets.saved[key])
-
         Replace(self.attributes, copy.attributes)
         Replace(self.booleans, copy.booleans)
         Replace(self.styles, copy.styles)
@@ -827,15 +835,30 @@ end
 --- since 2.2.2
 --- @param key string of the new preset
 function Settings:AddPreset(key)
+    if key == "Default" then
+        w("Overwriting the default preset is not allowed.")
+        return
+    end
+
     self.presets.saved[key] = {
-        attributes = Clock_TST.DeepCopy(getmetatable(self.attributes).__index),
-        booleans = Clock_TST.DeepCopy(getmetatable(self.booleans).__index),
-        styles = Clock_TST.DeepCopy(getmetatable(self.styles).__index)
+        attributes = Clock_TST.SelectiveCopy(
+                getmetatable(self.attributes).__index,
+                const.Settings.attributes.DEFAULTS,
+                "version"),
+        booleans = Clock_TST.SelectiveCopy(
+                getmetatable(self.booleans).__index,
+                const.Settings.booleans.DEFAULTS,
+                "version"),
+        styles = Clock_TST.SelectiveCopy(
+                getmetatable(self.styles).__index,
+                const.Settings.styles.DEFAULTS,
+                "version")
     }
-    local preset = self.presets.saved[key]
-    preset.attributes.version = nil
-    preset.booleans.version = nil
-    preset.styles.version = nil
+
+    if not next(self.presets.saved[key]) then
+        w("Tried to save preset without any differences to the default preset.")
+        self.presets.saved[key] = nil
+    end
 
     if self:GetDebug() then
         d("Preset %s added.", key)
@@ -879,37 +902,12 @@ function Settings:CurrentPresetExists()
     return false
 end
 
----Function to find out, if the current preset has changed
---- since 2.2.2
---- @return boolean if the preset has changed
-function Settings:CurrentPresetChanged()
-    local hasChanged = not self:CurrentPresetExists()
-    if not hasChanged then
-        local key = self:GetCurrentPreset()
-        local presetTable= self.presets.saved[key]
-        return Clock_TST.DeepCompare(presetTable.attributes, self.attributes)
-                or Clock_TST.DeepCompare(presetTable.booleans, self.booleans)
-                or Clock_TST.DeepCompare(presetTable.styles, self.styles)
-    end
-    if self:GetDebug() then
-        if hasChanged then
-            d("Current preset has changed.")
-        else
-            d("Current preset is same.")
-        end
-    end
-    return hasChanged
-end
-
 -- ----------------
 -- Reset
 -- ----------------
 
 --- Resets the attributes table to the default values
 function Settings:ResetAttributes()
-    for k, _ in pairs(self.attributes) do
-        self.attributes[k] = nil
-    end
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.attributes.DEFAULTS) do
         self.attributes[k] = v
     end
@@ -920,9 +918,6 @@ end
 
 --- Resets the booleans table to the default values
 function Settings:ResetBooleans()
-    for k, _ in pairs(self.booleans) do
-        self.booleans[k] = nil
-    end
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.booleans.DEFAULTS) do
         self.booleans[k] = v
     end
@@ -933,9 +928,6 @@ end
 
 --- Resets the styles table to the default values
 function Settings:ResetStyles()
-    for k, _ in pairs(self.styles) do
-        self.styles[k] = nil
-    end
     for k, v in pairs(Clock_TST.CONSTANTS().Settings.styles.DEFAULTS) do
         self.styles[k] = v
     end
@@ -1045,5 +1037,6 @@ end
 function Clock_TST:SetupSettings()
     d = Clock_TST.Debug
     p = Clock_TST.Print
+    w = Clock_TST.Warn
     self.settings = Settings:New()
 end

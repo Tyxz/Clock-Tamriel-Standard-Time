@@ -55,34 +55,85 @@ function Clock_TST.DeepCopy(object)
     end
 end
 
+--- Function to copy only objects from table which are not in the default one
+--- @param object table base object
+--- @param default table default object to compare it with
+--- @param ... string additional keys to ignore
+function Clock_TST.SelectiveCopy(object, default, ...)
+    if type(object) == "table" then
+        local next = next
+        local result = {}
+        for k, v in pairs(object) do
+            local skip = false
+            -- skip over ignored keys
+            for i = 1, select('#', ...) do
+                skip = skip or k == select(i, ...)
+            end
+            if not skip then
+                if type(default) == "table" and default[k] ~= nil then
+                    result[k] = Clock_TST.SelectiveCopy(v, default[k])
+                else
+                    result[k] = v
+                end
+            end
+        end
+        for k, v in pairs(result) do
+            if type(v) == "table" and not next(v) then
+                result[k] = nil
+            end
+        end
+        if not next(result) then
+            result = nil
+        end
+        return result
+    elseif type(object) == "function" or object == default then
+        return nil
+    else
+        return object
+    end
+end
+
 --- Function to deeply compare two tables if the are the same
 --- @param table1 table first table
 --- @param table2 table second table
 --- @return boolean if the tables are the same
 function Clock_TST.DeepCompare(table1, table2)
     if table2 and not table1 or table1 and not table2 then return false end
-    for k, v1 in pairs(table1) do
-        local v2 = table2[k]
-        if type(v1) == "table" and type(v2) == "table" then
-            return Clock_TST.DeepCompare(v1, v2)
+    if type(table1) == "table" and type(table2) == "table" then
+        local next = next
+        local t1Next = next(table1)
+        local t2Next = next(table2)
+        if t1Next and not t2Next or not t1Next and t2Next then
+            return false
+        elseif not (t1Next or t2Next) then
+            return true
         else
-            return v1 == v2
+            local same = true
+            for k, v1 in pairs(table1) do
+                local v2 = table2[k]
+                same = same and Clock_TST.DeepCompare(v1, v2)
+            end
+            return same
         end
+    else
+        return table1 == table2
     end
 end
 
---- Function to merge numerous tables together
+--- Function to merge numerous tables together into the first
+--- @param t1 table first table the rest will be merged into
 --- @param ... table in a undefined number
 --- @return table merge product of all inputs
-function Clock_TST.MergeTable(...)
-    local t1 = select(1, ...)
-    for i = 2, select('#', ...) do
+function Clock_TST.MergeTable(t1, ...)
+    for i = 1, select('#', ...) do
         local t2 = select(i, ...)
-        for k, v in pairs(t2) do
-            if (type(v) == "table") and (type(t1[k] or false) == "table") then
-                merge(t1[k], t2[k])
-            else
-                t1[k] = v
+        if type(t2) == "table" then
+            for k, v in pairs(t2) do
+                if (type(v) == "table") and (type(t1[k] or false) == "table") then
+                    Clock_TST.MergeTable(t1[k], t2[k])
+                else
+                    t1[k] = v
+                end
             end
         end
     end
