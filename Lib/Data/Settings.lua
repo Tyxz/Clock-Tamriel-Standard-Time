@@ -818,7 +818,8 @@ function Settings:ApplyPreset(key)
     self:ResetStyles()
 
     if key ~= "Default" then
-        local copy = Clock_TST.DeepCopy(self.presets.saved[key])
+        local copy = {}
+        ZO_DeepTableCopy(self.presets.saved[key], copy)
         Replace(self.attributes, copy.attributes)
         Replace(self.booleans, copy.booleans)
         Replace(self.styles, copy.styles)

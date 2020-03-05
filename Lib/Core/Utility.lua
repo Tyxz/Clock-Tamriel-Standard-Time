@@ -39,22 +39,6 @@ function Clock_TST.GetKeys(object)
     return keys
 end
 
-
---- Function to copy a table recursively
---- @param object any to be copied
---- @return any copy of object
-function Clock_TST.DeepCopy(object)
-    if type(object) == "table" then
-        local copy = {}
-        for k, v in pairs(object) do
-            copy[k] = Clock_TST.DeepCopy(v)
-        end
-        return copy
-    else
-        return object
-    end
-end
-
 --- Function to copy only objects from table which are not in the default one
 --- @param object table base object
 --- @param default table default object to compare it with

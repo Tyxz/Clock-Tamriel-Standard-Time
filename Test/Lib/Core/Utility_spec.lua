@@ -28,24 +28,7 @@ describe("Utility", function()
         local tTest = {a = "Test1", [2] = "Test2", "Test3"}
         local tExpect = {1, "a", 2}
         local tResult = Clock_TST.GetKeys(tTest)
-        local foundAllKeys = true
-        for k, _ in pairs(tExpect) do
-            local found = false
-            for i, _ in pairs(tResult) do
-                found = found or k == i
-            end
-            foundAllKeys = foundAllKeys and found
-        end
-        assert.truthy(foundAllKeys)
-    end)
-
-    describe("DeepCopy", function()
-        it("should copy an table deeply", function()
-            local tDeepTable = {a={b={c=1}}}
-            local tResult = Clock_TST.DeepCopy(tDeepTable)
-            tResult.a.b.c = 2
-            assert.is_not.same(tDeepTable, tResult)
-        end)
+        assert.truthy(ZO_DeepAcyclicTableCompare(tExpect, tResult, 10))
     end)
 
     describe("SelectiveCopy", function()

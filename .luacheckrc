@@ -50,6 +50,8 @@ stds.eso = {
         "WORLD_MAP_SCENE",
         "ZO_ColorDef",
         "ZO_CreateStringId",
+        "ZO_DeepAcyclicTableCompare",
+        "ZO_DeepTableCopy",
         "ZO_FormatTime",
         "ZO_HUDFadeSceneFragment",
         "ZO_HUDFadeSceneFragment",

@@ -105,9 +105,9 @@ describe("Settings", function()
             set = Clock_TST.settings
         end)
         it("should return a list of all presets", function()
-            local tExcept = 2
+            local tExcept = {"Default", "Map"}
             local tResult = set:GetPresets()
-            assert.same(tExcept, #tResult)
+            assert.truthy(ZO_DeepAcyclicTableCompare(tExcept, tResult, 10))
         end)
         describe("AddPreset", function()
             it("should not add a new preset without changes", function()
