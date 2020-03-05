@@ -168,7 +168,6 @@ function Clock_TST.CONSTANTS()
                 SAVED_VERSION = 1,
                 DEFAULTS = {
                     saveAccountWide = true,
-                    lastVersion = "2.2.0"
                 }
             },
             booleans = {
@@ -195,7 +194,7 @@ function Clock_TST.CONSTANTS()
                         addZero = lang ~= "en", -- show 0[0-9] instead of [0-9]
 
                         hasLoreDate = true,
-                        hasFakeDate = false,
+                        hasFakeLoreDate = false,
                         hasRealDate = true,
                     },
                     moon = {
@@ -332,146 +331,125 @@ function Clock_TST.CONSTANTS()
                     saved = {
                         ["Default"] = {},
                         ["Map"] = {
-                            styles = {
-                                moon = {
-                                    backgroundColour = {
-                                        g = 0,
-                                        a = 0.5000000000,
-                                        r = 0,
-                                        b = 0.0823529412,
-                                    },
-                                    backgroundStrength = 0.5000000000,
-                                    secunda = "Ghost",
-                                    background = "Brush",
-                                    backgroundHoverColour = {
-                                        g = 0.6470588235,
-                                        a = 0.6600000000,
-                                        r = 0.3450980392,
-                                        b = 0.7176470588,
-                                    },
-                                    masser = "Crimson",
-                                    alpha = 0.9900000000,
+                            booleans = {
+                                core = {
+                                    onlyShowOnMap = true,
                                 },
-                                version = 1,
                                 time = {
-                                    size = 16,
+                                    isMovable = false,
+                                    hasFakeLoreDate = true,
+                                },
+                                moon = {
+                                    isMovable = false,
+                                    scaleWhenHover = false,
+                                    highlightWhenHover = true,
+                                },
+                            },
+                            styles = {
+                                time = {
                                     format = "#A, #d #B #Y #H:#M -- %H:%M",
-                                    backgroundHoverColour = {
-                                        g = 0.6470588235,
-                                        a = 0.6600000000,
-                                        r = 0.3450980392,
-                                        b = 0.7176470588,
-                                    },
                                     lineCount = 1,
-                                    backgroundOffset = {
-                                        y = 0,
-                                        x = 0,
-                                    },
-                                    colour = {
-                                        g = 0.7607843876,
-                                        a = 1,
-                                        r = 0.7725490928,
-                                        b = 0.6196078658,
-                                    },
-                                    font = "Univers 67",
-                                    background = "Splash",
-                                    backgroundStrength = 0.5000000000,
-                                    style = "soft-shadow-thick",
-                                    backgroundColour = {
-                                        g = 0.0823529412,
-                                        a = 0.5000000000,
-                                        r = 0.0823529412,
-                                        b = 0.0823529412,
-                                    },
+                                    size = 16,
+                                },
+                                moon = {
+                                    background = "Brush",
+                                    masser = "Crimson",
                                 },
                             },
                             attributes = {
-                                moon = {
-                                    scale = 0.3400000000,
-                                    masser = {
-                                        dimension = {
-                                            height = 256,
-                                            width = 256,
-                                        },
-                                        anchor = {
-                                            relativePoint = 3,
-                                            point = 3,
-                                            offsetY = 0,
-                                            relativeTo = "Clock_TST_Moon",
-                                            offsetX = 0,
-                                        },
-                                    },
-                                    secunda = {
-                                        dimension = {
-                                            height = 160,
-                                            width = 160,
-                                        },
-                                        anchor = {
-                                            relativePoint = 12,
-                                            point = 12,
-                                            offsetY = 0,
-                                            relativeTo = "Clock_TST_Moon",
-                                            offsetX = 0,
-                                        },
-                                    },
-                                    dimension = {
-                                        height = 336,
-                                        width = 336,
-                                    },
-                                    anchor = {
-                                        relativeTo = "GuiRoot",
-                                        offsetY = 910,
-                                        point = 3,
-                                        offsetX = 469,
-                                    },
-                                },
                                 time = {
                                     dimension = {
                                         height = 40,
                                         width = 360,
                                     },
                                     anchor = {
-                                        relativeTo = "GuiRoot",
                                         offsetY = 949,
-                                        point = 3,
                                         offsetX = 506.4999869211,
                                     },
                                 },
-                                core = {
-                                    scaleFactor = 1.1000000000,
+                                moon = {
+                                    scale = 0.3400000000,
+                                    anchor = {
+                                        offsetY = 910,
+                                        offsetX = 469,
+                                    },
+                                },
+                            },
+                        },
+                        ["Small"] = {
+                            styles = {
+                                time = {
+                                    font = "Trajan Pro",
+                                    format = "%X\n#X",
+                                    lineCount = 1,
+                                    colour = {
+                                        r = 0.7725490928,
+                                        g = 0.7607843876,
+                                        b = 0.6196078658,
+                                    },
+                                    size = 24,
+                                    backgroundColour = {
+                                        r = 0.0823529412,
+                                        g = 0.0823529412,
+                                        b = 0.0823529412,
+                                    },
+                                    backgroundOffset = {
+                                        y = 20,
+                                    },
+                                    backgroundHoverColour = {
+                                        r = 0.3450980392,
+                                        g = 0.6470588235,
+                                        b = 0.7176470588,
+                                    },
+                                },
+                                moon = {
+                                    backgroundHoverColour = {
+                                        r = 0.3450980392,
+                                        g = 0.6470588235,
+                                        b = 0.7176470588,
+                                    },
+                                    backgroundColour = {
+                                        b = 0.0784313753,
+                                        a = 0.7950819731,
+                                    },
                                 },
                             },
                             booleans = {
                                 moon = {
-                                    hasTooltip = true,
-                                    isMouseEnabled = true,
                                     isMovable = false,
-                                    hasBackground = true,
                                     highlightWhenHover = true,
                                     scaleWhenHover = false,
-                                    isVisible = true,
                                 },
                                 time = {
-                                    hasUSFormat = false,
-                                    hasFakeLoreDate = true,
-                                    isMouseEnabled = true,
+                                    highlightWhenHover = false,
+                                    hasBackground = false,
                                     isMovable = false,
-                                    hasLoreDate = true,
-                                    hasJapFormat = false,
-                                    isVisible = true,
-                                    hasTooltip = true,
-                                    hasRealDate = true,
-                                    highlightWhenHover = true,
-                                    hasFakeDate = false,
-                                    hasBackground = true,
-                                    scaleWhenHover = false,
-                                    addZero = true,
+                                    hasFakeLoreDate = true,
                                 },
                                 core = {
-                                    onlyShowOnMap = true,
-                                    timeAndMoonAreLinked = true,
-                                    hideInFight = false,
-                                    hideInGroup = false,
+                                    hideInGroup = true,
+                                },
+                            },
+                            attributes = {
+                                time = {
+                                    anchor = {
+                                        offsetX = 1788.0714111328,
+                                        offsetY = 12,
+                                    },
+                                    dimension = {
+                                        width = 64.2857142857,
+                                        height = 80,
+                                    },
+                                },
+                                moon = {
+                                    anchor = {
+                                        offsetX = 1778.4240722656,
+                                        offsetY = 9,
+                                    },
+                                    scale = 0.3400000000,
+                                    dimension = {
+                                        height = 331,
+                                    },
                                 },
                             },
                         },

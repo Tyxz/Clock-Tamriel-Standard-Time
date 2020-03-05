@@ -16,7 +16,7 @@ local Settings = {
     attributes = {}
 }
 -- ----------------
--- Core Booleans
+-- Account
 -- ----------------
 
 --- a function to get the stored boolean value for the core elements
@@ -29,6 +29,36 @@ end
 --- @param value boolean if the saved variable is account wide
 function Settings:SetSaveAccountWide(value)
     self.account.saveAccountWide = value
+end
+
+--- a function to get the current version as numbers
+--- @return number major version
+--- @return number minor version
+--- @return number patch version
+function Settings:GetVersion()
+    local major, minor, patch = string.match(const.VERSION, "(%d+).(%d+).(%d+)")
+    return tonumber(major), tonumber(minor), tonumber(patch)
+end
+
+--- a function to get last stored version
+--- @return number major version
+--- @return number minor version
+--- @return number patch version
+function Settings:GetLastVersion()
+    local lV = self.account.lastVersion or {}
+    return lV.major, lV.minor, lV.patch
+end
+
+--- a function to store the last version
+--- @param major number version
+--- @param minor number version
+--- @param patch number version
+function Settings:SetLastVersion(major, minor, patch)
+    self.account.lastVersion = {
+        major = major,
+        minor = minor,
+        patch = patch
+    }
 end
 
 --- a function to get the stored boolean value for the core elements
@@ -965,8 +995,7 @@ end
 
 --- Function to migrate saved variables to latest version without having to reset it
 function Settings:Migrate()
-    local major, minor = string.match(self.account.lastVersion or "", "(%d+).(%d+).%d+")
-    major, minor = tonumber(major), tonumber(minor)
+    local major, minor = self:GetLastVersion()
     -- Update 2.1.0 introduced background and hover colour
     if not major or major == 2 and minor < 1 then
         local function CopyRGBA(colour, default)
@@ -989,7 +1018,7 @@ function Settings:Migrate()
         p("Updated to 2.1")
     end
 
-    self.account.lastVersion = const.VERSION
+    self:SetLastVersion(self:GetVersion())
 end
 
 --- Load the SavedVariables or register the default values.

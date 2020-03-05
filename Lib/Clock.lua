@@ -48,8 +48,8 @@ function Clock_TST.Warn(...)
 end
 
 --- Initialize the Clock TST
---@param _ eventId doesn't matter
---@param name of the addon is Clock
+--- @param _ number eventId doesn't matter
+--- @param addonName string of the addon is Clock
 local function OnLoad(_, addonName)
     if addonName ~= const.NAME then return end
 

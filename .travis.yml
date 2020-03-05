@@ -7,7 +7,7 @@ git:
 
 env:
   - LUA="lua=5.1"
-  - LUA="lua=5.2"
+#  - LUA="lua=5.2"
 
 before_install:
   # Use sed to replace the SSH URL with the public URL, then initialize submodules
