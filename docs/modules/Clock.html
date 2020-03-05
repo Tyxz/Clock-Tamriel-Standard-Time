@@ -39,13 +39,13 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/Clock.html">Clock</a></li>
+  <li><strong>Clock</strong></li>
   <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
   <li><a href="../modules/Core.I18n.html">Core.I18n</a></li>
   <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
   <li><a href="../modules/Data.Constants.html">Data.Constants</a></li>
   <li><a href="../modules/Data.Settings.html">Data.Settings</a></li>
-  <li><strong>Feature.Bindings.Bindings</strong></li>
+  <li><a href="../modules/Feature.Bindings.Bindings.html">Feature.Bindings.Bindings</a></li>
   <li><a href="../modules/Feature.Menu.Menu.html">Feature.Menu.Menu</a></li>
   <li><a href="../modules/Feature.Moon.Moon.html">Feature.Moon.Moon</a></li>
   <li><a href="../modules/Feature.Time.Time.html">Feature.Time.Time</a></li>
@@ -59,12 +59,12 @@
 
 <div id="content">
 
-<h1>Module <code>Feature.Bindings.Bindings</code></h1>
+<h1>Module <code>Clock</code></h1>
 <p>Project:    Clock &ndash; Tamriel Standard Time
 <pre>
 Author:     Arne Rantzen (Tyx)
-Created:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">23</span>
-Updated:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">23</span>
+Created:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">16</span>
+Updated:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">16</span>
 License:    GPL-<span class="number">3.0</span>
 </pre></p>
 <p>
@@ -74,33 +74,23 @@ License:    GPL-<span class="number">3.0</span>
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Toggle">Toggle ()</a></td>
-	<td class="summary">Function to toggle the visibility of the moon and time and date</td>
+	<td class="name" nowrap><a href="#Clock_TST.Debug">Clock_TST.Debug (...)</a></td>
+	<td class="summary">Debug output to the console</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ToggleTime">ToggleTime ()</a></td>
-	<td class="summary">Function to toggle the visibility of the time and date</td>
+	<td class="name" nowrap><a href="#Clock_TST.Print">Clock_TST.Print (...)</a></td>
+	<td class="summary">Output to the console</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ToggleMoon">ToggleMoon ()</a></td>
-	<td class="summary">Function to toggle the visibility of the moon</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Clock_TST:SetupBindings">Clock_TST:SetupBindings ()</a></td>
-	<td class="summary">Function to create the bindings</td>
+	<td class="name" nowrap><a href="#Clock_TST.Warn">Clock_TST.Warn (...)</a></td>
+	<td class="summary">Warning output to the console</td>
 	</tr>
 </table>
 <h2><a href="#Local_Functions">Local Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#ToggleTimeVisibility">ToggleTimeVisibility (isVisible)</a></td>
-	<td class="summary">Function to toggle the visibility of the time and date
- will update the time object and the settings</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#ToggleMoonVisibility">ToggleMoonVisibility (isVisible)</a></td>
-	<td class="summary">Function to toggle the visibility of the moon
- will update the moon object and the settings</td>
+	<td class="name" nowrap><a href="#OnLoad">OnLoad (_, name)</a></td>
+	<td class="summary">Initialize the Clock TST</td>
 	</tr>
 </table>
 
@@ -112,13 +102,19 @@ License:    GPL-<span class="number">3.0</span>
 
     <dl class="function">
     <dt>
-    <a name = "Toggle"></a>
-    <strong>Toggle ()</strong>
+    <a name = "Clock_TST.Debug"></a>
+    <strong>Clock_TST.Debug (...)</strong>
     </dt>
     <dd>
-    Function to toggle the visibility of the moon and time and date
+    Debug output to the console
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a debug log
+        </li>
+    </ul>
 
 
 
@@ -126,13 +122,19 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "ToggleTime"></a>
-    <strong>ToggleTime ()</strong>
+    <a name = "Clock_TST.Print"></a>
+    <strong>Clock_TST.Print (...)</strong>
     </dt>
     <dd>
-    Function to toggle the visibility of the time and date
+    Output to the console
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a log
+        </li>
+    </ul>
 
 
 
@@ -140,27 +142,19 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "ToggleMoon"></a>
-    <strong>ToggleMoon ()</strong>
+    <a name = "Clock_TST.Warn"></a>
+    <strong>Clock_TST.Warn (...)</strong>
     </dt>
     <dd>
-    Function to toggle the visibility of the moon
+    Warning output to the console
 
 
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Clock_TST:SetupBindings"></a>
-    <strong>Clock_TST:SetupBindings ()</strong>
-    </dt>
-    <dd>
-    Function to create the bindings
-
-
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a log
+        </li>
+    </ul>
 
 
 
@@ -172,41 +166,20 @@ License:    GPL-<span class="number">3.0</span>
 
     <dl class="function">
     <dt>
-    <a name = "ToggleTimeVisibility"></a>
-    <strong>ToggleTimeVisibility (isVisible)</strong>
+    <a name = "OnLoad"></a>
+    <strong>OnLoad (_, name)</strong>
     </dt>
     <dd>
-    Function to toggle the visibility of the time and date
- will update the time object and the settings
+    Initialize the Clock TST
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">isVisible</span>
-
-
+        <li><span class="parameter">_</span>
+         eventId doesn&rsquo;t matter
         </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "ToggleMoonVisibility"></a>
-    <strong>ToggleMoonVisibility (isVisible)</strong>
-    </dt>
-    <dd>
-    Function to toggle the visibility of the moon
- will update the moon object and the settings
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">isVisible</span>
-
-
+        <li><span class="parameter">name</span>
+         of the addon is Clock
         </li>
     </ul>
 
