@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-19
+    Updated:    2020-03-06
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -380,12 +380,19 @@ function Clock_TST.CONSTANTS()
                         ["Small"] = {
                             styles = {
                                 time = {
-                                    font = "Trajan Pro",
+                                    font = "Futura Condensed",
                                     format = "%H:%M:%S\n#H:#M:#S",
                                     lineCount = 1,
                                     size = 24,
                                     backgroundOffset = {
                                         y = 20,
+                                    },
+                                    colour =
+                                    {
+                                        r = 0,
+                                        b = 0.9647058845,
+                                        a = 0.8823529482,
+                                        g = 1,
                                     },
                                 },
                                 moon = {
@@ -413,23 +420,29 @@ function Clock_TST.CONSTANTS()
                                 },
                             },
                             attributes = {
-                                time = {
-                                    anchor = {
-                                        offsetX = 1788.0714111328,
-                                        offsetY = 12,
+                                time =
+                                {
+                                    anchor =
+                                    {
+                                        offsetX = 1776.2143554688,
+                                        offsetY = 17,
                                     },
-                                    dimension = {
-                                        width = 64.2857142857,
+                                    dimension =
+                                    {
+                                        width = 102.8571428571,
                                         height = 80,
                                     },
                                 },
-                                moon = {
-                                    anchor = {
+                                moon =
+                                {
+                                    scale = 0.3800000000,
+                                    anchor =
+                                    {
                                         offsetX = 1778.4240722656,
-                                        offsetY = 9,
+                                        offsetY = 8,
                                     },
-                                    scale = 0.3400000000,
-                                    dimension = {
+                                    dimension =
+                                    {
                                         height = 331,
                                     },
                                 },

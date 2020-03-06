@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-11
+    Updated:    2020-03-06
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -32,6 +32,18 @@ function Time:UpdatePositions()
     end
 
     UpdateControl(self.control, attribute)
+end
+
+--- Function to remove the fragment from all scenes and delete the reference
+function Time:RemoveFragment()
+    if Clock_TST.TIME_FRAGMENT then
+        HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        GAME_MENU_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Removed", true)
+        Clock_TST.TIME_FRAGMENT = nil
+    end
 end
 
 --- Update the visibility and fragment visibility of the Time object
@@ -365,7 +377,7 @@ function Time.UnregisterForUpdates()
 end
 
 -- ----------------
--- Start
+-- Setup
 -- ----------------
 
 --- Setup the tooltip to show when hovering over the label
@@ -510,7 +522,13 @@ end
 --- function to reload all values from the settings
 function Clock_TST:SetupTime()
     settings = self.settings
+    if Clock_TST.time then
+        Clock_TST.time:RemoveFragment()
+        Clock_TST.time = nil
+    end
+
     self.time = Time:New(Clock_TST_Time)
+
     self.time:SetupTooltip()
     self.time:SetupMovement()
     self.time:SetupScale()

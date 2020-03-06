@@ -36,6 +36,34 @@ function Clock_TST:SetupMenu()
     local options = setmetatable({}, { __index = table })
 
     -- ----------------
+    -- Visibility
+    -- ----------------
+
+    local function ShowFragment(libPanel)
+        if libPanel == CLOCK_TST_MENU then
+            GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
+            GAME_MENU_SCENE:AddFragment(self.MOON_FRAGMENT)
+        end
+    end
+
+    local function HideFragment(libPanel)
+        if libPanel == CLOCK_TST_MENU then
+            GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
+            GAME_MENU_SCENE:RemoveFragment(self.MOON_FRAGMENT)
+        end
+    end
+
+    local function RegisterCallback()
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened", ShowFragment)
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed", HideFragment)
+    end
+
+    local function RemoveCallback()
+        CALLBACK_MANAGER:UnregisterCallback("LAM-PanelOpened", ShowFragment)
+        CALLBACK_MANAGER:UnregisterCallback("LAM-PanelClosed", HideFragment)
+    end
+
+    -- ----------------
     -- General
     -- ----------------
     local function UpdatePresets()
@@ -53,9 +81,12 @@ function Clock_TST:SetupMenu()
                 getFunc = function() return settings:GetCurrentPreset() end,
                 setFunc = function(value)
                     LAM.util.ShowConfirmationDialog(i18n.presets.nPreset, i18n.presets.nWarning, function()
+                        RemoveCallback()
                         settings:ApplyPreset(value)
                         self:SetupTime()
                         self:SetupMoon()
+                        RegisterCallback()
+                        ShowFragment(CLOCK_TST_MENU)
                         if value == "Default" then
                             settings:SetCurrentPreset(nil)
                         end
@@ -915,29 +946,6 @@ function Clock_TST:SetupMenu()
     end
 
     -- ----------------
-    -- Visibility
-    -- ----------------
-
-    local function ShowInMenu()
-        CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened",
-                function(libPanel)
-                    if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:AddFragment(self.MOON_FRAGMENT)
-                    end
-                end
-        )
-        CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed",
-                function(libPanel)
-                    if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:RemoveFragment(self.MOON_FRAGMENT)
-                    end
-                end
-        )
-    end
-
-    -- ----------------
     -- Register
     -- ----------------
     panel.resetFunc = function()
@@ -956,5 +964,5 @@ function Clock_TST:SetupMenu()
 
     LAM:RegisterOptionControls(const.NAME, options)
 
-    ShowInMenu()
+    RegisterCallback()
 end

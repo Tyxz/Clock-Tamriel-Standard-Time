@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-19
+    Updated:    2020-03-06
     License:    GPL-3.0
 --------------------------------------------]]--
 
