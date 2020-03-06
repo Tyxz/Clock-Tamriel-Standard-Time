@@ -39,14 +39,14 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="../modules/Clock.html">Clock</a></li>
+  <li><strong>Clock</strong></li>
   <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
   <li><a href="../modules/Core.I18n.html">Core.I18n</a></li>
   <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
   <li><a href="../modules/Data.Constants.html">Data.Constants</a></li>
   <li><a href="../modules/Data.Settings.html">Data.Settings</a></li>
   <li><a href="../modules/Feature.Bindings.Bindings.html">Feature.Bindings.Bindings</a></li>
-  <li><strong>Feature.Menu.Menu</strong></li>
+  <li><a href="../modules/Feature.Menu.Menu.html">Feature.Menu.Menu</a></li>
   <li><a href="../modules/Feature.Moon.Moon.html">Feature.Moon.Moon</a></li>
   <li><a href="../modules/Feature.Time.Time.html">Feature.Time.Time</a></li>
 </ul>
@@ -59,7 +59,7 @@
 
 <div id="content">
 
-<h1>Module <code>Feature.Menu.Menu</code></h1>
+<h1>Module <code>Clock</code></h1>
 <p>Project:    Clock &ndash; Tamriel Standard Time
 <pre>
 Author:     Arne Rantzen (Tyx)
@@ -74,35 +74,23 @@ License:    GPL-<span class="number">3.0</span>
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Clock_TST:SetupMenu">Clock_TST:SetupMenu ()</a></td>
-	<td class="summary">Create the LibAddonMenu panel</td>
+	<td class="name" nowrap><a href="#Clock_TST.Debug">Clock_TST.Debug (...)</a></td>
+	<td class="summary">Debug output to the console</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Clock_TST.Print">Clock_TST.Print (...)</a></td>
+	<td class="summary">Output to the console</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Clock_TST.Warn">Clock_TST.Warn (...)</a></td>
+	<td class="summary">Warning output to the console</td>
 	</tr>
 </table>
 <h2><a href="#Local_Functions">Local Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#ShowFragment">ShowFragment (libPanel)</a></td>
-	<td class="summary">Function to add fragment to game menu scene</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#HideFragment">HideFragment (libPanel)</a></td>
-	<td class="summary">Function to remove fragment from game menu scene</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#RegisterCallback">RegisterCallback ()</a></td>
-	<td class="summary">Function to add callback to toggle visibility when panel is opened or closed</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#RemoveCallback">RemoveCallback ()</a></td>
-	<td class="summary">Function to remove callback to toggle visibility when panel is opened or closed</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#AddMoon">AddMoon ()</a></td>
-	<td class="summary">Create the Moon submenu</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#AddDebug">AddDebug ()</a></td>
-	<td class="summary">Create the Debug submenu</td>
+	<td class="name" nowrap><a href="#OnLoad">OnLoad (_, addonName)</a></td>
+	<td class="summary">Initialize the Clock TST</td>
 	</tr>
 </table>
 
@@ -114,13 +102,59 @@ License:    GPL-<span class="number">3.0</span>
 
     <dl class="function">
     <dt>
-    <a name = "Clock_TST:SetupMenu"></a>
-    <strong>Clock_TST:SetupMenu ()</strong>
+    <a name = "Clock_TST.Debug"></a>
+    <strong>Clock_TST.Debug (...)</strong>
     </dt>
     <dd>
-    Create the LibAddonMenu panel
+    Debug output to the console
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a debug log
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Clock_TST.Print"></a>
+    <strong>Clock_TST.Print (...)</strong>
+    </dt>
+    <dd>
+    Output to the console
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a log
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Clock_TST.Warn"></a>
+    <strong>Clock_TST.Warn (...)</strong>
+    </dt>
+    <dd>
+    Warning output to the console
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         string variable parameters to be printed as a log
+        </li>
+    </ul>
 
 
 
@@ -132,95 +166,22 @@ License:    GPL-<span class="number">3.0</span>
 
     <dl class="function">
     <dt>
-    <a name = "ShowFragment"></a>
-    <strong>ShowFragment (libPanel)</strong>
+    <a name = "OnLoad"></a>
+    <strong>OnLoad (_, addonName)</strong>
     </dt>
     <dd>
-    Function to add fragment to game menu scene
+    Initialize the Clock TST
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">libPanel</span>
-         table  panel
+        <li><span class="parameter">_</span>
+         number eventId doesn&rsquo;t matter
+        </li>
+        <li><span class="parameter">addonName</span>
+         string of the addon is Clock
         </li>
     </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "HideFragment"></a>
-    <strong>HideFragment (libPanel)</strong>
-    </dt>
-    <dd>
-    Function to remove fragment from game menu scene
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">libPanel</span>
-         table  panel
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "RegisterCallback"></a>
-    <strong>RegisterCallback ()</strong>
-    </dt>
-    <dd>
-    Function to add callback to toggle visibility when panel is opened or closed
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "RemoveCallback"></a>
-    <strong>RemoveCallback ()</strong>
-    </dt>
-    <dd>
-    Function to remove callback to toggle visibility when panel is opened or closed
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "AddMoon"></a>
-    <strong>AddMoon ()</strong>
-    </dt>
-    <dd>
-    Create the Moon submenu
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "AddDebug"></a>
-    <strong>AddDebug ()</strong>
-    </dt>
-    <dd>
-    Create the Debug submenu
-
-
 
 
 

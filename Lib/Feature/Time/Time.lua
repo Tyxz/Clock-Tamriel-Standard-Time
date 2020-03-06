@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-11
+    Updated:    2020-03-06
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -34,29 +34,42 @@ function Time:UpdatePositions()
     UpdateControl(self.control, attribute)
 end
 
+--- Function to remove the fragment from all scenes and delete the reference
+function Time:RemoveFragment()
+    if Clock_TST.TIME_FRAGMENT then
+        HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        GAME_MENU_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
+        Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Removed", true)
+        Clock_TST.TIME_FRAGMENT = nil
+    end
+end
+
 --- Update the visibility and fragment visibility of the Time object
 function Time:UpdateVisibility()
-
-    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", not settings:GetTimeIsVisible())
+    local isHidden = not settings:GetTimeIsVisible() or settings:GetHideInGroup() and IsUnitGrouped("player")
+    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", isHidden)
 
     if settings:GetTimeIsVisible() then
         local backgroundIsHidden = not settings:GetTimeHasBackground()
         self.background:SetHidden(backgroundIsHidden)
 
         local namespace = self.control:GetName()
-
-        HUD_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
-        HUD_UI_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
-        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
         EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
-        if settings:GetHideInFight() then
-            EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
-                Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-            end)
-        elseif settings:GetOnlyShowOnMap() then
+        if settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             WORLD_MAP_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+        else
+            if settings:GetHideInFight() then
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
+                    Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
+                end)
+            end
+            HUD_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+            HUD_UI_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
+            WORLD_MAP_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
         end
 
         self:RegisterForUpdates()
@@ -364,7 +377,7 @@ function Time.UnregisterForUpdates()
 end
 
 -- ----------------
--- Start
+-- Setup
 -- ----------------
 
 --- Setup the tooltip to show when hovering over the label
@@ -491,6 +504,7 @@ function Time:SetupControls(control)
     self.label = GetControl(control, "Label")
 
     Clock_TST.TIME_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
+    Clock_TST.TIME_FRAGMENT:Hide()
 end
 
 -- ----------------
@@ -508,7 +522,13 @@ end
 --- function to reload all values from the settings
 function Clock_TST:SetupTime()
     settings = self.settings
+    if Clock_TST.time then
+        Clock_TST.time:RemoveFragment()
+        Clock_TST.time = nil
+    end
+
     self.time = Time:New(Clock_TST_Time)
+
     self.time:SetupTooltip()
     self.time:SetupMovement()
     self.time:SetupScale()

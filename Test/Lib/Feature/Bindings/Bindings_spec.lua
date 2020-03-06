@@ -6,7 +6,7 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 insulate("Bindings", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Feature.Bindings.Bindings")
     require("Lib.Data.Constants")
     require("Lib.Data.Settings")
     require("Lib.Feature.Bindings.Bindings")
@@ -18,6 +18,7 @@ insulate("Bindings", function()
         stub(Clock_TST.time, "UpdateMouse")
         stub(Clock_TST.moon, "UpdateVisibility")
         stub(Clock_TST.moon, "UpdateMouse")
+        stub(Clock_TST, "Print")
         Clock_TST:SetupSettings()
         Clock_TST:SetupBindings()
     end)

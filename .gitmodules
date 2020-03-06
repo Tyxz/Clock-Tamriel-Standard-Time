@@ -1,0 +1,3 @@
+[submodule "dev/esoui"]
+	path = dev/esoui
+	url = git@github.com:esoui/esoui.git

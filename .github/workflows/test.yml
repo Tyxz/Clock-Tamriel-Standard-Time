@@ -13,6 +13,10 @@ jobs:
 
       - uses: leafo/gh-actions-luarocks@v2
 
+      - name: submodule
+        run: sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+          && git submodule update --init --recursive
+
       - name: build
         run: luarocks install busted
           && luarocks install luacheck

@@ -22,6 +22,16 @@ function Clock_TST.I18N()
                 nHeadTime = "Zeit und Datum",
                 nHeadMoon = "Mond",
                 nHeadGeneral = "Allgemein",
+                nHeadDebug = "Fehlersuche",
+            },
+            presets = {
+                nPreset = "Voreinstellung",
+                wPreset = "Dadurch werden Ihre aktuellen Einstellungen durch eine Voreinstellung ersetzt.",
+                nSave = "Speichern",
+                wSave = "Dadurch wird Ihre aktuelle Voreinstellung überschrieben.",
+                nDelete = "Löschen",
+                wDelete = "Dadurch wird Ihre aktuelle Voreinstellung gelöscht.",
+                nCurrent = "Aktuelle Voreinstellung",
             },
             account = {
                 nAccount = "Einstellungen synchronisieren",
@@ -47,6 +57,8 @@ function Clock_TST.I18N()
                 nFight = "In Kämpfen verstecken",
                 nMap = "Nur auf der Karte anzeigen",
                 nLink = "Verbinde die Bewegungen des Schriftzugs mit dem Mond",
+                nGroup = "In Gruppen verstecken",
+                nDebug = "Debug-Modus",
             },
             styles = {
                 nSub = "Aussehen Einstellungen", -- look

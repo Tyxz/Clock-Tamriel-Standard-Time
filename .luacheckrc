@@ -3,14 +3,18 @@ stds.eso = {
     globals = {
         "AddMenuItem",
         "CALLBACK_MANAGER",
+        "CHAT_SYSTEM",
         "ClearMenu",
         "ClearTooltip",
         "Clock_TST",
         "CLOCK_TST_MENU",
+        "CLOCK_TST_MENU_PRESETS",
+        "CLOCK_TST_MENU_PRESET_SAVE",
         "Clock_TST_Moon",
         "Clock_TST_Moon",
         "Clock_TST_Moon_Masser",
         "Clock_TST_Time",
+        "d",
         "EVENT_ADD_ON_LOADED",
         "EVENT_MANAGER",
         "EVENT_PLAYER_COMBAT_STATE",
@@ -29,6 +33,7 @@ stds.eso = {
         "HUD_UI_SCENE",
         "InformationTooltip",
         "InitializeTooltip",
+        "IsUnitGrouped",
         "LibAddonMenu2",
         "LibClockTST",
         "LibDebugLogger",
@@ -45,6 +50,8 @@ stds.eso = {
         "WORLD_MAP_SCENE",
         "ZO_ColorDef",
         "ZO_CreateStringId",
+        "ZO_DeepAcyclicTableCompare",
+        "ZO_DeepTableCopy",
         "ZO_FormatTime",
         "ZO_HUDFadeSceneFragment",
         "ZO_HUDFadeSceneFragment",
@@ -52,13 +59,12 @@ stds.eso = {
         "ZO_ONE_YEAR_IN_SECONDS",
         "ZO_Object",
         "ZO_SavedVars",
-        "d",
         "zo_strformat"
     },
 }
 self = false
 exclude_files = {
-    "Test/ZOMock.lua",
+    "Test/ESOUI.lua",
 }
 include_files = {
     "Asset/**/*.lua",

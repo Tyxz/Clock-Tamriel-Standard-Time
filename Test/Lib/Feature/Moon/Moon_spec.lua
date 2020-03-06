@@ -8,7 +8,7 @@
 package.path = '../LibClockTST/?.lua;' .. package.path
 
 insulate("Moon", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Feature.Moon.Moon")
     require("Lib.Data.Constants")
     require("Asset.I18n.en")
     require("Lib.Data.Settings")
