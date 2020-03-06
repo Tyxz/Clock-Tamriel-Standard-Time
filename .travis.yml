@@ -1,11 +1,18 @@
 language: python
 sudo: false
 
+# Handle git submodules yourself
+git:
+  submodules: false
+
 env:
   - LUA="lua=5.1"
-  - LUA="lua=5.2"
+#  - LUA="lua=5.2"
 
 before_install:
+  # Use sed to replace the SSH URL with the public URL, then initialize submodules
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
   - pip install hererocks
   - hererocks lua_install -r^ --$LUA
   - export PATH=$PATH:$PWD/lua_install/bin

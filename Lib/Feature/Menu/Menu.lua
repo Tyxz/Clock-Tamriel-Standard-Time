@@ -8,6 +8,7 @@
 
 Clock_TST = Clock_TST or {}
 
+
 --- Create the LibAddonMenu panel
 function Clock_TST:SetupMenu()
     local const = self.CONSTANTS()
@@ -21,7 +22,7 @@ function Clock_TST:SetupMenu()
         type = "panel",
         name = const.NAME,
         displayName = const.DISPLAY,
-        author = "|c5175ea" .. const.AUTHOR .. "|r",
+         author = "|c5175ea" .. const.AUTHOR .. "|r",
         version = const.VERSION,
         website = "https://rantzen.net/clock-tamriel-standard-time/",
         feedback = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/issues/new/choose",
@@ -30,101 +31,267 @@ function Clock_TST:SetupMenu()
         slashCommand = "/tstmenu",
         registerForRefresh = true,
         registerForDefaults = true,
-        resetFunc = function()
-            settings:Reset()
-            self:SetupTime()
-            self:SetupMoon()
-        end,
     }
     local LAM = LibAddonMenu2
-    CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
+    local options = setmetatable({}, { __index = table })
+
+    -- ----------------
+    -- Visibility
+    -- ----------------
+
+    --- Function to add fragment to game menu scene
+    --- @param libPanel table  panel
+    local function ShowFragment(libPanel)
+        if libPanel == CLOCK_TST_MENU then
+            GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
+            GAME_MENU_SCENE:AddFragment(self.MOON_FRAGMENT)
+        end
+    end
+
+    --- Function to remove fragment from game menu scene
+    --- @param libPanel table  panel
+    local function HideFragment(libPanel)
+        if libPanel == CLOCK_TST_MENU then
+            GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
+            GAME_MENU_SCENE:RemoveFragment(self.MOON_FRAGMENT)
+        end
+    end
+
+    --- Function to add callback to toggle visibility when panel is opened or closed
+    local function RegisterCallback()
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened", ShowFragment)
+        CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed", HideFragment)
+    end
+
+    --- Function to remove callback to toggle visibility when panel is opened or closed
+    local function RemoveCallback()
+        CALLBACK_MANAGER:UnregisterCallback("LAM-PanelOpened", ShowFragment)
+        CALLBACK_MANAGER:UnregisterCallback("LAM-PanelClosed", HideFragment)
+    end
 
     -- ----------------
     -- General
     -- ----------------
+    --- Update the presets dropdown
+    local function UpdatePresets()
+        local choices = settings:GetPresets()
+        CLOCK_TST_MENU_PRESETS:UpdateChoices(choices)
+        CLOCK_TST_MENU_PRESETS:UpdateValue()
+    end
 
     -- Create the general submenu
     local function AddGeneral()
         return {
-            type = "submenu",
-            name = i18n.core.nHeadGeneral,
-            controls = {
-                {
-                    type = "header",
-                    name = i18n.booleans.nSub,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetHideInFight()
-                    end,
-                    setFunc = function(value)
-                        settings:SetHideInFight(value)
-                        if value then
-                            settings:SetOnlyShowOnMap(not value)
+            {
+                type = "dropdown",
+                choices = settings:GetPresets(),
+                getFunc = function() return settings:GetCurrentPreset() end,
+                setFunc = function(value)
+                    LAM.util.ShowConfirmationDialog(i18n.presets.nPreset, i18n.presets.nWarning, function()
+                        RemoveCallback()
+                        settings:ApplyPreset(value)
+                        self:SetupTime()
+                        self:SetupMoon()
+                        RegisterCallback()
+                        ShowFragment(CLOCK_TST_MENU)
+                        if value == "Default" then
+                            settings:SetCurrentPreset(nil)
                         end
+                        CLOCK_TST_MENU:RefreshPanel()
+                    end)
+                end,
+                name = i18n.presets.nPreset,
+                warning = i18n.presets.wPreset,
+                width = "half",
+                reference = "CLOCK_TST_MENU_PRESETS"
+            },
+            {
+                type = "editbox",
+                getFunc = function()
+                    return settings:GetCurrentPreset()
+                end,
+                setFunc = function(value)
+                    if string.find(value, "%S") then
+                        settings:SetCurrentPreset(value)
+                        CLOCK_TST_MENU_PRESET_SAVE:UpdateWarning()
+                    end
+                end,
+                name = i18n.presets.nCurrent,
+                width = "half",
+            },
+            {
+                type = "button",
+                name = i18n.presets.nSave,
+                warning = i18n.presets.wSave,
+                isDangerous = settings:CurrentPresetExists(),
+                func = function()
+                    settings:AddPreset(settings:GetCurrentPreset())
+                    UpdatePresets()
+                    CLOCK_TST_MENU:RefreshPanel()
+                end,
+                disabled = function() return not settings:GetCurrentPreset() end,
+                width = "half",
+                reference = "CLOCK_TST_MENU_PRESET_SAVE"
+            },
+            {
+                type = "button",
+                name = i18n.presets.nDelete,
+                warning = i18n.presets.wDelete,
+                isDangerous = true,
+                func = function()
+                    settings:RemovePreset(settings:GetCurrentPreset())
+                    UpdatePresets()
+                    CLOCK_TST_MENU:RefreshPanel()
+                end,
+                disabled = function() return not settings:GetCurrentPreset() or not settings:CurrentPresetExists() end,
+                width = "half",
+                reference = "CLOCK_TST_MENU_PRESET_DELETE"
+            },
+            {
+                type = "header",
+                name = i18n.booleans.nSub,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetSaveAccountWide()
+                end,
+                setFunc = function(value)
+                    settings:SetSaveAccountWide(value)
+                end,
+                requiresReload = true,
+                name = i18n.account.nAccount,
+                tooltip = i18n.account.tAccount
+            },
+            {
+                type = "divider"
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetHideInGroup()
+                end,
+                setFunc = function(value)
+                    settings:SetHideInGroup(value)
+                    if value then
+                        settings:SetOnlyShowOnMap(not value)
+                    end
 
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetOnlyShowOnMap()
-                    end,
-                    name = i18n.booleans.nFight,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetOnlyShowOnMap()
-                    end,
-                    setFunc = function(value)
-                        settings:SetOnlyShowOnMap(value)
-                        if value then
-                            settings:SetHideInFight(not value)
-                        end
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nGroup,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetHideInFight()
+                end,
+                setFunc = function(value)
+                    settings:SetHideInFight(value)
+                    if value then
+                        settings:SetOnlyShowOnMap(not value)
+                    end
 
-                        time:UpdateVisibility()
-                        moon:UpdateVisibility()
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                                and settings:GetHideInFight()
-                    end,
-                    name = i18n.booleans.nMap,
-                },
-                {
-                    type = "checkbox",
-                    getFunc = function()
-                        return settings:GetTimeAndMoonAreLinked()
-                    end,
-                    setFunc = function(value)
-                        settings:SetTimeAndMoonAreLinked(value)
-                    end,
-                    disabled = function()
-                        return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
-                    end,
-                    name = i18n.booleans.nLink,
-                },
-                {
-                    type = "header",
-                    name = i18n.styles.nSub,
-                },
-                {
-                    type = "slider",
-                    min = 1,
-                    max = 4,
-                    step = .1,
-                    getFunc = function()
-                        return settings:GetScaleFactor()
-                    end,
-                    setFunc = function(value)
-                        settings:SetScaleFactor(value)
-                    end,
-                    name = i18n.styles.nScaleFactor,
-                    tooltip = i18n.styles.tScaleFactor,
-                },
-            }
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nFight,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetOnlyShowOnMap()
+                end,
+                setFunc = function(value)
+                    settings:SetOnlyShowOnMap(value)
+                    if value then
+                        settings:SetHideInFight(not value)
+                        settings:SetHideInGroup(not value)
+                    end
+
+                    time:UpdateVisibility()
+                    moon:UpdateVisibility()
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nMap,
+            },
+            {
+                type = "checkbox",
+                getFunc = function()
+                    return settings:GetTimeAndMoonAreLinked()
+                end,
+                setFunc = function(value)
+                    settings:SetTimeAndMoonAreLinked(value)
+                end,
+                disabled = function()
+                    return not (settings:GetTimeIsVisible() and settings:GetMoonIsVisible())
+                end,
+                name = i18n.booleans.nLink,
+            },
+            {
+                type = "header",
+                name = i18n.styles.nSub,
+            },
+            {
+                type = "description",
+                title = i18n.styles.nFormat,
+                text = i18n.styles.tFormat,
+            },
+            {
+                type = "description",
+                text = i18n.styles.dFormat,
+                width = "half",
+            },
+            {
+                type = "editbox",
+                disabled = function()
+                    return not settings:GetTimeIsVisible()
+                end,
+                getFunc = function()
+                    return settings:GetTimeFormat()
+                end,
+                setFunc = function(value)
+                    settings:SetTimeFormat(value)
+                    local _, count = string.gsub(value, "\n", "")
+                    if count == 0 then
+                        count = 1
+                    end
+                    settings:SetTimeLineCount(count)
+                    local _, loreCount = string.gsub(value, "#", "")
+                    settings:SetTimeHasLoreDate(loreCount ~= 0)
+                    local _, realCount = string.gsub(value, "%%", "")
+                    settings:SetTimeHasRealDate(realCount ~= 0)
+                    local _, fakeCount = string.gsub(value, "$", "")
+                    settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
+                    settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
+                    time:ResetReplacement()
+                end,
+                isMultiline = true,
+                width = "half",
+            },
+            {
+                type = "slider",
+                min = 1,
+                max = 4,
+                step = .1,
+                getFunc = function()
+                    return settings:GetScaleFactor()
+                end,
+                setFunc = function(value)
+                    settings:SetScaleFactor(value)
+                end,
+                name = i18n.styles.nScaleFactor,
+                tooltip = i18n.styles.tScaleFactor,
+            },
         }
     end
 
@@ -733,6 +900,30 @@ function Clock_TST:SetupMenu()
     end
 
     -- ----------------
+    -- Debug
+    -- ----------------
+
+    --- Create the Debug submenu
+    local function AddDebug()
+        return {
+            type = "submenu",
+            name = i18n.core.nHeadDebug,
+            controls = {
+                {
+                    type = "checkbox",
+                    getFunc = function()
+                        return settings:GetDebug()
+                    end,
+                    setFunc = function(value)
+                        settings:SetDebug(value)
+                    end,
+                    name = i18n.booleans.nDebug
+                },
+            }
+        }
+    end
+
+    -- ----------------
     -- Feedback
     -- ----------------
 
@@ -762,89 +953,23 @@ function Clock_TST:SetupMenu()
     end
 
     -- ----------------
-    -- Visibility
-    -- ----------------
-
-    local function ShowInMenu()
-        CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened",
-                function(libPanel)
-                    if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:AddFragment(self.MOON_FRAGMENT)
-                    end
-                end
-        )
-        CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed",
-                function(libPanel)
-                    if libPanel == CLOCK_TST_MENU then
-                        GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
-                        GAME_MENU_SCENE:RemoveFragment(self.MOON_FRAGMENT)
-                    end
-                end
-        )
-    end
-
-    -- ----------------
     -- Register
     -- ----------------
+    panel.resetFunc = function()
+        settings:Reset()
+        self:SetupTime()
+        self:SetupMoon()
+        UpdatePresets()
+    end
+    CLOCK_TST_MENU = LAM:RegisterAddonPanel(const.NAME, panel)
 
-    local data = {
-        {
-            type = "checkbox",
-            getFunc = function()
-                return settings:GetSaveAccountWide()
-            end,
-            setFunc = function(value)
-                settings:SetSaveAccountWide(value)
-            end,
-            requiresReload = true,
-            name = i18n.account.nAccount,
-            tooltip = i18n.account.tAccount
-        },
-        {
-            type = "description",
-            title = i18n.styles.nFormat,
-            text = i18n.styles.tFormat,
-        },
-        {
-            type = "description",
-            text = i18n.styles.dFormat,
-            width = "half",
-        },
-        {
-            type = "editbox",
-            disabled = function()
-                return not settings:GetTimeIsVisible()
-            end,
-            getFunc = function()
-                return settings:GetTimeFormat()
-            end,
-            setFunc = function(value)
-                settings:SetTimeFormat(value)
-                local _, count = string.gsub(value, "\n", "")
-                if count == 0 then
-                    count = 1
-                end
-                settings:SetTimeLineCount(count)
-                local _, loreCount = string.gsub(value, "#", "")
-                settings:SetTimeHasLoreDate(loreCount ~= 0)
-                local _, realCount = string.gsub(value, "%%", "")
-                settings:SetTimeHasRealDate(realCount ~= 0)
-                local _, fakeCount = string.gsub(value, "$", "")
-                settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
-                settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
-                time:ResetReplacement()
-            end,
-            isMultiline = true,
-            width = "half",
-        },
-        AddTime(),
-        AddMoon(),
-        AddGeneral(),
-    }
+    options = Clock_TST.MergeTable(options, AddGeneral())
+    options:insert(AddTime())
+    options:insert(AddMoon())
+    options:insert(AddDebug())
     AddFeedback()
 
-    LAM:RegisterOptionControls(const.NAME, data)
+    LAM:RegisterOptionControls(const.NAME, options)
 
-    ShowInMenu()
+    RegisterCallback()
 end

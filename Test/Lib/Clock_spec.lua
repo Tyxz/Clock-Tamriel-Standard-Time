@@ -6,7 +6,7 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 describe("Settings", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Clock")
     require("Test.Utility")
     require("Lib.Data.Constants")
     local match = require("luassert.match")

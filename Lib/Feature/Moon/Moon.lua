@@ -2,7 +2,7 @@
     Project:    Clock - Tamriel Standard Time
     Author:     Arne Rantzen (Tyx)
     Created:    2020-01-22
-    Updated:    2020-02-11
+    Updated:    2020-03-06
     License:    GPL-3.0
 --------------------------------------------]]--
 
@@ -36,10 +36,22 @@ function Moon:UpdatePositions()
     UpdateControl(self.secunda_background, attribute.secunda)
 end
 
+--- Function to remove the fragment from all scenes and delete the reference
+function Moon:RemoveFragment()
+    if Clock_TST.MOON_FRAGMENT then
+        HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+        HUD_UI_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+        GAME_MENU_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
+        Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Removed", true)
+        Clock_TST.MOON_FRAGMENT = nil
+    end
+end
+
 --- Update the visibility of the moon controls and manage their fragments
 function Moon:UpdateVisibility()
-
-    Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", not settings:GetMoonIsVisible())
+    local isHidden = not settings:GetMoonIsVisible() or settings:GetHideInGroup() and IsUnitGrouped("player")
+    Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", isHidden)
 
     if settings:GetMoonIsVisible() then
         local backgroundIsHidden = not settings:GetMoonHasBackground()
@@ -48,18 +60,20 @@ function Moon:UpdateVisibility()
 
         local namespace = self.control:GetName()
 
-        HUD_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
-        HUD_UI_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
-        WORLD_MAP_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
         EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
-        if settings:GetHideInFight() then
-            EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
-                Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
-            end)
-        elseif settings:GetOnlyShowOnMap() then
+        if settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
             HUD_UI_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
             WORLD_MAP_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+        else
+            if settings:GetHideInFight() then
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
+                    Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
+                end)
+            end
+            HUD_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+            HUD_UI_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
+            WORLD_MAP_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
         end
 
         self:RegisterForUpdates()
@@ -321,6 +335,7 @@ function Moon:SetupControls(control)
     self.secunda_background = GetControl(control, "Secunda_Background")
 
     Clock_TST.MOON_FRAGMENT = ZO_HUDFadeSceneFragment:New(control)
+    Clock_TST.MOON_FRAGMENT:Hide()
 end
 
 -- ----------------
@@ -338,6 +353,11 @@ end
 --- function to reload all values from the settings
 function Clock_TST:SetupMoon()
     settings = self.settings
+    if Clock_TST.moon then
+        Clock_TST.moon:RemoveFragment()
+        Clock_TST.moon = nil
+    end
+
     self.moon = Moon:New(Clock_TST_Moon)
 
     self.moon:SetupTooltip()

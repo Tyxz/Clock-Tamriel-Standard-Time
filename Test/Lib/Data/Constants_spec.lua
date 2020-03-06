@@ -6,7 +6,7 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 describe("Constant", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Data.Constants")
     require("Lib.Data.Constants")
 
     it("should return independent instances", function()

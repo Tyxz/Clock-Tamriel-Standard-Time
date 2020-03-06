@@ -6,7 +6,7 @@
     License:    GPL-3.0
 --------------------------------------------]]--
 insulate("I18n", function()
-    require("Test.ZoMock")
+    require("Test.Lib.Core.I18n")
 
     setup(function()
         stub(_G, "ZO_CreateStringId")

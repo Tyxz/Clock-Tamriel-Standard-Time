@@ -38,6 +38,7 @@
 
 <h2>Modules</h2>
 <ul class="nowrap">
+  <li><a href="../modules/Clock.html">Clock</a></li>
   <li><a href="../modules/Core.Compatibility.html">Core.Compatibility</a></li>
   <li><a href="../modules/Core.I18n.html">Core.I18n</a></li>
   <li><a href="../modules/Core.Utility.html">Core.Utility</a></li>
@@ -62,7 +63,7 @@
 <pre>
 Author:     Arne Rantzen (Tyx)
 Created:    <span class="number">2020</span>&ndash;<span class="number">01</span>&ndash;<span class="number">22</span>
-Updated:    <span class="number">2020</span>&ndash;<span class="number">02</span>&ndash;<span class="number">19</span>
+Updated:    <span class="number">2020</span>&ndash;<span class="number">03</span>&ndash;<span class="number">06</span>
 License:    GPL-<span class="number">3.0</span>
 </pre></p>
 <p>
@@ -80,12 +81,42 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the boolean value for the core elements</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#GetVersion">GetVersion ()</a></td>
+	<td class="summary">a function to get the current version as numbers</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetLastVersion">GetLastVersion ()</a></td>
+	<td class="summary">a function to get last stored version</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetLastVersion">SetLastVersion (major, minor, patch)</a></td>
+	<td class="summary">a function to store the last version</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetDebug">GetDebug ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements
+ since 2.2.0</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetDebug">SetDebug (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements
+ since 2.2.0</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#GetTimeAndMoonAreLinked">GetTimeAndMoonAreLinked ()</a></td>
 	<td class="summary">a function to get the stored boolean value for the core elements
  if it is linked to time, the moon moves with the time object</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#SetTimeAndMoonAreLinked">SetTimeAndMoonAreLinked (value)</a></td>
+	<td class="summary">a function to store the boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetHideInGroup">GetHideInGroup ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the core elements</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetHideInGroup">SetHideInGroup (value)</a></td>
 	<td class="summary">a function to store the boolean value for the core elements</td>
 	</tr>
 	<tr>
@@ -321,12 +352,24 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the style value for the time</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#GetTimeBackgroundStrength">GetTimeBackgroundStrength ()</a></td>
-	<td class="summary">a function to get the stored style value for the time</td>
+	<td class="name" nowrap><a href="#GetTimeBackgroundColour">GetTimeBackgroundColour ()</a></td>
+	<td class="summary">a function to get the stored style value for the time
+ since 2.1.0</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#SetTimeBackgroundStrength">SetTimeBackgroundStrength (value)</a></td>
-	<td class="summary">a function to store the style value for the time</td>
+	<td class="name" nowrap><a href="#SetTimeBackgroundColour">SetTimeBackgroundColour (r, g, b, a)</a></td>
+	<td class="summary">a function to store the style value for the moon
+ since 2.1.0</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeBackgroundHoverColour">GetTimeBackgroundHoverColour ()</a></td>
+	<td class="summary">a function to get the stored style value for the time
+ since 2.1.0</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeBackgroundHoverColour">SetTimeBackgroundHoverColour (r, g, b, a)</a></td>
+	<td class="summary">a function to store the style value for the moon
+ since 2.1.0</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#GetTimeBackgroundOffset">GetTimeBackgroundOffset ()</a></td>
@@ -345,12 +388,24 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the style value for the moon</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#GetMoonBackgroundStrength">GetMoonBackgroundStrength ()</a></td>
-	<td class="summary">a function to get the stored style value for the moon</td>
+	<td class="name" nowrap><a href="#GetMoonBackgroundColour">GetMoonBackgroundColour ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon
+ since 2.1.0</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#SetMoonBackgroundStrength">SetMoonBackgroundStrength (value)</a></td>
-	<td class="summary">a function to store the style value for the moon</td>
+	<td class="name" nowrap><a href="#SetMoonBackgroundColour">SetMoonBackgroundColour (r, g, b, a)</a></td>
+	<td class="summary">a function to store the style value for the moon
+ since 2.1.0</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetMoonBackgroundHoverColour">GetMoonBackgroundHoverColour ()</a></td>
+	<td class="summary">a function to get the stored style value for the moon
+ since 2.1.0</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetMoonBackgroundHoverColour">SetMoonBackgroundHoverColour (r, g, b, a)</a></td>
+	<td class="summary">a function to store the style value for the moon
+ since 2.1.0</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#GetMoonTextureKeyMasser">GetMoonTextureKeyMasser ()</a></td>
@@ -445,6 +500,41 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the scale</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#GetPresets">GetPresets ()</a></td>
+	<td class="summary">Function to get a list of all presets
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ApplyPreset">ApplyPreset (key)</a></td>
+	<td class="summary">Function to apply a specific preset
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AddPreset">AddPreset (key)</a></td>
+	<td class="summary">Function to add a new preset
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RemovePreset">RemovePreset (key)</a></td>
+	<td class="summary">Function to remove a preset
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetCurrentPreset">GetCurrentPreset ()</a></td>
+	<td class="summary">Function to get the current preset
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetCurrentPreset">SetCurrentPreset (key)</a></td>
+	<td class="summary">Function to set the current preset
+ since 2.2.2</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CurrentPresetExists">CurrentPresetExists ()</a></td>
+	<td class="summary">Function to find out if the current preset already exists
+ since 2.2.2</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#ResetAttributes">ResetAttributes ()</a></td>
 	<td class="summary">Resets the attributes table to the default values</td>
 	</tr>
@@ -457,8 +547,17 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">Resets the styles table to the default values</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#ResetPresets">ResetPresets ()</a></td>
+	<td class="summary">Resets the preset table to the default values
+ since 2.2.2</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Reset">Reset ()</a></td>
 	<td class="summary">Resets the self table to the default values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Migrate">Migrate ()</a></td>
+	<td class="summary">Function to migrate saved variables to latest version without having to reset it</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#New">New ()</a></td>
@@ -485,7 +584,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the saved variable is account wide
+        boolean if the saved variable is account wide
     </ol>
 
 
@@ -503,7 +602,120 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the saved variable is account wide
+         boolean if the saved variable is account wide
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetVersion"></a>
+    <strong>GetVersion ()</strong>
+    </dt>
+    <dd>
+    a function to get the current version as numbers
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        number major version</li>
+        <li>
+        number minor version</li>
+        <li>
+        number patch version</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetLastVersion"></a>
+    <strong>GetLastVersion ()</strong>
+    </dt>
+    <dd>
+    a function to get last stored version
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        number major version</li>
+        <li>
+        number minor version</li>
+        <li>
+        number patch version</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetLastVersion"></a>
+    <strong>SetLastVersion (major, minor, patch)</strong>
+    </dt>
+    <dd>
+    a function to store the last version
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">major</span>
+         number version
+        </li>
+        <li><span class="parameter">minor</span>
+         number version
+        </li>
+        <li><span class="parameter">patch</span>
+         number version
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetDebug"></a>
+    <strong>GetDebug ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+ since 2.2.0
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the debug mode is enabled
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetDebug"></a>
+    <strong>SetDebug (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+ since 2.2.0
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         boolean if the debug mode is enabled
         </li>
     </ul>
 
@@ -525,7 +737,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon is linked to time
+        boolean if the moon is linked to time
     </ol>
 
 
@@ -543,7 +755,46 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon is linked to time
+         boolean if the moon is linked to time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetHideInGroup"></a>
+    <strong>GetHideInGroup ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the core elements
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the view should be hidden in groups
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetHideInGroup"></a>
+    <strong>SetHideInGroup (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the core elements
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         boolean if the view should be hidden in groups
         </li>
     </ul>
 
@@ -564,7 +815,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the view should be hidden in fights
+        boolean if the view should be hidden in fights
     </ol>
 
 
@@ -582,7 +833,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the view should be hidden in fights
+         boolean if the view should be hidden in fights
         </li>
     </ul>
 
@@ -603,7 +854,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the view should be only visible on the map
+        boolean if the view should be only visible on the map
     </ol>
 
 
@@ -621,7 +872,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the view should be only visible on the map
+         boolean if the view should be only visible on the map
         </li>
     </ul>
 
@@ -642,7 +893,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time is visible
+        boolean if the time is visible
     </ol>
 
 
@@ -660,7 +911,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time is visible
+         boolean if the time is visible
         </li>
     </ul>
 
@@ -681,7 +932,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time is mouseEnabled
+        boolean if the time is mouseEnabled
     </ol>
 
 
@@ -699,7 +950,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time is mouseEnabled
+         boolean if the time is mouseEnabled
         </li>
     </ul>
 
@@ -720,7 +971,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time is movable
+        boolean if the time is movable
     </ol>
 
 
@@ -738,7 +989,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time is movable
+         boolean if the time is movable
         </li>
     </ul>
 
@@ -759,7 +1010,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has tooltip
+        boolean if the time has tooltip
     </ol>
 
 
@@ -777,7 +1028,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time has tooltip
+         boolean if the time has tooltip
         </li>
     </ul>
 
@@ -798,7 +1049,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has background
+        boolean if the time has background
     </ol>
 
 
@@ -816,7 +1067,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time has background
+         boolean if the time has background
         </li>
     </ul>
 
@@ -837,7 +1088,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if a 0 should be added before a single digit
+        boolean if a 0 should be added before a single digit
     </ol>
 
 
@@ -855,7 +1106,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if a 0 should be added before a single digit
+         boolean if a 0 should be added before a single digit
         </li>
     </ul>
 
@@ -876,7 +1127,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has US format {12,1,&hellip;,11} am : {12,1,&hellip;,11} pm
+        boolean if the time has US format {12,1,&hellip;,11} am : {12,1,&hellip;,11} pm
     </ol>
 
 
@@ -894,7 +1145,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time has the US format
+         boolean if the time has the US format
         </li>
     </ul>
 
@@ -915,7 +1166,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has Japanese format {0,1,&hellip;,11} am : {12,1,&hellip;,11} pm
+        boolean if the time has Japanese format {0,1,&hellip;,11} am : {12,1,&hellip;,11} pm
     </ol>
 
 
@@ -933,7 +1184,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time has the Japanese format
+         boolean if the time has the Japanese format
         </li>
     </ul>
 
@@ -954,7 +1205,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a lore date
+        boolean if the time has a lore date
     </ol>
 
 
@@ -980,7 +1231,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a lore date
+        boolean if the time has a lore date
     </ol>
 
 
@@ -999,7 +1250,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a fake lore date
+        boolean if the time has a fake lore date
     </ol>
 
 
@@ -1025,7 +1276,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a fake lore date
+        boolean if the time has a fake lore date
     </ol>
 
 
@@ -1044,7 +1295,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a real date
+        boolean if the time has a real date
     </ol>
 
 
@@ -1070,7 +1321,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time has a real date
+        boolean if the time has a real date
     </ol>
 
 
@@ -1089,7 +1340,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time should scale up when hovering over
+        boolean if the time should scale up when hovering over
     </ol>
 
 
@@ -1107,7 +1358,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time should scale up when hovering over
+         boolean if the time should scale up when hovering over
         </li>
     </ul>
 
@@ -1128,7 +1379,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the time should change colour when hovering over
+        boolean if the time should change colour when hovering over
     </ol>
 
 
@@ -1146,7 +1397,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the time should change colour when hovering over
+         boolean if the time should change colour when hovering over
         </li>
     </ul>
 
@@ -1167,7 +1418,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon is visible
+        boolean if the moon is visible
     </ol>
 
 
@@ -1185,7 +1436,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon is visible
+         boolean if the moon is visible
         </li>
     </ul>
 
@@ -1206,7 +1457,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon is mouseEnabled
+        boolean if the moon is mouseEnabled
     </ol>
 
 
@@ -1224,7 +1475,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon is mouseEnabled
+         boolean if the moon is mouseEnabled
         </li>
     </ul>
 
@@ -1245,7 +1496,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon is movable
+        boolean if the moon is movable
     </ol>
 
 
@@ -1263,7 +1514,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon is movable
+         boolean if the moon is movable
         </li>
     </ul>
 
@@ -1284,7 +1535,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon has background
+        boolean if the moon has background
     </ol>
 
 
@@ -1302,7 +1553,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon has background
+         boolean if the moon has background
         </li>
     </ul>
 
@@ -1323,7 +1574,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon has tooltip
+        boolean if the moon has tooltip
     </ol>
 
 
@@ -1341,7 +1592,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon has tooltip
+         boolean if the moon has tooltip
         </li>
     </ul>
 
@@ -1362,7 +1613,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon should scale up when hovering over
+        boolean if the moon should scale up when hovering over
     </ol>
 
 
@@ -1380,7 +1631,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon should scale up when hovering over
+         boolean if the moon should scale up when hovering over
         </li>
     </ul>
 
@@ -1401,7 +1652,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        if the moon should change colour when hovering over
+        boolean if the moon should change colour when hovering over
     </ol>
 
 
@@ -1419,7 +1670,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         if the moon should change colour when hovering over
+         boolean if the moon should change colour when hovering over
         </li>
     </ul>
 
@@ -1440,7 +1691,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        the format for the time
+        string the format for the time
     </ol>
 
 
@@ -1458,7 +1709,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         the format for the time
+         string the format for the time
         </li>
     </ul>
 
@@ -1479,7 +1730,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        the size for the time
+        number the size for the time
     </ol>
 
 
@@ -1497,7 +1748,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         the size for the time
+         number the size for the time
         </li>
     </ul>
 
@@ -1518,13 +1769,13 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
         <li>
-        r red colour</li>
+        number r red colour</li>
         <li>
-        g green colour</li>
+        number g green colour</li>
         <li>
-        b blue colour</li>
+        number b blue colour</li>
         <li>
-        a alpha value</li>
+        number a alpha value</li>
     </ol>
 
 
@@ -1542,16 +1793,16 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">r</span>
-         red colour
+         number red colour
         </li>
         <li><span class="parameter">g</span>
-         green colour
+         number green colour
         </li>
         <li><span class="parameter">b</span>
-         blue colour
+         number blue colour
         </li>
         <li><span class="parameter">a</span>
-         alpha value
+         number alpha value
         </li>
     </ul>
 
@@ -1572,7 +1823,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        the font for the time
+        string the font for the time
     </ol>
 
 
@@ -1590,7 +1841,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         the font for the time
+         string the font for the time
         </li>
     </ul>
 
@@ -1611,7 +1862,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        the style for the time
+        string the style for the time
     </ol>
 
 
@@ -1629,7 +1880,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         the style for the time
+         string the style for the time
         </li>
     </ul>
 
@@ -1650,7 +1901,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        the line count for the time
+        number the line count for the time
     </ol>
 
 
@@ -1668,7 +1919,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         the line count for the time
+         number the line count for the time
         </li>
     </ul>
 
@@ -1689,7 +1940,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        background texture table key
+        string background texture table key
     </ol>
 
 
@@ -1717,18 +1968,25 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "GetTimeBackgroundStrength"></a>
-    <strong>GetTimeBackgroundStrength ()</strong>
+    <a name = "GetTimeBackgroundColour"></a>
+    <strong>GetTimeBackgroundColour ()</strong>
     </dt>
     <dd>
     a function to get the stored style value for the time
+ since 2.1.0
 
 
 
     <h3>Returns:</h3>
     <ol>
-
-        background texture strength
+        <li>
+        number r red colour</li>
+        <li>
+        number g green colour</li>
+        <li>
+        number b blue colour</li>
+        <li>
+        number a alpha value</li>
     </ol>
 
 
@@ -1736,17 +1994,83 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "SetTimeBackgroundStrength"></a>
-    <strong>SetTimeBackgroundStrength (value)</strong>
+    <a name = "SetTimeBackgroundColour"></a>
+    <strong>SetTimeBackgroundColour (r, g, b, a)</strong>
     </dt>
     <dd>
-    a function to store the style value for the time
+    a function to store the style value for the moon
+ since 2.1.0
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">value</span>
-         background texture strength
+        <li><span class="parameter">r</span>
+         number red colour
+        </li>
+        <li><span class="parameter">g</span>
+         number green colour
+        </li>
+        <li><span class="parameter">b</span>
+         number blue colour
+        </li>
+        <li><span class="parameter">a</span>
+         number alpha value
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeBackgroundHoverColour"></a>
+    <strong>GetTimeBackgroundHoverColour ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+ since 2.1.0
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        number r red colour</li>
+        <li>
+        number g green colour</li>
+        <li>
+        number b blue colour</li>
+        <li>
+        number a alpha value</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeBackgroundHoverColour"></a>
+    <strong>SetTimeBackgroundHoverColour (r, g, b, a)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+ since 2.1.0
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+         number red colour
+        </li>
+        <li><span class="parameter">g</span>
+         number green colour
+        </li>
+        <li><span class="parameter">b</span>
+         number blue colour
+        </li>
+        <li><span class="parameter">a</span>
+         number alpha value
         </li>
     </ul>
 
@@ -1767,7 +2091,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        background width offset
+        number background width offset
     </ol>
 
 
@@ -1785,7 +2109,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         background width offset
+         number background width offset
         </li>
     </ul>
 
@@ -1806,7 +2130,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        background texture table key
+        string background texture table key
     </ol>
 
 
@@ -1824,7 +2148,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         background texture table key
+         string background texture table key
         </li>
     </ul>
 
@@ -1834,18 +2158,25 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "GetMoonBackgroundStrength"></a>
-    <strong>GetMoonBackgroundStrength ()</strong>
+    <a name = "GetMoonBackgroundColour"></a>
+    <strong>GetMoonBackgroundColour ()</strong>
     </dt>
     <dd>
     a function to get the stored style value for the moon
+ since 2.1.0
 
 
 
     <h3>Returns:</h3>
     <ol>
-
-        background texture strength
+        <li>
+        number r red colour</li>
+        <li>
+        number g green colour</li>
+        <li>
+        number b blue colour</li>
+        <li>
+        number a alpha value</li>
     </ol>
 
 
@@ -1853,17 +2184,83 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "SetMoonBackgroundStrength"></a>
-    <strong>SetMoonBackgroundStrength (value)</strong>
+    <a name = "SetMoonBackgroundColour"></a>
+    <strong>SetMoonBackgroundColour (r, g, b, a)</strong>
     </dt>
     <dd>
     a function to store the style value for the moon
+ since 2.1.0
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">value</span>
-         background texture strength
+        <li><span class="parameter">r</span>
+         number red colour
+        </li>
+        <li><span class="parameter">g</span>
+         number green colour
+        </li>
+        <li><span class="parameter">b</span>
+         number blue colour
+        </li>
+        <li><span class="parameter">a</span>
+         number alpha value
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetMoonBackgroundHoverColour"></a>
+    <strong>GetMoonBackgroundHoverColour ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the moon
+ since 2.1.0
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+        number r red colour</li>
+        <li>
+        number g green colour</li>
+        <li>
+        number b blue colour</li>
+        <li>
+        number a alpha value</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetMoonBackgroundHoverColour"></a>
+    <strong>SetMoonBackgroundHoverColour (r, g, b, a)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+ since 2.1.0
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+         number red colour
+        </li>
+        <li><span class="parameter">g</span>
+         number green colour
+        </li>
+        <li><span class="parameter">b</span>
+         number blue colour
+        </li>
+        <li><span class="parameter">a</span>
+         number alpha value
         </li>
     </ul>
 
@@ -1962,7 +2359,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-        value of how much the moon texture is visible
+        number value of how much the moon texture is visible
     </ol>
 
 
@@ -1980,7 +2377,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         of how much the moon texture is visible
+         number of how much the moon texture is visible
         </li>
     </ul>
 
@@ -2019,7 +2416,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         number (-inf:inf)
+         number range (-inf:inf)
         </li>
     </ul>
 
@@ -2041,7 +2438,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Returns:</h3>
     <ol>
 
-         time = {</p>
+         table time = {</p>
 
 <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
@@ -2082,9 +2479,9 @@ label = {
     <h3>Returns:</h3>
     <ol>
         <li>
-        offsetX</li>
+        number offsetX</li>
         <li>
-        offsetY</li>
+        number offsetY</li>
     </ol>
 
 
@@ -2102,10 +2499,10 @@ label = {
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">x</span>
-         offset
+         number offset
         </li>
         <li><span class="parameter">y</span>
-         offset
+         number offset
         </li>
     </ul>
 
@@ -2126,7 +2523,7 @@ label = {
     <h3>Returns:</h3>
     <ol>
 
-        dimension = { width, height, }
+        table dimension = { width, height, }
     </ol>
 
 
@@ -2144,7 +2541,7 @@ label = {
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         dimension = { width, height, }
+         table dimension = { width, height, }
         </li>
     </ul>
 
@@ -2166,7 +2563,7 @@ label = {
     <h3>Returns:</h3>
     <ol>
 
-         moon = {</p>
+         table moon = {</p>
 
 <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
@@ -2207,7 +2604,7 @@ secunda = {
     <h3>Returns:</h3>
     <ol>
 
-        anchor = { point, relativeTo, relativePoint, offsetX, offsetY, }
+        table anchor = { point, relativeTo, relativePoint, offsetX, offsetY, }
     </ol>
 
 
@@ -2226,9 +2623,9 @@ secunda = {
     <h3>Returns:</h3>
     <ol>
         <li>
-        offsetX</li>
+        number offsetX</li>
         <li>
-        offsetY</li>
+        number offsetY</li>
     </ol>
 
 
@@ -2246,10 +2643,10 @@ secunda = {
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">x</span>
-         offset
+         number offset
         </li>
         <li><span class="parameter">y</span>
-         offset
+         number offset
         </li>
     </ul>
 
@@ -2270,7 +2667,7 @@ secunda = {
     <h3>Returns:</h3>
     <ol>
 
-        dimension = { width, height, }
+        table dimension = { width, height, }
     </ol>
 
 
@@ -2288,7 +2685,7 @@ secunda = {
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         dimension = { width, height, }
+         table dimension = { width, height, }
         </li>
     </ul>
 
@@ -2309,7 +2706,7 @@ secunda = {
     <h3>Returns:</h3>
     <ol>
 
-         masser = {</p>
+         table masser = {</p>
 
 <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
@@ -2337,7 +2734,7 @@ background = {
     <h3>Returns:</h3>
     <ol>
 
-         secunda = {</p>
+         table secunda = {</p>
 
 <pre><code>anchor = { point, relativeTo, relativePoint, offsetX, offsetY, },
 dimension = { width, height, },
@@ -2383,9 +2780,148 @@ background = {
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         number [0, inf)
+         number range [0, inf)
         </li>
     </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetPresets"></a>
+    <strong>GetPresets ()</strong>
+    </dt>
+    <dd>
+    Function to get a list of all presets
+ since 2.2.2
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table of preset keys
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ApplyPreset"></a>
+    <strong>ApplyPreset (key)</strong>
+    </dt>
+    <dd>
+    Function to apply a specific preset
+ since 2.2.2
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+         string of the preset
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AddPreset"></a>
+    <strong>AddPreset (key)</strong>
+    </dt>
+    <dd>
+    Function to add a new preset
+ since 2.2.2
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+         string of the new preset
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RemovePreset"></a>
+    <strong>RemovePreset (key)</strong>
+    </dt>
+    <dd>
+    Function to remove a preset
+ since 2.2.2
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+         string of the preset
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetCurrentPreset"></a>
+    <strong>GetCurrentPreset ()</strong>
+    </dt>
+    <dd>
+    Function to get the current preset
+ since 2.2.2
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        string current preset key
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetCurrentPreset"></a>
+    <strong>SetCurrentPreset (key)</strong>
+    </dt>
+    <dd>
+    Function to set the current preset
+ since 2.2.2
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+         string for preset
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CurrentPresetExists"></a>
+    <strong>CurrentPresetExists ()</strong>
+    </dt>
+    <dd>
+    Function to find out if the current preset already exists
+ since 2.2.2
+
+
 
 
 
@@ -2435,11 +2971,40 @@ background = {
 
 </dd>
     <dt>
+    <a name = "ResetPresets"></a>
+    <strong>ResetPresets ()</strong>
+    </dt>
+    <dd>
+    Resets the preset table to the default values
+ since 2.2.2
+
+
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "Reset"></a>
     <strong>Reset ()</strong>
     </dt>
     <dd>
     Resets the self table to the default values
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Migrate"></a>
+    <strong>Migrate ()</strong>
+    </dt>
+    <dd>
+    Function to migrate saved variables to latest version without having to reset it
 
 
 
@@ -2469,7 +3034,7 @@ background = {
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2020-02-23 17:49:51 </i>
+<i style="float:right;">Last updated 2020-03-06 20:56:12 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
