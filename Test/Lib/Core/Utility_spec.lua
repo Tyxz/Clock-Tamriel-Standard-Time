@@ -25,10 +25,10 @@ describe("Utility", function()
     end)
 
     it("should return the a list of keys", function()
-        local tTest = {a = "Test1", [2] = "Test2", "Test3"}
-        local tExpect = {1, "a", 2}
+        local tTest = {a = "Test1", [2] = "Test2", [3] = "Test3"}
+        local tExpect = {"a", 2, 3}
         local tResult = Clock_TST.GetKeys(tTest)
-        assert.truthy(ZO_DeepAcyclicTableCompare(tExpect, tResult, 10))
+        assert.truthy(ZO_DeepAcyclicTableCompare(tExpect, tResult, 3))
     end)
 
     describe("SelectiveCopy", function()
