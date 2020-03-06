@@ -998,24 +998,28 @@ function Settings:Migrate()
     local major, minor = self:GetLastVersion()
     -- Update 2.1.0 introduced background and hover colour
     if not major or major == 2 and minor < 1 then
-        local function CopyRGBA(colour, default)
-            for k, c in pairs(default) do
-                colour[k] = c
+        -- Before the version was a string not a table
+        if type(self.account.lastVersion) ~= "2.1.0" then
+            local function CopyRGBA(colour, default)
+                for k, c in pairs(default) do
+                    colour[k] = c
+                end
             end
+            -- Add background colour
+            local default = Clock_TST.CONSTANTS().Settings.styles.DEFAULTS
+            CopyRGBA(self.styles.time.backgroundColour, default.time.backgroundColour)
+            CopyRGBA(self.styles.time.backgroundHoverColour, default.time.backgroundHoverColour)
+            CopyRGBA(self.styles.moon.backgroundColour, default.moon.backgroundColour)
+            CopyRGBA(self.styles.moon.backgroundHoverColour, default.moon.backgroundHoverColour)
+
+
+            -- Remove background strength
+            self.styles.time.backgroundStrength = nil
+            self.styles.moon.backgroundStrength = nil
+
+            p("Updated to 2.1")
+
         end
-        -- Add background colour
-        local default = Clock_TST.CONSTANTS().Settings.styles.DEFAULTS
-        CopyRGBA(self.styles.time.backgroundColour, default.time.backgroundColour)
-        CopyRGBA(self.styles.time.backgroundHoverColour, default.time.backgroundHoverColour)
-        CopyRGBA(self.styles.moon.backgroundColour, default.moon.backgroundColour)
-        CopyRGBA(self.styles.moon.backgroundHoverColour, default.moon.backgroundHoverColour)
-
-
-        -- Remove background strength
-        self.styles.time.backgroundStrength = nil
-        self.styles.moon.backgroundStrength = nil
-
-        p("Updated to 2.1")
     end
 
     self:SetLastVersion(self:GetVersion())

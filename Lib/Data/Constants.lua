@@ -215,15 +215,15 @@ function Clock_TST.CONSTANTS()
                     time = {
                         background = "Splash",
                         backgroundColour = {
-                            r = 0.08235294117640,
-                            g = 0.08235294117640,
-                            b = 0.08235294117640,
+                            r = 0.0823529412,
+                            g = 0.0823529412,
+                            b = 0.0823529412,
                             a = .5,
                         },
                         backgroundHoverColour = {
-                            r = 0.34509803921570,
-                            g = 0.64705882352940,
-                            b = 0.71764705882350,
+                            r = 0.3450980392,
+                            g = 0.6470588235,
+                            b = 0.7176470588,
                             a = .66,
                         },
                         backgroundOffset = {
@@ -233,9 +233,9 @@ function Clock_TST.CONSTANTS()
                         format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
                         colour = {
-                            r = 0.77254909276962,
-                            g = 0.7607843875885,
-                            b = 0.61960786581039,
+                            r = 0.7725490928,
+                            g = 0.7607843876,
+                            b = 0.6196078658,
                             a = 1.0,
                         },
                         font = "Univers 67",
@@ -245,15 +245,15 @@ function Clock_TST.CONSTANTS()
                     moon = {
                         background = "Solid",
                         backgroundColour = {
-                            r = 0.00000000000000,
-                            g = 0.00000000000000,
-                            b = 0.08235294117640,
+                            r = .0,
+                            g = .0,
+                            b = 0.0823529412,
                             a = .5,
                         },
                         backgroundHoverColour = {
-                            r = 0.34509803921570,
-                            g = 0.64705882352940,
-                            b = 0.71764705882350,
+                            r = 0.3450980392,
+                            g = 0.6470588235,
+                            b = 0.7176470588,
                             a = .66,
                         },
                         masser = "Pale",
@@ -334,6 +334,7 @@ function Clock_TST.CONSTANTS()
                             booleans = {
                                 core = {
                                     onlyShowOnMap = true,
+                                    hideInFight = false,
                                 },
                                 time = {
                                     isMovable = false,
@@ -380,37 +381,16 @@ function Clock_TST.CONSTANTS()
                             styles = {
                                 time = {
                                     font = "Trajan Pro",
-                                    format = "%X\n#X",
+                                    format = "%H:%M:%S\n#H:#M:#S",
                                     lineCount = 1,
-                                    colour = {
-                                        r = 0.7725490928,
-                                        g = 0.7607843876,
-                                        b = 0.6196078658,
-                                    },
                                     size = 24,
-                                    backgroundColour = {
-                                        r = 0.0823529412,
-                                        g = 0.0823529412,
-                                        b = 0.0823529412,
-                                    },
                                     backgroundOffset = {
                                         y = 20,
                                     },
-                                    backgroundHoverColour = {
-                                        r = 0.3450980392,
-                                        g = 0.6470588235,
-                                        b = 0.7176470588,
-                                    },
                                 },
                                 moon = {
-                                    backgroundHoverColour = {
-                                        r = 0.3450980392,
-                                        g = 0.6470588235,
-                                        b = 0.7176470588,
-                                    },
                                     backgroundColour = {
-                                        b = 0.0784313753,
-                                        a = 0.7950819731,
+                                        a = 0.75,
                                     },
                                 },
                             },
@@ -425,6 +405,8 @@ function Clock_TST.CONSTANTS()
                                     hasBackground = false,
                                     isMovable = false,
                                     hasFakeLoreDate = true,
+                                    hasUSFormat = false,
+                                    addZero = true,
                                 },
                                 core = {
                                     hideInGroup = true,
