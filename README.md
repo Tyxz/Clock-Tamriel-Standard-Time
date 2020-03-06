@@ -3,169 +3,120 @@
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?maxAge=2592000)](http://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=2592000?style=flat)](https://twitter.com/Tyxzs)
 
-Clock - Tamriel Standard Time
-======
-Updates
-----------
-**Clock - TST** comes with a **Date System and is localized in English and German** since Version 0.5.4
+**Thank you all for more than 250.000 Downloads.**
 
-'You may have to reset [* /cl reset* ] your Clock to work proper and to use the new improved times.
-All custom changes will be changed back to default values if you do so!'
+I would like to thank all the people who gave me donations. It means a lot to me.
+I guess you want to stay anonymous but if you like to be named, please write me a PM.
 
-Version 0.5.0 brings moon phase support to **Clock - TST**
-You can adjust it like the time in the settings.
+## **Dependencies**
+* [LibAddonMenu-2.0]("https://www.esoui.com/downloads/info7-LibAddonMenu.html")
+* [LibMediaProvider]("https://www.esoui.com/downloads/info56-LibMediaProvider.html")
 
-The moon phase addition is still a beta. You may have to adjust the time of the moon cycle in your settings.
+## **Latest Update**
+I completely rewrote the Clock - Tamriel Standard Time ![https://cdn-eso.mmoui.com/images/style_esoui/smilies/banana.gif](https://cdn-eso.mmoui.com/images/style_esoui/smilies/banana.gif)
+It has now a much better performance, a pretty code background and many more features. 
+[Check it out!]("https://www.esoui.com/downloads/info2536-Clock-TamrielStandardTime2.0.html")
+This legacy version should still work for a long time, but will not receive any updates anymore.
 
-With Version 0.5.1 the current moon phase (still only a empty value since real data to the start of a moon phase is lacking) is now shown to you as a icon at the left side of your clock. The time value, in real time hours, until the next phase is printed on top of it.
+## **Overview**
 
-Thank you Munkry for the suggestion.
+This addon *Clock - TST* adds a completely customizable and movable label to the game which shows you the current date and time of *Tamriel* and of Earth (linked to your system time, thus it is accurate where ever you are).
+Additionally, it also shows the current state of the moon and the remaining time to the next phase.
 
-Version 0.5.2 lets you activate a realtime and date info.
-The moon cycle got updated but is far from accurate. I am sorry for that.
+## **Updates**
 
-Thank you Saftsuse for the suggestion.
+The last update 1.0.0 brings you a fixed Fake Lore Date and an improved  fragment handeling (no more warnings when opening the menu). The FLD  will show you the current week day, day and month month in the real  world with a lore name.
 
-Version 0.5.3 lets you reset the look of your clock without resetting your own sync. 
-/cl resetUI
+Update 0.7.8 added independently sizeable moon and phase labels with a  customizable look of moon label independent of the clock label. It has a  improved moon alignment inspired by Kenza. it also is now fully  translated into French (all thanks to Fifish).
 
-Thank you Friiar for the suggestion.
+With update 0.7.6 comes a Japanese translation thanks to @BowmoreLover from the ESOUI community.
+Together with the new localisation, Clock can now set to show 0 am instead of 12 am at midnight with the 12h setting.
 
-The moon cycle is still far from perfect.
+Since 0.7.2 also with Russian localisation! (next to English and German).
 
-Please have patience until I have more time to work on it - or try to sync it yourself.
-If you got a working moon cycle, please tell me your times (or send me the Clock.lua in your Document/ese/saved variables folder). It would help me and the other Clock user a lot 
+With Update 7 a new background feature was added. The *Clock - TST* never looked that good before. Check it out.
+Additional to that and a few bug fixes, you can now have your real time next to the Tamriel time instead of beneath.
 
-Version 0.5.4 brings some major Updates with it.
+You can use this addon together with [Harven's Dwemer Clock]("https://www.esoui.com/downloads/info642-HarvensDwemerClock.html")  to get the in-game Time as a fantastic looking, animated clock. Install  both addons then right-click on the Dwemer Clock and click "Use Tamriel  Standard Time Clock" option. You can change the size of the Dwemer  Clock by clicking on it (left mouse button) and then scrolling with your  mouse wheel over the Clock.
 
-First of all: I rewrote the settings panel (do to the update of Seerahs LibAddonMenu to 2.0)
+Check out kerb9729's Addon for *Clock - TST*: [Midnight]("https://www.esoui.com/downloads/info1167-Midnight.html"). It will show you the time until midnight.
 
-The panel can be called with writing the command /clsettings in the chat.
+Follow the Clock on [GitHub]("https://bit.ly/clockTSTGitSource") to always get the latest beta/alpha Version (caution: unstable)
+I will release every stable build here as soon as possible!
+If you like an offline desktop application of the Clock to see the  current time in Tamriel where ever a PC is, search no further and look [here]("https://bit.ly/clockGitJApp") (still an alpha Version)
 
-Thank you Sephiroth018 for the notice.
+## **Features**
 
-You can access the new panel over the "Esc" menu -> Addons -> Clock.
-
-With this version comes a second supported language : German.
-The localization is not completed yet, but you can still change the language in the settings panel now.
-
-You have to write the command /reloadui to change the language of the settings panel.
-
-There are a few new toggle options in the settings panel:
-[Moveable] The Clock can now become set on one location, so you don't accidentally move it during a fight.
-
-Thanks fosley for the explanation how to do so.
-
-[Add Zeros] You can delete the zero added to a single number: 01:12 -> 1:12
-
-Thanks for the request LegoManIAm94
-
-A lore date system was added to the Clock.
-You can toggle it on over the command line or the settings menu
-[Show lore Date] /cl ldate Will place the real Tamriel date in front of Time
-[Show fake lore Date] /cl fldate Will place a fake Tamriel date in front of Time
-
-The fake date does only count days like the real one and sync the month and the year with the current time.
-The real date will calculate the date based on the set daylength and starts calculating at 00:00:00 4.4.2014 or Tamriel Time 00:00:00 4.4. 2E 582
-
-Settings to change the format the dates are shown will maybe come with the next version.
-
-And one last small thing comes with this Update:
-The Clock Addon now uses only one global variable (instead of... 5 or so) "cl", which will prevent possible conflicts with other Addons alot.
-
-
-Version 0.5.5 introduce more customizations:
-
-You can now select to hide the lore time (and only see the lore date, moon phase, real time or real date).
-In the settings panel you can also change the format the Clock shows you the date/time:
-
-Use '_' before a variable
-
-Year: 
-_Y = 582 (14)
-_YY = 2E 582 (2014)
-Month: 
-_M = 4
-_MM = 04
-_MMM = First Seed (April)
-Day: 
-_D = 4
-_DD = 04
-_DDD = Fredas (Friday)
-
-Hour: 
-_h = 9
-_hh = 09
-Minute:
-_m = 9
-_mm = 09
-Second: 
-_s = 9
-_ss = 09
-
-Example
-_DDD, _D day of _MMM _YY _hh:_mm:_ss
-
-Fredas, 4th day of First Seed 2E 582
-Friday, 4th day of April 2014
-
-
-If you want a new feature to be added too, feel free to suggest it here.
-
-
-Features
--------------
-
-This AddOn will show you the current time in Tamriel.
-It is displayed on the Interface wherever you want it to be - completely movable.
-You are also able to set the size, font and style of the clock to your liking.
+This AddOn will show you the current time in *Tamriel*.
+It is displayed on the Interface wherever you want it to be - **completely movable**.
+You are also able to **set the size, font and style of the clock** to your liking.
 
 The time in Tamriel is not a fact.
 
 There is not function in the API which gets us the length back.
 Many people right now are trying to figure out how long a day is.
-Zenimax Online stated in their FAQ that the time is a bit less than 5h, but after many tests I think it is more like 5.5 - 6h.
+Zenimax Online stated in their FAQ that the time is a bit less than 5h, but after many tests, I am sure it is 5,83h long.
 If you agree with me or not is up to you.
-You are able to customize the length of the day easily in the Clock - TST settings.
+You are able to **customize the length of the day** easily in the *Clock - TST* settings.
 This can be done to a precision of seconds.
 
 The time could be off after a maintenance or something else.
-With the settings menu or commands you can choose one out of four times to synchronize the clock.
-For example you see the sun right under your South needle of the compass. 
+With the settings menu or commands you can **choose one out of four times to synchronize the clock**.
+For example, you see the sun right under your South needle of the compass. 
 You are sure that it is noon right now. 
 No problem: Just write /cl noon in the chat or use the "Noon is now!" button in the settings to sync your clock.
 
-The best way to sync your Clock is to set the clock to noon at noon and wait a day or more (ingame).
+The best way to sync your Clock is to set the clock to noon at noon and wait a day or more (in-game).
 Then set your time (at noon again) so that your clock shows exactly 12:00.
 When this is done you should have a perfectly synced clock
 Noon is best because you can see the sun and you have a compass 
-So just wait until the sun is right under you South sign at you compass.
+So just wait until the sun is right under you South sign at your compass.
+ 
+Right now, the settings and the **Clock is localized in English, German and Russian**.
 
-If you are from the US or any other country which uses a 12-hour clock, you are able to change the clock to that format too. You can even hide the am/pm signs.
-Of course you can use the formats: 12h or 24h wherever you are from.
+If you are from the US or any other country which uses a 12-hour clock,  you are able to change the clock to that format too. You can even hide  the am/pm signs.
+Of course you can **use the formats: 12h or 24h** wherever you are from.
+You can also **hide the 0 before a single number**: 01:12 -> 1:12.
 
-I personaly love to see the seconds pass by. It is fun to see if they reach the zero or step over it (because of the game to real time ratio). It is like the screensaver of a DVD player... you have to watch for some reason.
-If they distract you to much - like me - or you just don't want to see them, just disable them.
-You can disable to show seconds in the settings menu.
+I personally love to see the seconds pass by. It is fun to see if they  reach the zero or step over it (because of the game to real time ratio).  It is like the screensaver of a DVD player... you have to watch for  some reason.
+If they distract you too much - like me - or you just don't want to see them, just disable them.
+You can **disable to show seconds** in the settings menu.
 
-You can let the Clock AddOn show you the current moon phase and the time to the next one.
-This feature is like the time not based on a fact but on a adjustable algorithm.
-You can customize the length of a moon phase at the settings menu.
+You can let the Clock AddOn **show you the current moon phase and the time to the next one**.
+This feature is like the time not based on a fact but on an adjustable algorithm.
+After many months of studying it, I am sure the one cycle is 30 Tamriel  days long, but you can still change the length of the different phases.
+You can **customize the length of a moon phase** at the settings menu.
+
+Clock does not stop there. 
+You can also let the Clock show you the **current lore date on your screen** either as a real calculated date or a fake one representing the current real date as a lore date.
+
+The look of the **time and date are fully customizable**. 
+Write a String like this in the text field in the settings:
+*_DDD, _D day of _MMM _YY _hh:_mm:_ss*
+
+It will return you a date looking like this:
+*Fredas, 4th day of First Seed 2E 582 07:09:08*
+
+If you want the Clock will also **show you the current real date and time** as customizable as the lore time and date.
+
+### **TL;DR**
+**Clock - TST gives you a fully customizable lore- (and real-) date and time system with moon cycle integration.**
+
+**If you want a new feature to be added too, feel free to suggest it [here]("https://www.esoui.com/portal.php?uid=4069&a=listfeatures").**
 
 
-Settings
------------
+## **Commands**
+ 
+You can easily change all settings in the menu:
+The panel can be called with writing the command /clsettings in the chat.
+Or To open it press "esc" -> choose "settings" and look for "Clock - Tamriel Standard Time".
 
-You can easily change all settings in the menu.
-To open it press "esc" -> choose "settings" and look for "Clock - Tamriel Standard Time".
-
-
-Commands
----------------
-If it is to much of a hassle for you, there are also chat commands.
-The meta command is /cl
+If it is too much of a hassle for you, there are also chat commands.
+The meta command is **/cl**
 /cl active toggle the clock on or off
 /cl date toggle the date on or off
+/cl ldate toggle the lore date on or off
+/cl fldate toggle the fake lore date on or off
 /cl help will give all available commands
 /cl moon toggle the lines for the moon phase under your clock on or off
 /cl rt toggle the Real Time on or off
@@ -183,22 +134,53 @@ Synchronize the Clock
 /cl us Toggle am/pm format on or off
 
 
-Bugs
----------
+## **Known Bugs**
 
 Clock will "jump" around if you activate or deactivate the date functions
-
-The settings panel does not refresh automatically after a language change
-If you notice one please use this link to report it.
+ 
+**If you notice one please use this [link]("https://www.esoui.com/portal.php?uid=4069&a=listbugs") to report it.**
 It will help me a lot.
 
+## **Future Plans**
+ 
+- 0.1 Add ingame time algorithm  
+- 0.2 Display ingame time  
+- 0.3 Create commands to adjust time
+- 0.4 Create user interface to adjust clock
+  - 0.41 Bugfixes
+  - 0.42 Add hide seconds
+  - 0.43 Rewrite time algorithm
+  - 0.44 Make clock moveable and add colorize, fonts, styles, size to settings
+  - 0.45 Bugfixes
+- 0.5 Create moon cycle database
+  - 0.51 Moon icon
+  - 0.52 Various improvements
+- 0.6 Various bug fixes and improvements
+- 0.7 Added background
+- 0.8 Display for moon cycle
+
+Thanks to Harven I don't need to provide you with a custom animated Clock.
+[He made already a really beautiful one compatible with this addon.]("https://www.esoui.com/downloads/info642-HarvensDwemerClock.html")
 
 
-ToDo
------------
-0.5 Create moon cycle database
-0.6 Display for moon cycle
-0.7 Make clock visible at the map
-0.8 Animate clock
-0.9 Animate clock objects
-1.0 Add moon cycle to the clock (animated)
+- 0.8 Make clock visible at the map
+- 0.9 Animate clock
+- 1.0 Add moon cycle to the clock (animated)
+
+## **Thanks**
+I am really thankful to the Community of ESOUI which helped me a lot in the forum and the comments or per PM.
+
+Special thanks to **Seerah** for helping me out and giving us the LibAddonMenu, LibMediaProvider and LibStub which I use in this Addon.
+
+Furthermore to name some helpful users which reported bugs and/or presented features:
+**Munkry, Friiar, Sephiroth018, fosley, LegoManIAm94, WatersMoon110,  Kraeius, Phinix, logan9a, oldbushie, MAOofDC, QuadroTony, GT-Schorsch,  Philgo68, Phinix, KiriX, kerb9729, BowmoreLover, 
+Fifish, Kenza** and of course **Garkin**.
+
+I am sorry if I forgot to mention you if you helped me out too ![https://cdn-eso.mmoui.com/images/style_esoui/smilies/smile.gif](https://cdn-eso.mmoui.com/images/style_esoui/smilies/smile.gif)
+
+
+## **Zenimax Disclosure**
+
+This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates.
+The Elder Scrolls® and related logos are registered trademarks or  trademarks of ZeniMax Media Inc. in the United States and/or other  countries.
+All rights reserved.
