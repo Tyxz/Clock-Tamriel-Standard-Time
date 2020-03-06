@@ -26,7 +26,7 @@ function Clock_TST.I18N()
             },
             presets = {
                 nPreset = "Preset",
-                wPreset = "This will replace your current settings with a preset",
+                wPreset = "This will replace your current settings with a preset.",
                 nSave = "Save",
                 wSave = "This will overwrite you current preset.",
                 nDelete = "Delete",

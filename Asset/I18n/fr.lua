@@ -22,16 +22,16 @@ function Clock_TST.I18N()
                 nHeadTime = "Date et heure",
                 nHeadMoon = "Lune",
                 nHeadGeneral = "Généralités",
-                nHeadDebug = "Debug",
+                nHeadDebug = "Débogage",
             },
             presets = {
-                nPreset = "Preset",
-                wPreset = "This will replace your current settings with a preset",
-                nSave = "Save",
-                wSave = "This will overwrite you current preset.",
-                nDelete = "Delete",
-                wDelete = "This will delete your current preset.",
-                nCurrent = "Current preset",
+                nPreset = "Préréglage",
+                wPreset = "Cela remplacera vos paramètres actuels par un préréglage.",
+                nSave = "Sauvegarder",
+                wSave = "Cela écrasera votre préréglage actuel.",
+                nDelete = "Supprimer",
+                wDelete = "Cela supprimera votre préréglage actuel.",
+                nCurrent = "Préréglage actuel",
             },
             account = {
                 nAccount = "Synchroniser les paramètres",
@@ -58,7 +58,7 @@ function Clock_TST.I18N()
                 nMap = "Afficher sur la carte uniquement",
                 nLink = "Relier les mouvements du lettrage avec la lune",
                 nGroup = "Se cacher en groupe",
-                nDebug = "Debug mode",
+                nDebug = "Mode débogage",
             },
             styles = {
                 nSub = "Paramètres d'apparence", -- look

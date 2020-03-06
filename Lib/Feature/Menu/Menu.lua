@@ -22,7 +22,7 @@ function Clock_TST:SetupMenu()
         type = "panel",
         name = const.NAME,
         displayName = const.DISPLAY,
-        author = "|c5175ea" .. const.AUTHOR .. "|r",
+         author = "|c5175ea" .. const.AUTHOR .. "|r",
         version = const.VERSION,
         website = "https://rantzen.net/clock-tamriel-standard-time/",
         feedback = "https://github.com/Tyxz/Clock-Tamriel-Standard-Time/issues/new/choose",
@@ -39,6 +39,8 @@ function Clock_TST:SetupMenu()
     -- Visibility
     -- ----------------
 
+    --- Function to add fragment to game menu scene
+    --- @param libPanel table  panel
     local function ShowFragment(libPanel)
         if libPanel == CLOCK_TST_MENU then
             GAME_MENU_SCENE:AddFragment(self.TIME_FRAGMENT)
@@ -46,6 +48,8 @@ function Clock_TST:SetupMenu()
         end
     end
 
+    --- Function to remove fragment from game menu scene
+    --- @param libPanel table  panel
     local function HideFragment(libPanel)
         if libPanel == CLOCK_TST_MENU then
             GAME_MENU_SCENE:RemoveFragment(self.TIME_FRAGMENT)
@@ -53,11 +57,13 @@ function Clock_TST:SetupMenu()
         end
     end
 
+    --- Function to add callback to toggle visibility when panel is opened or closed
     local function RegisterCallback()
         CALLBACK_MANAGER:RegisterCallback("LAM-PanelOpened", ShowFragment)
         CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed", HideFragment)
     end
 
+    --- Function to remove callback to toggle visibility when panel is opened or closed
     local function RemoveCallback()
         CALLBACK_MANAGER:UnregisterCallback("LAM-PanelOpened", ShowFragment)
         CALLBACK_MANAGER:UnregisterCallback("LAM-PanelClosed", HideFragment)
@@ -66,6 +72,7 @@ function Clock_TST:SetupMenu()
     -- ----------------
     -- General
     -- ----------------
+    --- Update the presets dropdown
     local function UpdatePresets()
         local choices = settings:GetPresets()
         CLOCK_TST_MENU_PRESETS:UpdateChoices(choices)
