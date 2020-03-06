@@ -12,7 +12,7 @@
 | Build for game version:                                                                                                                     | 100030 | [![Download](https://img.shields.io/website?label=%7C&up_color=blue&up_message=download&url=http%3A%2F%2Fwww.esoui.com%2Fdownloads%2Finfo241-Clock-TamrielStandardTime.html)](https://www.esoui.com/downloads/info241-Clock-TamrielStandardTime.html) |
 | [![Run on Repl.it](https://repl.it/badge/github/Tyxz/Clock-Tamriel-Standard-Time)](https://repl.it/github/Tyxz/Clock-Tamriel-Standard-Time) |        | [![POEditor](https://img.shields.io/website?label=%7C&up_color=success&up_message=translation&down_color=success&down_message=translation&url=https%3A%2F%2Fpoeditor.com%2Fjoin%2Fproject%2FNJq0ZZpySZ)](https://poeditor.com/join/project/NJq0ZZpySZ)                                               |
 
-# Version 2.1
+# Version 2.2
 
 ![O1](dev/Assets/Screenshots/screenshot_1.jpg)
 
@@ -36,6 +36,11 @@
 ![S2](dev/Assets/Screenshots/screenshot_2.jpg)
 ![S3](dev/Assets/Screenshots/screenshot_8.jpg)
 ![S4](dev/Assets/Screenshots/screenshot_9.jpg)
+
+## Manage Settings In Presets
+
+![P1](dev/Assets/Screenshots/screenshot_11.jpg)
+![P2](dev/Assets/Screenshots/screenshot_12.jpg)
 
 # Copyright
 
