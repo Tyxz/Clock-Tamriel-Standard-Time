@@ -103,12 +103,8 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">Update the Style of the label</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#UpdateLabel">UpdateLabel ()</a></td>
-	<td class="summary">Update the content of the label</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#UpdateTooltip">UpdateTooltip ()</a></td>
-	<td class="summary">Update the content of the tooltip</td>
+	<td class="name" nowrap><a href="#UpdateFormats">UpdateFormats ()</a></td>
+	<td class="summary">Update the content of the label and tooltip</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#CreateTimeReplacements">CreateTimeReplacements (loreTime)</a></td>
@@ -152,7 +148,7 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">Setup all controls and the Time fragment</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#New">New (...)</a></td>
+	<td class="name" nowrap><a href="#New">New (control)</a></td>
 	<td class="summary">Create a new time object</td>
 	</tr>
 	<tr>
@@ -162,6 +158,10 @@ License:    GPL-<span class="number">3.0</span>
 </table>
 <h2><a href="#Local_Functions">Local Functions</a></h2>
 <table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Replace">Replace (format, symbol, date, time)</a></td>
+	<td class="summary">Replace a date and time string with a given time and date</td>
+	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#AddZero">AddZero (value)</a></td>
 	<td class="summary">Add a zero in front of a number if smaller than 10</td>
@@ -275,25 +275,11 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "UpdateLabel"></a>
-    <strong>UpdateLabel ()</strong>
+    <a name = "UpdateFormats"></a>
+    <strong>UpdateFormats ()</strong>
     </dt>
     <dd>
-    Update the content of the label
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "UpdateTooltip"></a>
-    <strong>UpdateTooltip ()</strong>
-    </dt>
-    <dd>
-    Update the content of the tooltip
+    Update the content of the label and tooltip
 
 
 
@@ -313,7 +299,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">loreTime</span>
-         is the lore time object with { hour = h, minute = m, second = s }
+         table is the lore time object with { hour = h, minute = m, second = s }
         </li>
     </ul>
 
@@ -333,7 +319,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">loreDate</span>
-         is the lore date object with { day = d, weekDay = w, month = m, year = y }
+         table is the lore date object with { day = d, weekDay = w, month = m, year = y }
         </li>
     </ul>
 
@@ -354,10 +340,10 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">time</span>
-         for the time object { hour = h, minute = m, second = s }
+         table for the time object { hour = h, minute = m, second = s }
         </li>
         <li><span class="parameter">date</span>
-         for the date object { day = d, weekDay = w, month = m, year = y }
+         table  for the date object { day = d, weekDay = w, month = m, year = y }
         </li>
     </ul>
 
@@ -461,7 +447,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">control</span>
-         of the TopLevelControl
+         table of the TopLevelControl
         </li>
     </ul>
 
@@ -472,7 +458,7 @@ License:    GPL-<span class="number">3.0</span>
 </dd>
     <dt>
     <a name = "New"></a>
-    <strong>New (...)</strong>
+    <strong>New (control)</strong>
     </dt>
     <dd>
     Create a new time object
@@ -480,8 +466,8 @@ License:    GPL-<span class="number">3.0</span>
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">...</span>
-         control of the time object
+        <li><span class="parameter">control</span>
+         table control of the time object
         </li>
     </ul>
 
@@ -509,6 +495,40 @@ License:    GPL-<span class="number">3.0</span>
 
     <dl class="function">
     <dt>
+    <a name = "Replace"></a>
+    <strong>Replace (format, symbol, date, time)</strong>
+    </dt>
+    <dd>
+    Replace a date and time string with a given time and date
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">format</span>
+         string in the typical date format
+        </li>
+        <li><span class="parameter">symbol</span>
+         string of the symbol to be replaced. % needs to be escaped as %%.
+        </li>
+        <li><span class="parameter">date</span>
+         table of the date values
+        </li>
+        <li><span class="parameter">time</span>
+         table of the time values
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        string format with the replaced values.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "AddZero"></a>
     <strong>AddZero (value)</strong>
     </dt>
@@ -519,7 +539,7 @@ License:    GPL-<span class="number">3.0</span>
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">value</span>
-         is the number
+         number is the number
         </li>
     </ul>
 
@@ -535,7 +555,7 @@ License:    GPL-<span class="number">3.0</span>
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2020-03-18 13:32:48 </i>
+<i style="float:right;">Last updated 2020-03-18 15:16:27 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

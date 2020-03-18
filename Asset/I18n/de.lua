@@ -65,21 +65,23 @@ function Clock_TST.I18N()
                 nFormat = "Schreibe dein eigenes Format der Zeit und des Datums",
                 tFormat = "Du kannst ein Symbol (# für Kunde, % für Realität und $ für falsche Kunde) "
                         .. "gefolgt von einem Buchstaben schreiben:",
-                dFormat = "%A\t\t voller Wochentagsname [Freitag]\n"
+                dFormatDate = "%A\t\t voller Wochentagsname [Freitag]\n"
                         .. "%a\t\t für den abgekürzten [Fre]\n"
                         .. "%B\t\t vollständiger Monatsname [März]\n"
                         .. "%b\t\t für den abgekürzten [Mer]\n"
                         .. "%d\t\t Tag des Monats\n"
-                        .. "%H\t\t Stunde\n"
-                        .. "%M\t\t Minute\n"
                         .. "%m\t\t Monat\n"
-                        .. "%p\t\t entweder \"am\" oder \"pm\"\n"
-                        .. "%S\t\t Sekunde\n"
                         .. "%w\t\t Wochentag [1-7 = Montag-Sonntag]\n"
                         .. "%x\t\t Datum [17.02.20]\n"
-                        .. "%X\t\t Zeit [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t ganzes Jahr [2020]\n"
                         .. "%y\t\t verkürztes Jahr [20]",
+                dFormatTime = "%H\t\t Stunde\n"
+                        .. "%M\t\t Minute\n"
+                        .. "%p\t\t entweder \"am\" oder \"pm\"\n"
+                        .. "%S\t\t Sekunde\n"
+                        .. "%X\t\t Zeit [23:48:10 | 11:48 PM]\n",
+                tFormatClock = "Clock label format",
+                tFormatTooltip = "Clock tooltip format",
                 nColor = "Farbe", -- nColPick
                 tColor = "Verändere die Farbe der Clock.", -- tColPick
                 nFont = "Schriftart", -- nFont

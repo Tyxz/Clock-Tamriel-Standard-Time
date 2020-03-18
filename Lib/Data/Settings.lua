@@ -261,6 +261,42 @@ function Settings:SetTimeHasRealDate(value)
 end
 
 --- a function to get the stored boolean value for the time
+--- @return boolean if the time tooltip has a lore date
+function Settings:GetTimeTooltipHasLoreDate()
+    return self.booleans.time.tooltip.hasLoreDate
+end
+
+--- a function to store the boolean value for the time
+--- @return boolean if the time tooltip has a lore date
+function Settings:SetTimeTooltipHasLoreDate(value)
+    self.booleans.time.tooltip.hasLoreDate = value
+end
+
+--- a function to get the stored boolean value for the time
+--- @return boolean if the time tooltip has a fake lore date
+function Settings:GetTimeTooltipHasFakeLoreDate()
+    return self.booleans.time.tooltip.hasFakeLoreDate
+end
+
+--- a function to store the boolean value for the time
+--- @return boolean if the time tooltip has a fake lore date
+function Settings:SetTimeTooltipHasFakeLoreDate(value)
+    self.booleans.time.tooltip.hasFakeLoreDate = value
+end
+
+--- a function to get the stored boolean value for the time
+--- @return boolean if the time tooltip has a real date
+function Settings:GetTimeTooltipHasRealDate()
+    return self.booleans.time.tooltip.hasRealDate
+end
+
+--- a function to store the boolean value for the time
+--- @return boolean if the time tooltip has a real date
+function Settings:SetTimeTooltipHasRealDate(value)
+    self.booleans.time.tooltip.hasRealDate = value
+end
+
+--- a function to get the stored boolean value for the time
 --- @return boolean if the time should scale up when hovering over
 function Settings:GetTimeScaleWhenHover()
     return self.booleans.time.scaleWhenHover
@@ -386,6 +422,18 @@ end
 --- @param value string the format for the time
 function Settings:SetTimeFormat(value)
     self.styles.time.format = value
+end
+
+--- a function to get the stored style value for the time
+--- @return string the format for the time tooltip
+function Settings:GetTimeTooltipFormat()
+    return self.styles.time.tooltip.format
+end
+
+--- a function to store the style value for the moon
+--- @param value string the format for the time tooltip
+function Settings:SetTimeTooltipFormat(value)
+    self.styles.time.tooltip.format = value
 end
 
 --- a function to get the stored style value for the time
@@ -1021,7 +1069,14 @@ function Settings:Migrate()
 
         end
     end
+    -- Update 2.3.0 introduced a tooltip format
 
+    if major == 2 and minor < 3 then
+        self.styles.time.tooltip = ZO_DeepTableCopy(const.Settings.styles.DEFAULTS.time.tooltip)
+        self.booleans.time.tooltip = ZO_DeepTableCopy(const.Settings.booleans.DEFAULTS.time.tooltip)
+
+        p("Updated to 2.3")
+    end
     self:SetLastVersion(self:GetVersion())
 end
 
