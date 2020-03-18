@@ -29,7 +29,7 @@ run:
 
 test:
 	$(LUAROCKS)luacheck . \
-	&& $(LUAROCKS)busted -R Test --verbose --coverage
+	&& $(LUAROCKS)busted -R Test --verbose
 
 docs:
 	$(LUAROCKS)ldoc Lib -c ./config.ld
