@@ -15,7 +15,7 @@
 ## Title: Clock |cFFA4002.0|r
 ## Description: Adds a fully customizable notice about time and date in Tamriel and Earth.
 ## Author: |c0080ffTyx|r
-## Version 2.2.0
+## Version 2.2.1
 ## APIVersion: 100030
 ## SavedVariables: ClockTST_Settings
 ## DependsOn: LibClockTST LibAddonMenu-2.0

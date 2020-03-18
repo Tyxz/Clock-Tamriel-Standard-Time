@@ -102,14 +102,14 @@ end
 
 --- a function to get the stored boolean value for the core elements
 --- @return boolean if the view should be hidden in fights
-function Settings:GetHideInFight()
-    return self.booleans.core.hideInFight
+function Settings:GetHideInCombat()
+    return self.booleans.core.hideInCombat
 end
 
 --- a function to store the boolean value for the core elements
 --- @param value boolean if the view should be hidden in fights
-function Settings:SetHideInFight(value)
-    self.booleans.core.hideInFight = value
+function Settings:SetHideInCombat(value)
+    self.booleans.core.hideInCombat = value
 end
 
 --- a function to get the stored boolean value for the core elements

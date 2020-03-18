@@ -54,7 +54,7 @@ function Clock_TST.I18N()
                 nHoverScale = "Scale when hovering",
                 nHoverColour = "Highlight when hovering",
                 nMoonVisible = "Show Moon", -- sMoon
-                nFight = "Hide in fights",
+                nFight = "Hide in combat",
                 nMap = "Only show on map",
                 nLink = "Link the movements of the label with the moon",
                 nGroup = "Hide in groups",

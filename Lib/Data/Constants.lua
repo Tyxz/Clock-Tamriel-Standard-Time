@@ -16,7 +16,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.2.0",
+        VERSION = "2.2.1",
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -177,7 +177,7 @@ function Clock_TST.CONSTANTS()
                     core = {
                         timeAndMoonAreLinked = true,
                         hideInGroup = false,
-                        hideInFight = true,
+                        hideInCombat = true,
                         onlyShowOnMap = false,
                     },
                     time = {
@@ -334,7 +334,7 @@ function Clock_TST.CONSTANTS()
                             booleans = {
                                 core = {
                                     onlyShowOnMap = true,
-                                    hideInFight = false,
+                                    hideInCombat = false,
                                 },
                                 time = {
                                     isMovable = false,

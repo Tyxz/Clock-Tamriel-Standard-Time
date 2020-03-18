@@ -188,10 +188,10 @@ function Clock_TST:SetupMenu()
             {
                 type = "checkbox",
                 getFunc = function()
-                    return settings:GetHideInFight()
+                    return settings:GetHideInCombat()
                 end,
                 setFunc = function(value)
-                    settings:SetHideInFight(value)
+                    settings:SetHideInCombat(value)
                     if value then
                         settings:SetOnlyShowOnMap(not value)
                     end
@@ -212,7 +212,7 @@ function Clock_TST:SetupMenu()
                 setFunc = function(value)
                     settings:SetOnlyShowOnMap(value)
                     if value then
-                        settings:SetHideInFight(not value)
+                        settings:SetHideInCombat(not value)
                         settings:SetHideInGroup(not value)
                     end
 

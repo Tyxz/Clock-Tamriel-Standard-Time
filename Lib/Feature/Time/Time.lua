@@ -48,21 +48,38 @@ end
 
 --- Update the visibility and fragment visibility of the Time object
 function Time:UpdateVisibility()
-    local isHidden = not settings:GetTimeIsVisible() or settings:GetHideInGroup() and IsUnitGrouped("player")
+    local isHidden = not settings:GetTimeIsVisible()
+            or (settings:GetHideInGroup() and IsUnitGrouped("player"))
+            or (settings:GetHideInCombat() and IsUnitInCombat("player"))
     Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Settings", isHidden)
+
+    local namespace = self.control:GetName()
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED)
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT)
 
     if settings:GetTimeIsVisible() then
         local backgroundIsHidden = not settings:GetTimeHasBackground()
         self.background:SetHidden(backgroundIsHidden)
 
-        local namespace = self.control:GetName()
-        EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
         if settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             HUD_UI_SCENE:RemoveFragment(Clock_TST.TIME_FRAGMENT)
             WORLD_MAP_SCENE:AddFragment(Clock_TST.TIME_FRAGMENT)
         else
-            if settings:GetHideInFight() then
+            if settings:GetHideInGroup() then
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED,
+                        function(_, _, isLocalPlayer)
+                            if isLocalPlayer then Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Grouped", true) end
+                        end
+                )
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT,
+                        function(_, _, isLocalPlayer)
+                            if isLocalPlayer then   Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Grouped", false) end
+                        end
+                )
+            end
+            if settings:GetHideInCombat() then
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                     Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Combat", inCombat)
                 end)
