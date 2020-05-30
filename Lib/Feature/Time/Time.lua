@@ -69,12 +69,12 @@ function Time:UpdateVisibility()
         else
             if settings:GetHideInGroup() then
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED,
-                        function(_, _, isLocalPlayer)
+                        function(_, _, _, isLocalPlayer)
                             if isLocalPlayer then Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Grouped", true) end
                         end
                 )
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT,
-                        function(_, _, isLocalPlayer)
+                        function(_, _, _, isLocalPlayer)
                             if isLocalPlayer then   Clock_TST.TIME_FRAGMENT:SetHiddenForReason("Grouped", false) end
                         end
                 )
@@ -109,7 +109,7 @@ function Time:UpdateBackground()
 end
 
 --- Update the dimension and offset of the control
--- Only if the sizeHasUpdated variable is true!
+--- Only if the sizeHasUpdated variable is true!
 function Time:UpdateSize()
     if not self.sizeHasUpdated then
         return
@@ -162,84 +162,70 @@ function Time:UpdateStyle()
     self.label:SetColor(settings:GetTimeColour())
 end
 
---- Update the content of the label
-function Time:UpdateLabel()
-    local format = settings:GetTimeFormat()
+--- Replace a date and time string with a given time and date
+--- @param format string in the typical date format
+--- @param symbol string of the symbol to be replaced. % needs to be escaped as %%.
+--- @param date table of the date values
+--- @param time table of the time values
+--- @return string format with the replaced values.
+local function Replace(format, symbol, date, time)
+    format = format:gsub(symbol.."x", date.x)
+    format = format:gsub(symbol.."A", date.A)
+    format = format:gsub(symbol.."a", date.a)
+    format = format:gsub(symbol.."B", date.B)
+    format = format:gsub(symbol.."b", date.b)
+    format = format:gsub(symbol.."d", date.d)
+    format = format:gsub(symbol.."m", date.m)
+    format = format:gsub(symbol.."w", date.w)
+    format = format:gsub(symbol.."Y", date.Y)
+    format = format:gsub(symbol.."y", date.y)
+    format = format:gsub(symbol.."X", time.X)
+    format = format:gsub(symbol.."H", time.H)
+    format = format:gsub(symbol.."I", time.I)
+    format = format:gsub(symbol.."M", time.M)
+    format = format:gsub(symbol.."S", time.S)
+    format = format:gsub(symbol.."p", time.p)
+    return format
+end
+
+--- Update the content of the label and tooltip
+function Time:UpdateFormats()
+    local labelFormat = settings:GetTimeFormat()
+    local tooltipFormat = settings:GetTimeTooltipFormat()
 
     if settings:GetTimeHasRealDate() then
-        local rDate = self.replacement.date.real
-        local rTime = self.replacement.time.real
-        format = format:gsub("%%x", rDate.x)
-        format = format:gsub("%%A", rDate.A)
-        format = format:gsub("%%a", rDate.a)
-        format = format:gsub("%%B", rDate.B)
-        format = format:gsub("%%b", rDate.b)
-        format = format:gsub("%%d", rDate.d)
-        format = format:gsub("%%m", rDate.m)
-        format = format:gsub("%%w", rDate.w)
-        format = format:gsub("%%Y", rDate.Y)
-        format = format:gsub("%%y", rDate.y)
-        format = format:gsub("%%X", rTime.X)
-        format = format:gsub("%%H", rTime.H)
-        format = format:gsub("%%I", rTime.I)
-        format = format:gsub("%%M", rTime.M)
-        format = format:gsub("%%S", rTime.S)
-        format = format:gsub("%%p", rTime.p)
+        labelFormat = Replace(labelFormat, "%%", self.replacement.date.real, self.replacement.time.real)
     end
 
     if settings:GetTimeHasFakeLoreDate() then
-        local lDate = self.replacement.date.fake
-        format = format:gsub("$x", lDate.x)
-        format = format:gsub("$A", lDate.A)
-        format = format:gsub("$a", lDate.a)
-        format = format:gsub("$B", lDate.B)
-        format = format:gsub("$b", lDate.b)
-        format = format:gsub("$d", lDate.d)
-        format = format:gsub("$m", lDate.m)
-        format = format:gsub("$w", lDate.w)
-        format = format:gsub("$Y", lDate.Y)
-        format = format:gsub("$y", lDate.y)
+        labelFormat = Replace(labelFormat, "$", self.replacement.date.fake, self.replacement.time.fake)
     end
 
-    if settings:GetTimeHasLoreDate() or settings:GetTimeHasFakeLoreDate() then
-        local lDate = self.replacement.date.lore
-        local lTime = self.replacement.time.lore
-        format = format:gsub("#x", lDate.x)
-        format = format:gsub("#A", lDate.A)
-        format = format:gsub("#a", lDate.a)
-        format = format:gsub("#B", lDate.B)
-        format = format:gsub("#b", lDate.b)
-        format = format:gsub("#d", lDate.d)
-        format = format:gsub("#m", lDate.m)
-        format = format:gsub("#w", lDate.w)
-        format = format:gsub("#Y", lDate.Y)
-        format = format:gsub("#y", lDate.y)
-        format = format:gsub("#X", lTime.X)
-        format = format:gsub("#H", lTime.H)
-        format = format:gsub("#I", lTime.I)
-        format = format:gsub("#M", lTime.M)
-        format = format:gsub("#S", lTime.S)
-        format = format:gsub("#p", lTime.p)
+    if settings:GetTimeHasLoreDate() then
+        labelFormat = Replace(labelFormat, "#", self.replacement.date.lore, self.replacement.time.lore)
     end
 
-    self.label:SetText(format)
-end
+    self.label:SetText(labelFormat)
 
---- Update the content of the tooltip
-function Time:UpdateTooltip()
-    local loreTime = self.replacement.time.lore
-    local loreDate = self.replacement.date.lore
-    self.tooltip = zo_strformat("<<1>>, <<2>>. <<t:3>> <<4>> <<5>> <<6>>\n",
-            loreDate.A, loreDate.d, loreDate.B, loreDate.E, loreDate.Y, loreTime.X)
+    if settings:GetTimeHasTooltip() then
+        if settings:GetTimeTooltipHasRealDate() then
+            tooltipFormat = Replace(tooltipFormat, "%%", self.replacement.date.real, self.replacement.time.real)
+        end
 
-    local realTime = self.replacement.time.real
-    local realDate = self.replacement.date.real
-    self.tooltip = self.tooltip .. zo_strformat("<<1>>, <<2>>. <<t:3>> <<4>> <<5>>",
-            loreDate.A, realDate.d, realDate.B, realDate.Y, realTime.X)
+        if settings:GetTimeTooltipHasFakeLoreDate() then
+            tooltipFormat = Replace(tooltipFormat, "$", self.replacement.date.fake, self.replacement.time.fake)
+        end
+
+        if settings:GetTimeTooltipHasLoreDate() then
+            tooltipFormat = Replace(tooltipFormat, "#", self.replacement.date.lore, self.replacement.time.lore)
+        end
+
+        self.tooltip = tooltipFormat
+    end
 end
 
 --- Add a zero in front of a number if smaller than 10
---@param value is the number
+--- @param value number is the number
 local function AddZero(value)
     local number = tonumber(value)
     if not settings:GetTimeAddZero() then
@@ -252,7 +238,7 @@ local function AddZero(value)
 end
 
 --- Create the values for the time to be exchanged with their respective chars
---@param loreTime is the lore time object with { hour = h, minute = m, second = s }
+--- @param loreTime table is the lore time object with { hour = h, minute = m, second = s }
 function Time:CreateTimeReplacements(loreTime)
     local function I(hour)
         local h = tonumber(hour)
@@ -294,10 +280,19 @@ function Time:CreateTimeReplacements(loreTime)
         S = ls,
         p = p(lh)
     }
+
+    self.replacement.time.fake = {
+        X = ZO_FormatTime(lh * 3600 + lm * 60 + ls, TIME_FORMAT_STYLE_CLOCK_TIME, format),
+        H = lh,
+        I = AddZero(I(loreTime.hour)),
+        M = lm,
+        S = ls,
+        p = p(lh)
+    }
 end
 
 --- Create the values for the date to be exchanged with their respective chars
---@param loreDate is the lore date object with { day = d, weekDay = w, month = m, year = y }
+--- @param loreDate table is the lore date object with { day = d, weekDay = w, month = m, year = y }
 function Time:CreateDateReplacements(loreDate)
     local realDateString = tostring(GetDate())
     local ry, rm, rd = realDateString:match("(%d%d%d%d)(%d%d)(%d%d)")
@@ -314,8 +309,9 @@ function Time:CreateDateReplacements(loreDate)
         w = rw,
         Y = ry,
         y = ry - 2000
-}
+    }
 
+    local fy = LibClockTST.CONSTANTS().date.startYear + ry - 2014
     self.replacement.date.fake = {
         x = zo_strformat(
                 "<<1>>.<<2>>.<<3>><<4>>",
@@ -328,8 +324,8 @@ function Time:CreateDateReplacements(loreDate)
         d = zo_strformat("<<i:1>>", AddZero(rd)),
         m = AddZero(rm),
         w = rw,
-        Y = i18n.date.lore.year .. loreDate.year,
-        y = loreDate.year
+        Y = i18n.date.lore.year .. fy,
+        y = fy
     }
 
     self.replacement.date.lore = {
@@ -351,18 +347,15 @@ end
 
 --- Function to be given to the LibClockTST for the time and date updates
 -- It will handle the updates of the label and tooltip
---@param time for the time object { hour = h, minute = m, second = s }
---@param date for the date object { day = d, weekDay = w, month = m, year = y }
+--- @param time table for the time object { hour = h, minute = m, second = s }
+--- @param date table  for the date object { day = d, weekDay = w, month = m, year = y }
 function Time:UpdateTime(time, date)
     self:CreateTimeReplacements(time)
     if tonumber(self.replacement.date.d) ~= date.day then
         self:CreateDateReplacements(date)
     end
-    self:UpdateLabel()
+    self:UpdateFormats()
     self:UpdateSize()
-    if settings:GetTimeHasTooltip() then
-        self:UpdateTooltip()
-    end
 end
 
 -- ----------------
@@ -514,7 +507,7 @@ function Time:SetupScale()
 end
 
 --- Setup all controls and the Time fragment
---@param control of the TopLevelControl
+--- @param control table of the TopLevelControl
 function Time:SetupControls(control)
     self.control = control
     self.background = GetControl(control, "Background")
@@ -529,10 +522,10 @@ end
 -- ----------------
 
 --- Create a new time object
---@param ... control of the time object
-function Time:New(...)
+--- @param control table control of the time object
+function Time:New(control)
     local container = ZO_Object.New(self)
-    container:SetupControls(...)
+    container:SetupControls(control)
     return container
 end
 

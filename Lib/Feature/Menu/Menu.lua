@@ -248,7 +248,7 @@ function Clock_TST:SetupMenu()
             },
             {
                 type = "description",
-                text = i18n.styles.dFormat,
+                text = i18n.styles.dFormatTime,
                 width = "half",
             },
             {
@@ -272,11 +272,40 @@ function Clock_TST:SetupMenu()
                     settings:SetTimeHasRealDate(realCount ~= 0)
                     local _, fakeCount = string.gsub(value, "$", "")
                     settings:SetTimeHasFakeLoreDate(fakeCount ~= 0)
-                    settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0)
+                    settings:SetTimeIsVisible(realCount ~= 0 or loreCount ~= 0 or fakeCount ~= 0)
                     time:ResetReplacement()
                 end,
                 isMultiline = true,
                 width = "half",
+                tooltip = i18n.styles.tFormatClock
+            },
+            {
+                type = "description",
+                text = i18n.styles.dFormatDate,
+                width = "half",
+            },
+            {
+                type = "editbox",
+                disabled = function()
+                    return not settings:GetTimeIsVisible()
+                end,
+                getFunc = function()
+                    return settings:GetTimeTooltipFormat()
+                end,
+                setFunc = function(value)
+                    settings:SetTimeTooltipFormat(value)
+                    local _, loreCount = string.gsub(value, "#", "")
+                    settings:SetTimeTooltipHasLoreDate(loreCount ~= 0)
+                    local _, realCount = string.gsub(value, "%%", "")
+                    settings:SetTimeTooltipHasRealDate(realCount ~= 0)
+                    local _, fakeCount = string.gsub(value, "$", "")
+                    settings:SetTimeTooltipHasFakeLoreDate(fakeCount ~= 0)
+                    settings:SetTimeHasTooltip(realCount ~= 0 or loreCount ~= 0 or fakeCount ~= 0)
+                    time:ResetReplacement()
+                end,
+                isMultiline = true,
+                width = "half",
+                tooltip = i18n.styles.tFormatTooltip
             },
             {
                 type = "slider",
