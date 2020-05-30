@@ -80,14 +80,31 @@ function Clock_TST.I18N()
                         .. "%X\t\t Heure [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t année complète [2020]\n"
                         .. "%y\t\t année raccourcie [20]",
+                dFormatDate = "%A\t\t nom complet du jour de la semaine [Vendredi]\n"
+                        .. "%a\t\t pour l'abréviation [Ven].\n"
+                        .. "%B\t\t le nom complet du mois [Mars].\n"
+                        .. "%b\t\t pour l'abréviation [Mar]\n"
+                        .. "%d\t\t Jour du mois\n"
+                        .. "%m\t\t mois\n"
+                        .. "%w\t\t Jour de la semaine [1-7 = Lundi-Dimanche]\n"
+                        .. "%x\t\t Date [17.02.20]\n"
+                        .. "%Y\t\t année complète [2020]\n"
+                        .. "%y\t\t année raccourcie [20]",
+                dFormatTime = "%H\t\t heure\n"
+                        .. "%M\t\t minute\n"
+                        .. "%p\t\t soit \"am\" ou \"pm\"\n"
+                        .. "%S\t\t Deuxième\n"
+                        .. "%X\t\t Heure [23:48:10 | 11:48 PM]\n",
+                tFormatClock = "Format de l'étiquette de Clock",
+                tFormatTooltip = "Format de l'info-bulle de Clock",
                 nColor = "Couleur", -- nColPick
-                tColor = "Changez la couleur de l'horloge.", -- tColPick
+                tColor = "Changez la couleur de Clock.", -- tColPick
                 nFont = "Police", -- nFont
-                tFont = "Changez la police de l'horloge.", -- tFont
+                tFont = "Changez la police de Clock.", -- tFont
                 nStyle = "Conception", -- nStyle
-                tStyle = "Changer la conception de l'horloge.", -- tStyle
+                tStyle = "Changer la conception de Clock.", -- tStyle
                 nSize = "Taille", -- nSize
-                tSize = "Modifier la taille de la police de l'horloge.",
+                tSize = "Modifier la taille de la police de Clock.",
                 nBackground = "Texture du fond",
                 nBackgroundColour = "Background colour",
                 nBackgroundHoverColour = "Background hover colour",

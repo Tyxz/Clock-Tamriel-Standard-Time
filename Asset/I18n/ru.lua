@@ -64,21 +64,23 @@ function Clock_TST.I18N()
                 nSub = "Нacтpoйки внeшнeгo видa", -- look
                 nFormat = "Write your own format of the time and date",
                 tFormat = "You can write a symbol (# for lore, % for real and $ for fake lore) followed by a letter:",
-                dFormat = "%A\t\t full weekday name [Friday]\n"
+                dFormatDate = "%A\t\t full weekday name [Friday]\n"
                         .. "%a\t\t for the abbreviated [Fri]\n"
                         .. "%B\t\t full month name [March]\n"
                         .. "%b\t\t for the abbreviated [Mar]\n"
                         .. "%d\t\t day of the month\n"
-                        .. "%H\t\t hour\n"
-                        .. "%M\t\t minute\n"
                         .. "%m\t\t month\n"
-                        .. "%p\t\t either \"am\" or \"pm\"\n"
-                        .. "%S\t\t second\n"
                         .. "%w\t\t weekday [1-7 = Monday-Sunday]\n"
                         .. "%x\t\t date [17.02.20]\n"
-                        .. "%X\t\t time [23:48:10 | 11:48 PM]\n"
                         .. "%Y\t\t full year [2020]\n"
                         .. "%y\t\t shortened year [20]",
+                dFormatTime = "%H\t\t hour\n"
+                        .. "%M\t\t minute\n"
+                        .. "%p\t\t either \"am\" or \"pm\"\n"
+                        .. "%S\t\t second\n"
+                        .. "%X\t\t time [23:48:10 | 11:48 PM]\n",
+                tFormatClock = "Clock label format",
+                tFormatTooltip = "Clock tooltip format",
                 nColor = "Цвeт", -- nColPick
                 tColor = "Измeняeт цвeт чacoв.", -- tColPick
                 nFont = "Шpифт", -- nFont

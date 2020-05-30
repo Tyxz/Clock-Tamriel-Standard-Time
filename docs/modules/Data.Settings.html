@@ -120,11 +120,11 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the boolean value for the core elements</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#GetHideInFight">GetHideInFight ()</a></td>
+	<td class="name" nowrap><a href="#GetHideInCombat">GetHideInCombat ()</a></td>
 	<td class="summary">a function to get the stored boolean value for the core elements</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#SetHideInFight">SetHideInFight (value)</a></td>
+	<td class="name" nowrap><a href="#SetHideInCombat">SetHideInCombat (value)</a></td>
 	<td class="summary">a function to store the boolean value for the core elements</td>
 	</tr>
 	<tr>
@@ -224,6 +224,30 @@ License:    GPL-<span class="number">3.0</span>
 	<td class="summary">a function to store the boolean value for the time</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#GetTimeTooltipHasLoreDate">GetTimeTooltipHasLoreDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeTooltipHasLoreDate">SetTimeTooltipHasLoreDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeTooltipHasFakeLoreDate">GetTimeTooltipHasFakeLoreDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeTooltipHasFakeLoreDate">SetTimeTooltipHasFakeLoreDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeTooltipHasRealDate">GetTimeTooltipHasRealDate ()</a></td>
+	<td class="summary">a function to get the stored boolean value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeTooltipHasRealDate">SetTimeTooltipHasRealDate (value)</a></td>
+	<td class="summary">a function to store the boolean value for the time</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#GetTimeScaleWhenHover">GetTimeScaleWhenHover ()</a></td>
 	<td class="summary">a function to get the stored boolean value for the time</td>
 	</tr>
@@ -301,6 +325,14 @@ License:    GPL-<span class="number">3.0</span>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#SetTimeFormat">SetTimeFormat (value)</a></td>
+	<td class="summary">a function to store the style value for the moon</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTimeTooltipFormat">GetTimeTooltipFormat ()</a></td>
+	<td class="summary">a function to get the stored style value for the time</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetTimeTooltipFormat">SetTimeTooltipFormat (value)</a></td>
 	<td class="summary">a function to store the style value for the moon</td>
 	</tr>
 	<tr>
@@ -804,8 +836,8 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "GetHideInFight"></a>
-    <strong>GetHideInFight ()</strong>
+    <a name = "GetHideInCombat"></a>
+    <strong>GetHideInCombat ()</strong>
     </dt>
     <dd>
     a function to get the stored boolean value for the core elements
@@ -823,8 +855,8 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
-    <a name = "SetHideInFight"></a>
-    <strong>SetHideInFight (value)</strong>
+    <a name = "SetHideInCombat"></a>
+    <strong>SetHideInCombat (value)</strong>
     </dt>
     <dd>
     a function to store the boolean value for the core elements
@@ -1329,6 +1361,141 @@ License:    GPL-<span class="number">3.0</span>
 
 </dd>
     <dt>
+    <a name = "GetTimeTooltipHasLoreDate"></a>
+    <strong>GetTimeTooltipHasLoreDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeTooltipHasLoreDate"></a>
+    <strong>SetTimeTooltipHasLoreDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeTooltipHasFakeLoreDate"></a>
+    <strong>GetTimeTooltipHasFakeLoreDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a fake lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeTooltipHasFakeLoreDate"></a>
+    <strong>SetTimeTooltipHasFakeLoreDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a fake lore date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeTooltipHasRealDate"></a>
+    <strong>GetTimeTooltipHasRealDate ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored boolean value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a real date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeTooltipHasRealDate"></a>
+    <strong>SetTimeTooltipHasRealDate (value)</strong>
+    </dt>
+    <dd>
+    a function to store the boolean value for the time
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean if the time tooltip has a real date
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "GetTimeScaleWhenHover"></a>
     <strong>GetTimeScaleWhenHover ()</strong>
     </dt>
@@ -1710,6 +1877,45 @@ License:    GPL-<span class="number">3.0</span>
     <ul>
         <li><span class="parameter">value</span>
          string the format for the time
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTimeTooltipFormat"></a>
+    <strong>GetTimeTooltipFormat ()</strong>
+    </dt>
+    <dd>
+    a function to get the stored style value for the time
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        string the format for the time tooltip
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetTimeTooltipFormat"></a>
+    <strong>SetTimeTooltipFormat (value)</strong>
+    </dt>
+    <dd>
+    a function to store the style value for the moon
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+         string the format for the time tooltip
         </li>
     </ul>
 
@@ -3034,7 +3240,7 @@ background = {
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2020-03-06 20:56:12 </i>
+<i style="float:right;">Last updated 2020-05-30 11:30:30 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

@@ -16,7 +16,7 @@ function Clock_TST.CONSTANTS()
         NAME = name,
         DISPLAY = "|cFFD700Clock|r - Tamriel Standard Time",
         AUTHOR = "@Tyx",
-        VERSION = "2.2.0",
+        VERSION = "2.3.0",
         SAVED_NAME = name .. "_Settings",
         Menu = {
             time = {
@@ -177,7 +177,7 @@ function Clock_TST.CONSTANTS()
                     core = {
                         timeAndMoonAreLinked = true,
                         hideInGroup = false,
-                        hideInFight = true,
+                        hideInCombat = true,
                         onlyShowOnMap = false,
                     },
                     time = {
@@ -196,6 +196,11 @@ function Clock_TST.CONSTANTS()
                         hasLoreDate = true,
                         hasFakeLoreDate = false,
                         hasRealDate = true,
+                        tooltip = {
+                            hasLoreDate = true,
+                            hasFakeLoreDate = false,
+                            hasRealDate = true,
+                        }
                     },
                     moon = {
                         isVisible = true,
@@ -232,6 +237,9 @@ function Clock_TST.CONSTANTS()
                         },
                         format = "#A, #d #B #Y #X\n%A, %d %B %Y %X", -- "#A, #d #B #Y #X\n%A, %d %B %Y %X"
                         lineCount = 2, -- number of lines in format
+                        tooltip = {
+                            format = "#A, #d #B #Y #X\n%A, %d %B %Y %X",
+                        },
                         colour = {
                             r = 0.7725490928,
                             g = 0.7607843876,
@@ -334,7 +342,7 @@ function Clock_TST.CONSTANTS()
                             booleans = {
                                 core = {
                                     onlyShowOnMap = true,
-                                    hideInFight = false,
+                                    hideInCombat = false,
                                 },
                                 time = {
                                     isMovable = false,

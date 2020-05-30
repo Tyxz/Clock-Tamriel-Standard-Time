@@ -50,23 +50,39 @@ end
 
 --- Update the visibility of the moon controls and manage their fragments
 function Moon:UpdateVisibility()
-    local isHidden = not settings:GetMoonIsVisible() or settings:GetHideInGroup() and IsUnitGrouped("player")
+    local isHidden = not settings:GetMoonIsVisible()
+            or (settings:GetHideInGroup() and IsUnitGrouped("player"))
+            or (settings:GetHideInCombat() and IsUnitInCombat("player"))
     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Settings", isHidden)
+
+    local namespace = self.control:GetName()
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED)
+    EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT)
 
     if settings:GetMoonIsVisible() then
         local backgroundIsHidden = not settings:GetMoonHasBackground()
         self.masser_background:SetHidden(backgroundIsHidden)
         self.secunda_background:SetHidden(backgroundIsHidden)
 
-        local namespace = self.control:GetName()
-
-        EVENT_MANAGER:UnregisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE)
         if settings:GetOnlyShowOnMap() then
             HUD_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
             HUD_UI_SCENE:RemoveFragment(Clock_TST.MOON_FRAGMENT)
             WORLD_MAP_SCENE:AddFragment(Clock_TST.MOON_FRAGMENT)
         else
-            if settings:GetHideInFight() then
+            if settings:GetHideInGroup() then
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED,
+                        function(_, _, _, isLocalPlayer)
+                            if isLocalPlayer then Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Grouped", true) end
+                        end
+                )
+                EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT,
+                        function(_, _, _, isLocalPlayer)
+                            if isLocalPlayer then   Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Grouped", false) end
+                        end
+                )
+            end
+            if settings:GetHideInCombat() then
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_PLAYER_COMBAT_STATE, function(_, inCombat)
                     Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Combat", inCombat)
                 end)
