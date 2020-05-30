@@ -72,12 +72,12 @@ function Moon:UpdateVisibility()
         else
             if settings:GetHideInGroup() then
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_JOINED,
-                        function(_, _, isLocalPlayer)
+                        function(_, _, _, isLocalPlayer)
                             if isLocalPlayer then Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Grouped", true) end
                         end
                 )
                 EVENT_MANAGER:RegisterForEvent(namespace, EVENT_GROUP_MEMBER_LEFT,
-                        function(_, _, isLocalPlayer)
+                        function(_, _, _, isLocalPlayer)
                             if isLocalPlayer then   Clock_TST.MOON_FRAGMENT:SetHiddenForReason("Grouped", false) end
                         end
                 )
